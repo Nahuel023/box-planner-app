@@ -1,0 +1,1548 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Box Planner — Mi Progreso</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ── Reset & Base ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg:       #0a0a0f;
+  --bg2:      #111118;
+  --bg3:      #1a1a24;
+  --border:   rgba(255,255,255,0.07);
+  --border2:  rgba(255,255,255,0.12);
+  --text:     #f0f0f0;
+  --muted:    #888;
+  --accent:   #e8ff47;       /* lima eléctrico */
+  --accent2:  #ff6b35;       /* naranja CrossFit */
+  --green:    #22c55e;
+  --red:      #ef4444;
+  --purple:   #a78bfa;
+  --blue:     #38bdf8;
+  --font-disp: 'Bebas Neue', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+  --r:         10px;
+  --r-lg:      16px;
+}
+html { font-size: 16px; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+
+/* ── Scrollbar ────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--bg3); border-radius: 4px; }
+
+/* ── Login ────────────────────────────────────────────────── */
+#loginScreen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.login-bg {
+  position: fixed; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 0%, rgba(232,255,71,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 100%, rgba(255,107,53,0.05) 0%, transparent 60%),
+    var(--bg);
+}
+.login-grid {
+  position: fixed; inset: 0; z-index: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+.login-card {
+  position: relative; z-index: 1;
+  width: 100%; max-width: 380px;
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  border-radius: var(--r-lg);
+  padding: 2.5rem 2rem;
+  animation: fadeUp 0.5s ease both;
+}
+@keyframes fadeUp {
+  from { opacity:0; transform: translateY(20px); }
+  to   { opacity:1; transform: translateY(0); }
+}
+.login-logo {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 2rem;
+}
+.login-logo-mark {
+  width: 40px; height: 40px;
+  background: var(--accent);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+}
+.login-logo-text {
+  font-family: var(--font-disp);
+  font-size: 22px;
+  letter-spacing: 1px;
+  color: var(--text);
+}
+.login-logo-text span { color: var(--accent); }
+.login-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: .4rem;
+}
+.login-sub {
+  font-size: .875rem;
+  color: var(--muted);
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+.field-label {
+  font-size: .75rem;
+  font-weight: 500;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin-bottom: .5rem;
+}
+.pin-input {
+  width: 100%;
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  border-radius: var(--r);
+  padding: .85rem 1rem;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  letter-spacing: .25em;
+  text-align: center;
+  text-transform: uppercase;
+  outline: none;
+  transition: border-color .2s;
+  margin-bottom: 1rem;
+}
+.pin-input:focus { border-color: var(--accent); }
+.pin-input::placeholder { color: var(--muted); letter-spacing: .1em; font-size: 1rem; }
+.login-btn {
+  width: 100%;
+  padding: .9rem;
+  background: var(--accent);
+  color: #000;
+  border: none;
+  border-radius: var(--r);
+  font-family: var(--font-disp);
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: opacity .2s, transform .1s;
+}
+.login-btn:hover { opacity: .9; }
+.login-btn:active { transform: scale(.98); }
+.login-error {
+  display: none;
+  margin-top: .75rem;
+  padding: .6rem 1rem;
+  background: rgba(239,68,68,.1);
+  border: 1px solid rgba(239,68,68,.3);
+  border-radius: var(--r);
+  font-size: .8rem;
+  color: #ef4444;
+  text-align: center;
+}
+.login-register-link {
+  margin-top: 1.1rem;
+  text-align: center;
+  font-size: .78rem;
+  color: var(--muted);
+}
+.btn-link {
+  background: none; border: none;
+  color: var(--accent); font-size: .78rem;
+  cursor: pointer; padding: 0;
+  font-family: var(--font-body);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ── App Shell ────────────────────────────────────────────── */
+#appScreen { display: none; min-height: 100vh; padding-bottom: 80px; }
+
+/* Top bar */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(10,10,15,.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: .85rem 1.25rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.topbar-brand {
+  font-family: var(--font-disp);
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  color: var(--accent);
+}
+.topbar-athlete {
+  font-size: .8rem;
+  color: var(--muted);
+}
+.topbar-athlete strong { color: var(--text); font-weight: 500; }
+.logout-btn {
+  background: none; border: 1px solid var(--border2);
+  color: var(--muted); border-radius: 6px;
+  padding: .3rem .7rem; font-size: .75rem;
+  cursor: pointer; font-family: var(--font-body);
+  transition: color .2s, border-color .2s;
+}
+.logout-btn:hover { color: var(--text); border-color: var(--border2); }
+
+/* Content */
+.content { max-width: 640px; margin: 0 auto; padding: 1.25rem 1rem; }
+
+/* Hero stats */
+.hero-name {
+  font-family: var(--font-disp);
+  font-size: clamp(2rem, 8vw, 3.5rem);
+  letter-spacing: 1px;
+  line-height: 1;
+  margin-bottom: .25rem;
+}
+.hero-name span { color: var(--accent); }
+.hero-meta {
+  font-size: .85rem;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+}
+.hero-meta .tag {
+  display: inline-block;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: .2rem .7rem;
+  font-size: .75rem;
+  margin-right: .4rem;
+  margin-bottom: .3rem;
+}
+
+/* Stat grid */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: .75rem;
+  margin-bottom: 1.5rem;
+}
+.stat-box {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 1rem .75rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: border-color .2s;
+}
+.stat-box:hover { border-color: var(--border2); }
+.stat-box::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--accent);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .3s ease;
+}
+.stat-box:hover::before { transform: scaleX(1); }
+.stat-val {
+  font-family: var(--font-disp);
+  font-size: 2rem;
+  color: var(--text);
+  line-height: 1;
+}
+.stat-lbl {
+  font-size: .7rem;
+  color: var(--muted);
+  margin-top: .3rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+.stat-prog {
+  font-size: .7rem;
+  font-family: var(--font-mono);
+  margin-top: .4rem;
+  padding: .15rem .5rem;
+  border-radius: 20px;
+  display: inline-block;
+}
+.prog-up   { background: rgba(34,197,94,.12); color: var(--green); }
+.prog-flat { background: rgba(136,136,136,.12); color: var(--muted); }
+.prog-down { background: rgba(239,68,68,.12); color: var(--red); }
+
+/* Section headers */
+.section-hdr {
+  display: flex; align-items: center; gap: .75rem;
+  margin: 1.75rem 0 .875rem;
+}
+.section-hdr h2 {
+  font-family: var(--font-disp);
+  font-size: 1.3rem;
+  letter-spacing: .5px;
+}
+.section-hdr .badge {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: .15rem .6rem;
+  font-size: .7rem;
+  color: var(--muted);
+  font-family: var(--font-mono);
+}
+
+/* RM Table */
+.rm-table {
+  width: 100%;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+.rm-table-header {
+  display: grid;
+  grid-template-columns: 1fr 80px 80px 70px;
+  padding: .6rem 1rem;
+  background: var(--bg3);
+  border-bottom: 1px solid var(--border);
+  font-size: .7rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+.rm-row-item {
+  display: grid;
+  grid-template-columns: 1fr 80px 80px 70px;
+  padding: .85rem 1rem;
+  border-bottom: 1px solid var(--border);
+  align-items: center;
+  transition: background .15s;
+}
+.rm-row-item:last-child { border-bottom: none; }
+.rm-row-item:hover { background: var(--bg3); }
+.rm-exercise { font-size: .9rem; font-weight: 500; }
+.rm-cat {
+  font-size: .7rem;
+  color: var(--muted);
+  margin-top: .15rem;
+}
+.rm-kg {
+  font-family: var(--font-mono);
+  font-size: .95rem;
+  font-weight: 500;
+  color: var(--accent);
+}
+.rm-best {
+  font-family: var(--font-mono);
+  font-size: .85rem;
+  color: var(--muted);
+}
+
+/* Sparkline card */
+.spark-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 1.25rem;
+  margin-bottom: .75rem;
+}
+.spark-title {
+  font-size: .8rem;
+  color: var(--muted);
+  margin-bottom: .75rem;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.spark-title strong { color: var(--text); font-weight: 500; }
+.spark-title .rm-badge {
+  font-family: var(--font-mono);
+  font-size: .75rem;
+  color: var(--accent);
+  background: rgba(232,255,71,.1);
+  padding: .15rem .5rem;
+  border-radius: 4px;
+}
+.spark-svg { width: 100%; overflow: visible; display: block; }
+
+/* Rutina cards */
+.day-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  margin-bottom: .75rem;
+}
+.day-header {
+  padding: .75rem 1rem;
+  background: var(--bg3);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.day-name {
+  font-family: var(--font-disp);
+  font-size: 1.1rem;
+  letter-spacing: .5px;
+}
+.day-body { padding: .75rem 1rem; }
+.sec-block { margin-bottom: .875rem; }
+.sec-block:last-child { margin-bottom: 0; }
+.sec-label {
+  font-size: .75rem;
+  font-weight: 600;
+  padding: .25rem .6rem;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: .5rem;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+.sec-structure { background: rgba(167,139,250,.15); color: #c4b5fd; }
+.sec-strength  { background: rgba(255,107,53,.15);  color: #ff9d6a; }
+.sec-wl        { background: rgba(34,197,94,.12);   color: #4ade80; }
+.sec-metcon    { background: rgba(56,189,248,.12);  color: #7dd3fc; }
+.sec-core      { background: rgba(167,139,250,.12); color: #c4b5fd; }
+.sec-tabata    { background: rgba(250,204,21,.12);  color: #fde047; }
+.sec-item {
+  font-size: .85rem;
+  color: var(--muted);
+  padding: .2rem 0 .2rem .75rem;
+  border-left: 2px solid var(--border2);
+  margin-bottom: .2rem;
+  line-height: 1.4;
+}
+.sec-item.indent { padding-left: 1.25rem; color: #666; font-size: .8rem; }
+.sec-cap {
+  font-size: .8rem;
+  font-family: var(--font-mono);
+  color: var(--accent2);
+  font-weight: 500;
+  margin-top: .4rem;
+}
+
+/* Historial */
+.hist-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: .75rem;
+}
+.hist-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: .875rem;
+  transition: border-color .2s;
+}
+.hist-card:hover { border-color: var(--border2); }
+.hist-mes {
+  font-family: var(--font-disp);
+  font-size: 1.1rem;
+  margin-bottom: .5rem;
+  color: var(--text);
+}
+.hist-row {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: .78rem;
+  padding: .2rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.hist-row:last-child { border-bottom: none; }
+.hist-label { color: var(--muted); }
+.hist-kg { font-family: var(--font-mono); font-size: .78rem; }
+
+/* Bottom nav */
+.bottom-nav {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(10,10,15,.95);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--border);
+  display: flex;
+}
+.nav-item {
+  flex: 1;
+  position: relative;
+  display: flex; flex-direction: column; align-items: center;
+  padding: .6rem .5rem .5rem;
+  cursor: pointer;
+  border: none; background: none;
+  color: var(--muted);
+  font-family: var(--font-body);
+  font-size: .65rem;
+  transition: color .2s;
+  gap: 3px;
+}
+.nav-item.active { color: var(--accent); }
+.nav-icon { font-size: 18px; line-height: 1; display: block; }
+
+/* Punto rojo "rutina nueva" en tab Rutina */
+.nav-rutina-dot {
+  display: block;
+  width: 7px; height: 7px;
+  background: var(--red);
+  border-radius: 50%;
+  position: absolute;
+  top: .35rem; right: calc(50% - 14px);
+  animation: pulseDot 1.8s ease-in-out infinite;
+}
+@keyframes pulseDot {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: .6; transform: scale(1.35); }
+}
+
+/* Tabs */
+.tab-content { display: none; animation: fadeIn .25s ease; }
+.tab-content.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* Loading / error */
+.loading-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--muted);
+}
+.loading-dot {
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  margin: 0 2px;
+  animation: blink 1.2s infinite both;
+}
+.loading-dot:nth-child(2) { animation-delay: .2s; }
+.loading-dot:nth-child(3) { animation-delay: .4s; }
+@keyframes blink { 0%,80%,100%{opacity:.2} 40%{opacity:1} }
+
+.error-box {
+  background: rgba(239,68,68,.08);
+  border: 1px solid rgba(239,68,68,.2);
+  border-radius: var(--r);
+  padding: 1.5rem;
+  text-align: center;
+  color: var(--red);
+  font-size: .875rem;
+  line-height: 1.6;
+}
+
+/* Refresh btn */
+.refresh-btn {
+  display: flex; align-items: center; gap: .4rem;
+  margin: 1rem auto 0;
+  padding: .5rem 1.25rem;
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  border-radius: var(--r);
+  color: var(--muted);
+  font-size: .8rem;
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: color .2s;
+}
+.refresh-btn:hover { color: var(--text); }
+
+/* Info pill */
+.info-pill {
+  display: inline-flex; align-items: center; gap: .4rem;
+  background: rgba(56,189,248,.08);
+  border: 1px solid rgba(56,189,248,.15);
+  border-radius: 20px;
+  padding: .35rem .85rem;
+  font-size: .75rem;
+  color: var(--blue);
+  margin-bottom: 1.25rem;
+}
+.info-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+
+/* Responsive */
+@media (max-width: 400px) {
+  .stat-grid { grid-template-columns: repeat(3, 1fr); gap: .5rem; }
+  .stat-val { font-size: 1.5rem; }
+  .rm-table-header,
+  .rm-row-item { grid-template-columns: 1fr 70px 70px 60px; }
+}
+
+/* ══════════════════════════════════════════════════════════
+   PANEL DOCENTE
+   ══════════════════════════════════════════════════════════ */
+#docenteScreen { display: none; min-height: 100vh; padding-bottom: 2rem; }
+
+/* Stats globales */
+.doc-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: .75rem;
+  margin-bottom: 1.75rem;
+}
+.doc-stat-box {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 1rem .75rem;
+  text-align: center;
+}
+.doc-stat-icon { font-size: 1.4rem; margin-bottom: .3rem; }
+.doc-stat-val  {
+  font-family: var(--font-disp);
+  font-size: 2rem; line-height: 1;
+  color: var(--accent);
+}
+.doc-stat-lbl  {
+  font-size: .68rem; color: var(--muted);
+  margin-top: .3rem;
+  text-transform: uppercase; letter-spacing: .05em;
+}
+
+/* Lista de alumnos */
+.doc-alumno-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 1rem 1.1rem;
+  margin-bottom: .65rem;
+  cursor: pointer;
+  transition: border-color .18s;
+  -webkit-tap-highlight-color: transparent;
+}
+.doc-alumno-card:hover  { border-color: var(--border2); }
+.doc-alumno-card:active { background: var(--bg3); }
+
+.doc-alumno-header {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  margin-bottom: .65rem;
+}
+.doc-alumno-nombre {
+  font-size: .95rem; font-weight: 600; margin-bottom: .15rem;
+}
+.doc-alumno-meta  { font-size: .75rem; color: var(--muted); }
+
+.doc-actividad {
+  font-size: .7rem; color: var(--muted);
+  font-family: var(--font-mono);
+  white-space: nowrap; margin-left: .5rem; flex-shrink: 0;
+  margin-top: .1rem;
+}
+.doc-actividad--hoy   { color: var(--green); }
+.doc-actividad--nunca { color: var(--red); opacity: .7; }
+
+.doc-alumno-rms {
+  display: flex; flex-wrap: wrap; gap: .4rem;
+}
+.doc-alumno-rms--empty { font-size: .78rem; color: var(--muted); }
+.doc-rm-chip {
+  font-size: .72rem; color: var(--muted);
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: .15rem .5rem;
+  font-family: var(--font-mono);
+}
+.doc-rm-chip strong { color: var(--accent); }
+
+/* Modal de detalle de alumno */
+.modal-card--tall { max-height: 80vh; overflow-y: auto; }
+
+.detail-header  { margin-bottom: .25rem; }
+.detail-nombre  {
+  font-family: var(--font-disp);
+  font-size: 1.6rem; letter-spacing: .5px;
+}
+.detail-meta    { font-size: .82rem; color: var(--muted); margin-top: .2rem; }
+.detail-objetivo{
+  font-size: .8rem; color: var(--muted);
+  margin-top: .5rem;
+  padding: .4rem .7rem;
+  background: var(--bg3);
+  border-left: 2px solid var(--accent);
+  border-radius: 0 4px 4px 0;
+}
+.detail-footer {
+  margin-top: 1.25rem;
+  padding-top: .75rem;
+  border-top: 1px solid var(--border);
+  font-size: .8rem; color: var(--muted);
+}
+.detail-footer-label { color: var(--muted); }
+
+/* Stat val alerta */
+.doc-stat-val--alerta { color: var(--accent2) !important; }
+
+/* Card con alerta */
+.doc-alumno-card--alerta { border-color: rgba(255,107,53,.35); }
+.doc-alumno-card--alerta:hover { border-color: rgba(255,107,53,.6); }
+
+/* Badge dentro de la card */
+.doc-alerta-badge {
+  display: inline-flex; align-items: center;
+  font-size: .68rem; color: var(--accent2);
+  background: rgba(255,107,53,.08);
+  border: 1px solid rgba(255,107,53,.2);
+  border-radius: 4px;
+  padding: .2rem .5rem;
+  margin: .3rem 0;
+  font-family: var(--font-mono);
+}
+
+/* Sección alertas en modal de detalle */
+.detail-alerta-section {
+  background: rgba(255,107,53,.07);
+  border: 1px solid rgba(255,107,53,.2);
+  border-radius: var(--r);
+  padding: .75rem 1rem;
+  margin: 1rem 0;
+}
+.detail-alerta-titulo { font-size: .78rem; font-weight: 600; color: var(--accent2); margin-bottom: .4rem; }
+.detail-alerta-item   { font-size: .78rem; color: var(--muted); padding: .15rem 0; }
+.detail-alerta-item::before { content: '• '; }
+
+/* Mensaje verde "todos al día" */
+.doc-ok-box {
+  font-size: .85rem; color: var(--green);
+  padding: 1.25rem; text-align: center;
+  background: rgba(34,197,94,.06);
+  border: 1px solid rgba(34,197,94,.15);
+  border-radius: var(--r);
+}
+
+/* Botón filtro */
+.btn-filtro {
+  font-size: .68rem; font-family: var(--font-mono);
+  color: var(--muted); background: var(--bg3);
+  border: 1px solid var(--border); border-radius: 6px;
+  padding: .25rem .65rem; cursor: pointer;
+  transition: border-color .15s, color .15s; white-space: nowrap;
+}
+.btn-filtro:hover { border-color: var(--accent2); color: var(--accent2); }
+.btn-filtro--active {
+  color: var(--accent2); border-color: rgba(255,107,53,.5);
+  background: rgba(255,107,53,.08);
+}
+
+/* ── Rutinas: lista ──────────────────────────────────────────*/
+.doc-rutina-card {
+  display: flex; align-items: center; gap: .75rem;
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--r); padding: .8rem 1rem;
+  margin-bottom: .5rem;
+}
+.doc-rutina-disc-dot {
+  width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+}
+.doc-rutina-info   { flex: 1; min-width: 0; }
+.doc-rutina-nombre { font-size: .88rem; font-weight: 600; }
+.doc-rutina-meta   { font-size: .72rem; color: var(--muted); margin-top: .15rem; }
+.doc-rutina-actions{ display: flex; gap: .4rem; flex-shrink: 0; }
+
+/* Botones mini */
+.btn-mini {
+  font-size: .68rem; font-family: var(--font-mono);
+  color: var(--muted); background: var(--bg3);
+  border: 1px solid var(--border); border-radius: 5px;
+  padding: .22rem .55rem; cursor: pointer;
+  transition: border-color .15s, color .15s;
+}
+.btn-mini:hover { border-color: var(--accent); color: var(--accent); }
+.btn-mini--danger:hover { border-color: var(--red); color: var(--red); }
+
+/* Botón "Nueva rutina" */
+.btn-accent {
+  font-size: .75rem; font-family: var(--font-mono);
+  color: var(--bg); background: var(--accent);
+  border: none; border-radius: 6px;
+  padding: .3rem .8rem; cursor: pointer;
+  font-weight: 600; letter-spacing: .03em;
+}
+.btn-accent:hover { opacity: .85; }
+
+/* ── Rutinas: formulario ─────────────────────────────────────*/
+.rform-group  { margin-bottom: .9rem; }
+.rform-row    { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+.rform-label  { display: block; font-size: .73rem; color: var(--muted); margin-bottom: .35rem; text-transform: uppercase; letter-spacing: .05em; }
+.rform-input  {
+  width: 100%; background: var(--bg3);
+  border: 1px solid var(--border2); border-radius: var(--r);
+  color: var(--text); font-family: var(--font-body);
+  font-size: .88rem; padding: .6rem .8rem;
+  outline: none; transition: border-color .15s;
+  appearance: auto;
+}
+.rform-input:focus { border-color: var(--accent); }
+textarea.rform-input { resize: vertical; line-height: 1.5; }
+
+.rdia-block {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: var(--r); padding: .8rem; margin-bottom: .65rem;
+}
+.rdia-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: .4rem;
+}
+
+.btn-add-day {
+  width: 100%; padding: .55rem;
+  background: transparent; border: 1px dashed var(--border2);
+  border-radius: var(--r); color: var(--muted);
+  font-size: .8rem; cursor: pointer;
+  transition: border-color .15s, color .15s;
+}
+.btn-add-day:hover { border-color: var(--accent); color: var(--accent); }
+
+/* Bloque dentro de un día */
+.rbloque-block {
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: 6px; padding: .65rem .75rem;
+  margin-bottom: .5rem;
+}
+.rbloque-header {
+  display: flex; justify-content: space-between; align-items: center;
+  gap: .5rem; margin-bottom: .45rem;
+}
+.rbloque-tipo {
+  flex: 1; width: auto !important;
+  font-size: .78rem !important; padding: .35rem .55rem !important;
+}
+.btn-add-bloque {
+  width: 100%; padding: .4rem;
+  background: transparent; border: 1px dashed var(--border);
+  border-radius: 6px; color: var(--muted);
+  font-size: .75rem; cursor: pointer; margin-top: .3rem;
+  transition: border-color .15s, color .15s;
+}
+.btn-add-bloque:hover { border-color: var(--purple); color: var(--purple); }
+
+/* Banner demo docente */
+.doc-demo-pill {
+  display: inline-flex; align-items: center; gap: .4rem;
+  background: rgba(245,158,11,.08);
+  border: 1px solid rgba(245,158,11,.2);
+  border-radius: 20px;
+  padding: .35rem .85rem;
+  font-size: .75rem; color: #f59e0b;
+  margin-bottom: 1rem;
+}
+
+/* Tab bar del panel docente */
+.doc-tab-bar {
+  display: flex; gap: .4rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: .1rem;
+}
+.doc-tab {
+  background: none; border: none;
+  padding: .45rem .9rem;
+  font-family: var(--font-body); font-size: .82rem;
+  color: var(--muted); cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: color .15s, border-color .15s;
+}
+.doc-tab:hover { color: var(--text); }
+.doc-tab--active { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* Admin tab — secciones */
+.admin-section-hdr {
+  font-size: .7rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .08em; color: var(--muted);
+  padding: .5rem 0 .5rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: .75rem;
+}
+.admin-user-row {
+  display: flex; align-items: center; gap: .6rem;
+  padding: .65rem .75rem;
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: var(--r); margin-bottom: .45rem;
+  flex-wrap: wrap;
+}
+.admin-user-info { flex: 1; min-width: 0; }
+.admin-user-nombre { font-size: .88rem; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.admin-user-meta   { font-size: .72rem; color: var(--muted); font-family: var(--font-mono); }
+.admin-rol-select  {
+  background: var(--bg); border: 1px solid var(--border2);
+  border-radius: 5px; color: var(--text);
+  font-family: var(--font-body); font-size: .78rem;
+  padding: .25rem .4rem; outline: none;
+}
+
+/* ── Sección perfil deportivo en modal de detalle ─────── */
+.detail-perfil-box {
+  background: var(--bg3); border: 1px solid var(--border2);
+  border-radius: var(--r); padding: .85rem 1rem;
+}
+.detail-perfil-disciplinas {
+  display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: .75rem;
+}
+.perfil-disc-check {
+  display: flex; align-items: center; gap: .35rem;
+  background: var(--bg); border: 1px solid var(--border2);
+  border-radius: 20px; padding: .25rem .65rem;
+  font-size: .78rem; cursor: pointer;
+}
+.perfil-disc-check input[type="checkbox"] { accent-color: var(--accent); margin: 0; }
+.detail-perfil-dias-row {
+  display: flex; align-items: center; gap: .65rem; margin-bottom: .75rem;
+}
+.detail-perfil-dias-row label { font-size: .82rem; color: var(--muted); }
+.detail-perfil-dias-input {
+  width: 3.5rem;
+  background: var(--bg); border: 1px solid var(--border2);
+  border-radius: 5px; color: var(--text); font-family: var(--font-body);
+  font-size: .85rem; padding: .25rem .4rem; outline: none; text-align: center;
+}
+
+/* ══════════════════════════════════════════════════════════
+   ESTADO SUBJETIVO — pill-buttons en modal de carga
+   ══════════════════════════════════════════════════════════ */
+.mmodal-estado-pills {
+  display: flex; gap: .45rem; flex-wrap: wrap;
+  margin-top: .2rem;
+}
+.estado-pill {
+  font-size: .75rem; font-family: var(--font-mono);
+  color: var(--muted);
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: .3rem .75rem;
+  cursor: pointer;
+  transition: border-color .15s, color .15s, background .15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.estado-pill:hover {
+  border-color: var(--estado-color, var(--accent));
+  color: var(--estado-color, var(--accent));
+}
+.estado-pill--active {
+  border-color: var(--estado-color, var(--accent));
+  color: var(--estado-color, var(--accent));
+  background: color-mix(in srgb, var(--estado-color, var(--accent)) 12%, transparent);
+}
+
+/* ══════════════════════════════════════════════════════════
+   LOG DE CARGAS — historial individual (alumno + docente)
+   ══════════════════════════════════════════════════════════ */
+.log-section-hdr {
+  font-size: .72rem; font-weight: 600;
+  color: var(--muted); text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 1.75rem 0 .75rem;
+}
+.log-wrap {
+  display: flex; flex-direction: column; gap: .4rem;
+}
+.log-wrap--compact .log-row { padding: .5rem .7rem; }
+
+.log-dia {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+}
+.log-dia-hdr {
+  font-size: .7rem; font-weight: 600; color: var(--muted);
+  text-transform: uppercase; letter-spacing: .05em;
+  padding: .4rem .8rem;
+  background: var(--bg3);
+  border-bottom: 1px solid var(--border);
+}
+.log-row {
+  padding: .55rem .8rem;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+.log-row:last-child { border-bottom: none; }
+
+.log-row-main {
+  display: flex; justify-content: space-between; align-items: baseline;
+  gap: .5rem;
+}
+.log-ejercicio { font-size: .88rem; font-weight: 500; }
+.log-valor     { font-size: .88rem; font-family: var(--font-mono); color: var(--accent); }
+
+.log-row-meta {
+  display: flex; align-items: center; gap: .5rem;
+  margin-top: .3rem;
+}
+.log-nota { font-size: .75rem; color: var(--muted); font-style: italic; }
+.log-estado-dot {
+  width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0;
+}
+.log-estado-lbl { font-size: .72rem; font-family: var(--font-mono); }
+
+/* Fecha badge en log del docente */
+.log-fecha-badge {
+  position: absolute; top: .55rem; right: .8rem;
+  font-size: .65rem; color: var(--muted);
+  font-family: var(--font-mono);
+}
+
+/* Sección rutina en modal de detalle docente */
+.detail-rutina-box {
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  border-radius: var(--r);
+  padding: .75rem 1rem;
+}
+.detail-rutina-actual {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: .85rem; font-weight: 500;
+}
+.detail-hist-wrap {
+  margin-top: .6rem;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+}
+.detail-hist-title {
+  font-size: .68rem; font-weight: 600; text-transform: uppercase;
+  letter-spacing: .06em; color: var(--muted);
+  padding: .45rem .85rem;
+  border-bottom: 1px solid var(--border);
+}
+.detail-hist-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: .4rem .85rem;
+  font-size: .8rem;
+  border-bottom: 1px solid var(--border);
+}
+.detail-hist-row:last-child { border-bottom: none; }
+.detail-hist-fecha { font-size: .72rem; color: var(--muted); font-family: var(--font-mono); }
+
+/* Advertencia asignación duplicada */
+.rasignar-warn {
+  margin-top: 1rem;
+  padding: .75rem;
+  background: rgba(245,158,11,.08);
+  border: 1px solid rgba(245,158,11,.25);
+  border-radius: var(--r);
+}
+.rasignar-warn-txt { font-size: .82rem; color: #f59e0b; }
+
+/* ══════════════════════════════════════════════════════════
+   TAB: CARGAR MÉTRICAS
+   ══════════════════════════════════════════════════════════ */
+
+/* Resumen de hoy */
+.carga-resumen {
+  display: flex; align-items: center; gap: .5rem;
+  font-size: .8rem; color: var(--green);
+  margin-bottom: 1rem;
+  padding: .5rem .75rem;
+  background: rgba(34,197,94,.08);
+  border: 1px solid rgba(34,197,94,.15);
+  border-radius: var(--r);
+}
+.carga-resumen-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--green);
+  animation: pulse 2s infinite;
+}
+
+/* Lista de ejercicios */
+.carga-list { display: flex; flex-direction: column; gap: .6rem; }
+
+.carga-card {
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 1rem 1.1rem;
+  cursor: pointer;
+  transition: border-color .18s, background .18s;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+.carga-card:active { background: var(--bg3); }
+.carga-card:hover  { border-color: var(--border2); }
+.carga-card--done  { border-color: rgba(34,197,94,.25); }
+.carga-card--done:hover { border-color: rgba(34,197,94,.4); }
+
+.carga-card-body { flex: 1; min-width: 0; }
+.carga-card-name {
+  font-size: .95rem; font-weight: 500;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.carga-card-meta {
+  display: flex; gap: .75rem; align-items: center;
+  margin-top: .2rem;
+}
+.carga-card-cat  { font-size: .72rem; color: var(--muted); }
+.carga-card-last { font-size: .72rem; color: var(--accent); font-family: var(--font-mono); }
+
+.carga-card-action {
+  display: flex; align-items: center; gap: .4rem;
+  margin-left: .75rem; flex-shrink: 0;
+}
+.carga-unit {
+  font-size: .72rem; color: var(--muted);
+  font-family: var(--font-mono);
+}
+.carga-plus {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #000;
+  font-size: 1.2rem; font-weight: 700; line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+}
+.carga-done-badge {
+  font-size: .72rem; color: var(--green);
+  font-family: var(--font-mono);
+  background: rgba(34,197,94,.1);
+  padding: .2rem .55rem;
+  border-radius: 20px;
+}
+
+/* Estado vacío */
+.carga-empty {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--muted);
+  font-size: .875rem;
+  line-height: 1.7;
+}
+.carga-empty-icon { font-size: 2.5rem; margin-bottom: .75rem; }
+
+/* ══════════════════════════════════════════════════════════
+   MODAL DE CARGA
+   ══════════════════════════════════════════════════════════ */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 200;
+  background: rgba(0,0,0,.7);
+  backdrop-filter: blur(4px);
+  display: flex; align-items: flex-end; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity .22s ease;
+}
+.modal-overlay.modal-open {
+  opacity: 1; pointer-events: all;
+}
+.modal-card {
+  width: 100%; max-width: 480px;
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  border-bottom: none;
+  border-radius: var(--r-lg) var(--r-lg) 0 0;
+  padding: 1.5rem 1.25rem 2rem;
+  transform: translateY(30px);
+  transition: transform .25s cubic-bezier(.22,1,.36,1);
+}
+.modal-overlay.modal-open .modal-card {
+  transform: translateY(0);
+}
+
+/* Header dentro del modal (título + cerrar) */
+.modal-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: .25rem;
+}
+.modal-close {
+  background: none; border: none; color: var(--muted);
+  font-size: 1.1rem; cursor: pointer; padding: .2rem .4rem;
+  border-radius: 4px; transition: color .15s;
+}
+.modal-close:hover { color: var(--text); }
+
+/* Handle visual */
+.modal-card::before {
+  content: '';
+  display: block;
+  width: 36px; height: 4px;
+  background: var(--border2);
+  border-radius: 2px;
+  margin: 0 auto 1.25rem;
+}
+
+.mmodal-header   { margin-bottom: 1.5rem; }
+.mmodal-title    { font-family: var(--font-disp); font-size: 1.5rem; letter-spacing: .5px; }
+.mmodal-date     { font-size: .8rem; color: var(--muted); margin-top: .2rem; text-transform: capitalize; }
+
+.mmodal-field    { margin-bottom: 1.1rem; }
+.mmodal-label    {
+  display: block;
+  font-size: .72rem; font-weight: 600;
+  color: var(--muted); text-transform: uppercase; letter-spacing: .08em;
+  margin-bottom: .45rem;
+}
+.mmodal-input-wrap { position: relative; }
+.mmodal-input {
+  width: 100%;
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  border-radius: var(--r);
+  padding: .85rem 3.5rem .85rem 1rem;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 1.4rem;
+  outline: none;
+  transition: border-color .2s;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+.mmodal-input::-webkit-outer-spin-button,
+.mmodal-input::-webkit-inner-spin-button { -webkit-appearance: none; }
+.mmodal-input:focus { border-color: var(--accent); }
+.mmodal-input--error { border-color: var(--red) !important; animation: shake .3s; }
+.mmodal-input--notes {
+  font-size: .95rem; font-family: var(--font-body);
+  padding: .75rem 1rem;
+}
+.mmodal-unidad {
+  position: absolute; right: 1rem; top: 50%; transform: translateY(-50%);
+  font-family: var(--font-mono); font-size: .8rem; color: var(--muted);
+  pointer-events: none;
+}
+
+.mmodal-submit {
+  width: 100%; margin-top: .5rem;
+  padding: 1rem;
+  background: var(--accent); color: #000;
+  border: none; border-radius: var(--r);
+  font-family: var(--font-disp); font-size: 1.1rem; letter-spacing: 1px;
+  cursor: pointer;
+  transition: opacity .2s, transform .1s;
+}
+.mmodal-submit:hover  { opacity: .9; }
+.mmodal-submit:active { transform: scale(.98); }
+
+@keyframes shake {
+  0%,100%{transform:translateX(0)}
+  25%{transform:translateX(-6px)}
+  75%{transform:translateX(6px)}
+}
+
+/* ══════════════════════════════════════════════════════════
+   TOAST
+   ══════════════════════════════════════════════════════════ */
+.bp-toast {
+  position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%) translateY(20px);
+  z-index: 300;
+  background: var(--green); color: #000;
+  font-size: .85rem; font-weight: 600;
+  padding: .6rem 1.4rem;
+  border-radius: 99px;
+  opacity: 0;
+  transition: opacity .2s, transform .2s;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.bp-toast--show {
+  opacity: 1; transform: translateX(-50%) translateY(0);
+}
+</style>
+</head>
+<body>
+
+<!-- ══ LOGIN ══════════════════════════════════════════════ -->
+<div id="loginScreen">
+  <div class="login-bg"></div>
+  <div class="login-grid"></div>
+  <div class="login-card">
+    <div class="login-logo">
+      <div class="login-logo-mark">⚡</div>
+      <div class="login-logo-text">BOX<span>PLANNER</span></div>
+    </div>
+    <div class="login-title">Mi progreso</div>
+    <div class="login-sub">Ingresá el código que te dio tu docente para ver tus RMs y rutina.</div>
+    <div class="field-label">Tu código PIN</div>
+    <input
+      class="pin-input"
+      type="text"
+      id="pinInput"
+      maxlength="10"
+      placeholder="ej: MAR001"
+      autocomplete="off"
+      autocorrect="off"
+      spellcheck="false"
+    />
+    <button class="login-btn" onclick="handleLogin()">INGRESAR →</button>
+    <div class="login-error" id="loginError">PIN incorrecto. Verificá con tu docente.</div>
+    <div class="login-register-link">
+      ¿No tenés cuenta? <button class="btn-link" onclick="openRegistroModal()">Registrate aquí</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ APP ═════════════════════════════════════════════════ -->
+<div id="appScreen">
+
+  <div class="topbar">
+    <div class="topbar-brand">⚡ BOXPLANNER</div>
+    <div class="topbar-athlete">Hola, <strong id="topName">—</strong></div>
+    <button class="logout-btn" onclick="doLogout()">Salir</button>
+  </div>
+
+  <div class="content">
+
+    <!-- TAB: PROGRESO ─────────────────────────────────── -->
+    <div class="tab-content active" id="tabProgreso">
+
+      <div style="margin-top:.5rem;">
+        <div class="hero-name" id="heroName">—</div>
+        <div class="hero-meta" id="heroMeta"></div>
+        <div class="info-pill">
+          <span class="info-dot"></span>
+          Datos en tiempo real desde tu planilla
+        </div>
+      </div>
+
+      <div class="stat-grid" id="statGrid">
+        <div class="loading-state" style="grid-column:1/-1">
+          <span class="loading-dot"></span><span class="loading-dot"></span><span class="loading-dot"></span>
+        </div>
+      </div>
+
+      <div class="section-hdr">
+        <h2>RMs del Mes</h2>
+        <span class="badge" id="rmMesBadge">—</span>
+      </div>
+
+      <div id="rmTableWrap">
+        <div class="loading-state">
+          <span class="loading-dot"></span><span class="loading-dot"></span><span class="loading-dot"></span>
+        </div>
+      </div>
+
+      <div class="section-hdr">
+        <h2>Evolución</h2>
+      </div>
+      <div id="sparkWrap"></div>
+
+      <button class="refresh-btn" onclick="loadData()">↻ Actualizar datos</button>
+
+    </div>
+
+    <!-- TAB: RUTINA ───────────────────────────────────── -->
+    <div class="tab-content" id="tabRutina">
+      <div class="section-hdr" style="margin-top:.5rem;">
+        <h2>Mi Rutina</h2>
+        <span class="badge" id="rutSemBadge">Semana actual</span>
+      </div>
+      <div id="rutinaWrap">
+        <div class="loading-state">
+          <span class="loading-dot"></span><span class="loading-dot"></span><span class="loading-dot"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: HISTORIAL ────────────────────────────────── -->
+    <div class="tab-content" id="tabHistorial">
+      <div class="section-hdr" style="margin-top:.5rem;">
+        <h2>Historial Anual</h2>
+        <span class="badge">RMs por mes</span>
+      </div>
+      <div id="histWrap">
+        <div class="loading-state">
+          <span class="loading-dot"></span><span class="loading-dot"></span><span class="loading-dot"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: CARGAR ────────────────────────────────────── -->
+    <div class="tab-content" id="tabCargar">
+      <div class="section-hdr" style="margin-top:.5rem;">
+        <h2>Cargar resultado</h2>
+        <span class="badge">sesión de hoy</span>
+      </div>
+      <div id="cargarWrap">
+        <div class="loading-state">
+          <span class="loading-dot"></span><span class="loading-dot"></span><span class="loading-dot"></span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+
+  <!-- MODAL: CARGA DE MÉTRICA ──────────────────────────── -->
+  <div class="modal-overlay" id="metricModal" onclick="closeMetricModal(event)">
+    <div class="modal-card">
+      <div id="metricModalBody"></div>
+    </div>
+  </div>
+
+  <nav class="bottom-nav">
+    <button class="nav-item active" onclick="switchTab('Progreso')" id="navProgreso">
+      <span class="nav-icon">📊</span>Progreso
+    </button>
+    <button class="nav-item" onclick="switchTab('Rutina')" id="navRutina">
+      <span class="nav-icon">📋</span>Rutina
+    </button>
+    <button class="nav-item" onclick="switchTab('Historial')" id="navHistorial">
+      <span class="nav-icon">📅</span>Historial
+    </button>
+    <button class="nav-item" onclick="switchTab('Cargar')" id="navCargar">
+      <span class="nav-icon">➕</span>Cargar
+    </button>
+  </nav>
+
+</div><!-- /appScreen -->
+
+<!-- ══ PANEL DOCENTE ════════════════════════════════════════ -->
+<div id="docenteScreen">
+
+  <div class="topbar">
+    <div class="topbar-brand">⚡ BOXPLANNER</div>
+    <div class="topbar-athlete">Hola, <strong id="docTopName">—</strong></div>
+    <button class="logout-btn" onclick="doLogout()">Salir</button>
+  </div>
+
+  <div class="content">
+
+    <div style="margin-top:.5rem;margin-bottom:1.25rem;">
+      <div class="hero-name" style="font-size:clamp(1.6rem,6vw,2.5rem)">
+        Panel <span style="color:var(--accent)">Docente</span>
+      </div>
+      <div class="doc-demo-pill">
+        <span style="width:6px;height:6px;border-radius:50%;background:#f59e0b;display:inline-block;flex-shrink:0"></span>
+        Modo demo — conectá tu backend real
+      </div>
+    </div>
+
+    <!-- Tab bar -->
+    <div class="doc-tab-bar">
+      <button class="doc-tab doc-tab--active" id="navDocAlumnos" onclick="switchDocTab('Alumnos')">Alumnos</button>
+      <button class="doc-tab" id="navDocRutinas" onclick="switchDocTab('Rutinas')">Rutinas</button>
+      <button class="doc-tab" id="navAdmin" onclick="switchDocTab('Admin')">Admin</button>
+    </div>
+
+    <!-- Sección Alumnos -->
+    <div id="sectionDocAlumnos">
+      <div class="doc-stat-grid" id="docStatGrid"></div>
+      <div class="section-hdr">
+        <h2>Alumnos</h2>
+        <div style="display:flex;align-items:center;gap:.5rem">
+          <span class="badge" id="docAlumnosBadge">—</span>
+          <button class="btn-filtro" id="btnFiltroAtencion" onclick="toggleFiltroDoc()">⚠ Atención</button>
+        </div>
+      </div>
+      <div id="docAlumnosWrap">
+        <div class="loading-state">
+          <span class="loading-dot"></span><span class="loading-dot"></span><span class="loading-dot"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección Rutinas -->
+    <div id="sectionDocRutinas" style="display:none">
+      <div class="section-hdr" style="margin-top:.5rem">
+        <h2>Rutinas</h2>
+        <button class="btn-accent" onclick="openNuevaRutinaModal()">+ Nueva</button>
+      </div>
+      <div id="docRutinasWrap">
+        <div class="loading-state">
+          <span class="loading-dot"></span><span class="loading-dot"></span><span class="loading-dot"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección Admin (solo rol admin) -->
+    <div id="sectionDocAdmin" style="display:none">
+      <div id="adminTabWrap"></div>
+    </div>
+
+  </div>
+
+  <!-- Modal detalle alumno -->
+  <div class="modal-overlay" id="alumnoDetailModal" onclick="closeAlumnoDetail(event)">
+    <div class="modal-card modal-card--tall">
+      <div id="alumnoDetailBody"></div>
+    </div>
+  </div>
+
+  <!-- Modal rutinas (crear / asignar) -->
+  <div class="modal-overlay" id="rutinaModal" onclick="closeRutinaModal(event)">
+    <div class="modal-card modal-card--tall">
+      <div class="modal-header">
+        <span id="rutinaModalTitulo" style="font-weight:600;font-size:1rem">Rutina</span>
+        <button class="modal-close" onclick="closeRutinaModalDirect()">✕</button>
+      </div>
+      <div id="rutinaModalBody" style="padding-top:.75rem"></div>
+    </div>
+  </div>
+
+</div><!-- /docenteScreen -->
+
+<!-- ══ MODAL: REGISTRO ══════════════════════════════════════ -->
+<div class="modal-overlay" id="registroModal" onclick="if(event.target===this) closeRegistroModal()">
+  <div class="modal-card">
+    <div class="modal-header">
+      <span style="font-weight:600;font-size:1rem">Crear cuenta</span>
+      <button class="modal-close" onclick="closeRegistroModal()">✕</button>
+    </div>
+    <form id="registroForm" onsubmit="handleRegistro(event)" style="padding-top:.75rem">
+      <div class="rform-group">
+        <label class="rform-label">Nombre completo</label>
+        <input class="rform-input" id="regNombre" type="text"
+          placeholder="Ej: Martín Rodríguez" required autocomplete="off">
+      </div>
+      <div class="rform-group">
+        <label class="rform-label">Email</label>
+        <input class="rform-input" id="regEmail" type="email"
+          placeholder="tu@email.com" required autocomplete="off">
+      </div>
+      <div class="rform-group">
+        <label class="rform-label">Fecha de nacimiento</label>
+        <input class="rform-input" id="regFecha" type="date" required>
+      </div>
+      <div class="rform-group">
+        <label class="rform-label">Objetivo principal</label>
+        <select class="rform-input" id="regObjetivo" required>
+          <option value="" disabled selected>Seleccioná tu objetivo</option>
+          <option value="Salud y bienestar">Salud y bienestar</option>
+          <option value="Ganar fuerza">Ganar fuerza</option>
+          <option value="Bajar de peso">Bajar de peso</option>
+          <option value="Competencia">Competencia</option>
+          <option value="Otro">Otro</option>
+        </select>
+      </div>
+      <div class="rform-group">
+        <label class="rform-label">Crear PIN (máx. 6 caracteres, solo letras y números)</label>
+        <input class="rform-input" id="regPin" type="text"
+          placeholder="Ej: MAR001" maxlength="6" required
+          autocomplete="off" autocorrect="off" spellcheck="false"
+          oninput="this.value=this.value.toUpperCase().replace(/[^A-Z0-9]/g,'')">
+        <div id="regPinError" style="display:none;color:var(--red);font-size:.75rem;margin-top:.35rem"></div>
+      </div>
+      <div style="display:flex;gap:.75rem;margin-top:1.25rem">
+        <button type="button" class="btn-mini"
+          style="flex:1;padding:.65rem;font-size:.8rem"
+          onclick="closeRegistroModal()">Cancelar</button>
+        <button type="submit" class="btn-accent"
+          style="flex:2;padding:.65rem;font-size:.85rem">Registrarse</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="js/db.demo.js"></script>
+<script src="js/db.routines.js"></script>
+<script src="js/data.js"></script>
+<script src="js/metrics.js"></script>
+<script src="js/ui.metrics.js"></script>
+<script src="js/ui.teacher.js"></script>
+<script src="js/ui.routines.js"></script>
+<script src="js/render.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
