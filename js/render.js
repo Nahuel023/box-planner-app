@@ -173,32 +173,30 @@ function renderRutinas() {
   const wrap = document.getElementById('rutinaWrap');
   document.getElementById('rutSemBadge').textContent = `Sem. ${getWeekNumber(new Date())}`;
 
-  if (isDemoMode()) {
-    if (!state.rutinas.length) {
-      wrap.innerHTML = '<div class="error-box">No hay rutinas cargadas esta semana.</div>';
-      return;
-    }
-    wrap.innerHTML = state.rutinas.map(dia => renderDayCard(dia)).join('');
-    return;
-  }
-
   if (!state.rutinas.length) {
     wrap.innerHTML = '<div class="error-box">No hay rutinas cargadas para esta semana.</div>';
     return;
   }
 
+  /* Formato { dia, secs[] } → demo + rutinas custom asignadas (Supabase) */
+  if (state.rutinas[0].secs !== undefined) {
+    wrap.innerHTML = state.rutinas.map(dia => renderDayCard(dia)).join('');
+    return;
+  }
+
+  /* Formato Google Sheet: { semana, dia, bloque, disciplina, objetivo, contenido, carga } */
   wrap.innerHTML = state.rutinas.map(r => `
     <div class="day-card">
       <div class="day-header">
         <span class="day-name">${r.dia || 'Semana ' + r.semana}</span>
-        <span style="font-size:.75rem;color:var(--muted);">${r.bloque}</span>
+        <span style="font-size:.75rem;color:var(--muted);">${r.bloque || ''}</span>
       </div>
       <div class="day-body">
         <div class="sec-block">
-          <div class="sec-label sec-strength">${r.disciplina}</div>
-          <div class="sec-item">${r.objetivo}</div>
-          <div class="sec-item">${r.contenido}</div>
-          ${r.carga ? `<div class="sec-cap">Carga: ${r.carga}</div>` : ''}
+          <div class="sec-label sec-strength">${r.disciplina || ''}</div>
+          ${r.objetivo  ? `<div class="sec-item">${r.objetivo}</div>`  : ''}
+          ${r.contenido ? `<div class="sec-item">${r.contenido}</div>` : ''}
+          ${r.carga     ? `<div class="sec-cap">Carga: ${r.carga}</div>` : ''}
         </div>
       </div>
     </div>`).join('');
