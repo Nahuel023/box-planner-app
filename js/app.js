@@ -249,6 +249,10 @@ function showDocente() {
   const navAdmin = document.getElementById('navAdmin');
   if (navAdmin) navAdmin.style.display = a.rol === 'admin' ? '' : 'none';
 
+  /* Ocultar pill demo si hay backend real */
+  const demoPill = document.querySelector('.doc-demo-pill');
+  if (demoPill) demoPill.style.display = isSupabaseMode() ? 'none' : '';
+
   switchDocTab('Alumnos');
 }
 
