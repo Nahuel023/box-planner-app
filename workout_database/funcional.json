@@ -1,0 +1,851 @@
+{
+  "exercises": [
+    {
+      "id": "fun001",
+      "nombre": "Sentadilla Corporal",
+      "disciplina": "funcional",
+      "patron_movimiento": "sentadilla",
+      "tipo": "fuerza",
+      "musculo_principal": "cuadriceps",
+      "musculo_secundario": [
+        "gluteos",
+        "isquiotibiales",
+        "core"
+      ],
+      "equipamiento": [],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [
+        "rodilla"
+      ]
+    },
+    {
+      "id": "fun002",
+      "nombre": "Sentadilla Goblet Kettlebell",
+      "disciplina": "funcional",
+      "patron_movimiento": "sentadilla",
+      "tipo": "fuerza",
+      "musculo_principal": "cuadriceps",
+      "musculo_secundario": [
+        "gluteos",
+        "core"
+      ],
+      "equipamiento": [
+        "kettlebell"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [
+        "rodilla"
+      ]
+    },
+    {
+      "id": "fun003",
+      "nombre": "Bulgarian Split Squat",
+      "disciplina": "funcional",
+      "patron_movimiento": "sentadilla",
+      "tipo": "hipertrofia",
+      "musculo_principal": "cuadriceps",
+      "musculo_secundario": [
+        "gluteos",
+        "isquiotibiales",
+        "core"
+      ],
+      "equipamiento": [
+        "banco"
+      ],
+      "nivel": "intermedio",
+      "es_bilateral": false,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "rodilla",
+        "cadera"
+      ]
+    },
+    {
+      "id": "fun004",
+      "nombre": "Step-up con Mancuernas",
+      "disciplina": "funcional",
+      "patron_movimiento": "empuje_piernas",
+      "tipo": "fuerza",
+      "musculo_principal": "cuadriceps",
+      "musculo_secundario": [
+        "gluteos",
+        "isquiotibiales"
+      ],
+      "equipamiento": [
+        "mancuernas",
+        "banco"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": false,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [
+        "rodilla",
+        "tobillo"
+      ]
+    },
+    {
+      "id": "fun005",
+      "nombre": "Hip Hinge",
+      "disciplina": "funcional",
+      "patron_movimiento": "bisagra",
+      "tipo": "movilidad",
+      "musculo_principal": "isquiotibiales",
+      "musculo_secundario": [
+        "gluteos",
+        "lumbar"
+      ],
+      "equipamiento": [],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [
+        "lumbar"
+      ]
+    },
+    {
+      "id": "fun006",
+      "nombre": "Romanian Deadlift Mancuernas",
+      "disciplina": "funcional",
+      "patron_movimiento": "bisagra",
+      "tipo": "fuerza",
+      "musculo_principal": "isquiotibiales",
+      "musculo_secundario": [
+        "gluteos",
+        "lumbar"
+      ],
+      "equipamiento": [
+        "mancuernas"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "lumbar"
+      ]
+    },
+    {
+      "id": "fun007",
+      "nombre": "Hip Thrust Peso Corporal",
+      "disciplina": "funcional",
+      "patron_movimiento": "bisagra",
+      "tipo": "fuerza",
+      "musculo_principal": "gluteos",
+      "musculo_secundario": [
+        "isquiotibiales",
+        "core"
+      ],
+      "equipamiento": [
+        "banco"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [
+        "cadera",
+        "lumbar"
+      ]
+    },
+    {
+      "id": "fun008",
+      "nombre": "Reverse Lunge",
+      "disciplina": "funcional",
+      "patron_movimiento": "sentadilla",
+      "tipo": "fuerza",
+      "musculo_principal": "cuadriceps",
+      "musculo_secundario": [
+        "gluteos",
+        "isquiotibiales"
+      ],
+      "equipamiento": [],
+      "nivel": "principiante",
+      "es_bilateral": false,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [
+        "rodilla"
+      ]
+    },
+    {
+      "id": "fun009",
+      "nombre": "Walking Lunge",
+      "disciplina": "funcional",
+      "patron_movimiento": "sentadilla",
+      "tipo": "fuerza",
+      "musculo_principal": "cuadriceps",
+      "musculo_secundario": [
+        "gluteos",
+        "isquiotibiales"
+      ],
+      "equipamiento": [],
+      "nivel": "principiante",
+      "es_bilateral": false,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "rodilla",
+        "cadera"
+      ]
+    },
+    {
+      "id": "fun010",
+      "nombre": "Lateral Lunge",
+      "disciplina": "funcional",
+      "patron_movimiento": "sentadilla",
+      "tipo": "fuerza",
+      "musculo_principal": "aductores",
+      "musculo_secundario": [
+        "cuadriceps",
+        "gluteos"
+      ],
+      "equipamiento": [],
+      "nivel": "principiante",
+      "es_bilateral": false,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "rodilla",
+        "cadera"
+      ]
+    },
+    {
+      "id": "fun011",
+      "nombre": "TRX Row",
+      "disciplina": "funcional",
+      "patron_movimiento": "jale_horizontal",
+      "tipo": "fuerza",
+      "musculo_principal": "dorsal",
+      "musculo_secundario": [
+        "biceps",
+        "deltoides_posterior",
+        "core"
+      ],
+      "equipamiento": [
+        "trx"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [
+        "hombro"
+      ]
+    },
+    {
+      "id": "fun012",
+      "nombre": "TRX Push-up",
+      "disciplina": "funcional",
+      "patron_movimiento": "empuje_horizontal",
+      "tipo": "fuerza",
+      "musculo_principal": "pectoral",
+      "musculo_secundario": [
+        "triceps",
+        "deltoides",
+        "core"
+      ],
+      "equipamiento": [
+        "trx"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "hombro",
+        "muneca"
+      ]
+    },
+    {
+      "id": "fun013",
+      "nombre": "TRX Squat",
+      "disciplina": "funcional",
+      "patron_movimiento": "sentadilla",
+      "tipo": "fuerza",
+      "musculo_principal": "cuadriceps",
+      "musculo_secundario": [
+        "gluteos",
+        "core"
+      ],
+      "equipamiento": [
+        "trx"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [
+        "rodilla"
+      ]
+    },
+    {
+      "id": "fun014",
+      "nombre": "TRX Pike",
+      "disciplina": "funcional",
+      "patron_movimiento": "core",
+      "tipo": "fuerza",
+      "musculo_principal": "core",
+      "musculo_secundario": [
+        "deltoides",
+        "isquiotibiales"
+      ],
+      "equipamiento": [
+        "trx"
+      ],
+      "nivel": "intermedio",
+      "es_bilateral": true,
+      "dificultad_tecnica": 3,
+      "contraindicado_en": [
+        "hombro",
+        "lumbar",
+        "muneca"
+      ]
+    },
+    {
+      "id": "fun015",
+      "nombre": "Plancha Prona",
+      "disciplina": "funcional",
+      "patron_movimiento": "core",
+      "tipo": "fuerza",
+      "musculo_principal": "core",
+      "musculo_secundario": [
+        "deltoides",
+        "gluteos",
+        "lumbar"
+      ],
+      "equipamiento": [],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [
+        "hombro",
+        "muneca",
+        "lumbar"
+      ]
+    },
+    {
+      "id": "fun016",
+      "nombre": "Plancha Lateral",
+      "disciplina": "funcional",
+      "patron_movimiento": "core",
+      "tipo": "fuerza",
+      "musculo_principal": "oblicuos",
+      "musculo_secundario": [
+        "core",
+        "gluteos"
+      ],
+      "equipamiento": [],
+      "nivel": "principiante",
+      "es_bilateral": false,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "hombro",
+        "muneca"
+      ]
+    },
+    {
+      "id": "fun017",
+      "nombre": "Dead Bug",
+      "disciplina": "funcional",
+      "patron_movimiento": "core",
+      "tipo": "movilidad",
+      "musculo_principal": "core",
+      "musculo_secundario": [
+        "flexores_cadera",
+        "lumbar"
+      ],
+      "equipamiento": [],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": []
+    },
+    {
+      "id": "fun018",
+      "nombre": "Bird Dog",
+      "disciplina": "funcional",
+      "patron_movimiento": "core",
+      "tipo": "movilidad",
+      "musculo_principal": "core",
+      "musculo_secundario": [
+        "gluteos",
+        "lumbar"
+      ],
+      "equipamiento": [],
+      "nivel": "principiante",
+      "es_bilateral": false,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": []
+    },
+    {
+      "id": "fun019",
+      "nombre": "Pallof Press",
+      "disciplina": "funcional",
+      "patron_movimiento": "core",
+      "tipo": "fuerza",
+      "musculo_principal": "oblicuos",
+      "musculo_secundario": [
+        "core",
+        "deltoides"
+      ],
+      "equipamiento": [
+        "banda_elastica"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": false,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [
+        "hombro"
+      ]
+    },
+    {
+      "id": "fun020",
+      "nombre": "Farmer's Carry Unilateral",
+      "disciplina": "funcional",
+      "patron_movimiento": "core",
+      "tipo": "fuerza",
+      "musculo_principal": "core",
+      "musculo_secundario": [
+        "trapecio",
+        "oblicuos"
+      ],
+      "equipamiento": [
+        "kettlebell"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": false,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [
+        "lumbar"
+      ]
+    },
+    {
+      "id": "fun021",
+      "nombre": "Push-up Funcional",
+      "disciplina": "funcional",
+      "patron_movimiento": "empuje_horizontal",
+      "tipo": "fuerza",
+      "musculo_principal": "pectoral",
+      "musculo_secundario": [
+        "triceps",
+        "deltoides",
+        "core"
+      ],
+      "equipamiento": [],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [
+        "hombro",
+        "muneca"
+      ]
+    },
+    {
+      "id": "fun022",
+      "nombre": "Pike Push-up",
+      "disciplina": "funcional",
+      "patron_movimiento": "empuje_vertical",
+      "tipo": "fuerza",
+      "musculo_principal": "deltoides",
+      "musculo_secundario": [
+        "triceps",
+        "core"
+      ],
+      "equipamiento": [],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "hombro",
+        "muneca"
+      ]
+    },
+    {
+      "id": "fun023",
+      "nombre": "Dip en Banco",
+      "disciplina": "funcional",
+      "patron_movimiento": "empuje_horizontal",
+      "tipo": "fuerza",
+      "musculo_principal": "triceps",
+      "musculo_secundario": [
+        "pectoral",
+        "deltoides"
+      ],
+      "equipamiento": [
+        "banco"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [
+        "hombro",
+        "muneca",
+        "codo"
+      ]
+    },
+    {
+      "id": "fun024",
+      "nombre": "Inverted Row",
+      "disciplina": "funcional",
+      "patron_movimiento": "jale_horizontal",
+      "tipo": "fuerza",
+      "musculo_principal": "dorsal",
+      "musculo_secundario": [
+        "biceps",
+        "trapecio"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [
+        "hombro"
+      ]
+    },
+    {
+      "id": "fun025",
+      "nombre": "Glute Bridge",
+      "disciplina": "funcional",
+      "patron_movimiento": "bisagra",
+      "tipo": "fuerza",
+      "musculo_principal": "gluteos",
+      "musculo_secundario": [
+        "isquiotibiales",
+        "core"
+      ],
+      "equipamiento": [],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [
+        "cadera"
+      ]
+    },
+    {
+      "id": "fun026",
+      "nombre": "Single-leg Glute Bridge",
+      "disciplina": "funcional",
+      "patron_movimiento": "bisagra",
+      "tipo": "fuerza",
+      "musculo_principal": "gluteos",
+      "musculo_secundario": [
+        "isquiotibiales",
+        "core"
+      ],
+      "equipamiento": [],
+      "nivel": "principiante",
+      "es_bilateral": false,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "cadera",
+        "rodilla"
+      ]
+    },
+    {
+      "id": "fun027",
+      "nombre": "Clamshell con Banda",
+      "disciplina": "funcional",
+      "patron_movimiento": "abduccion",
+      "tipo": "movilidad",
+      "musculo_principal": "gluteo_medio",
+      "musculo_secundario": [
+        "aductores"
+      ],
+      "equipamiento": [
+        "banda_elastica"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": false,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [
+        "cadera"
+      ]
+    },
+    {
+      "id": "fun028",
+      "nombre": "Monster Walk con Banda",
+      "disciplina": "funcional",
+      "patron_movimiento": "abduccion",
+      "tipo": "fuerza",
+      "musculo_principal": "gluteo_medio",
+      "musculo_secundario": [
+        "cuadriceps",
+        "aductores"
+      ],
+      "equipamiento": [
+        "banda_elastica"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [
+        "rodilla",
+        "cadera"
+      ]
+    },
+    {
+      "id": "fun029",
+      "nombre": "Sled Push",
+      "disciplina": "funcional",
+      "patron_movimiento": "empuje_horizontal",
+      "tipo": "cardio",
+      "musculo_principal": "cuadriceps",
+      "musculo_secundario": [
+        "gluteos",
+        "deltoides",
+        "core"
+      ],
+      "equipamiento": [
+        "trineo"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "rodilla",
+        "lumbar"
+      ]
+    },
+    {
+      "id": "fun030",
+      "nombre": "Battle Ropes",
+      "disciplina": "funcional",
+      "patron_movimiento": "cardio",
+      "tipo": "cardio",
+      "musculo_principal": "deltoides",
+      "musculo_secundario": [
+        "core",
+        "biceps",
+        "trapecio"
+      ],
+      "equipamiento": [
+        "cuerdas_batalla"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [
+        "hombro",
+        "muneca"
+      ]
+    },
+    {
+      "id": "fun031",
+      "nombre": "Rotación con Cable",
+      "disciplina": "funcional",
+      "patron_movimiento": "core",
+      "tipo": "fuerza",
+      "musculo_principal": "oblicuos",
+      "musculo_secundario": [
+        "core",
+        "deltoides"
+      ],
+      "equipamiento": [
+        "polea"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": false,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [
+        "lumbar"
+      ]
+    },
+    {
+      "id": "fun032",
+      "nombre": "Single-leg RDL Mancuerna",
+      "disciplina": "funcional",
+      "patron_movimiento": "bisagra",
+      "tipo": "fuerza",
+      "musculo_principal": "isquiotibiales",
+      "musculo_secundario": [
+        "gluteos",
+        "lumbar",
+        "core"
+      ],
+      "equipamiento": [
+        "mancuerna"
+      ],
+      "nivel": "intermedio",
+      "es_bilateral": false,
+      "dificultad_tecnica": 3,
+      "contraindicado_en": [
+        "lumbar",
+        "tobillo"
+      ]
+    },
+    {
+      "id": "fun033",
+      "nombre": "Half-kneeling Press",
+      "disciplina": "funcional",
+      "patron_movimiento": "empuje_vertical",
+      "tipo": "fuerza",
+      "musculo_principal": "deltoides",
+      "musculo_secundario": [
+        "triceps",
+        "core",
+        "oblicuos"
+      ],
+      "equipamiento": [
+        "mancuerna"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": false,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "hombro",
+        "rodilla"
+      ]
+    },
+    {
+      "id": "fun034",
+      "nombre": "Woodchop",
+      "disciplina": "funcional",
+      "patron_movimiento": "core",
+      "tipo": "fuerza",
+      "musculo_principal": "oblicuos",
+      "musculo_secundario": [
+        "core",
+        "dorsal",
+        "deltoides"
+      ],
+      "equipamiento": [
+        "banda_elastica"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": false,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "lumbar",
+        "hombro"
+      ]
+    },
+    {
+      "id": "fun035",
+      "nombre": "Bear Crawl",
+      "disciplina": "funcional",
+      "patron_movimiento": "cardio",
+      "tipo": "cardio",
+      "musculo_principal": "core",
+      "musculo_secundario": [
+        "cuadriceps",
+        "deltoides",
+        "gluteos"
+      ],
+      "equipamiento": [],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "muneca",
+        "hombro",
+        "rodilla"
+      ]
+    },
+    {
+      "id": "fun036",
+      "nombre": "Inchworm",
+      "disciplina": "funcional",
+      "patron_movimiento": "movilidad",
+      "tipo": "movilidad",
+      "musculo_principal": "isquiotibiales",
+      "musculo_secundario": [
+        "core",
+        "deltoides",
+        "lumbar"
+      ],
+      "equipamiento": [],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [
+        "lumbar",
+        "muneca"
+      ]
+    },
+    {
+      "id": "fun037",
+      "nombre": "Wall Sit",
+      "disciplina": "funcional",
+      "patron_movimiento": "sentadilla",
+      "tipo": "fuerza",
+      "musculo_principal": "cuadriceps",
+      "musculo_secundario": [
+        "gluteos",
+        "isquiotibiales"
+      ],
+      "equipamiento": [
+        "pared"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [
+        "rodilla"
+      ]
+    },
+    {
+      "id": "fun038",
+      "nombre": "Mountain Climber",
+      "disciplina": "funcional",
+      "patron_movimiento": "cardio",
+      "tipo": "cardio",
+      "musculo_principal": "core",
+      "musculo_secundario": [
+        "cuadriceps",
+        "deltoides",
+        "gluteos"
+      ],
+      "equipamiento": [],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "hombro",
+        "muneca",
+        "lumbar"
+      ]
+    },
+    {
+      "id": "fun039",
+      "nombre": "Box Step Down",
+      "disciplina": "funcional",
+      "patron_movimiento": "empuje_piernas",
+      "tipo": "fuerza",
+      "musculo_principal": "cuadriceps",
+      "musculo_secundario": [
+        "gluteos",
+        "isquiotibiales"
+      ],
+      "equipamiento": [
+        "caja"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": false,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "rodilla",
+        "tobillo"
+      ]
+    },
+    {
+      "id": "fun040",
+      "nombre": "Copenhagen Plank",
+      "disciplina": "funcional",
+      "patron_movimiento": "core",
+      "tipo": "fuerza",
+      "musculo_principal": "aductores",
+      "musculo_secundario": [
+        "oblicuos",
+        "core"
+      ],
+      "equipamiento": [
+        "banco"
+      ],
+      "nivel": "intermedio",
+      "es_bilateral": false,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "cadera",
+        "rodilla"
+      ]
+    }
+  ]
+}

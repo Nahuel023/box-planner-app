@@ -1,0 +1,4795 @@
+{
+  "routines": [
+    {
+      "id": "r01",
+      "nombre": "Rutina Básica Hombre X3",
+      "objetivo": "hipertrofia",
+      "nivel": "principiante",
+      "duracion_semanas": 8,
+      "frecuencia_semanal": 3,
+      "genero": "hombre",
+      "division": "push_pull_shoulders",
+      "notas": "Progresar cargas semanal. Descanso: 2-3min compuestos, 60-90seg aislados. Abdominales y movilidad articular diaria."
+    },
+    {
+      "id": "r02",
+      "nombre": "Rutina Básica Mujer X3",
+      "objetivo": "hipertrofia",
+      "nivel": "principiante",
+      "duracion_semanas": 8,
+      "frecuencia_semanal": 3,
+      "genero": "mujer",
+      "division": "push_pull_glutes",
+      "notas": "Progresar cargas semanal. Descanso: 2-3min compuestos, 60-90seg aislados."
+    },
+    {
+      "id": "r03",
+      "nombre": "Rutina Básica Mujer X3 Adaptada",
+      "objetivo": "hipertrofia",
+      "nivel": "principiante",
+      "duracion_semanas": 8,
+      "frecuencia_semanal": 3,
+      "genero": "mujer",
+      "division": "push_pull_glutes",
+      "notas": "Adaptada con banda elástica y ejercicios isométricos. Abdominales: rotaciones con banda + isométrico 4x15/30\"."
+    },
+    {
+      "id": "r04",
+      "nombre": "Rutina Básica Hombre X3 Adaptada",
+      "objetivo": "hipertrofia",
+      "nivel": "principiante",
+      "duracion_semanas": 8,
+      "frecuencia_semanal": 3,
+      "genero": "hombre",
+      "division": "push_pull_shoulders",
+      "notas": "Variante adaptada con ejercicios de glúteo. Abdominales: plancha prona+lateral / crunch c/disco 3x30\"/12."
+    },
+    {
+      "id": "r05",
+      "nombre": "Rutina X3 Intermedia Mujer",
+      "objetivo": "hipertrofia",
+      "nivel": "intermedio",
+      "duracion_semanas": 10,
+      "frecuencia_semanal": 3,
+      "genero": "mujer",
+      "division": "fullbody_por_dia",
+      "notas": "Mayor volumen y ejercicios compuestos con barra. Suprasets indicados con +."
+    },
+    {
+      "id": "r06",
+      "nombre": "Rutina X3 Intermedia Hombre",
+      "objetivo": "hipertrofia",
+      "nivel": "intermedio",
+      "duracion_semanas": 10,
+      "frecuencia_semanal": 3,
+      "genero": "hombre",
+      "division": "fullbody_por_dia",
+      "notas": "Incluye peso muerto y press con barra. Mayor intensidad."
+    },
+    {
+      "id": "r07",
+      "nombre": "Rutina X4 Intermedia Hombre",
+      "objetivo": "hipertrofia",
+      "nivel": "intermedio",
+      "duracion_semanas": 10,
+      "frecuencia_semanal": 4,
+      "genero": "hombre",
+      "division": "por_grupo_muscular",
+      "notas": "Día 1: Pecho+Bíceps. Día 2: Piernas. Día 3: Espalda+Hombros+Tríceps. Día 4: Glúteos+Isquios."
+    },
+    {
+      "id": "r08",
+      "nombre": "Rutina X5 Intermedia Mujer",
+      "objetivo": "hipertrofia",
+      "nivel": "intermedio",
+      "duracion_semanas": 10,
+      "frecuencia_semanal": 5,
+      "genero": "mujer",
+      "division": "por_grupo_muscular",
+      "notas": "División por grupo muscular específico. Alto volumen glúteo."
+    },
+    {
+      "id": "r09",
+      "nombre": "Rutina 3D Máquinas Isolaterales",
+      "objetivo": "hipertrofia",
+      "nivel": "principiante",
+      "duracion_semanas": 8,
+      "frecuencia_semanal": 3,
+      "genero": "unisex",
+      "division": "fullbody",
+      "notas": "Fullbody con máquinas isolaterales. Ideal para principiantes o rehabilitación. Halo + vitalizaciones diarios."
+    },
+    {
+      "id": "r10",
+      "nombre": "Rutina 4D Pecho-Piernas-Femoral-Brazos",
+      "objetivo": "hipertrofia",
+      "nivel": "principiante",
+      "duracion_semanas": 8,
+      "frecuencia_semanal": 4,
+      "genero": "unisex",
+      "division": "por_grupo_muscular",
+      "notas": "División clásica básica. Reps decrecientes 15-12-10-8."
+    },
+    {
+      "id": "r11",
+      "nombre": "Rutina 5D Periodizada Sem1/Sem2",
+      "objetivo": "hipertrofia",
+      "nivel": "intermedio",
+      "duracion_semanas": 8,
+      "frecuencia_semanal": 5,
+      "genero": "mujer",
+      "division": "tren_inferior_superior",
+      "notas": "Periodización ondulatoria con variación Sem1/Sem2. Uso de tempos 3 tiempos. SS = superset."
+    },
+    {
+      "id": "r12",
+      "nombre": "Rutina 6D Dos Meses",
+      "objetivo": "hipertrofia",
+      "nivel": "intermedio",
+      "duracion_semanas": 8,
+      "frecuencia_semanal": 6,
+      "genero": "mujer",
+      "division": "por_grupo_muscular",
+      "notas": "L:Glúteos, M:Espalda-Bíceps, X:Cuádriceps, J:Hombros-Tríceps, V:Cardio-Core, S:Glúteos."
+    },
+    {
+      "id": "r13",
+      "nombre": "Rutina 3D Simple Básica",
+      "objetivo": "hipertrofia",
+      "nivel": "principiante",
+      "duracion_semanas": 6,
+      "frecuencia_semanal": 3,
+      "genero": "unisex",
+      "division": "push_pull_legs",
+      "notas": "D1:Piernas/Glúteos, D2:Pecho/Hombros/Tríceps, D3:Espalda/Bíceps. 60 seg descanso."
+    },
+    {
+      "id": "r14",
+      "nombre": "Rutina 4D Por Días de Semana",
+      "objetivo": "hipertrofia",
+      "nivel": "principiante",
+      "duracion_semanas": 8,
+      "frecuencia_semanal": 4,
+      "genero": "mujer",
+      "division": "push_pull_legs",
+      "notas": "Lun:Femoral-Glúteos, Mar:Espalda-Bíceps+Cardio, Mier:Cuádriceps-Glúteos, Jue:Pecho-Hombros-Tríceps, Vie:Pierna completa."
+    },
+    {
+      "id": "r15",
+      "nombre": "Rutina 5D Tren Superior/Inferior",
+      "objetivo": "hipertrofia",
+      "nivel": "intermedio",
+      "duracion_semanas": 8,
+      "frecuencia_semanal": 5,
+      "genero": "unisex",
+      "division": "tren_superior_inferior",
+      "notas": "Formato 15-12-10-8. D1:Tren inf cuád-glút, D2:Tren sup, D3:Isquios, D4:Pecho-Esp-Tríceps, D5:Glúteos."
+    },
+    {
+      "id": "r16",
+      "nombre": "Rutina 4D MEL",
+      "objetivo": "hipertrofia",
+      "nivel": "intermedio",
+      "duracion_semanas": 8,
+      "frecuencia_semanal": 4,
+      "genero": "mujer",
+      "division": "por_grupo_muscular",
+      "notas": "D1:Cuád-Hombros-Pecho, D2:Glúteos-Isquios-Espalda, D3:Cuád-Pecho-Hombros-Tríceps, D4:Glúteos-Isquios-Espalda-Bíceps. Progresiva."
+    },
+    {
+      "id": "r17",
+      "nombre": "Rutina 4D Rest Pause",
+      "objetivo": "hipertrofia",
+      "nivel": "avanzado",
+      "duracion_semanas": 6,
+      "frecuencia_semanal": 4,
+      "genero": "mujer",
+      "division": "por_grupo_muscular",
+      "notas": "Técnica Rest Pause (RP): 1 serie pesada + descanso corto + más reps. D1:Cuád-Hombros, D2:Glúteos-Pecho-Bíceps, D3:Femorales-Espalda, D4:Abductores-Aductores-Brazos."
+    },
+    {
+      "id": "r18",
+      "nombre": "Rutina Semana 1-4 (5D Descriptiva)",
+      "objetivo": "hipertrofia",
+      "nivel": "principiante",
+      "duracion_semanas": 4,
+      "frecuencia_semanal": 5,
+      "genero": "mujer",
+      "division": "push_pull_legs",
+      "notas": "Con descripción técnica de cada ejercicio. Lun:Glúteos+Femorales, Mar:Espalda+Bíceps+Abdomen, Mier:Piernas, Jue:Pecho+Hombros+Tríceps, Vie:Glúteos."
+    },
+    {
+      "id": "r19",
+      "nombre": "Rutina 5D Tren Formato 15-12-10-8",
+      "objetivo": "hipertrofia",
+      "nivel": "intermedio",
+      "duracion_semanas": 8,
+      "frecuencia_semanal": 5,
+      "genero": "unisex",
+      "division": "por_grupo_muscular",
+      "notas": "D1:Cuád-Glút, D2:Tren sup, D3:Isquios, D4:Pecho-Esp-Tríceps, D5:Glúteos. Carga progresiva."
+    },
+    {
+      "id": "r20",
+      "nombre": "OLY 10 Días — Técnico-Competitivo",
+      "objetivo": "tecnica_olimpica",
+      "nivel": "avanzado",
+      "duracion_semanas": 2,
+      "frecuencia_semanal": 5,
+      "genero": "unisex",
+      "division": "oly_tecnico",
+      "notas": "Ciclo de 10 días de levantamiento olímpico. Énfasis en variantes de posición (hang, low hang, high hang, bloques, pausa) y movilidad específica por sesión."
+    }
+  ],
+  "routine_exercises": [
+    {
+      "routine_id": "r01",
+      "dia": 1,
+      "ejercicio_id": "e001",
+      "orden": 1,
+      "series": 4,
+      "reps": "12/10/8/8",
+      "descanso_seg": 120,
+      "notas": null
+    },
+    {
+      "routine_id": "r01",
+      "dia": 1,
+      "ejercicio_id": "e027",
+      "orden": 2,
+      "series": 4,
+      "reps": "12/10/8/8",
+      "descanso_seg": 120,
+      "notas": null
+    },
+    {
+      "routine_id": "r01",
+      "dia": 1,
+      "ejercicio_id": "e003",
+      "orden": 3,
+      "series": 4,
+      "reps": "12/12/10/10",
+      "descanso_seg": 90,
+      "notas": null
+    },
+    {
+      "routine_id": "r01",
+      "dia": 1,
+      "ejercicio_id": "e030",
+      "orden": 4,
+      "series": 4,
+      "reps": "12/12/10/10",
+      "descanso_seg": 75,
+      "notas": "superset siguiente"
+    },
+    {
+      "routine_id": "r01",
+      "dia": 1,
+      "ejercicio_id": "e031",
+      "orden": 5,
+      "series": 4,
+      "reps": "12/10/8/8",
+      "descanso_seg": 75,
+      "notas": "superset anterior"
+    },
+    {
+      "routine_id": "r01",
+      "dia": 1,
+      "ejercicio_id": "e009",
+      "orden": 6,
+      "series": 3,
+      "reps": "12",
+      "descanso_seg": 75,
+      "notas": null
+    },
+    {
+      "routine_id": "r01",
+      "dia": 1,
+      "ejercicio_id": "e028",
+      "orden": 7,
+      "series": 3,
+      "reps": "12",
+      "descanso_seg": 75,
+      "notas": null
+    },
+    {
+      "routine_id": "r01",
+      "dia": 1,
+      "ejercicio_id": "e047",
+      "orden": 8,
+      "series": 4,
+      "reps": "10",
+      "descanso_seg": 60,
+      "notas": "21s + martillo"
+    },
+    {
+      "routine_id": "r01",
+      "dia": 2,
+      "ejercicio_id": "e002",
+      "orden": 1,
+      "series": 4,
+      "reps": "12/10/8/8",
+      "descanso_seg": 120,
+      "notas": "inclinado"
+    },
+    {
+      "routine_id": "r01",
+      "dia": 2,
+      "ejercicio_id": "e033",
+      "orden": 2,
+      "series": 4,
+      "reps": "12/10/8/8",
+      "descanso_seg": 90,
+      "notas": "superset siguiente"
+    },
+    {
+      "routine_id": "r01",
+      "dia": 2,
+      "ejercicio_id": "e036",
+      "orden": 3,
+      "series": 4,
+      "reps": "12/10/8/8",
+      "descanso_seg": 90,
+      "notas": "superset anterior"
+    },
+    {
+      "routine_id": "r01",
+      "dia": 2,
+      "ejercicio_id": "e012",
+      "orden": 4,
+      "series": 4,
+      "reps": "12/10/8/8",
+      "descanso_seg": 90,
+      "notas": null
+    },
+    {
+      "routine_id": "r01",
+      "dia": 2,
+      "ejercicio_id": "e037",
+      "orden": 5,
+      "series": 4,
+      "reps": "10/10/8/8",
+      "descanso_seg": 90,
+      "notas": null
+    },
+    {
+      "routine_id": "r01",
+      "dia": 2,
+      "ejercicio_id": "e019",
+      "orden": 6,
+      "series": 3,
+      "reps": "12",
+      "descanso_seg": 60,
+      "notas": null
+    },
+    {
+      "routine_id": "r01",
+      "dia": 2,
+      "ejercicio_id": "e032",
+      "orden": 7,
+      "series": 4,
+      "reps": "10/10/8/8",
+      "descanso_seg": 75,
+      "notas": null
+    },
+    {
+      "routine_id": "r01",
+      "dia": 2,
+      "ejercicio_id": "e052",
+      "orden": 8,
+      "series": 4,
+      "reps": "12/10/8/8",
+      "descanso_seg": 75,
+      "notas": null
+    },
+    {
+      "routine_id": "r01",
+      "dia": 2,
+      "ejercicio_id": "e054",
+      "orden": 9,
+      "series": 3,
+      "reps": "10",
+      "descanso_seg": 60,
+      "notas": "curl tríceps 1 brazo"
+    },
+    {
+      "routine_id": "r01",
+      "dia": 3,
+      "ejercicio_id": "e040",
+      "orden": 1,
+      "series": 4,
+      "reps": "12/10/8/8",
+      "descanso_seg": 120,
+      "notas": "superset siguiente"
+    },
+    {
+      "routine_id": "r01",
+      "dia": 3,
+      "ejercicio_id": "e041",
+      "orden": 2,
+      "series": 3,
+      "reps": "10/8",
+      "descanso_seg": 90,
+      "notas": "superset anterior"
+    },
+    {
+      "routine_id": "r01",
+      "dia": 3,
+      "ejercicio_id": "e042",
+      "orden": 3,
+      "series": 4,
+      "reps": "10",
+      "descanso_seg": 75,
+      "notas": null
+    },
+    {
+      "routine_id": "r01",
+      "dia": 3,
+      "ejercicio_id": "e044",
+      "orden": 4,
+      "series": 4,
+      "reps": "10",
+      "descanso_seg": 75,
+      "notas": null
+    },
+    {
+      "routine_id": "r01",
+      "dia": 3,
+      "ejercicio_id": "e039",
+      "orden": 5,
+      "series": 3,
+      "reps": "10",
+      "descanso_seg": 75,
+      "notas": null
+    },
+    {
+      "routine_id": "r01",
+      "dia": 3,
+      "ejercicio_id": "e021",
+      "orden": 6,
+      "series": 4,
+      "reps": "15/15/12/12",
+      "descanso_seg": 60,
+      "notas": null
+    },
+    {
+      "routine_id": "r01",
+      "dia": 3,
+      "ejercicio_id": "e022",
+      "orden": 7,
+      "series": 4,
+      "reps": "12",
+      "descanso_seg": 60,
+      "notas": null
+    },
+    {
+      "routine_id": "r02",
+      "dia": 1,
+      "ejercicio_id": "e001",
+      "orden": 1,
+      "series": 4,
+      "reps": "15/15/12/10",
+      "descanso_seg": 120,
+      "notas": null
+    },
+    {
+      "routine_id": "r02",
+      "dia": 1,
+      "ejercicio_id": "e027",
+      "orden": 2,
+      "series": 4,
+      "reps": "12/10/10/8",
+      "descanso_seg": 120,
+      "notas": null
+    },
+    {
+      "routine_id": "r02",
+      "dia": 1,
+      "ejercicio_id": "e010",
+      "orden": 3,
+      "series": 4,
+      "reps": "X4 pasadas",
+      "descanso_seg": 90,
+      "notas": "estocadas pasadas"
+    },
+    {
+      "routine_id": "r02",
+      "dia": 1,
+      "ejercicio_id": "e030",
+      "orden": 4,
+      "series": 4,
+      "reps": "10/10/8/8",
+      "descanso_seg": 75,
+      "notas": null
+    },
+    {
+      "routine_id": "r02",
+      "dia": 1,
+      "ejercicio_id": "e009",
+      "orden": 5,
+      "series": 4,
+      "reps": "12/12",
+      "descanso_seg": 75,
+      "notas": "desc. descendente superset siguiente"
+    },
+    {
+      "routine_id": "r02",
+      "dia": 1,
+      "ejercicio_id": "e063",
+      "orden": 6,
+      "series": 4,
+      "reps": "40\"",
+      "descanso_seg": 60,
+      "notas": "superset anterior"
+    },
+    {
+      "routine_id": "r02",
+      "dia": 1,
+      "ejercicio_id": "e028",
+      "orden": 7,
+      "series": 4,
+      "reps": "12",
+      "descanso_seg": 75,
+      "notas": null
+    },
+    {
+      "routine_id": "r02",
+      "dia": 2,
+      "ejercicio_id": "e002",
+      "orden": 1,
+      "series": 4,
+      "reps": "15/12/10/8",
+      "descanso_seg": 120,
+      "notas": null
+    },
+    {
+      "routine_id": "r02",
+      "dia": 2,
+      "ejercicio_id": "e033",
+      "orden": 2,
+      "series": 4,
+      "reps": "12/10/8/8",
+      "descanso_seg": 90,
+      "notas": null
+    },
+    {
+      "routine_id": "r02",
+      "dia": 2,
+      "ejercicio_id": "e015",
+      "orden": 3,
+      "series": 4,
+      "reps": "12/12/10/8",
+      "descanso_seg": 120,
+      "notas": null
+    },
+    {
+      "routine_id": "r02",
+      "dia": 2,
+      "ejercicio_id": "e035",
+      "orden": 4,
+      "series": 4,
+      "reps": "12/12/10/10",
+      "descanso_seg": 90,
+      "notas": null
+    },
+    {
+      "routine_id": "r02",
+      "dia": 2,
+      "ejercicio_id": "e013",
+      "orden": 5,
+      "series": 4,
+      "reps": "12",
+      "descanso_seg": 75,
+      "notas": null
+    },
+    {
+      "routine_id": "r02",
+      "dia": 2,
+      "ejercicio_id": "e020",
+      "orden": 6,
+      "series": 4,
+      "reps": "20",
+      "descanso_seg": 60,
+      "notas": null
+    },
+    {
+      "routine_id": "r02",
+      "dia": 2,
+      "ejercicio_id": "e052",
+      "orden": 7,
+      "series": 4,
+      "reps": "10",
+      "descanso_seg": 75,
+      "notas": null
+    },
+    {
+      "routine_id": "r02",
+      "dia": 2,
+      "ejercicio_id": "e054",
+      "orden": 8,
+      "series": 3,
+      "reps": "10",
+      "descanso_seg": 60,
+      "notas": "curl tríceps c/disco banco"
+    },
+    {
+      "routine_id": "r02",
+      "dia": 3,
+      "ejercicio_id": "e040",
+      "orden": 1,
+      "series": 4,
+      "reps": "12/12/10/8",
+      "descanso_seg": 120,
+      "notas": null
+    },
+    {
+      "routine_id": "r02",
+      "dia": 3,
+      "ejercicio_id": "e043",
+      "orden": 2,
+      "series": 4,
+      "reps": "10",
+      "descanso_seg": 75,
+      "notas": null
+    },
+    {
+      "routine_id": "r02",
+      "dia": 3,
+      "ejercicio_id": "e044",
+      "orden": 3,
+      "series": 4,
+      "reps": "10",
+      "descanso_seg": 75,
+      "notas": null
+    },
+    {
+      "routine_id": "r02",
+      "dia": 3,
+      "ejercicio_id": "e012",
+      "orden": 4,
+      "series": 4,
+      "reps": "12/10/8/8",
+      "descanso_seg": 90,
+      "notas": null
+    },
+    {
+      "routine_id": "r02",
+      "dia": 3,
+      "ejercicio_id": "e006",
+      "orden": 5,
+      "series": 4,
+      "reps": "15/15/12/12",
+      "descanso_seg": 90,
+      "notas": "c/mancuerna"
+    },
+    {
+      "routine_id": "r02",
+      "dia": 3,
+      "ejercicio_id": "e019",
+      "orden": 6,
+      "series": 4,
+      "reps": "15/15/12/12",
+      "descanso_seg": 60,
+      "notas": null
+    },
+    {
+      "routine_id": "r02",
+      "dia": 3,
+      "ejercicio_id": "e048",
+      "orden": 7,
+      "series": 3,
+      "reps": "12",
+      "descanso_seg": 60,
+      "notas": null
+    },
+    {
+      "routine_id": "r02",
+      "dia": 3,
+      "ejercicio_id": "e047",
+      "orden": 8,
+      "series": 4,
+      "reps": "X4",
+      "descanso_seg": 60,
+      "notas": "bíceps 21"
+    },
+    {
+      "routine_id": "r03",
+      "dia": 1,
+      "ejercicio_id": "e001",
+      "orden": 1,
+      "series": 4,
+      "reps": "15/15/12/10",
+      "descanso_seg": 120,
+      "notas": null
+    },
+    {
+      "routine_id": "r03",
+      "dia": 1,
+      "ejercicio_id": "e027",
+      "orden": 2,
+      "series": 4,
+      "reps": "12",
+      "descanso_seg": 90,
+      "notas": null
+    },
+    {
+      "routine_id": "r03",
+      "dia": 1,
+      "ejercicio_id": "e008",
+      "orden": 3,
+      "series": 4,
+      "reps": "15",
+      "descanso_seg": 90,
+      "notas": "c/banda y manc"
+    },
+    {
+      "routine_id": "r03",
+      "dia": 1,
+      "ejercicio_id": "e030",
+      "orden": 4,
+      "series": 4,
+      "reps": "10",
+      "descanso_seg": 75,
+      "notas": null
+    },
+    {
+      "routine_id": "r03",
+      "dia": 1,
+      "ejercicio_id": "e065",
+      "orden": 5,
+      "series": 4,
+      "reps": "8 c/u",
+      "descanso_seg": 75,
+      "notas": "subidas al banco alternas"
+    },
+    {
+      "routine_id": "r03",
+      "dia": 1,
+      "ejercicio_id": "e063",
+      "orden": 6,
+      "series": 4,
+      "reps": "30\"",
+      "descanso_seg": 60,
+      "notas": "superset anterior"
+    },
+    {
+      "routine_id": "r03",
+      "dia": 1,
+      "ejercicio_id": "e079",
+      "orden": 7,
+      "series": 3,
+      "reps": "20",
+      "descanso_seg": 60,
+      "notas": "aperturas c/banda banco"
+    },
+    {
+      "routine_id": "r03",
+      "dia": 2,
+      "ejercicio_id": "e002",
+      "orden": 1,
+      "series": 4,
+      "reps": "15/15/12/12",
+      "descanso_seg": 120,
+      "notas": null
+    },
+    {
+      "routine_id": "r03",
+      "dia": 2,
+      "ejercicio_id": "e033",
+      "orden": 2,
+      "series": 4,
+      "reps": "10",
+      "descanso_seg": 90,
+      "notas": null
+    },
+    {
+      "routine_id": "r03",
+      "dia": 2,
+      "ejercicio_id": "e012",
+      "orden": 3,
+      "series": 4,
+      "reps": "20",
+      "descanso_seg": 90,
+      "notas": "c/bolsa"
+    },
+    {
+      "routine_id": "r03",
+      "dia": 2,
+      "ejercicio_id": "e019",
+      "orden": 4,
+      "series": 4,
+      "reps": "15",
+      "descanso_seg": 60,
+      "notas": "superset anterior"
+    },
+    {
+      "routine_id": "r03",
+      "dia": 2,
+      "ejercicio_id": "e036",
+      "orden": 5,
+      "series": 4,
+      "reps": "10",
+      "descanso_seg": 90,
+      "notas": null
+    },
+    {
+      "routine_id": "r03",
+      "dia": 2,
+      "ejercicio_id": "e014",
+      "orden": 6,
+      "series": 3,
+      "reps": "10 c/u",
+      "descanso_seg": 75,
+      "notas": null
+    },
+    {
+      "routine_id": "r03",
+      "dia": 2,
+      "ejercicio_id": "e052",
+      "orden": 7,
+      "series": 4,
+      "reps": "10",
+      "descanso_seg": 75,
+      "notas": null
+    },
+    {
+      "routine_id": "r03",
+      "dia": 2,
+      "ejercicio_id": "e054",
+      "orden": 8,
+      "series": 3,
+      "reps": "10",
+      "descanso_seg": 60,
+      "notas": "curl tríceps c/disco banco"
+    },
+    {
+      "routine_id": "r03",
+      "dia": 3,
+      "ejercicio_id": "e041",
+      "orden": 1,
+      "series": 4,
+      "reps": "10",
+      "descanso_seg": 90,
+      "notas": "banco inclinado"
+    },
+    {
+      "routine_id": "r03",
+      "dia": 3,
+      "ejercicio_id": "e062",
+      "orden": 2,
+      "series": 3,
+      "reps": "12",
+      "descanso_seg": 60,
+      "notas": "vitalizaciones c/disco superset anterior"
+    },
+    {
+      "routine_id": "r03",
+      "dia": 3,
+      "ejercicio_id": "e043",
+      "orden": 3,
+      "series": 4,
+      "reps": "10",
+      "descanso_seg": 75,
+      "notas": null
+    },
+    {
+      "routine_id": "r03",
+      "dia": 3,
+      "ejercicio_id": "e044",
+      "orden": 4,
+      "series": 4,
+      "reps": "10",
+      "descanso_seg": 75,
+      "notas": "c/disco"
+    },
+    {
+      "routine_id": "r03",
+      "dia": 3,
+      "ejercicio_id": "e021",
+      "orden": 5,
+      "series": 4,
+      "reps": "12",
+      "descanso_seg": 60,
+      "notas": null
+    },
+    {
+      "routine_id": "r03",
+      "dia": 3,
+      "ejercicio_id": "e022",
+      "orden": 6,
+      "series": 4,
+      "reps": "12",
+      "descanso_seg": 60,
+      "notas": null
+    },
+    {
+      "routine_id": "r03",
+      "dia": 3,
+      "ejercicio_id": "e049",
+      "orden": 7,
+      "series": 4,
+      "reps": "12",
+      "descanso_seg": 75,
+      "notas": null
+    },
+    {
+      "routine_id": "r04",
+      "dia": 1,
+      "ejercicio_id": "e001",
+      "orden": 1,
+      "series": 4,
+      "reps": "12/10/8/8",
+      "descanso_seg": 120,
+      "notas": null
+    },
+    {
+      "routine_id": "r04",
+      "dia": 1,
+      "ejercicio_id": "e027",
+      "orden": 2,
+      "series": 4,
+      "reps": "12/10/8/8",
+      "descanso_seg": 120,
+      "notas": null
+    },
+    {
+      "routine_id": "r04",
+      "dia": 1,
+      "ejercicio_id": "e010",
+      "orden": 3,
+      "series": 4,
+      "reps": "10/10/8/8",
+      "descanso_seg": 90,
+      "notas": "c/mancuernas"
+    },
+    {
+      "routine_id": "r04",
+      "dia": 1,
+      "ejercicio_id": "e030",
+      "orden": 4,
+      "series": 4,
+      "reps": "12/12/10/10",
+      "descanso_seg": 75,
+      "notas": null
+    },
+    {
+      "routine_id": "r04",
+      "dia": 1,
+      "ejercicio_id": "e012",
+      "orden": 5,
+      "series": 4,
+      "reps": "12/10/8/8",
+      "descanso_seg": 90,
+      "notas": null
+    },
+    {
+      "routine_id": "r04",
+      "dia": 1,
+      "ejercicio_id": "e019",
+      "orden": 6,
+      "series": 3,
+      "reps": "12",
+      "descanso_seg": 60,
+      "notas": null
+    },
+    {
+      "routine_id": "r04",
+      "dia": 1,
+      "ejercicio_id": "e009",
+      "orden": 7,
+      "series": 3,
+      "reps": "12",
+      "descanso_seg": 75,
+      "notas": null
+    },
+    {
+      "routine_id": "r04",
+      "dia": 1,
+      "ejercicio_id": "e028",
+      "orden": 8,
+      "series": 3,
+      "reps": "12",
+      "descanso_seg": 75,
+      "notas": null
+    },
+    {
+      "routine_id": "r04",
+      "dia": 2,
+      "ejercicio_id": "e002",
+      "orden": 1,
+      "series": 4,
+      "reps": "12/10/8/8",
+      "descanso_seg": 120,
+      "notas": null
+    },
+    {
+      "routine_id": "r04",
+      "dia": 2,
+      "ejercicio_id": "e033",
+      "orden": 2,
+      "series": 4,
+      "reps": "12/10/8/8",
+      "descanso_seg": 90,
+      "notas": null
+    },
+    {
+      "routine_id": "r04",
+      "dia": 2,
+      "ejercicio_id": "e013",
+      "orden": 3,
+      "series": 4,
+      "reps": "12/12/10/10",
+      "descanso_seg": 90,
+      "notas": null
+    },
+    {
+      "routine_id": "r04",
+      "dia": 2,
+      "ejercicio_id": "e035",
+      "orden": 4,
+      "series": 4,
+      "reps": "12/10/8/8",
+      "descanso_seg": 90,
+      "notas": null
+    },
+    {
+      "routine_id": "r04",
+      "dia": 2,
+      "ejercicio_id": "e014",
+      "orden": 5,
+      "series": 3,
+      "reps": "10/10/8",
+      "descanso_seg": 75,
+      "notas": null
+    },
+    {
+      "routine_id": "r04",
+      "dia": 2,
+      "ejercicio_id": "e037",
+      "orden": 6,
+      "series": 3,
+      "reps": "10 c/u",
+      "descanso_seg": 75,
+      "notas": null
+    },
+    {
+      "routine_id": "r04",
+      "dia": 2,
+      "ejercicio_id": "e052",
+      "orden": 7,
+      "series": 4,
+      "reps": "10/10/8/8",
+      "descanso_seg": 75,
+      "notas": null
+    },
+    {
+      "routine_id": "r04",
+      "dia": 2,
+      "ejercicio_id": "e054",
+      "orden": 8,
+      "series": 3,
+      "reps": "8 c/u",
+      "descanso_seg": 60,
+      "notas": "c/manc 1 brazo"
+    },
+    {
+      "routine_id": "r04",
+      "dia": 3,
+      "ejercicio_id": "e040",
+      "orden": 1,
+      "series": 4,
+      "reps": "12/10/8/8",
+      "descanso_seg": 120,
+      "notas": "superset siguiente"
+    },
+    {
+      "routine_id": "r04",
+      "dia": 3,
+      "ejercicio_id": "e041",
+      "orden": 2,
+      "series": 3,
+      "reps": "10/8",
+      "descanso_seg": 90,
+      "notas": "superset anterior"
+    },
+    {
+      "routine_id": "r04",
+      "dia": 3,
+      "ejercicio_id": "e042",
+      "orden": 3,
+      "series": 4,
+      "reps": "10",
+      "descanso_seg": 75,
+      "notas": null
+    },
+    {
+      "routine_id": "r04",
+      "dia": 3,
+      "ejercicio_id": "e044",
+      "orden": 4,
+      "series": 4,
+      "reps": "10",
+      "descanso_seg": 75,
+      "notas": null
+    },
+    {
+      "routine_id": "r04",
+      "dia": 3,
+      "ejercicio_id": "e039",
+      "orden": 5,
+      "series": 3,
+      "reps": "10",
+      "descanso_seg": 75,
+      "notas": null
+    },
+    {
+      "routine_id": "r04",
+      "dia": 3,
+      "ejercicio_id": "e021",
+      "orden": 6,
+      "series": 4,
+      "reps": "15/15/12/12",
+      "descanso_seg": 60,
+      "notas": null
+    },
+    {
+      "routine_id": "r04",
+      "dia": 3,
+      "ejercicio_id": "e022",
+      "orden": 7,
+      "series": 4,
+      "reps": "12",
+      "descanso_seg": 60,
+      "notas": null
+    },
+    {
+      "routine_id": "r04",
+      "dia": 3,
+      "ejercicio_id": "e048",
+      "orden": 8,
+      "series": 4,
+      "reps": "10",
+      "descanso_seg": 60,
+      "notas": "martillo+21"
+    },
+    {
+      "routine_id": "r05",
+      "dia": 1,
+      "ejercicio_id": "e001",
+      "orden": 1,
+      "series": 4,
+      "reps": "12/10/8/6",
+      "descanso_seg": 150,
+      "notas": "superset siguiente"
+    },
+    {
+      "routine_id": "r05",
+      "dia": 1,
+      "ejercicio_id": "e004",
+      "orden": 2,
+      "series": 3,
+      "reps": "15/15/12",
+      "descanso_seg": 90,
+      "notas": "superset anterior"
+    },
+    {
+      "routine_id": "r05",
+      "dia": 1,
+      "ejercicio_id": "e034",
+      "orden": 3,
+      "series": 4,
+      "reps": "12/10/8/6",
+      "descanso_seg": 90,
+      "notas": "superset siguiente"
+    },
+    {
+      "routine_id": "r05",
+      "dia": 1,
+      "ejercicio_id": "e036",
+      "orden": 4,
+      "series": 4,
+      "reps": "12/10/8/6",
+      "descanso_seg": 90,
+      "notas": "superset anterior"
+    },
+    {
+      "routine_id": "r05",
+      "dia": 1,
+      "ejercicio_id": "e010",
+      "orden": 5,
+      "series": 4,
+      "reps": "X4 pasadas",
+      "descanso_seg": 90,
+      "notas": "superset siguiente"
+    },
+    {
+      "routine_id": "r05",
+      "dia": 1,
+      "ejercicio_id": "e009",
+      "orden": 6,
+      "series": 3,
+      "reps": "10/8/6",
+      "descanso_seg": 75,
+      "notas": "superset anterior"
+    },
+    {
+      "routine_id": "r05",
+      "dia": 1,
+      "ejercicio_id": "e038",
+      "orden": 7,
+      "series": 4,
+      "reps": "12/10/8/6",
+      "descanso_seg": 120,
+      "notas": null
+    },
+    {
+      "routine_id": "r05",
+      "dia": 1,
+      "ejercicio_id": "e053",
+      "orden": 8,
+      "series": 4,
+      "reps": "10/10",
+      "descanso_seg": 75,
+      "notas": "fondos+polea"
+    },
+    {
+      "routine_id": "r05",
+      "dia": 2,
+      "ejercicio_id": "e002",
+      "orden": 1,
+      "series": 4,
+      "reps": "12/10/8/6",
+      "descanso_seg": 120,
+      "notas": "superset siguiente"
+    },
+    {
+      "routine_id": "r05",
+      "dia": 2,
+      "ejercicio_id": "e021",
+      "orden": 2,
+      "series": 4,
+      "reps": "12",
+      "descanso_seg": 60,
+      "notas": "superset anterior"
+    },
+    {
+      "routine_id": "r05",
+      "dia": 2,
+      "ejercicio_id": "e017",
+      "orden": 3,
+      "series": 4,
+      "reps": "12",
+      "descanso_seg": 75,
+      "notas": "superset anterior"
+    },
+    {
+      "routine_id": "r05",
+      "dia": 2,
+      "ejercicio_id": "e024",
+      "orden": 4,
+      "series": 4,
+      "reps": "12/10/8/8",
+      "descanso_seg": 150,
+      "notas": null
+    },
+    {
+      "routine_id": "r05",
+      "dia": 2,
+      "ejercicio_id": "e016",
+      "orden": 5,
+      "series": 4,
+      "reps": "12/10/8/6",
+      "descanso_seg": 120,
+      "notas": "peso muerto en bel"
+    },
+    {
+      "routine_id": "r05",
+      "dia": 2,
+      "ejercicio_id": "e013",
+      "orden": 6,
+      "series": 3,
+      "reps": "12/10/8",
+      "descanso_seg": 75,
+      "notas": "superset anterior"
+    },
+    {
+      "routine_id": "r05",
+      "dia": 2,
+      "ejercicio_id": "e029",
+      "orden": 7,
+      "series": 4,
+      "reps": "12/10/8/8",
+      "descanso_seg": 75,
+      "notas": null
+    },
+    {
+      "routine_id": "r05",
+      "dia": 2,
+      "ejercicio_id": "e028",
+      "orden": 8,
+      "series": 3,
+      "reps": "10/8/8",
+      "descanso_seg": 75,
+      "notas": null
+    },
+    {
+      "routine_id": "r05",
+      "dia": 2,
+      "ejercicio_id": "e047",
+      "orden": 9,
+      "series": 4,
+      "reps": "10",
+      "descanso_seg": 60,
+      "notas": "21+martillo"
+    },
+    {
+      "routine_id": "r05",
+      "dia": 2,
+      "ejercicio_id": "e022",
+      "orden": 10,
+      "series": 3,
+      "reps": "15",
+      "descanso_seg": 60,
+      "notas": null
+    },
+    {
+      "routine_id": "r05",
+      "dia": 3,
+      "ejercicio_id": "e040",
+      "orden": 1,
+      "series": 4,
+      "reps": "12/10/8/6",
+      "descanso_seg": 120,
+      "notas": "superset siguiente"
+    },
+    {
+      "routine_id": "r05",
+      "dia": 3,
+      "ejercicio_id": "e041",
+      "orden": 2,
+      "series": 3,
+      "reps": "10/8/8",
+      "descanso_seg": 90,
+      "notas": "superset anterior"
+    },
+    {
+      "routine_id": "r05",
+      "dia": 3,
+      "ejercicio_id": "e043",
+      "orden": 3,
+      "series": 4,
+      "reps": "10",
+      "descanso_seg": 75,
+      "notas": "vuelos combinados"
+    },
+    {
+      "routine_id": "r05",
+      "dia": 3,
+      "ejercicio_id": "e012",
+      "orden": 4,
+      "series": 4,
+      "reps": "12/10/8/6",
+      "descanso_seg": 90,
+      "notas": "superset siguiente"
+    },
+    {
+      "routine_id": "r05",
+      "dia": 3,
+      "ejercicio_id": "e064",
+      "orden": 5,
+      "series": 3,
+      "reps": "12 c/l",
+      "descanso_seg": 60,
+      "notas": "superset anterior"
+    },
+    {
+      "routine_id": "r05",
+      "dia": 3,
+      "ejercicio_id": "e006",
+      "orden": 6,
+      "series": 4,
+      "reps": "15/15/12/10",
+      "descanso_seg": 90,
+      "notas": "sumo c/barra s/step"
+    },
+    {
+      "routine_id": "r05",
+      "dia": 3,
+      "ejercicio_id": "e018",
+      "orden": 7,
+      "series": 3,
+      "reps": "15 c/u",
+      "descanso_seg": 60,
+      "notas": "patada lateral c/tobillera"
+    },
+    {
+      "routine_id": "r05",
+      "dia": 3,
+      "ejercicio_id": "e019",
+      "orden": 8,
+      "series": 4,
+      "reps": "15+15",
+      "descanso_seg": 60,
+      "notas": null
+    },
+    {
+      "routine_id": "r06",
+      "dia": 1,
+      "ejercicio_id": "e002",
+      "orden": 1,
+      "series": 4,
+      "reps": "12/10/8/6",
+      "descanso_seg": 120,
+      "notas": "superset siguiente"
+    },
+    {
+      "routine_id": "r06",
+      "dia": 1,
+      "ejercicio_id": "e021",
+      "orden": 2,
+      "series": 4,
+      "reps": "12",
+      "descanso_seg": 60,
+      "notas": "superset anterior"
+    },
+    {
+      "routine_id": "r06",
+      "dia": 1,
+      "ejercicio_id": "e009",
+      "orden": 3,
+      "series": 3,
+      "reps": "10/8/8",
+      "descanso_seg": 75,
+      "notas": "1 pie superset anterior"
+    },
+    {
+      "routine_id": "r06",
+      "dia": 1,
+      "ejercicio_id": "e033",
+      "orden": 4,
+      "series": 4,
+      "reps": "12/10/8/6",
+      "descanso_seg": 90,
+      "notas": "superset siguiente"
+    },
+    {
+      "routine_id": "r06",
+      "dia": 1,
+      "ejercicio_id": "e069",
+      "orden": 5,
+      "series": 3,
+      "reps": "10/8/8",
+      "descanso_seg": 75,
+      "notas": "remo 1 brazo máquina"
+    },
+    {
+      "routine_id": "r06",
+      "dia": 1,
+      "ejercicio_id": "e001",
+      "orden": 6,
+      "series": 4,
+      "reps": "10/8/8/6",
+      "descanso_seg": 120,
+      "notas": null
+    },
+    {
+      "routine_id": "r06",
+      "dia": 1,
+      "ejercicio_id": "e035",
+      "orden": 7,
+      "series": 4,
+      "reps": "10/8/6/6",
+      "descanso_seg": 90,
+      "notas": null
+    },
+    {
+      "routine_id": "r06",
+      "dia": 1,
+      "ejercicio_id": "e022",
+      "orden": 8,
+      "series": 4,
+      "reps": "12/12/10/10",
+      "descanso_seg": 60,
+      "notas": null
+    },
+    {
+      "routine_id": "r06",
+      "dia": 1,
+      "ejercicio_id": "e053",
+      "orden": 9,
+      "series": 4,
+      "reps": "10/10",
+      "descanso_seg": 75,
+      "notas": "fondos+polea"
+    },
+    {
+      "routine_id": "r06",
+      "dia": 2,
+      "ejercicio_id": "e015",
+      "orden": 1,
+      "series": 4,
+      "reps": "12/10/8/6",
+      "descanso_seg": 150,
+      "notas": null
+    },
+    {
+      "routine_id": "r06",
+      "dia": 2,
+      "ejercicio_id": "e024",
+      "orden": 2,
+      "series": 4,
+      "reps": "12/10/8/6",
+      "descanso_seg": 150,
+      "notas": null
+    },
+    {
+      "routine_id": "r06",
+      "dia": 2,
+      "ejercicio_id": "e002",
+      "orden": 3,
+      "series": 4,
+      "reps": "12/10/8/8",
+      "descanso_seg": 90,
+      "notas": "hack inclinado"
+    },
+    {
+      "routine_id": "r06",
+      "dia": 2,
+      "ejercicio_id": "e017",
+      "orden": 4,
+      "series": 3,
+      "reps": "12",
+      "descanso_seg": 75,
+      "notas": "superset anterior"
+    },
+    {
+      "routine_id": "r06",
+      "dia": 2,
+      "ejercicio_id": "e031",
+      "orden": 5,
+      "series": 4,
+      "reps": "12/10/8/8",
+      "descanso_seg": 90,
+      "notas": "superset siguiente"
+    },
+    {
+      "routine_id": "r06",
+      "dia": 2,
+      "ejercicio_id": "e030",
+      "orden": 6,
+      "series": 3,
+      "reps": "12/10/8",
+      "descanso_seg": 75,
+      "notas": "superset anterior"
+    },
+    {
+      "routine_id": "r06",
+      "dia": 2,
+      "ejercicio_id": "e013",
+      "orden": 7,
+      "series": 3,
+      "reps": "10/8/8",
+      "descanso_seg": 75,
+      "notas": null
+    },
+    {
+      "routine_id": "r06",
+      "dia": 2,
+      "ejercicio_id": "e028",
+      "orden": 8,
+      "series": 4,
+      "reps": "12/10/8/6",
+      "descanso_seg": 75,
+      "notas": null
+    },
+    {
+      "routine_id": "r06",
+      "dia": 2,
+      "ejercicio_id": "e047",
+      "orden": 9,
+      "series": 4,
+      "reps": "12",
+      "descanso_seg": 60,
+      "notas": "21+martillo"
+    },
+    {
+      "routine_id": "r06",
+      "dia": 3,
+      "ejercicio_id": "e040",
+      "orden": 1,
+      "series": 4,
+      "reps": "12/10/8/6",
+      "descanso_seg": 120,
+      "notas": "superset siguiente"
+    },
+    {
+      "routine_id": "r06",
+      "dia": 3,
+      "ejercicio_id": "e041",
+      "orden": 2,
+      "series": 3,
+      "reps": "10/8/8",
+      "descanso_seg": 90,
+      "notas": "superset anterior"
+    },
+    {
+      "routine_id": "r06",
+      "dia": 3,
+      "ejercicio_id": "e042",
+      "orden": 3,
+      "series": 4,
+      "reps": "10/10/8/8",
+      "descanso_seg": 75,
+      "notas": null
+    },
+    {
+      "routine_id": "r06",
+      "dia": 3,
+      "ejercicio_id": "e044",
+      "orden": 4,
+      "series": 4,
+      "reps": "10/10/8/8",
+      "descanso_seg": 75,
+      "notas": null
+    },
+    {
+      "routine_id": "r06",
+      "dia": 3,
+      "ejercicio_id": "e012",
+      "orden": 5,
+      "series": 4,
+      "reps": "12/10/8/6",
+      "descanso_seg": 90,
+      "notas": null
+    },
+    {
+      "routine_id": "r06",
+      "dia": 3,
+      "ejercicio_id": "e006",
+      "orden": 6,
+      "series": 4,
+      "reps": "12/10/8/8",
+      "descanso_seg": 90,
+      "notas": "sumo en bel"
+    },
+    {
+      "routine_id": "r06",
+      "dia": 3,
+      "ejercicio_id": "e019",
+      "orden": 7,
+      "series": 4,
+      "reps": "15+15",
+      "descanso_seg": 60,
+      "notas": null
+    },
+    {
+      "routine_id": "r07",
+      "dia": 1,
+      "ejercicio_id": "e024",
+      "orden": 1,
+      "series": 4,
+      "reps": "12/10/8/6",
+      "descanso_seg": 150,
+      "notas": null
+    },
+    {
+      "routine_id": "r07",
+      "dia": 1,
+      "ejercicio_id": "e025",
+      "orden": 2,
+      "series": 4,
+      "reps": "12/10/8/8",
+      "descanso_seg": 120,
+      "notas": null
+    },
+    {
+      "routine_id": "r07",
+      "dia": 1,
+      "ejercicio_id": "e029",
+      "orden": 3,
+      "series": 4,
+      "reps": "12/12/10/8",
+      "descanso_seg": 90,
+      "notas": null
+    },
+    {
+      "routine_id": "r07",
+      "dia": 1,
+      "ejercicio_id": "e028",
+      "orden": 4,
+      "series": 4,
+      "reps": "12/12/10/8",
+      "descanso_seg": 90,
+      "notas": null
+    },
+    {
+      "routine_id": "r07",
+      "dia": 1,
+      "ejercicio_id": "e030",
+      "orden": 5,
+      "series": 4,
+      "reps": "12/10/8/8",
+      "descanso_seg": 75,
+      "notas": null
+    },
+    {
+      "routine_id": "r07",
+      "dia": 1,
+      "ejercicio_id": "e050",
+      "orden": 6,
+      "series": 4,
+      "reps": "12/12/10/10",
+      "descanso_seg": 75,
+      "notas": null
+    },
+    {
+      "routine_id": "r07",
+      "dia": 1,
+      "ejercicio_id": "e048",
+      "orden": 7,
+      "series": 3,
+      "reps": "12",
+      "descanso_seg": 60,
+      "notas": null
+    },
+    {
+      "routine_id": "r07",
+      "dia": 1,
+      "ejercicio_id": "e047",
+      "orden": 8,
+      "series": 4,
+      "reps": "X4",
+      "descanso_seg": 60,
+      "notas": "bíceps 21"
+    },
+    {
+      "routine_id": "r07",
+      "dia": 2,
+      "ejercicio_id": "e002",
+      "orden": 1,
+      "series": 4,
+      "reps": "12/10/8/8",
+      "descanso_seg": 120,
+      "notas": "superset siguiente"
+    },
+    {
+      "routine_id": "r07",
+      "dia": 2,
+      "ejercicio_id": "e021",
+      "orden": 2,
+      "series": 4,
+      "reps": "12",
+      "descanso_seg": 60,
+      "notas": "superset anterior"
+    },
+    {
+      "routine_id": "r07",
+      "dia": 2,
+      "ejercicio_id": "e001",
+      "orden": 3,
+      "series": 4,
+      "reps": "12/10/8/6",
+      "descanso_seg": 120,
+      "notas": null
+    },
+    {
+      "routine_id": "r07",
+      "dia": 2,
+      "ejercicio_id": "e010",
+      "orden": 4,
+      "series": 4,
+      "reps": "X4 pasadas",
+      "descanso_seg": 90,
+      "notas": "estocadas"
+    },
+    {
+      "routine_id": "r07",
+      "dia": 2,
+      "ejercicio_id": "e009",
+      "orden": 5,
+      "series": 4,
+      "reps": "12/12",
+      "descanso_seg": 75,
+      "notas": "descendente"
+    },
+    {
+      "routine_id": "r07",
+      "dia": 2,
+      "ejercicio_id": "e022",
+      "orden": 6,
+      "series": 4,
+      "reps": "12",
+      "descanso_seg": 60,
+      "notas": null
+    },
+    {
+      "routine_id": "r07",
+      "dia": 3,
+      "ejercicio_id": "e033",
+      "orden": 1,
+      "series": 4,
+      "reps": "12/10/8/6",
+      "descanso_seg": 90,
+      "notas": "superset siguiente"
+    },
+    {
+      "routine_id": "r07",
+      "dia": 3,
+      "ejercicio_id": "e035",
+      "orden": 2,
+      "series": 4,
+      "reps": "10/10/8/6",
+      "descanso_seg": 90,
+      "notas": "superset anterior"
+    },
+    {
+      "routine_id": "r07",
+      "dia": 3,
+      "ejercicio_id": "e037",
+      "orden": 3,
+      "series": 4,
+      "reps": "10/10/8/8",
+      "descanso_seg": 90,
+      "notas": null
+    },
+    {
+      "routine_id": "r07",
+      "dia": 3,
+      "ejercicio_id": "e045",
+      "orden": 4,
+      "series": 4,
+      "reps": "12/12/10/10",
+      "descanso_seg": 75,
+      "notas": null
+    },
+    {
+      "routine_id": "r07",
+      "dia": 3,
+      "ejercicio_id": "e040",
+      "orden": 5,
+      "series": 4,
+      "reps": "10/10/8/6",
+      "descanso_seg": 120,
+      "notas": null
+    },
+    {
+      "routine_id": "r07",
+      "dia": 3,
+      "ejercicio_id": "e042",
+      "orden": 6,
+      "series": 4,
+      "reps": "10/10/8/8",
+      "descanso_seg": 75,
+      "notas": null
+    },
+    {
+      "routine_id": "r07",
+      "dia": 3,
+      "ejercicio_id": "e044",
+      "orden": 7,
+      "series": 4,
+      "reps": "10",
+      "descanso_seg": 75,
+      "notas": null
+    },
+    {
+      "routine_id": "r07",
+      "dia": 3,
+      "ejercicio_id": "e052",
+      "orden": 8,
+      "series": 4,
+      "reps": "10/10/8/8",
+      "descanso_seg": 75,
+      "notas": "barra"
+    },
+    {
+      "routine_id": "r07",
+      "dia": 3,
+      "ejercicio_id": "e054",
+      "orden": 9,
+      "series": 4,
+      "reps": "8 c/u // 12",
+      "descanso_seg": 75,
+      "notas": "curl 1 brazo + fondos"
+    },
+    {
+      "routine_id": "r07",
+      "dia": 4,
+      "ejercicio_id": "e016",
+      "orden": 1,
+      "series": 4,
+      "reps": "12/10/8/8",
+      "descanso_seg": 120,
+      "notas": "peso muerto en bel"
+    },
+    {
+      "routine_id": "r07",
+      "dia": 4,
+      "ejercicio_id": "e017",
+      "orden": 2,
+      "series": 4,
+      "reps": "12",
+      "descanso_seg": 75,
+      "notas": "superset anterior"
+    },
+    {
+      "routine_id": "r07",
+      "dia": 4,
+      "ejercicio_id": "e012",
+      "orden": 3,
+      "series": 4,
+      "reps": "10/10/8/8",
+      "descanso_seg": 90,
+      "notas": null
+    },
+    {
+      "routine_id": "r07",
+      "dia": 4,
+      "ejercicio_id": "e013",
+      "orden": 4,
+      "series": 4,
+      "reps": "12/12",
+      "descanso_seg": 75,
+      "notas": "descendente"
+    },
+    {
+      "routine_id": "r07",
+      "dia": 4,
+      "ejercicio_id": "e019",
+      "orden": 5,
+      "series": 4,
+      "reps": "12/12/10/10",
+      "descanso_seg": 60,
+      "notas": null
+    },
+    {
+      "routine_id": "r07",
+      "dia": 4,
+      "ejercicio_id": "e014",
+      "orden": 6,
+      "series": 3,
+      "reps": "10/8/8",
+      "descanso_seg": 75,
+      "notas": null
+    },
+    {
+      "routine_id": "r08",
+      "dia": 1,
+      "ejercicio_id": "e015",
+      "orden": 1,
+      "series": 4,
+      "reps": "12/10/8/6",
+      "descanso_seg": 150,
+      "notas": null
+    },
+    {
+      "routine_id": "r08",
+      "dia": 1,
+      "ejercicio_id": "e017",
+      "orden": 2,
+      "series": 3,
+      "reps": "12",
+      "descanso_seg": 75,
+      "notas": "superset anterior"
+    },
+    {
+      "routine_id": "r08",
+      "dia": 1,
+      "ejercicio_id": "e067",
+      "orden": 3,
+      "series": 4,
+      "reps": "15/15/12/12",
+      "descanso_seg": 75,
+      "notas": "ranita en máquina"
+    },
+    {
+      "routine_id": "r08",
+      "dia": 1,
+      "ejercicio_id": "e019",
+      "orden": 4,
+      "series": 3,
+      "reps": "15",
+      "descanso_seg": 60,
+      "notas": "superset anterior"
+    },
+    {
+      "routine_id": "r08",
+      "dia": 1,
+      "ejercicio_id": "e013",
+      "orden": 5,
+      "series": 4,
+      "reps": "12/12",
+      "descanso_seg": 75,
+      "notas": "descendente"
+    },
+    {
+      "routine_id": "r08",
+      "dia": 1,
+      "ejercicio_id": "e018",
+      "orden": 6,
+      "series": 4,
+      "reps": "10/10/8/8",
+      "descanso_seg": 75,
+      "notas": null
+    },
+    {
+      "routine_id": "r08",
+      "dia": 2,
+      "ejercicio_id": "e033",
+      "orden": 1,
+      "series": 4,
+      "reps": "12/10/8/6",
+      "descanso_seg": 90,
+      "notas": null
+    },
+    {
+      "routine_id": "r08",
+      "dia": 2,
+      "ejercicio_id": "e035",
+      "orden": 2,
+      "series": 4,
+      "reps": "12/10/8/6",
+      "descanso_seg": 90,
+      "notas": null
+    },
+    {
+      "routine_id": "r08",
+      "dia": 2,
+      "ejercicio_id": "e036",
+      "orden": 3,
+      "series": 4,
+      "reps": "12/12/10/10",
+      "descanso_seg": 90,
+      "notas": "remo en polea"
+    },
+    {
+      "routine_id": "r08",
+      "dia": 2,
+      "ejercicio_id": "e037",
+      "orden": 4,
+      "series": 4,
+      "reps": "12/12/10/10",
+      "descanso_seg": 90,
+      "notas": null
+    },
+    {
+      "routine_id": "r08",
+      "dia": 2,
+      "ejercicio_id": "e040",
+      "orden": 5,
+      "series": 4,
+      "reps": "12/10/8/8",
+      "descanso_seg": 120,
+      "notas": null
+    },
+    {
+      "routine_id": "r08",
+      "dia": 2,
+      "ejercicio_id": "e043",
+      "orden": 6,
+      "series": 3,
+      "reps": "10",
+      "descanso_seg": 75,
+      "notas": "vuelos combinados"
+    },
+    {
+      "routine_id": "r08",
+      "dia": 2,
+      "ejercicio_id": "e045",
+      "orden": 7,
+      "series": 4,
+      "reps": "10/10/8/8",
+      "descanso_seg": 75,
+      "notas": null
+    },
+    {
+      "routine_id": "r08",
+      "dia": 2,
+      "ejercicio_id": "e052",
+      "orden": 8,
+      "series": 4,
+      "reps": "10/8",
+      "descanso_seg": 75,
+      "notas": "tríceps polea + curl 1B"
+    },
+    {
+      "routine_id": "r08",
+      "dia": 3,
+      "ejercicio_id": "e008",
+      "orden": 1,
+      "series": 4,
+      "reps": "12/10/8/6",
+      "descanso_seg": 120,
+      "notas": "sentadilla smith superset siguiente"
+    },
+    {
+      "routine_id": "r08",
+      "dia": 3,
+      "ejercicio_id": "e021",
+      "orden": 2,
+      "series": 4,
+      "reps": "12",
+      "descanso_seg": 60,
+      "notas": "superset anterior"
+    },
+    {
+      "routine_id": "r08",
+      "dia": 3,
+      "ejercicio_id": "e010",
+      "orden": 3,
+      "series": 4,
+      "reps": "10/10/8/8",
+      "descanso_seg": 90,
+      "notas": "estocadas en smith"
+    },
+    {
+      "routine_id": "r08",
+      "dia": 3,
+      "ejercicio_id": "e007",
+      "orden": 4,
+      "series": 4,
+      "reps": "10/10/8/8",
+      "descanso_seg": 90,
+      "notas": "búlgaras foco glúteo"
+    },
+    {
+      "routine_id": "r08",
+      "dia": 3,
+      "ejercicio_id": "e012",
+      "orden": 5,
+      "series": 3,
+      "reps": "15/12/10",
+      "descanso_seg": 75,
+      "notas": "1 pie c/manc"
+    },
+    {
+      "routine_id": "r08",
+      "dia": 3,
+      "ejercicio_id": "e009",
+      "orden": 6,
+      "series": 4,
+      "reps": "12/12",
+      "descanso_seg": 75,
+      "notas": "descendente"
+    },
+    {
+      "routine_id": "r08",
+      "dia": 3,
+      "ejercicio_id": "e022",
+      "orden": 7,
+      "series": 4,
+      "reps": "12/12/10/10",
+      "descanso_seg": 60,
+      "notas": null
+    },
+    {
+      "routine_id": "r08",
+      "dia": 4,
+      "ejercicio_id": "e027",
+      "orden": 1,
+      "series": 4,
+      "reps": "12/10/8/6",
+      "descanso_seg": 120,
+      "notas": null
+    },
+    {
+      "routine_id": "r08",
+      "dia": 4,
+      "ejercicio_id": "e031",
+      "orden": 2,
+      "series": 4,
+      "reps": "10/10/8/8",
+      "descanso_seg": 90,
+      "notas": "inclinadas"
+    },
+    {
+      "routine_id": "r08",
+      "dia": 4,
+      "ejercicio_id": "e030",
+      "orden": 3,
+      "series": 4,
+      "reps": "10/10/8/8",
+      "descanso_seg": 75,
+      "notas": null
+    },
+    {
+      "routine_id": "r08",
+      "dia": 4,
+      "ejercicio_id": "e028",
+      "orden": 4,
+      "series": 3,
+      "reps": "12/10/8",
+      "descanso_seg": 75,
+      "notas": null
+    },
+    {
+      "routine_id": "r08",
+      "dia": 4,
+      "ejercicio_id": "e047",
+      "orden": 5,
+      "series": 4,
+      "reps": "X4",
+      "descanso_seg": 60,
+      "notas": "bíceps 21"
+    },
+    {
+      "routine_id": "r08",
+      "dia": 4,
+      "ejercicio_id": "e048",
+      "orden": 6,
+      "series": 3,
+      "reps": "12",
+      "descanso_seg": 60,
+      "notas": null
+    },
+    {
+      "routine_id": "r08",
+      "dia": 5,
+      "ejercicio_id": "e011",
+      "orden": 1,
+      "series": 4,
+      "reps": "15/12/10/8",
+      "descanso_seg": 90,
+      "notas": "c/barra y banda superset siguiente"
+    },
+    {
+      "routine_id": "r08",
+      "dia": 5,
+      "ejercicio_id": "e019",
+      "orden": 2,
+      "series": 3,
+      "reps": "15",
+      "descanso_seg": 60,
+      "notas": "aperturas isométricas"
+    },
+    {
+      "routine_id": "r08",
+      "dia": 5,
+      "ejercicio_id": "e006",
+      "orden": 3,
+      "series": 4,
+      "reps": "10/10/8/8",
+      "descanso_seg": 90,
+      "notas": "sumo c/barra s/step"
+    },
+    {
+      "routine_id": "r08",
+      "dia": 5,
+      "ejercicio_id": "e018",
+      "orden": 4,
+      "series": 3,
+      "reps": "15",
+      "descanso_seg": 60,
+      "notas": "patadas lat c/tobillera"
+    },
+    {
+      "routine_id": "r08",
+      "dia": 5,
+      "ejercicio_id": "e019",
+      "orden": 5,
+      "series": 4,
+      "reps": "15+15",
+      "descanso_seg": 60,
+      "notas": "abducción"
+    },
+    {
+      "routine_id": "r08",
+      "dia": 5,
+      "ejercicio_id": "e020",
+      "orden": 6,
+      "series": 4,
+      "reps": "15/15/12/12",
+      "descanso_seg": 60,
+      "notas": "aductores"
+    },
+    {
+      "routine_id": "r08",
+      "dia": 5,
+      "ejercicio_id": "e020",
+      "orden": 7,
+      "series": 3,
+      "reps": "15 c/u",
+      "descanso_seg": 60,
+      "notas": "aductores 1 pie c/tobillera"
+    },
+    {
+      "routine_id": "r09",
+      "dia": 1,
+      "ejercicio_id": "e071",
+      "orden": 1,
+      "series": 3,
+      "reps": "10",
+      "descanso_seg": 75,
+      "notas": "press isolateral pecho"
+    },
+    {
+      "routine_id": "r09",
+      "dia": 1,
+      "ejercicio_id": "e040",
+      "orden": 2,
+      "series": 3,
+      "reps": "10",
+      "descanso_seg": 75,
+      "notas": "press isolateral hombros"
+    },
+    {
+      "routine_id": "r09",
+      "dia": 1,
+      "ejercicio_id": "e070",
+      "orden": 3,
+      "series": 4,
+      "reps": "5",
+      "descanso_seg": 90,
+      "notas": "tirón isolateral espalda alta"
+    },
+    {
+      "routine_id": "r09",
+      "dia": 1,
+      "ejercicio_id": "e009",
+      "orden": 4,
+      "series": 3,
+      "reps": "10",
+      "descanso_seg": 75,
+      "notas": null
+    },
+    {
+      "routine_id": "r09",
+      "dia": 1,
+      "ejercicio_id": "e013",
+      "orden": 5,
+      "series": 3,
+      "reps": "10",
+      "descanso_seg": 75,
+      "notas": "flexión femoral acostado"
+    },
+    {
+      "routine_id": "r09",
+      "dia": 1,
+      "ejercicio_id": "e051",
+      "orden": 6,
+      "series": 3,
+      "reps": "8 c/l",
+      "descanso_seg": 60,
+      "notas": "curl alterno manc"
+    },
+    {
+      "routine_id": "r09",
+      "dia": 1,
+      "ejercicio_id": "e002",
+      "orden": 7,
+      "series": 3,
+      "reps": "6",
+      "descanso_seg": 90,
+      "notas": "sentadillas hammer"
+    },
+    {
+      "routine_id": "r09",
+      "dia": 1,
+      "ejercicio_id": "e022",
+      "orden": 8,
+      "series": 3,
+      "reps": "10",
+      "descanso_seg": 60,
+      "notas": null
+    },
+    {
+      "routine_id": "r09",
+      "dia": 1,
+      "ejercicio_id": "e035",
+      "orden": 9,
+      "series": 3,
+      "reps": "10",
+      "descanso_seg": 75,
+      "notas": "remo polea baja"
+    },
+    {
+      "routine_id": "r09",
+      "dia": 2,
+      "ejercicio_id": "e071",
+      "orden": 1,
+      "series": 3,
+      "reps": "10",
+      "descanso_seg": 75,
+      "notas": "press isolateral acostado"
+    },
+    {
+      "routine_id": "r09",
+      "dia": 2,
+      "ejercicio_id": "e041",
+      "orden": 2,
+      "series": 3,
+      "reps": "5",
+      "descanso_seg": 90,
+      "notas": "press militar sentado"
+    },
+    {
+      "routine_id": "r09",
+      "dia": 2,
+      "ejercicio_id": "e033",
+      "orden": 3,
+      "series": 3,
+      "reps": "10",
+      "descanso_seg": 90,
+      "notas": "tirón al frente abierto"
+    },
+    {
+      "routine_id": "r09",
+      "dia": 2,
+      "ejercicio_id": "e014",
+      "orden": 4,
+      "series": 3,
+      "reps": "10",
+      "descanso_seg": 75,
+      "notas": "flexión femoral sentado"
+    },
+    {
+      "routine_id": "r09",
+      "dia": 2,
+      "ejercicio_id": "e004",
+      "orden": 5,
+      "series": 3,
+      "reps": "10",
+      "descanso_seg": 75,
+      "notas": "sentadillas c/pesa rusa"
+    },
+    {
+      "routine_id": "r09",
+      "dia": 2,
+      "ejercicio_id": "e053",
+      "orden": 6,
+      "series": 3,
+      "reps": "10",
+      "descanso_seg": 75,
+      "notas": "fondos máquina"
+    },
+    {
+      "routine_id": "r09",
+      "dia": 2,
+      "ejercicio_id": "e023",
+      "orden": 7,
+      "series": 3,
+      "reps": "10",
+      "descanso_seg": 60,
+      "notas": "elevación talones parado"
+    },
+    {
+      "routine_id": "r09",
+      "dia": 2,
+      "ejercicio_id": "e011",
+      "orden": 8,
+      "series": 3,
+      "reps": "10",
+      "descanso_seg": 90,
+      "notas": "empuje cadera c/barra"
+    },
+    {
+      "routine_id": "r09",
+      "dia": 2,
+      "ejercicio_id": "e010",
+      "orden": 9,
+      "series": 3,
+      "reps": "6 c/l",
+      "descanso_seg": 75,
+      "notas": "estocadas o zancadas"
+    },
+    {
+      "routine_id": "r09",
+      "dia": 3,
+      "ejercicio_id": "e029",
+      "orden": 1,
+      "series": 3,
+      "reps": "10",
+      "descanso_seg": 75,
+      "notas": "aperturas máq o manc"
+    },
+    {
+      "routine_id": "r09",
+      "dia": 3,
+      "ejercicio_id": "e046",
+      "orden": 2,
+      "series": 3,
+      "reps": "10",
+      "descanso_seg": 75,
+      "notas": "vuelos posteriores manc"
+    },
+    {
+      "routine_id": "r09",
+      "dia": 3,
+      "ejercicio_id": "e069",
+      "orden": 3,
+      "series": 3,
+      "reps": "10",
+      "descanso_seg": 75,
+      "notas": "remo isolateral espalda baja"
+    },
+    {
+      "routine_id": "r09",
+      "dia": 3,
+      "ejercicio_id": "e015",
+      "orden": 4,
+      "series": 3,
+      "reps": "6",
+      "descanso_seg": 120,
+      "notas": "peso muerto hexagonal"
+    },
+    {
+      "routine_id": "r09",
+      "dia": 3,
+      "ejercicio_id": "e019",
+      "orden": 5,
+      "series": 3,
+      "reps": "8",
+      "descanso_seg": 60,
+      "notas": "abductores máquina"
+    },
+    {
+      "routine_id": "r09",
+      "dia": 3,
+      "ejercicio_id": "e026",
+      "orden": 6,
+      "series": 3,
+      "reps": "8 c/l",
+      "descanso_seg": 75,
+      "notas": "press 1 brazo manc"
+    },
+    {
+      "routine_id": "r09",
+      "dia": 3,
+      "ejercicio_id": "e052",
+      "orden": 7,
+      "series": 3,
+      "reps": "10",
+      "descanso_seg": 75,
+      "notas": null
+    },
+    {
+      "routine_id": "r09",
+      "dia": 3,
+      "ejercicio_id": "e001",
+      "orden": 8,
+      "series": 3,
+      "reps": "10",
+      "descanso_seg": 90,
+      "notas": "prensa a palanca"
+    },
+    {
+      "routine_id": "r10",
+      "dia": 1,
+      "ejercicio_id": "e026",
+      "orden": 1,
+      "series": 4,
+      "reps": "10",
+      "descanso_seg": 90,
+      "notas": "press inclinado"
+    },
+    {
+      "routine_id": "r10",
+      "dia": 1,
+      "ejercicio_id": "e031",
+      "orden": 2,
+      "series": 4,
+      "reps": "15",
+      "descanso_seg": 75,
+      "notas": "aperturas inclinadas"
+    },
+    {
+      "routine_id": "r10",
+      "dia": 1,
+      "ejercicio_id": "e024",
+      "orden": 3,
+      "series": 4,
+      "reps": "10",
+      "descanso_seg": 90,
+      "notas": "press plano"
+    },
+    {
+      "routine_id": "r10",
+      "dia": 1,
+      "ejercicio_id": "e029",
+      "orden": 4,
+      "series": 4,
+      "reps": "15",
+      "descanso_seg": 75,
+      "notas": "aperturas planas"
+    },
+    {
+      "routine_id": "r10",
+      "dia": 1,
+      "ejercicio_id": "e045",
+      "orden": 5,
+      "series": 4,
+      "reps": "12",
+      "descanso_seg": 75,
+      "notas": "vuelos posteriores"
+    },
+    {
+      "routine_id": "r10",
+      "dia": 1,
+      "ejercicio_id": "e042",
+      "orden": 6,
+      "series": 4,
+      "reps": "12",
+      "descanso_seg": 75,
+      "notas": "vuelos laterales"
+    },
+    {
+      "routine_id": "r10",
+      "dia": 1,
+      "ejercicio_id": "e028",
+      "orden": 7,
+      "series": 4,
+      "reps": "15/12/10/8",
+      "descanso_seg": 75,
+      "notas": null
+    },
+    {
+      "routine_id": "r10",
+      "dia": 2,
+      "ejercicio_id": "e021",
+      "orden": 1,
+      "series": 4,
+      "reps": "20",
+      "descanso_seg": 60,
+      "notas": "pantorrilla en prensa"
+    },
+    {
+      "routine_id": "r10",
+      "dia": 2,
+      "ejercicio_id": "e022",
+      "orden": 2,
+      "series": 4,
+      "reps": "10",
+      "descanso_seg": 60,
+      "notas": "pantorrilla sentada"
+    },
+    {
+      "routine_id": "r10",
+      "dia": 2,
+      "ejercicio_id": "e005",
+      "orden": 3,
+      "series": 4,
+      "reps": "8",
+      "descanso_seg": 90,
+      "notas": null
+    },
+    {
+      "routine_id": "r10",
+      "dia": 2,
+      "ejercicio_id": "e007",
+      "orden": 4,
+      "series": 4,
+      "reps": "8",
+      "descanso_seg": 90,
+      "notas": "búlgaras"
+    },
+    {
+      "routine_id": "r10",
+      "dia": 2,
+      "ejercicio_id": "e010",
+      "orden": 5,
+      "series": 4,
+      "reps": "X4 pasadas",
+      "descanso_seg": 90,
+      "notas": null
+    },
+    {
+      "routine_id": "r10",
+      "dia": 2,
+      "ejercicio_id": "e009",
+      "orden": 6,
+      "series": 3,
+      "reps": "15",
+      "descanso_seg": 75,
+      "notas": null
+    },
+    {
+      "routine_id": "r10",
+      "dia": 3,
+      "ejercicio_id": "e013",
+      "orden": 1,
+      "series": 4,
+      "reps": "15/12/10/8",
+      "descanso_seg": 75,
+      "notas": "camilla femoral"
+    },
+    {
+      "routine_id": "r10",
+      "dia": 3,
+      "ejercicio_id": "e015",
+      "orden": 2,
+      "series": 4,
+      "reps": "10",
+      "descanso_seg": 120,
+      "notas": null
+    },
+    {
+      "routine_id": "r10",
+      "dia": 3,
+      "ejercicio_id": "e016",
+      "orden": 3,
+      "series": 4,
+      "reps": "12",
+      "descanso_seg": 90,
+      "notas": "femoral c/manc"
+    },
+    {
+      "routine_id": "r10",
+      "dia": 3,
+      "ejercicio_id": "e038",
+      "orden": 4,
+      "series": 4,
+      "reps": "10",
+      "descanso_seg": 90,
+      "notas": "remo 2 manc banco 30°"
+    },
+    {
+      "routine_id": "r10",
+      "dia": 3,
+      "ejercicio_id": "e033",
+      "orden": 5,
+      "series": 4,
+      "reps": "15/12/10/8",
+      "descanso_seg": 90,
+      "notas": "tirón al frente"
+    },
+    {
+      "routine_id": "r10",
+      "dia": 3,
+      "ejercicio_id": "e035",
+      "orden": 6,
+      "series": 4,
+      "reps": "10",
+      "descanso_seg": 90,
+      "notas": "remo polea baja"
+    },
+    {
+      "routine_id": "r10",
+      "dia": 3,
+      "ejercicio_id": "e032",
+      "orden": 7,
+      "series": 4,
+      "reps": "10",
+      "descanso_seg": 75,
+      "notas": "pullover máquina"
+    },
+    {
+      "routine_id": "r10",
+      "dia": 3,
+      "ejercicio_id": "e073",
+      "orden": 8,
+      "series": 3,
+      "reps": "15",
+      "descanso_seg": 60,
+      "notas": "encogimiento manc"
+    },
+    {
+      "routine_id": "r10",
+      "dia": 4,
+      "ejercicio_id": "e047",
+      "orden": 1,
+      "series": 3,
+      "reps": "X",
+      "descanso_seg": 60,
+      "notas": "curl 21"
+    },
+    {
+      "routine_id": "r10",
+      "dia": 4,
+      "ejercicio_id": "e052",
+      "orden": 2,
+      "series": 4,
+      "reps": "15",
+      "descanso_seg": 75,
+      "notas": "tríceps polea barra"
+    },
+    {
+      "routine_id": "r10",
+      "dia": 4,
+      "ejercicio_id": "e048",
+      "orden": 3,
+      "series": 4,
+      "reps": "10",
+      "descanso_seg": 60,
+      "notas": "curl martillo"
+    },
+    {
+      "routine_id": "r10",
+      "dia": 4,
+      "ejercicio_id": "e055",
+      "orden": 4,
+      "series": 4,
+      "reps": "15",
+      "descanso_seg": 75,
+      "notas": "curl francés banco 30°"
+    },
+    {
+      "routine_id": "r10",
+      "dia": 4,
+      "ejercicio_id": "e051",
+      "orden": 5,
+      "series": 3,
+      "reps": "12",
+      "descanso_seg": 60,
+      "notas": "bíceps sentado manc"
+    },
+    {
+      "routine_id": "r10",
+      "dia": 4,
+      "ejercicio_id": "e053",
+      "orden": 6,
+      "series": 3,
+      "reps": "12",
+      "descanso_seg": 75,
+      "notas": "fondo máquina"
+    },
+    {
+      "routine_id": "r11",
+      "dia": 1,
+      "ejercicio_id": "e009",
+      "orden": 1,
+      "series": 3,
+      "reps": "20",
+      "descanso_seg": 60,
+      "notas": "SS con sentadillas c/rusas sem1"
+    },
+    {
+      "routine_id": "r11",
+      "dia": 1,
+      "ejercicio_id": "e001",
+      "orden": 2,
+      "series": 3,
+      "reps": "20",
+      "descanso_seg": 90,
+      "notas": "prensa 3 tiempos"
+    },
+    {
+      "routine_id": "r11",
+      "dia": 1,
+      "ejercicio_id": "e002",
+      "orden": 3,
+      "series": 3,
+      "reps": "6-8",
+      "descanso_seg": 90,
+      "notas": "hack 3 tiempos"
+    },
+    {
+      "routine_id": "r11",
+      "dia": 1,
+      "ejercicio_id": "e077",
+      "orden": 4,
+      "series": 4,
+      "reps": "10 c/l",
+      "descanso_seg": 75,
+      "notas": "extensión glúteos máquina"
+    },
+    {
+      "routine_id": "r11",
+      "dia": 1,
+      "ejercicio_id": "e012",
+      "orden": 5,
+      "series": 4,
+      "reps": "8 c/u",
+      "descanso_seg": 75,
+      "notas": "SS hip thrust/zancadas"
+    },
+    {
+      "routine_id": "r11",
+      "dia": 1,
+      "ejercicio_id": "e078",
+      "orden": 6,
+      "series": 3,
+      "reps": "10",
+      "descanso_seg": 60,
+      "notas": "hiperextensión inversa con pelota"
+    },
+    {
+      "routine_id": "r11",
+      "dia": 2,
+      "ejercicio_id": "e020",
+      "orden": 1,
+      "series": 4,
+      "reps": "10",
+      "descanso_seg": 60,
+      "notas": "SS aductores/abductores sentada"
+    },
+    {
+      "routine_id": "r11",
+      "dia": 2,
+      "ejercicio_id": "e075",
+      "orden": 2,
+      "series": 3,
+      "reps": "10",
+      "descanso_seg": 60,
+      "notas": "patadas laterales máquina"
+    },
+    {
+      "routine_id": "r11",
+      "dia": 2,
+      "ejercicio_id": "e076",
+      "orden": 3,
+      "series": 3,
+      "reps": "10",
+      "descanso_seg": 60,
+      "notas": "patadas internas máquina"
+    },
+    {
+      "routine_id": "r11",
+      "dia": 2,
+      "ejercicio_id": "e068",
+      "orden": 4,
+      "series": 4,
+      "reps": "5 c/l",
+      "descanso_seg": 75,
+      "notas": "tijeras laterales c/pesa rusa"
+    },
+    {
+      "routine_id": "r11",
+      "dia": 2,
+      "ejercicio_id": "e023",
+      "orden": 5,
+      "series": 4,
+      "reps": "10",
+      "descanso_seg": 60,
+      "notas": null
+    },
+    {
+      "routine_id": "r11",
+      "dia": 2,
+      "ejercicio_id": "e022",
+      "orden": 6,
+      "series": 3,
+      "reps": "6-8",
+      "descanso_seg": 60,
+      "notas": "SS elevación talones sentado/prensa"
+    },
+    {
+      "routine_id": "r11",
+      "dia": 3,
+      "ejercicio_id": "e043",
+      "orden": 1,
+      "series": 3,
+      "reps": "15-20",
+      "descanso_seg": 60,
+      "notas": "vuelos laterales"
+    },
+    {
+      "routine_id": "r11",
+      "dia": 3,
+      "ejercicio_id": "e041",
+      "orden": 2,
+      "series": 3,
+      "reps": "6",
+      "descanso_seg": 90,
+      "notas": "press militar sentado 3 tiempos"
+    },
+    {
+      "routine_id": "r11",
+      "dia": 3,
+      "ejercicio_id": "e046",
+      "orden": 3,
+      "series": 3,
+      "reps": "15",
+      "descanso_seg": 60,
+      "notas": "vuelos posteriores 1 brazo DP"
+    },
+    {
+      "routine_id": "r11",
+      "dia": 3,
+      "ejercicio_id": "e040",
+      "orden": 4,
+      "series": 3,
+      "reps": "6",
+      "descanso_seg": 90,
+      "notas": "press isolateral máquina 3 tiempos"
+    },
+    {
+      "routine_id": "r11",
+      "dia": 3,
+      "ejercicio_id": "e073",
+      "orden": 5,
+      "series": 3,
+      "reps": "15-20",
+      "descanso_seg": 60,
+      "notas": "encogimiento máquina"
+    },
+    {
+      "routine_id": "r11",
+      "dia": 3,
+      "ejercicio_id": "e053",
+      "orden": 6,
+      "series": 4,
+      "reps": "15-20",
+      "descanso_seg": 60,
+      "notas": "fondos máquina"
+    },
+    {
+      "routine_id": "r11",
+      "dia": 3,
+      "ejercicio_id": "e055",
+      "orden": 7,
+      "series": 3,
+      "reps": "6",
+      "descanso_seg": 90,
+      "notas": "extensión acostado barra WZ 3 tiempos"
+    },
+    {
+      "routine_id": "r11",
+      "dia": 3,
+      "ejercicio_id": "e054",
+      "orden": 8,
+      "series": 3,
+      "reps": "15-20",
+      "descanso_seg": 60,
+      "notas": "extensión 1 brazo manc"
+    },
+    {
+      "routine_id": "r11",
+      "dia": 4,
+      "ejercicio_id": "e013",
+      "orden": 1,
+      "series": 4,
+      "reps": "20",
+      "descanso_seg": 60,
+      "notas": "flexión acostada"
+    },
+    {
+      "routine_id": "r11",
+      "dia": 4,
+      "ejercicio_id": "e015",
+      "orden": 2,
+      "series": 3,
+      "reps": "6",
+      "descanso_seg": 120,
+      "notas": "peso muerto barra 3 tiempos"
+    },
+    {
+      "routine_id": "r11",
+      "dia": 4,
+      "ejercicio_id": "e013",
+      "orden": 3,
+      "series": 3,
+      "reps": "20",
+      "descanso_seg": 75,
+      "notas": "flexión femoral 1 pierna"
+    },
+    {
+      "routine_id": "r11",
+      "dia": 4,
+      "ejercicio_id": "e014",
+      "orden": 4,
+      "series": 3,
+      "reps": "6",
+      "descanso_seg": 90,
+      "notas": "3 tiempos"
+    },
+    {
+      "routine_id": "r11",
+      "dia": 4,
+      "ejercicio_id": "e012",
+      "orden": 5,
+      "series": 4,
+      "reps": "6",
+      "descanso_seg": 90,
+      "notas": "empuje caderas máquina 3 tiempos"
+    },
+    {
+      "routine_id": "r11",
+      "dia": 4,
+      "ejercicio_id": "e018",
+      "orden": 6,
+      "series": 3,
+      "reps": "15-20",
+      "descanso_seg": 60,
+      "notas": "patadas laterales acostada"
+    },
+    {
+      "routine_id": "r11",
+      "dia": 4,
+      "ejercicio_id": "e077",
+      "orden": 7,
+      "series": 3,
+      "reps": "6 c/l",
+      "descanso_seg": 90,
+      "notas": "patadas en prensa glúteos 3 tiempos"
+    },
+    {
+      "routine_id": "r11",
+      "dia": 4,
+      "ejercicio_id": "e049",
+      "orden": 8,
+      "series": 3,
+      "reps": "6",
+      "descanso_seg": 75,
+      "notas": "curl barra EZ 3 tiempos"
+    },
+    {
+      "routine_id": "r11",
+      "dia": 5,
+      "ejercicio_id": "e030",
+      "orden": 1,
+      "series": 3,
+      "reps": "15-20",
+      "descanso_seg": 60,
+      "notas": "aperturas máquinas"
+    },
+    {
+      "routine_id": "r11",
+      "dia": 5,
+      "ejercicio_id": "e024",
+      "orden": 2,
+      "series": 4,
+      "reps": "6",
+      "descanso_seg": 120,
+      "notas": "press plano barra 3 tiempos"
+    },
+    {
+      "routine_id": "r11",
+      "dia": 5,
+      "ejercicio_id": "e072",
+      "orden": 3,
+      "series": 3,
+      "reps": "15-20",
+      "descanso_seg": 60,
+      "notas": "pullover manc"
+    },
+    {
+      "routine_id": "r11",
+      "dia": 5,
+      "ejercicio_id": "e033",
+      "orden": 4,
+      "series": 4,
+      "reps": "6",
+      "descanso_seg": 90,
+      "notas": "tirón al frente abierto 3 tiempos"
+    },
+    {
+      "routine_id": "r11",
+      "dia": 5,
+      "ejercicio_id": "e070",
+      "orden": 5,
+      "series": 3,
+      "reps": "20",
+      "descanso_seg": 75,
+      "notas": "tirón isolateral espalda alta"
+    },
+    {
+      "routine_id": "r11",
+      "dia": 5,
+      "ejercicio_id": "e035",
+      "orden": 6,
+      "series": 4,
+      "reps": "6",
+      "descanso_seg": 90,
+      "notas": "remo polea baja 3 tiempos"
+    },
+    {
+      "routine_id": "r11",
+      "dia": 5,
+      "ejercicio_id": "e033",
+      "orden": 7,
+      "series": 3,
+      "reps": "20",
+      "descanso_seg": 75,
+      "notas": "tirón dorsalera a palanca"
+    },
+    {
+      "routine_id": "r14",
+      "dia": 1,
+      "ejercicio_id": "e015",
+      "orden": 1,
+      "series": 3,
+      "reps": "12-10",
+      "descanso_seg": 120,
+      "notas": "femoral y glúteos"
+    },
+    {
+      "routine_id": "r14",
+      "dia": 1,
+      "ejercicio_id": "e011",
+      "orden": 2,
+      "series": 4,
+      "reps": "15",
+      "descanso_seg": 90,
+      "notas": "hip thrust c/barra"
+    },
+    {
+      "routine_id": "r14",
+      "dia": 1,
+      "ejercicio_id": "e007",
+      "orden": 3,
+      "series": 3,
+      "reps": "10-12",
+      "descanso_seg": 90,
+      "notas": "búlgara"
+    },
+    {
+      "routine_id": "r14",
+      "dia": 1,
+      "ejercicio_id": "e013",
+      "orden": 4,
+      "series": 3,
+      "reps": "12-15",
+      "descanso_seg": 75,
+      "notas": "curl femoral tumbado"
+    },
+    {
+      "routine_id": "r14",
+      "dia": 1,
+      "ejercicio_id": "e018",
+      "orden": 5,
+      "series": 4,
+      "reps": "12-15",
+      "descanso_seg": 75,
+      "notas": "patada glúteo polea"
+    },
+    {
+      "routine_id": "r14",
+      "dia": 2,
+      "ejercicio_id": "e038",
+      "orden": 1,
+      "series": 3,
+      "reps": "10",
+      "descanso_seg": 90,
+      "notas": "espalda+bíceps cardio"
+    },
+    {
+      "routine_id": "r14",
+      "dia": 2,
+      "ejercicio_id": "e037",
+      "orden": 2,
+      "series": 3,
+      "reps": "12",
+      "descanso_seg": 90,
+      "notas": "remo manc 1 brazo"
+    },
+    {
+      "routine_id": "r14",
+      "dia": 2,
+      "ejercicio_id": "e033",
+      "orden": 3,
+      "series": 3,
+      "reps": "10-12",
+      "descanso_seg": 90,
+      "notas": "jalón pecho abierto"
+    },
+    {
+      "routine_id": "r14",
+      "dia": 2,
+      "ejercicio_id": "e051",
+      "orden": 4,
+      "series": 3,
+      "reps": "12",
+      "descanso_seg": 60,
+      "notas": "curl bíceps manc"
+    },
+    {
+      "routine_id": "r14",
+      "dia": 2,
+      "ejercicio_id": "e051",
+      "orden": 5,
+      "series": 3,
+      "reps": "12",
+      "descanso_seg": 60,
+      "notas": "curl concentrado"
+    },
+    {
+      "routine_id": "r14",
+      "dia": 3,
+      "ejercicio_id": "e005",
+      "orden": 1,
+      "series": 4,
+      "reps": "15",
+      "descanso_seg": 90,
+      "notas": "cuádriceps+glúteos"
+    },
+    {
+      "routine_id": "r14",
+      "dia": 3,
+      "ejercicio_id": "e011",
+      "orden": 2,
+      "series": 4,
+      "reps": "12-15",
+      "descanso_seg": 90,
+      "notas": null
+    },
+    {
+      "routine_id": "r14",
+      "dia": 3,
+      "ejercicio_id": "e007",
+      "orden": 3,
+      "series": 3,
+      "reps": "12",
+      "descanso_seg": 90,
+      "notas": "búlgaras"
+    },
+    {
+      "routine_id": "r14",
+      "dia": 3,
+      "ejercicio_id": "e001",
+      "orden": 4,
+      "series": 3,
+      "reps": "15",
+      "descanso_seg": 90,
+      "notas": null
+    },
+    {
+      "routine_id": "r14",
+      "dia": 3,
+      "ejercicio_id": "e009",
+      "orden": 5,
+      "series": 2,
+      "reps": "8-10-12",
+      "descanso_seg": 75,
+      "notas": "extensión cuádriceps triple"
+    },
+    {
+      "routine_id": "r14",
+      "dia": 3,
+      "ejercicio_id": "e018",
+      "orden": 6,
+      "series": 4,
+      "reps": "12",
+      "descanso_seg": 75,
+      "notas": "patada glúteo polea"
+    },
+    {
+      "routine_id": "r14",
+      "dia": 3,
+      "ejercicio_id": "e019",
+      "orden": 7,
+      "series": 3,
+      "reps": "15",
+      "descanso_seg": 60,
+      "notas": "abductores"
+    },
+    {
+      "routine_id": "r14",
+      "dia": 4,
+      "ejercicio_id": "e041",
+      "orden": 1,
+      "series": 3,
+      "reps": "10-12",
+      "descanso_seg": 90,
+      "notas": "pecho hombros tríceps"
+    },
+    {
+      "routine_id": "r14",
+      "dia": 4,
+      "ejercicio_id": "e056",
+      "orden": 2,
+      "series": 3,
+      "reps": "15-20",
+      "descanso_seg": 60,
+      "notas": "plancha"
+    },
+    {
+      "routine_id": "r14",
+      "dia": 4,
+      "ejercicio_id": "e043",
+      "orden": 3,
+      "series": 3,
+      "reps": "15",
+      "descanso_seg": 75,
+      "notas": "hombro lateral polea"
+    },
+    {
+      "routine_id": "r14",
+      "dia": 4,
+      "ejercicio_id": "e054",
+      "orden": 4,
+      "series": 3,
+      "reps": "10",
+      "descanso_seg": 75,
+      "notas": "elevación tríceps unilateral"
+    },
+    {
+      "routine_id": "r14",
+      "dia": 4,
+      "ejercicio_id": "e054",
+      "orden": 5,
+      "series": 3,
+      "reps": "8-10",
+      "descanso_seg": 75,
+      "notas": "extensión tríceps unilateral"
+    },
+    {
+      "routine_id": "r14",
+      "dia": 5,
+      "ejercicio_id": "e015",
+      "orden": 1,
+      "series": 3,
+      "reps": "12",
+      "descanso_seg": 120,
+      "notas": "pierna completa"
+    },
+    {
+      "routine_id": "r14",
+      "dia": 5,
+      "ejercicio_id": "e001",
+      "orden": 2,
+      "series": 4,
+      "reps": "15",
+      "descanso_seg": 90,
+      "notas": null
+    },
+    {
+      "routine_id": "r14",
+      "dia": 5,
+      "ejercicio_id": "e005",
+      "orden": 3,
+      "series": 3,
+      "reps": "15",
+      "descanso_seg": 90,
+      "notas": null
+    },
+    {
+      "routine_id": "r14",
+      "dia": 5,
+      "ejercicio_id": "e020",
+      "orden": 4,
+      "series": 3,
+      "reps": "15",
+      "descanso_seg": 60,
+      "notas": "aductores"
+    },
+    {
+      "routine_id": "r14",
+      "dia": 5,
+      "ejercicio_id": "e013",
+      "orden": 5,
+      "series": 3,
+      "reps": "12-15",
+      "descanso_seg": 75,
+      "notas": "curl femoral"
+    },
+    {
+      "routine_id": "r14",
+      "dia": 5,
+      "ejercicio_id": "e009",
+      "orden": 6,
+      "series": 4,
+      "reps": "15",
+      "descanso_seg": 75,
+      "notas": "extensión cuádriceps"
+    },
+    {
+      "routine_id": "r17",
+      "dia": 1,
+      "ejercicio_id": "e009",
+      "orden": 1,
+      "series": 3,
+      "reps": "10",
+      "descanso_seg": 60,
+      "notas": "REST PAUSE cuádriceps-hombros"
+    },
+    {
+      "routine_id": "r17",
+      "dia": 1,
+      "ejercicio_id": "e002",
+      "orden": 2,
+      "series": 3,
+      "reps": "10",
+      "descanso_seg": 90,
+      "notas": "sentadillas hammer RP"
+    },
+    {
+      "routine_id": "r17",
+      "dia": 1,
+      "ejercicio_id": "e001",
+      "orden": 3,
+      "series": 3,
+      "reps": "10",
+      "descanso_seg": 90,
+      "notas": "prensa RP"
+    },
+    {
+      "routine_id": "r17",
+      "dia": 1,
+      "ejercicio_id": "e005",
+      "orden": 4,
+      "series": 3,
+      "reps": "10",
+      "descanso_seg": 90,
+      "notas": "sentadillas RP"
+    },
+    {
+      "routine_id": "r17",
+      "dia": 1,
+      "ejercicio_id": "e040",
+      "orden": 5,
+      "series": 3,
+      "reps": "8",
+      "descanso_seg": 90,
+      "notas": "press isolateral hombros RP"
+    },
+    {
+      "routine_id": "r17",
+      "dia": 1,
+      "ejercicio_id": "e043",
+      "orden": 6,
+      "series": 2,
+      "reps": "6 c/l",
+      "descanso_seg": 60,
+      "notas": "vuelos laterales"
+    },
+    {
+      "routine_id": "r17",
+      "dia": 1,
+      "ejercicio_id": "e045",
+      "orden": 7,
+      "series": 3,
+      "reps": "8",
+      "descanso_seg": 75,
+      "notas": "vuelos posteriores RP"
+    },
+    {
+      "routine_id": "r17",
+      "dia": 2,
+      "ejercicio_id": "e026",
+      "orden": 1,
+      "series": 1,
+      "reps": "10-8-6",
+      "descanso_seg": 120,
+      "notas": "press inclinado RP glúteos-pecho-bíceps"
+    },
+    {
+      "routine_id": "r17",
+      "dia": 2,
+      "ejercicio_id": "e030",
+      "orden": 2,
+      "series": 3,
+      "reps": "8",
+      "descanso_seg": 75,
+      "notas": "aperturas pec deck"
+    },
+    {
+      "routine_id": "r17",
+      "dia": 2,
+      "ejercicio_id": "e011",
+      "orden": 3,
+      "series": 1,
+      "reps": "12-10-8-6",
+      "descanso_seg": 120,
+      "notas": "empuje cadera barra RP"
+    },
+    {
+      "routine_id": "r17",
+      "dia": 2,
+      "ejercicio_id": "e077",
+      "orden": 4,
+      "series": 4,
+      "reps": "6 c/l",
+      "descanso_seg": 90,
+      "notas": "extensión máquina glúteos"
+    },
+    {
+      "routine_id": "r17",
+      "dia": 2,
+      "ejercicio_id": "e078",
+      "orden": 5,
+      "series": 3,
+      "reps": "10",
+      "descanso_seg": 60,
+      "notas": "hiperextensiones inversas pelota"
+    },
+    {
+      "routine_id": "r17",
+      "dia": 2,
+      "ejercicio_id": "e050",
+      "orden": 6,
+      "series": 1,
+      "reps": "10-8-6",
+      "descanso_seg": 90,
+      "notas": "flexión predicador RP"
+    },
+    {
+      "routine_id": "r17",
+      "dia": 2,
+      "ejercicio_id": "e048",
+      "orden": 7,
+      "series": 3,
+      "reps": "6 c/l",
+      "descanso_seg": 60,
+      "notas": "flexión alterno martillo"
+    },
+    {
+      "routine_id": "r17",
+      "dia": 3,
+      "ejercicio_id": "e015",
+      "orden": 1,
+      "series": 1,
+      "reps": "12-10-8-6",
+      "descanso_seg": 150,
+      "notas": "femorales-espalda RP"
+    },
+    {
+      "routine_id": "r17",
+      "dia": 3,
+      "ejercicio_id": "e013",
+      "orden": 2,
+      "series": 3,
+      "reps": "10",
+      "descanso_seg": 75,
+      "notas": "flexión femoral"
+    },
+    {
+      "routine_id": "r17",
+      "dia": 3,
+      "ejercicio_id": "e014",
+      "orden": 3,
+      "series": 3,
+      "reps": "8",
+      "descanso_seg": 75,
+      "notas": "flexión femoral sentada RP"
+    },
+    {
+      "routine_id": "r17",
+      "dia": 3,
+      "ejercicio_id": "e033",
+      "orden": 4,
+      "series": 3,
+      "reps": "TP",
+      "descanso_seg": 75,
+      "notas": "remo inverso sin peso o dominadas"
+    },
+    {
+      "routine_id": "r17",
+      "dia": 3,
+      "ejercicio_id": "e033",
+      "orden": 5,
+      "series": 1,
+      "reps": "10-8-6",
+      "descanso_seg": 90,
+      "notas": "tirón dorsalera palanca RP"
+    },
+    {
+      "routine_id": "r17",
+      "dia": 3,
+      "ejercicio_id": "e035",
+      "orden": 6,
+      "series": 1,
+      "reps": "10-8-6",
+      "descanso_seg": 90,
+      "notas": "remo polea baja RP"
+    },
+    {
+      "routine_id": "r17",
+      "dia": 3,
+      "ejercicio_id": "e053",
+      "orden": 7,
+      "series": 1,
+      "reps": "10-8-6",
+      "descanso_seg": 90,
+      "notas": "fondos máquina RP"
+    },
+    {
+      "routine_id": "r17",
+      "dia": 3,
+      "ejercicio_id": "e055",
+      "orden": 8,
+      "series": 3,
+      "reps": "6",
+      "descanso_seg": 90,
+      "notas": "extensión acostado c/barra"
+    },
+    {
+      "routine_id": "r17",
+      "dia": 4,
+      "ejercicio_id": "e019",
+      "orden": 1,
+      "series": 1,
+      "reps": "12-10-8-6",
+      "descanso_seg": 90,
+      "notas": "abductores sentada RP"
+    },
+    {
+      "routine_id": "r17",
+      "dia": 4,
+      "ejercicio_id": "e020",
+      "orden": 2,
+      "series": 1,
+      "reps": "12-10-8-6",
+      "descanso_seg": 90,
+      "notas": "aductores sentada RP"
+    },
+    {
+      "routine_id": "r17",
+      "dia": 4,
+      "ejercicio_id": "e004",
+      "orden": 3,
+      "series": 1,
+      "reps": "10-8-6",
+      "descanso_seg": 90,
+      "notas": "sentadillas goblet hacia afuera RP"
+    },
+    {
+      "routine_id": "r17",
+      "dia": 4,
+      "ejercicio_id": "e075",
+      "orden": 4,
+      "series": 3,
+      "reps": "8 c/l",
+      "descanso_seg": 60,
+      "notas": "patadas máquina parada"
+    },
+    {
+      "routine_id": "r17",
+      "dia": 4,
+      "ejercicio_id": "e018",
+      "orden": 5,
+      "series": 3,
+      "reps": "6",
+      "descanso_seg": 75,
+      "notas": "patadas hack inversa 1 pierna"
+    },
+    {
+      "routine_id": "r17",
+      "dia": 4,
+      "ejercicio_id": "e023",
+      "orden": 6,
+      "series": 1,
+      "reps": "10-8-6",
+      "descanso_seg": 90,
+      "notas": "elevación talones parada RP"
+    },
+    {
+      "routine_id": "r17",
+      "dia": 4,
+      "ejercicio_id": "e022",
+      "orden": 7,
+      "series": 1,
+      "reps": "10-8-6",
+      "descanso_seg": 75,
+      "notas": "elevación talones sentada RP"
+    },
+    {
+      "routine_id": "r18",
+      "dia": 1,
+      "ejercicio_id": "e011",
+      "orden": 1,
+      "series": 4,
+      "reps": "10",
+      "descanso_seg": 90,
+      "notas": "hip thrust c/barra glúteos+femorales"
+    },
+    {
+      "routine_id": "r18",
+      "dia": 1,
+      "ejercicio_id": "e013",
+      "orden": 2,
+      "series": 3,
+      "reps": "12",
+      "descanso_seg": 75,
+      "notas": "leg curl máquina"
+    },
+    {
+      "routine_id": "r18",
+      "dia": 1,
+      "ejercicio_id": "e065",
+      "orden": 3,
+      "series": 3,
+      "reps": "12 c/pierna",
+      "descanso_seg": 75,
+      "notas": "step-ups c/manc"
+    },
+    {
+      "routine_id": "r18",
+      "dia": 1,
+      "ejercicio_id": "e019",
+      "orden": 4,
+      "series": 3,
+      "reps": "15",
+      "descanso_seg": 60,
+      "notas": "abducción glúteo máquina"
+    },
+    {
+      "routine_id": "r18",
+      "dia": 2,
+      "ejercicio_id": "e033",
+      "orden": 1,
+      "series": 4,
+      "reps": "10",
+      "descanso_seg": 90,
+      "notas": "jalón al pecho espalda+bíceps+abdomen"
+    },
+    {
+      "routine_id": "r18",
+      "dia": 2,
+      "ejercicio_id": "e035",
+      "orden": 2,
+      "series": 3,
+      "reps": "12",
+      "descanso_seg": 90,
+      "notas": "remo en cable"
+    },
+    {
+      "routine_id": "r18",
+      "dia": 2,
+      "ejercicio_id": "e048",
+      "orden": 3,
+      "series": 3,
+      "reps": "10",
+      "descanso_seg": 60,
+      "notas": "curl martillo manc"
+    },
+    {
+      "routine_id": "r18",
+      "dia": 2,
+      "ejercicio_id": "e049",
+      "orden": 4,
+      "series": 3,
+      "reps": "10",
+      "descanso_seg": 60,
+      "notas": "curl bíceps convencional"
+    },
+    {
+      "routine_id": "r18",
+      "dia": 2,
+      "ejercicio_id": "e058",
+      "orden": 5,
+      "series": 3,
+      "reps": "15",
+      "descanso_seg": 60,
+      "notas": "crunch con peso"
+    },
+    {
+      "routine_id": "r18",
+      "dia": 2,
+      "ejercicio_id": "e060",
+      "orden": 6,
+      "series": 3,
+      "reps": "15",
+      "descanso_seg": 60,
+      "notas": "elevación de piernas"
+    },
+    {
+      "routine_id": "r18",
+      "dia": 2,
+      "ejercicio_id": "e056",
+      "orden": 7,
+      "series": 3,
+      "reps": "30seg",
+      "descanso_seg": 60,
+      "notas": "plancha frontal"
+    },
+    {
+      "routine_id": "r18",
+      "dia": 3,
+      "ejercicio_id": "e004",
+      "orden": 1,
+      "series": 4,
+      "reps": "10",
+      "descanso_seg": 90,
+      "notas": "sentadilla goblet c/manc piernas"
+    },
+    {
+      "routine_id": "r18",
+      "dia": 3,
+      "ejercicio_id": "e010",
+      "orden": 2,
+      "series": 3,
+      "reps": "10 c/pierna",
+      "descanso_seg": 90,
+      "notas": "zancadas caminando c/manc"
+    },
+    {
+      "routine_id": "r18",
+      "dia": 3,
+      "ejercicio_id": "e001",
+      "orden": 3,
+      "series": 3,
+      "reps": "12",
+      "descanso_seg": 90,
+      "notas": "prensa piernas"
+    },
+    {
+      "routine_id": "r18",
+      "dia": 3,
+      "ejercicio_id": "e020",
+      "orden": 4,
+      "series": 3,
+      "reps": "15",
+      "descanso_seg": 60,
+      "notas": "aducción cadera máquina"
+    },
+    {
+      "routine_id": "r18",
+      "dia": 3,
+      "ejercicio_id": "e022",
+      "orden": 5,
+      "series": 3,
+      "reps": "15",
+      "descanso_seg": 60,
+      "notas": "pantorrillas máquina"
+    },
+    {
+      "routine_id": "r18",
+      "dia": 3,
+      "ejercicio_id": "e009",
+      "orden": 6,
+      "series": 3,
+      "reps": "15",
+      "descanso_seg": 75,
+      "notas": "extensión cuádriceps"
+    },
+    {
+      "routine_id": "r18",
+      "dia": 4,
+      "ejercicio_id": "e024",
+      "orden": 1,
+      "series": 4,
+      "reps": "10",
+      "descanso_seg": 90,
+      "notas": "press pecho barra push day"
+    },
+    {
+      "routine_id": "r18",
+      "dia": 4,
+      "ejercicio_id": "e040",
+      "orden": 2,
+      "series": 3,
+      "reps": "12",
+      "descanso_seg": 90,
+      "notas": "press hombros máquina"
+    },
+    {
+      "routine_id": "r18",
+      "dia": 4,
+      "ejercicio_id": "e052",
+      "orden": 3,
+      "series": 3,
+      "reps": "12",
+      "descanso_seg": 75,
+      "notas": "extensión tríceps polea"
+    },
+    {
+      "routine_id": "r18",
+      "dia": 4,
+      "ejercicio_id": "e043",
+      "orden": 4,
+      "series": 3,
+      "reps": "15",
+      "descanso_seg": 60,
+      "notas": "elevaciones laterales"
+    },
+    {
+      "routine_id": "r18",
+      "dia": 4,
+      "ejercicio_id": "e039",
+      "orden": 5,
+      "series": 3,
+      "reps": "12",
+      "descanso_seg": 75,
+      "notas": "remo al mentón barra/manc"
+    },
+    {
+      "routine_id": "r18",
+      "dia": 5,
+      "ejercicio_id": "e011",
+      "orden": 1,
+      "series": 4,
+      "reps": "10",
+      "descanso_seg": 90,
+      "notas": "hip thrust c/barra glúteos"
+    },
+    {
+      "routine_id": "r18",
+      "dia": 5,
+      "ejercicio_id": "e017",
+      "orden": 2,
+      "series": 3,
+      "reps": "15",
+      "descanso_seg": 75,
+      "notas": "hiperextensión en banco"
+    },
+    {
+      "routine_id": "r18",
+      "dia": 5,
+      "ejercicio_id": "e016",
+      "orden": 3,
+      "series": 3,
+      "reps": "12",
+      "descanso_seg": 90,
+      "notas": "peso muerto rumano c/manc"
+    },
+    {
+      "routine_id": "r18",
+      "dia": 5,
+      "ejercicio_id": "e019",
+      "orden": 4,
+      "series": 3,
+      "reps": "15",
+      "descanso_seg": 60,
+      "notas": "abducción cadera máquina"
+    },
+    {
+      "routine_id": "r18",
+      "dia": 5,
+      "ejercicio_id": "e018",
+      "orden": 5,
+      "series": 3,
+      "reps": "12 c/pierna",
+      "descanso_seg": 60,
+      "notas": "kickbacks polea/banda"
+    },
+    {
+      "routine_id": "r20",
+      "dia": 1,
+      "ejercicio_id": "oly053",
+      "orden": 1,
+      "series": 2,
+      "reps": "10 c/lado",
+      "descanso_seg": 30,
+      "notas": "con carga"
+    },
+    {
+      "routine_id": "r20",
+      "dia": 1,
+      "ejercicio_id": "oly054",
+      "orden": 2,
+      "series": 2,
+      "reps": "30''",
+      "descanso_seg": 30,
+      "notas": "rusa colgando"
+    },
+    {
+      "routine_id": "r20",
+      "dia": 1,
+      "ejercicio_id": "oly055",
+      "orden": 3,
+      "series": 2,
+      "reps": "8 c/lado",
+      "descanso_seg": 30,
+      "notas": null
+    },
+    {
+      "routine_id": "r20",
+      "dia": 1,
+      "ejercicio_id": "oly056",
+      "orden": 4,
+      "series": 2,
+      "reps": "10",
+      "descanso_seg": 30,
+      "notas": "pausa 2''"
+    },
+    {
+      "routine_id": "r20",
+      "dia": 1,
+      "ejercicio_id": "oly001",
+      "orden": 5,
+      "series": 16,
+      "reps": "2",
+      "descanso_seg": 90,
+      "notas": "(60/65/70/75kg) x4 rondas"
+    },
+    {
+      "routine_id": "r20",
+      "dia": 1,
+      "ejercicio_id": "oly002",
+      "orden": 6,
+      "series": 16,
+      "reps": "1",
+      "descanso_seg": 120,
+      "notas": "(85/90/95/100kg) x4 rondas — Clean + Jerk"
+    },
+    {
+      "routine_id": "r20",
+      "dia": 1,
+      "ejercicio_id": "oly010",
+      "orden": 7,
+      "series": 5,
+      "reps": "3",
+      "descanso_seg": 120,
+      "notas": "110kg"
+    },
+    {
+      "routine_id": "r20",
+      "dia": 1,
+      "ejercicio_id": "oly038",
+      "orden": 8,
+      "series": 3,
+      "reps": "3",
+      "descanso_seg": 120,
+      "notas": "80kg — profundo, afloja articulaciones"
+    },
+    {
+      "routine_id": "r20",
+      "dia": 2,
+      "ejercicio_id": "oly057",
+      "orden": 1,
+      "series": 2,
+      "reps": "30''",
+      "descanso_seg": 30,
+      "notas": null
+    },
+    {
+      "routine_id": "r20",
+      "dia": 2,
+      "ejercicio_id": "oly058",
+      "orden": 2,
+      "series": 2,
+      "reps": "8",
+      "descanso_seg": 30,
+      "notas": "profundas, pausa 2'' c/u"
+    },
+    {
+      "routine_id": "r20",
+      "dia": 2,
+      "ejercicio_id": "oly059",
+      "orden": 3,
+      "series": 2,
+      "reps": "10",
+      "descanso_seg": 30,
+      "notas": null
+    },
+    {
+      "routine_id": "r20",
+      "dia": 2,
+      "ejercicio_id": "oly041",
+      "orden": 4,
+      "series": 7,
+      "reps": "2",
+      "descanso_seg": 90,
+      "notas": "60kg x4 + 70kg x3"
+    },
+    {
+      "routine_id": "r20",
+      "dia": 2,
+      "ejercicio_id": "oly042",
+      "orden": 5,
+      "series": 5,
+      "reps": "2",
+      "descanso_seg": 90,
+      "notas": "50kg — pausa 5'' abajo, espalda activa"
+    },
+    {
+      "routine_id": "r20",
+      "dia": 2,
+      "ejercicio_id": "oly009",
+      "orden": 6,
+      "series": 4,
+      "reps": "4",
+      "descanso_seg": 120,
+      "notas": "90kg — sin levantar talón ni adelantar cadera"
+    },
+    {
+      "routine_id": "r20",
+      "dia": 3,
+      "ejercicio_id": "oly053",
+      "orden": 1,
+      "series": 2,
+      "reps": "10 c/lado",
+      "descanso_seg": 30,
+      "notas": null
+    },
+    {
+      "routine_id": "r20",
+      "dia": 3,
+      "ejercicio_id": "oly066",
+      "orden": 2,
+      "series": 2,
+      "reps": "20''",
+      "descanso_seg": 30,
+      "notas": null
+    },
+    {
+      "routine_id": "r20",
+      "dia": 3,
+      "ejercicio_id": "oly060",
+      "orden": 3,
+      "series": 3,
+      "reps": "6",
+      "descanso_seg": 30,
+      "notas": "pasos"
+    },
+    {
+      "routine_id": "r20",
+      "dia": 3,
+      "ejercicio_id": "oly043",
+      "orden": 4,
+      "series": 6,
+      "reps": "3",
+      "descanso_seg": 90,
+      "notas": "40kg — pausa 3'' en recepción power, casi al paralelo"
+    },
+    {
+      "routine_id": "r20",
+      "dia": 3,
+      "ejercicio_id": "oly044",
+      "orden": 5,
+      "series": 6,
+      "reps": "2",
+      "descanso_seg": 90,
+      "notas": "60kg — pausa en medio muslo, pausa 2'' antes de pararse"
+    },
+    {
+      "routine_id": "r20",
+      "dia": 3,
+      "ejercicio_id": "oly004",
+      "orden": 6,
+      "series": 6,
+      "reps": "1+1",
+      "descanso_seg": 120,
+      "notas": "90kg — Power Clean + Push Jerk. Sin despatarrar"
+    },
+    {
+      "routine_id": "r20",
+      "dia": 4,
+      "ejercicio_id": "oly053",
+      "orden": 1,
+      "series": 2,
+      "reps": "10 c/lado",
+      "descanso_seg": 30,
+      "notas": "en pared"
+    },
+    {
+      "routine_id": "r20",
+      "dia": 4,
+      "ejercicio_id": "oly066",
+      "orden": 2,
+      "series": 2,
+      "reps": "30''",
+      "descanso_seg": 30,
+      "notas": null
+    },
+    {
+      "routine_id": "r20",
+      "dia": 4,
+      "ejercicio_id": "oly068",
+      "orden": 3,
+      "series": 2,
+      "reps": "8",
+      "descanso_seg": 30,
+      "notas": null
+    },
+    {
+      "routine_id": "r20",
+      "dia": 4,
+      "ejercicio_id": "oly056",
+      "orden": 4,
+      "series": 2,
+      "reps": "10",
+      "descanso_seg": 30,
+      "notas": "pausa 2''"
+    },
+    {
+      "routine_id": "r20",
+      "dia": 4,
+      "ejercicio_id": "oly044",
+      "orden": 5,
+      "series": 6,
+      "reps": "2",
+      "descanso_seg": 120,
+      "notas": "60kg — + Pause Front Squat: pausa 2'' en recepción y 2'' abajo"
+    },
+    {
+      "routine_id": "r20",
+      "dia": 4,
+      "ejercicio_id": "oly045",
+      "orden": 6,
+      "series": 5,
+      "reps": "2",
+      "descanso_seg": 120,
+      "notas": "80kg — sentarse, no despatarrar"
+    },
+    {
+      "routine_id": "r20",
+      "dia": 4,
+      "ejercicio_id": "oly021",
+      "orden": 7,
+      "series": 3,
+      "reps": "6",
+      "descanso_seg": 120,
+      "notas": "70kg — 3'' bajar + 3'' subir"
+    },
+    {
+      "routine_id": "r20",
+      "dia": 4,
+      "ejercicio_id": "oly051",
+      "orden": 8,
+      "series": 3,
+      "reps": "25''",
+      "descanso_seg": 60,
+      "notas": "isométrico"
+    },
+    {
+      "routine_id": "r20",
+      "dia": 5,
+      "ejercicio_id": "oly061",
+      "orden": 1,
+      "series": 2,
+      "reps": "6 c/lado",
+      "descanso_seg": 30,
+      "notas": null
+    },
+    {
+      "routine_id": "r20",
+      "dia": 5,
+      "ejercicio_id": "oly057",
+      "orden": 2,
+      "series": 2,
+      "reps": "30''",
+      "descanso_seg": 30,
+      "notas": null
+    },
+    {
+      "routine_id": "r20",
+      "dia": 5,
+      "ejercicio_id": "oly062",
+      "orden": 3,
+      "series": 2,
+      "reps": "15",
+      "descanso_seg": 30,
+      "notas": null
+    },
+    {
+      "routine_id": "r20",
+      "dia": 5,
+      "ejercicio_id": "oly012",
+      "orden": 4,
+      "series": 6,
+      "reps": "1",
+      "descanso_seg": 120,
+      "notas": "65kg — pausa 10'' abajo, bien profundo"
+    },
+    {
+      "routine_id": "r20",
+      "dia": 5,
+      "ejercicio_id": "oly046",
+      "orden": 5,
+      "series": 7,
+      "reps": "2",
+      "descanso_seg": 90,
+      "notas": "65kg x2 + 70kg x2 + 75kg x3"
+    },
+    {
+      "routine_id": "r20",
+      "dia": 5,
+      "ejercicio_id": "oly047",
+      "orden": 6,
+      "series": 5,
+      "reps": "3",
+      "descanso_seg": 90,
+      "notas": "75kg — solo rodillas, empuje corto y explosivo"
+    },
+    {
+      "routine_id": "r20",
+      "dia": 5,
+      "ejercicio_id": "oly010",
+      "orden": 7,
+      "series": 4,
+      "reps": "3",
+      "descanso_seg": 120,
+      "notas": "115kg — marca extensión de rodillas, sin levantar talón"
+    },
+    {
+      "routine_id": "r20",
+      "dia": 6,
+      "ejercicio_id": "oly053",
+      "orden": 1,
+      "series": 2,
+      "reps": "10 c/lado",
+      "descanso_seg": 30,
+      "notas": null
+    },
+    {
+      "routine_id": "r20",
+      "dia": 6,
+      "ejercicio_id": "oly063",
+      "orden": 2,
+      "series": 2,
+      "reps": "10",
+      "descanso_seg": 30,
+      "notas": null
+    },
+    {
+      "routine_id": "r20",
+      "dia": 6,
+      "ejercicio_id": "oly064",
+      "orden": 3,
+      "series": 3,
+      "reps": "3",
+      "descanso_seg": 30,
+      "notas": "siempre 1+1"
+    },
+    {
+      "routine_id": "r20",
+      "dia": 6,
+      "ejercicio_id": "oly003",
+      "orden": 4,
+      "series": 10,
+      "reps": "2",
+      "descanso_seg": 60,
+      "notas": "60kg EMOM — 2 reps por minuto, sin despatarrar"
+    },
+    {
+      "routine_id": "r20",
+      "dia": 6,
+      "ejercicio_id": "oly048",
+      "orden": 5,
+      "series": 6,
+      "reps": "2",
+      "descanso_seg": 90,
+      "notas": "60kg — puro muslo, metida rápida, sin despatarrar"
+    },
+    {
+      "routine_id": "r20",
+      "dia": 6,
+      "ejercicio_id": "oly036",
+      "orden": 6,
+      "series": 6,
+      "reps": "2",
+      "descanso_seg": 120,
+      "notas": "90kg — sentarse, no despatarrar"
+    },
+    {
+      "routine_id": "r20",
+      "dia": 7,
+      "ejercicio_id": "oly053",
+      "orden": 1,
+      "series": 2,
+      "reps": "10 c/lado",
+      "descanso_seg": 30,
+      "notas": null
+    },
+    {
+      "routine_id": "r20",
+      "dia": 7,
+      "ejercicio_id": "oly068",
+      "orden": 2,
+      "series": 2,
+      "reps": "8",
+      "descanso_seg": 30,
+      "notas": null
+    },
+    {
+      "routine_id": "r20",
+      "dia": 7,
+      "ejercicio_id": "oly057",
+      "orden": 3,
+      "series": 2,
+      "reps": "30''",
+      "descanso_seg": 30,
+      "notas": null
+    },
+    {
+      "routine_id": "r20",
+      "dia": 7,
+      "ejercicio_id": "oly012",
+      "orden": 4,
+      "series": 2,
+      "reps": "1",
+      "descanso_seg": 120,
+      "notas": "60kg — pausa 10'' abajo"
+    },
+    {
+      "routine_id": "r20",
+      "dia": 7,
+      "ejercicio_id": "oly037",
+      "orden": 5,
+      "series": 12,
+      "reps": "1",
+      "descanso_seg": 90,
+      "notas": "(70/75/80/85kg) x3 rondas — desde bloques a altura de rodilla"
+    },
+    {
+      "routine_id": "r20",
+      "dia": 7,
+      "ejercicio_id": "oly002",
+      "orden": 6,
+      "series": 6,
+      "reps": "varía",
+      "descanso_seg": 120,
+      "notas": "(90x2, 100x2, 110x1) x2 rondas — Squat Clean + Jerk"
+    },
+    {
+      "routine_id": "r20",
+      "dia": 7,
+      "ejercicio_id": "oly038",
+      "orden": 7,
+      "series": 3,
+      "reps": "2",
+      "descanso_seg": 120,
+      "notas": "90kg"
+    },
+    {
+      "routine_id": "r20",
+      "dia": 8,
+      "ejercicio_id": "oly057",
+      "orden": 1,
+      "series": 2,
+      "reps": "30''",
+      "descanso_seg": 30,
+      "notas": null
+    },
+    {
+      "routine_id": "r20",
+      "dia": 8,
+      "ejercicio_id": "oly055",
+      "orden": 2,
+      "series": 2,
+      "reps": "8 c/lado",
+      "descanso_seg": 30,
+      "notas": null
+    },
+    {
+      "routine_id": "r20",
+      "dia": 8,
+      "ejercicio_id": "oly067",
+      "orden": 3,
+      "series": 2,
+      "reps": "6 c/lado",
+      "descanso_seg": 30,
+      "notas": null
+    },
+    {
+      "routine_id": "r20",
+      "dia": 8,
+      "ejercicio_id": "oly029",
+      "orden": 4,
+      "series": 9,
+      "reps": "3",
+      "descanso_seg": 60,
+      "notas": "30kg x3 + 35kg x3 + 40kg x3"
+    },
+    {
+      "routine_id": "r20",
+      "dia": 8,
+      "ejercicio_id": "oly042",
+      "orden": 5,
+      "series": 6,
+      "reps": "2",
+      "descanso_seg": 90,
+      "notas": "50kg — pausa 2'' en profundidad"
+    },
+    {
+      "routine_id": "r20",
+      "dia": 8,
+      "ejercicio_id": "oly049",
+      "orden": 6,
+      "series": 6,
+      "reps": "2",
+      "descanso_seg": 90,
+      "notas": "60kg — puro muslo, metida rápida, sin inclinar torso"
+    },
+    {
+      "routine_id": "r20",
+      "dia": 8,
+      "ejercicio_id": "oly050",
+      "orden": 7,
+      "series": 3,
+      "reps": "3",
+      "descanso_seg": 120,
+      "notas": "90kg — 3'' subir + 1'' pausa"
+    },
+    {
+      "routine_id": "r20",
+      "dia": 8,
+      "ejercicio_id": "oly052",
+      "orden": 8,
+      "series": 3,
+      "reps": "20'' c/lado",
+      "descanso_seg": 60,
+      "notas": null
+    },
+    {
+      "routine_id": "r20",
+      "dia": 9,
+      "ejercicio_id": "oly053",
+      "orden": 1,
+      "series": 2,
+      "reps": "10 c/lado",
+      "descanso_seg": 30,
+      "notas": null
+    },
+    {
+      "routine_id": "r20",
+      "dia": 9,
+      "ejercicio_id": "oly066",
+      "orden": 2,
+      "series": 2,
+      "reps": "20''",
+      "descanso_seg": 30,
+      "notas": null
+    },
+    {
+      "routine_id": "r20",
+      "dia": 9,
+      "ejercicio_id": "oly065",
+      "orden": 3,
+      "series": 3,
+      "reps": "6",
+      "descanso_seg": 30,
+      "notas": "pequeño paso atrás hasta completar"
+    },
+    {
+      "routine_id": "r20",
+      "dia": 9,
+      "ejercicio_id": "oly012",
+      "orden": 4,
+      "series": 2,
+      "reps": "1",
+      "descanso_seg": 120,
+      "notas": "60kg — pausa 10'' abajo"
+    },
+    {
+      "routine_id": "r20",
+      "dia": 9,
+      "ejercicio_id": "oly003",
+      "orden": 5,
+      "series": 6,
+      "reps": "1+1",
+      "descanso_seg": 90,
+      "notas": "Power Snatch sentado + Squat Snatch. 60kg x3, 65kg x3"
+    },
+    {
+      "routine_id": "r20",
+      "dia": 9,
+      "ejercicio_id": "oly004",
+      "orden": 6,
+      "series": 5,
+      "reps": "1+1+1",
+      "descanso_seg": 120,
+      "notas": "80kg — Power Clean sentado + Front Squat + Jerk"
+    },
+    {
+      "routine_id": "r20",
+      "dia": 9,
+      "ejercicio_id": "oly004",
+      "orden": 7,
+      "series": 6,
+      "reps": "2",
+      "descanso_seg": 90,
+      "notas": "90kg"
+    },
+    {
+      "routine_id": "r20",
+      "dia": 10,
+      "ejercicio_id": "oly057",
+      "orden": 1,
+      "series": 2,
+      "reps": "30''",
+      "descanso_seg": 30,
+      "notas": null
+    },
+    {
+      "routine_id": "r20",
+      "dia": 10,
+      "ejercicio_id": "oly068",
+      "orden": 2,
+      "series": 2,
+      "reps": "8",
+      "descanso_seg": 30,
+      "notas": null
+    },
+    {
+      "routine_id": "r20",
+      "dia": 10,
+      "ejercicio_id": "oly056",
+      "orden": 3,
+      "series": 2,
+      "reps": "10",
+      "descanso_seg": 30,
+      "notas": "pausa 2''"
+    },
+    {
+      "routine_id": "r20",
+      "dia": 10,
+      "ejercicio_id": "oly002",
+      "orden": 4,
+      "series": 12,
+      "reps": "varía",
+      "descanso_seg": 120,
+      "notas": "(90x2+1, 100x2+1, 110x1+1) x4 rondas — Squat Clean + Jerk"
+    },
+    {
+      "routine_id": "r20",
+      "dia": 10,
+      "ejercicio_id": "oly038",
+      "orden": 5,
+      "series": 3,
+      "reps": "3",
+      "descanso_seg": 120,
+      "notas": "90kg — pausa profunda"
+    }
+  ],
+  "patterns": [
+    "Todas las rutinas de gym incluyen calentamiento con movilidad articular",
+    "Abdominales al final de cada sesión: plancha prona+lateral o crunch con disco",
+    "Progresión de carga semanal en ejercicios compuestos",
+    "Descanso 2-3 min en ejercicios compuestos, 60-90 seg en aislados",
+    "Rutinas X3 tienen estructura: Día1=Cuádriceps+Pecho, Día2=Glúteos+Espalda+Tríceps, Día3=Hombros+Gemelos+(Bíceps o Glúteos)",
+    "Rutinas femeninas priorizan glúteos (más volumen, más días dedicados)",
+    "Rutinas masculinas priorizan pecho y espalda con barras",
+    "Progresión de nivel: Básico X3 → Intermedio X3 → X4 → X5",
+    "Rep ranges: Básico 12-15, Intermedio 8-12, Avanzado 6-8 con Rest Pause",
+    "Supersets (+) indicados entre ejercicios consecutivos para eficiencia",
+    "Formato reps decrecientes: 12/10/8/8 o 15/12/10/8 para progresión intrasesión",
+    "Bíceps 21 = técnica parciales en 3 rangos de movimiento, común en todas las rutinas",
+    "Curl Martillo siempre acompaña a Bíceps 21",
+    "Gemelos siempre al final del día de piernas o en supersets con hack",
+    "Hip Thrust aparece en el 90% de rutinas femeninas"
+  ],
+  "generator_rules": [
+    {
+      "if": "nivel=principiante AND genero=mujer",
+      "then": "usar r03 o r04, priorizar máquinas, 3 días/semana, reps 12-15"
+    },
+    {
+      "if": "nivel=principiante AND genero=hombre",
+      "then": "usar r01, incluir prensa+pec+dorsal, 3 días/semana"
+    },
+    {
+      "if": "nivel=intermedio AND genero=mujer AND frecuencia=3",
+      "then": "usar r05, agregar compuestos con barra en Día2"
+    },
+    {
+      "if": "nivel=intermedio AND genero=hombre AND frecuencia=3",
+      "then": "usar r06, incluir peso muerto y press banca c/barra"
+    },
+    {
+      "if": "nivel=intermedio AND genero=hombre AND frecuencia=4",
+      "then": "usar r07, dividir en Pecho+Bíceps / Piernas / Espalda+Hombros+Tríceps / Glúteos+Isquios"
+    },
+    {
+      "if": "nivel=intermedio AND genero=mujer AND frecuencia=5",
+      "then": "usar r08, dedicar 2 días a glúteos"
+    },
+    {
+      "if": "objetivo=glúteos AND frecuencia>=4",
+      "then": "incluir hip_thrust, sentadilla_bulgara, patada_gluteo, abduccion en todos los días de tren inferior"
+    },
+    {
+      "if": "objetivo=hipertrofia AND nivel=intermedio",
+      "then": "reps=8-12, series=4, descanso_compuesto=120-180s, descanso_aislado=60-90s"
+    },
+    {
+      "if": "objetivo=fuerza",
+      "then": "reps=4-6, series=4-5, descanso=180-240s, priorizar barra"
+    },
+    {
+      "if": "frecuencia=3",
+      "then": "estructura_dias=[cuad_pecho, gluteos_espalda_triceps, hombros_gemelos_biceps]"
+    },
+    {
+      "if": "frecuencia=4 AND genero=mujer",
+      "then": "estructura_dias=[cuad_hombros_pecho, gluteos_isquios_espalda, cuad_pecho_hombros_triceps, gluteos_isquios_espalda_biceps]"
+    },
+    {
+      "if": "frecuencia=5",
+      "then": "estructura_dias=[isquios_gluteos, espalda_hombros_triceps, cuad_gluteos_gemelos, pecho_biceps, gluteos_aductores]"
+    },
+    {
+      "if": "tiene_limitacion_fisica=true",
+      "then": "reemplazar barra por máquinas isolaterales, usar r09 como base"
+    },
+    {
+      "if": "nivel=avanzado",
+      "then": "agregar tecnicas_intensidad=[rest_pause, dropset, superset], usar r17 como base"
+    },
+    {
+      "if": "ejercicio_compuesto IN dia",
+      "then": "orden=primero, descanso=120-180s"
+    },
+    {
+      "if": "ejercicio_aislado IN dia",
+      "then": "orden=ultimo, descanso=60-90s"
+    },
+    {
+      "if": "dia_enfoque=gluteos",
+      "then": "incluir=[hip_thrust, sentadilla_sumo, abduccion, patada_gluteo, elevacion_cadera]"
+    },
+    {
+      "if": "dia_enfoque=pecho AND genero=hombre",
+      "then": "incluir=[press_banca_barra, press_inclinado_barra, aperturas, pecho_hammer]"
+    },
+    {
+      "if": "dia_enfoque=espalda",
+      "then": "incluir=[jalon_abierto, remo_bajo, remo_1brazo, pullover]"
+    },
+    {
+      "if": "genero=mujer AND objetivo=tonificacion",
+      "then": "reps=15-20, series=3, descanso=60s, cardio_post=20min"
+    }
+  ]
+}

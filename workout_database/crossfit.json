@@ -1,0 +1,900 @@
+{
+  "exercises": [
+    {
+      "id": "cf001",
+      "nombre": "Pull-up Kipping",
+      "disciplina": "crossfit",
+      "patron_movimiento": "jale_vertical",
+      "tipo": "skill",
+      "musculo_principal": "dorsal",
+      "musculo_secundario": [
+        "biceps",
+        "trapecio",
+        "core"
+      ],
+      "equipamiento": [
+        "barra_dominadas"
+      ],
+      "nivel": "intermedio",
+      "es_bilateral": true,
+      "dificultad_tecnica": 3,
+      "contraindicado_en": [
+        "hombro",
+        "muneca"
+      ]
+    },
+    {
+      "id": "cf002",
+      "nombre": "Pull-up Estricto",
+      "disciplina": "crossfit",
+      "patron_movimiento": "jale_vertical",
+      "tipo": "fuerza",
+      "musculo_principal": "dorsal",
+      "musculo_secundario": [
+        "biceps",
+        "trapecio"
+      ],
+      "equipamiento": [
+        "barra_dominadas"
+      ],
+      "nivel": "intermedio",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "hombro"
+      ]
+    },
+    {
+      "id": "cf003",
+      "nombre": "Muscle-up en Barra",
+      "disciplina": "crossfit",
+      "patron_movimiento": "jale_vertical",
+      "tipo": "skill",
+      "musculo_principal": "dorsal",
+      "musculo_secundario": [
+        "triceps",
+        "pectoral",
+        "core"
+      ],
+      "equipamiento": [
+        "barra_dominadas"
+      ],
+      "nivel": "avanzado",
+      "es_bilateral": true,
+      "dificultad_tecnica": 5,
+      "contraindicado_en": [
+        "hombro",
+        "muneca",
+        "codo"
+      ]
+    },
+    {
+      "id": "cf004",
+      "nombre": "Muscle-up en Argollas",
+      "disciplina": "crossfit",
+      "patron_movimiento": "jale_vertical",
+      "tipo": "skill",
+      "musculo_principal": "dorsal",
+      "musculo_secundario": [
+        "triceps",
+        "pectoral",
+        "core"
+      ],
+      "equipamiento": [
+        "argollas"
+      ],
+      "nivel": "avanzado",
+      "es_bilateral": true,
+      "dificultad_tecnica": 5,
+      "contraindicado_en": [
+        "hombro",
+        "muneca",
+        "codo"
+      ]
+    },
+    {
+      "id": "cf005",
+      "nombre": "Handstand Push-up",
+      "disciplina": "crossfit",
+      "patron_movimiento": "empuje_vertical",
+      "tipo": "skill",
+      "musculo_principal": "deltoides",
+      "musculo_secundario": [
+        "triceps",
+        "trapecio",
+        "core"
+      ],
+      "equipamiento": [
+        "pared"
+      ],
+      "nivel": "avanzado",
+      "es_bilateral": true,
+      "dificultad_tecnica": 4,
+      "contraindicado_en": [
+        "hombro",
+        "muneca",
+        "cuello"
+      ]
+    },
+    {
+      "id": "cf006",
+      "nombre": "Handstand Walk",
+      "disciplina": "crossfit",
+      "patron_movimiento": "empuje_vertical",
+      "tipo": "skill",
+      "musculo_principal": "deltoides",
+      "musculo_secundario": [
+        "core",
+        "triceps"
+      ],
+      "equipamiento": [],
+      "nivel": "avanzado",
+      "es_bilateral": true,
+      "dificultad_tecnica": 5,
+      "contraindicado_en": [
+        "hombro",
+        "muneca"
+      ]
+    },
+    {
+      "id": "cf007",
+      "nombre": "Thruster",
+      "disciplina": "crossfit",
+      "patron_movimiento": "sentadilla",
+      "tipo": "fuerza",
+      "musculo_principal": "cuadriceps",
+      "musculo_secundario": [
+        "gluteos",
+        "deltoides",
+        "triceps"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "intermedio",
+      "es_bilateral": true,
+      "dificultad_tecnica": 3,
+      "contraindicado_en": [
+        "rodilla",
+        "hombro",
+        "lumbar"
+      ]
+    },
+    {
+      "id": "cf008",
+      "nombre": "Wall Ball",
+      "disciplina": "crossfit",
+      "patron_movimiento": "sentadilla",
+      "tipo": "cardio",
+      "musculo_principal": "cuadriceps",
+      "musculo_secundario": [
+        "gluteos",
+        "deltoides",
+        "core"
+      ],
+      "equipamiento": [
+        "wall_ball"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "rodilla",
+        "hombro"
+      ]
+    },
+    {
+      "id": "cf009",
+      "nombre": "Box Jump",
+      "disciplina": "crossfit",
+      "patron_movimiento": "empuje_piernas",
+      "tipo": "cardio",
+      "musculo_principal": "cuadriceps",
+      "musculo_secundario": [
+        "gluteos",
+        "gemelos",
+        "isquiotibiales"
+      ],
+      "equipamiento": [
+        "caja_pliometrica"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "rodilla",
+        "tobillo"
+      ]
+    },
+    {
+      "id": "cf010",
+      "nombre": "Box Jump Over",
+      "disciplina": "crossfit",
+      "patron_movimiento": "empuje_piernas",
+      "tipo": "cardio",
+      "musculo_principal": "cuadriceps",
+      "musculo_secundario": [
+        "gluteos",
+        "gemelos"
+      ],
+      "equipamiento": [
+        "caja_pliometrica"
+      ],
+      "nivel": "intermedio",
+      "es_bilateral": true,
+      "dificultad_tecnica": 3,
+      "contraindicado_en": [
+        "rodilla",
+        "tobillo"
+      ]
+    },
+    {
+      "id": "cf011",
+      "nombre": "Double Under",
+      "disciplina": "crossfit",
+      "patron_movimiento": "cardio",
+      "tipo": "cardio",
+      "musculo_principal": "gemelos",
+      "musculo_secundario": [
+        "core",
+        "deltoides"
+      ],
+      "equipamiento": [
+        "cuerda_saltar"
+      ],
+      "nivel": "intermedio",
+      "es_bilateral": true,
+      "dificultad_tecnica": 3,
+      "contraindicado_en": [
+        "tobillo",
+        "rodilla"
+      ]
+    },
+    {
+      "id": "cf012",
+      "nombre": "Single Under",
+      "disciplina": "crossfit",
+      "patron_movimiento": "cardio",
+      "tipo": "cardio",
+      "musculo_principal": "gemelos",
+      "musculo_secundario": [
+        "core"
+      ],
+      "equipamiento": [
+        "cuerda_saltar"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [
+        "tobillo"
+      ]
+    },
+    {
+      "id": "cf013",
+      "nombre": "Toes to Bar",
+      "disciplina": "crossfit",
+      "patron_movimiento": "core",
+      "tipo": "fuerza",
+      "musculo_principal": "core",
+      "musculo_secundario": [
+        "flexores_cadera",
+        "dorsal"
+      ],
+      "equipamiento": [
+        "barra_dominadas"
+      ],
+      "nivel": "intermedio",
+      "es_bilateral": true,
+      "dificultad_tecnica": 3,
+      "contraindicado_en": [
+        "lumbar",
+        "hombro",
+        "muneca"
+      ]
+    },
+    {
+      "id": "cf014",
+      "nombre": "Knees to Elbow",
+      "disciplina": "crossfit",
+      "patron_movimiento": "core",
+      "tipo": "fuerza",
+      "musculo_principal": "core",
+      "musculo_secundario": [
+        "flexores_cadera"
+      ],
+      "equipamiento": [
+        "barra_dominadas"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "lumbar",
+        "hombro"
+      ]
+    },
+    {
+      "id": "cf015",
+      "nombre": "Remo Ergómetro",
+      "disciplina": "crossfit",
+      "patron_movimiento": "cardio",
+      "tipo": "cardio",
+      "musculo_principal": "dorsal",
+      "musculo_secundario": [
+        "isquiotibiales",
+        "core",
+        "biceps"
+      ],
+      "equipamiento": [
+        "remo_ergometro"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "lumbar"
+      ]
+    },
+    {
+      "id": "cf016",
+      "nombre": "Assault Bike",
+      "disciplina": "crossfit",
+      "patron_movimiento": "cardio",
+      "tipo": "cardio",
+      "musculo_principal": "cuadriceps",
+      "musculo_secundario": [
+        "gluteos",
+        "deltoides",
+        "core"
+      ],
+      "equipamiento": [
+        "assault_bike"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [
+        "rodilla"
+      ]
+    },
+    {
+      "id": "cf017",
+      "nombre": "Kettlebell Swing",
+      "disciplina": "crossfit",
+      "patron_movimiento": "bisagra",
+      "tipo": "fuerza",
+      "musculo_principal": "gluteos",
+      "musculo_secundario": [
+        "isquiotibiales",
+        "lumbar",
+        "core"
+      ],
+      "equipamiento": [
+        "kettlebell"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "lumbar"
+      ]
+    },
+    {
+      "id": "cf018",
+      "nombre": "American Kettlebell Swing",
+      "disciplina": "crossfit",
+      "patron_movimiento": "bisagra",
+      "tipo": "fuerza",
+      "musculo_principal": "gluteos",
+      "musculo_secundario": [
+        "isquiotibiales",
+        "deltoides",
+        "core"
+      ],
+      "equipamiento": [
+        "kettlebell"
+      ],
+      "nivel": "intermedio",
+      "es_bilateral": true,
+      "dificultad_tecnica": 3,
+      "contraindicado_en": [
+        "lumbar",
+        "hombro"
+      ]
+    },
+    {
+      "id": "cf019",
+      "nombre": "Goblet Squat",
+      "disciplina": "crossfit",
+      "patron_movimiento": "sentadilla",
+      "tipo": "hipertrofia",
+      "musculo_principal": "cuadriceps",
+      "musculo_secundario": [
+        "gluteos",
+        "core"
+      ],
+      "equipamiento": [
+        "kettlebell"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [
+        "rodilla"
+      ]
+    },
+    {
+      "id": "cf020",
+      "nombre": "Deadlift CrossFit",
+      "disciplina": "crossfit",
+      "patron_movimiento": "bisagra",
+      "tipo": "fuerza",
+      "musculo_principal": "isquiotibiales",
+      "musculo_secundario": [
+        "gluteos",
+        "lumbar",
+        "trapecio"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "lumbar"
+      ]
+    },
+    {
+      "id": "cf021",
+      "nombre": "Front Squat CrossFit",
+      "disciplina": "crossfit",
+      "patron_movimiento": "sentadilla",
+      "tipo": "fuerza",
+      "musculo_principal": "cuadriceps",
+      "musculo_secundario": [
+        "gluteos",
+        "core",
+        "deltoides"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "intermedio",
+      "es_bilateral": true,
+      "dificultad_tecnica": 3,
+      "contraindicado_en": [
+        "rodilla",
+        "hombro",
+        "muneca"
+      ]
+    },
+    {
+      "id": "cf022",
+      "nombre": "Overhead Squat",
+      "disciplina": "crossfit",
+      "patron_movimiento": "sentadilla",
+      "tipo": "fuerza",
+      "musculo_principal": "cuadriceps",
+      "musculo_secundario": [
+        "gluteos",
+        "core",
+        "deltoides",
+        "trapecio"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "avanzado",
+      "es_bilateral": true,
+      "dificultad_tecnica": 4,
+      "contraindicado_en": [
+        "rodilla",
+        "hombro",
+        "muneca"
+      ]
+    },
+    {
+      "id": "cf023",
+      "nombre": "Burpee",
+      "disciplina": "crossfit",
+      "patron_movimiento": "cardio",
+      "tipo": "cardio",
+      "musculo_principal": "core",
+      "musculo_secundario": [
+        "cuadriceps",
+        "pectoral",
+        "deltoides"
+      ],
+      "equipamiento": [],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "muneca",
+        "hombro",
+        "rodilla"
+      ]
+    },
+    {
+      "id": "cf024",
+      "nombre": "Burpee Box Jump",
+      "disciplina": "crossfit",
+      "patron_movimiento": "cardio",
+      "tipo": "cardio",
+      "musculo_principal": "cuadriceps",
+      "musculo_secundario": [
+        "gluteos",
+        "core",
+        "pectoral"
+      ],
+      "equipamiento": [
+        "caja_pliometrica"
+      ],
+      "nivel": "intermedio",
+      "es_bilateral": true,
+      "dificultad_tecnica": 3,
+      "contraindicado_en": [
+        "rodilla",
+        "tobillo",
+        "muneca"
+      ]
+    },
+    {
+      "id": "cf025",
+      "nombre": "Ring Dip",
+      "disciplina": "crossfit",
+      "patron_movimiento": "empuje_horizontal",
+      "tipo": "skill",
+      "musculo_principal": "triceps",
+      "musculo_secundario": [
+        "pectoral",
+        "deltoides"
+      ],
+      "equipamiento": [
+        "argollas"
+      ],
+      "nivel": "intermedio",
+      "es_bilateral": true,
+      "dificultad_tecnica": 3,
+      "contraindicado_en": [
+        "hombro",
+        "codo",
+        "muneca"
+      ]
+    },
+    {
+      "id": "cf026",
+      "nombre": "Push-up CrossFit",
+      "disciplina": "crossfit",
+      "patron_movimiento": "empuje_horizontal",
+      "tipo": "fuerza",
+      "musculo_principal": "pectoral",
+      "musculo_secundario": [
+        "triceps",
+        "deltoides_anterior"
+      ],
+      "equipamiento": [],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [
+        "hombro",
+        "muneca"
+      ]
+    },
+    {
+      "id": "cf027",
+      "nombre": "Pistol Squat",
+      "disciplina": "crossfit",
+      "patron_movimiento": "sentadilla",
+      "tipo": "skill",
+      "musculo_principal": "cuadriceps",
+      "musculo_secundario": [
+        "gluteos",
+        "core"
+      ],
+      "equipamiento": [],
+      "nivel": "avanzado",
+      "es_bilateral": false,
+      "dificultad_tecnica": 4,
+      "contraindicado_en": [
+        "rodilla",
+        "tobillo",
+        "cadera"
+      ]
+    },
+    {
+      "id": "cf028",
+      "nombre": "L-sit",
+      "disciplina": "crossfit",
+      "patron_movimiento": "core",
+      "tipo": "skill",
+      "musculo_principal": "core",
+      "musculo_secundario": [
+        "flexores_cadera",
+        "triceps"
+      ],
+      "equipamiento": [
+        "paralelas"
+      ],
+      "nivel": "avanzado",
+      "es_bilateral": true,
+      "dificultad_tecnica": 4,
+      "contraindicado_en": [
+        "lumbar",
+        "muneca",
+        "cadera"
+      ]
+    },
+    {
+      "id": "cf029",
+      "nombre": "GHD Sit-up",
+      "disciplina": "crossfit",
+      "patron_movimiento": "core",
+      "tipo": "fuerza",
+      "musculo_principal": "core",
+      "musculo_secundario": [
+        "flexores_cadera"
+      ],
+      "equipamiento": [
+        "ghd"
+      ],
+      "nivel": "intermedio",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "lumbar"
+      ]
+    },
+    {
+      "id": "cf030",
+      "nombre": "Back Extension GHD",
+      "disciplina": "crossfit",
+      "patron_movimiento": "bisagra",
+      "tipo": "fuerza",
+      "musculo_principal": "lumbar",
+      "musculo_secundario": [
+        "gluteos",
+        "isquiotibiales"
+      ],
+      "equipamiento": [
+        "ghd"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "lumbar"
+      ]
+    },
+    {
+      "id": "cf031",
+      "nombre": "Sumo Deadlift High Pull",
+      "disciplina": "crossfit",
+      "patron_movimiento": "bisagra",
+      "tipo": "fuerza",
+      "musculo_principal": "isquiotibiales",
+      "musculo_secundario": [
+        "gluteos",
+        "trapecio",
+        "deltoides"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "intermedio",
+      "es_bilateral": true,
+      "dificultad_tecnica": 3,
+      "contraindicado_en": [
+        "lumbar",
+        "hombro"
+      ]
+    },
+    {
+      "id": "cf032",
+      "nombre": "Push Press CrossFit",
+      "disciplina": "crossfit",
+      "patron_movimiento": "empuje_vertical",
+      "tipo": "fuerza",
+      "musculo_principal": "deltoides",
+      "musculo_secundario": [
+        "triceps",
+        "cuadriceps",
+        "core"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "hombro",
+        "lumbar"
+      ]
+    },
+    {
+      "id": "cf033",
+      "nombre": "Push Jerk CrossFit",
+      "disciplina": "crossfit",
+      "patron_movimiento": "empuje_vertical",
+      "tipo": "fuerza",
+      "musculo_principal": "deltoides",
+      "musculo_secundario": [
+        "triceps",
+        "cuadriceps",
+        "core"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "intermedio",
+      "es_bilateral": true,
+      "dificultad_tecnica": 3,
+      "contraindicado_en": [
+        "hombro",
+        "lumbar",
+        "rodilla"
+      ]
+    },
+    {
+      "id": "cf034",
+      "nombre": "Dumbbell Snatch",
+      "disciplina": "crossfit",
+      "patron_movimiento": "olimpico",
+      "tipo": "fuerza",
+      "musculo_principal": "deltoides",
+      "musculo_secundario": [
+        "gluteos",
+        "isquiotibiales",
+        "trapecio"
+      ],
+      "equipamiento": [
+        "mancuerna"
+      ],
+      "nivel": "intermedio",
+      "es_bilateral": false,
+      "dificultad_tecnica": 3,
+      "contraindicado_en": [
+        "hombro",
+        "lumbar",
+        "muneca"
+      ]
+    },
+    {
+      "id": "cf035",
+      "nombre": "Farmer's Carry",
+      "disciplina": "crossfit",
+      "patron_movimiento": "core",
+      "tipo": "fuerza",
+      "musculo_principal": "trapecio",
+      "musculo_secundario": [
+        "core",
+        "antebrazo",
+        "lumbar"
+      ],
+      "equipamiento": [
+        "kettlebell"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [
+        "lumbar"
+      ]
+    },
+    {
+      "id": "cf036",
+      "nombre": "Strict Press CrossFit",
+      "disciplina": "crossfit",
+      "patron_movimiento": "empuje_vertical",
+      "tipo": "fuerza",
+      "musculo_principal": "deltoides",
+      "musculo_secundario": [
+        "triceps",
+        "core"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "hombro"
+      ]
+    },
+    {
+      "id": "cf037",
+      "nombre": "Run 400m",
+      "disciplina": "crossfit",
+      "patron_movimiento": "cardio",
+      "tipo": "cardio",
+      "musculo_principal": "cuadriceps",
+      "musculo_secundario": [
+        "gemelos",
+        "gluteos",
+        "core"
+      ],
+      "equipamiento": [],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [
+        "rodilla",
+        "tobillo"
+      ]
+    },
+    {
+      "id": "cf038",
+      "nombre": "Plank Hold CrossFit",
+      "disciplina": "crossfit",
+      "patron_movimiento": "core",
+      "tipo": "fuerza",
+      "musculo_principal": "core",
+      "musculo_secundario": [
+        "deltoides",
+        "gluteos",
+        "lumbar"
+      ],
+      "equipamiento": [],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [
+        "hombro",
+        "muneca",
+        "lumbar"
+      ]
+    },
+    {
+      "id": "cf039",
+      "nombre": "Clean CrossFit",
+      "disciplina": "crossfit",
+      "patron_movimiento": "olimpico",
+      "tipo": "fuerza",
+      "musculo_principal": "isquiotibiales",
+      "musculo_secundario": [
+        "gluteos",
+        "trapecio",
+        "deltoides",
+        "cuadriceps"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "intermedio",
+      "es_bilateral": true,
+      "dificultad_tecnica": 4,
+      "contraindicado_en": [
+        "lumbar",
+        "rodilla",
+        "muneca"
+      ]
+    },
+    {
+      "id": "cf040",
+      "nombre": "Strict Ring Row",
+      "disciplina": "crossfit",
+      "patron_movimiento": "jale_horizontal",
+      "tipo": "fuerza",
+      "musculo_principal": "dorsal",
+      "musculo_secundario": [
+        "biceps",
+        "deltoides_posterior",
+        "core"
+      ],
+      "equipamiento": [
+        "argollas"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [
+        "hombro"
+      ]
+    }
+  ]
+}

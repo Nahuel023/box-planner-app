@@ -1,0 +1,1509 @@
+{
+  "exercises": [
+    {
+      "id": "oly001",
+      "nombre": "Snatch Completo",
+      "disciplina": "oly",
+      "patron_movimiento": "olimpico",
+      "tipo": "olimpico",
+      "musculo_principal": "isquiotibiales",
+      "musculo_secundario": [
+        "gluteos",
+        "trapecio",
+        "deltoides",
+        "cuadriceps",
+        "lumbar"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "avanzado",
+      "es_bilateral": true,
+      "dificultad_tecnica": 5,
+      "contraindicado_en": [
+        "lumbar",
+        "hombro",
+        "rodilla",
+        "muneca"
+      ]
+    },
+    {
+      "id": "oly002",
+      "nombre": "Clean & Jerk Completo",
+      "disciplina": "oly",
+      "patron_movimiento": "olimpico",
+      "tipo": "olimpico",
+      "musculo_principal": "isquiotibiales",
+      "musculo_secundario": [
+        "gluteos",
+        "trapecio",
+        "deltoides",
+        "cuadriceps"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "avanzado",
+      "es_bilateral": true,
+      "dificultad_tecnica": 5,
+      "contraindicado_en": [
+        "lumbar",
+        "hombro",
+        "rodilla",
+        "muneca"
+      ]
+    },
+    {
+      "id": "oly003",
+      "nombre": "Power Snatch",
+      "disciplina": "oly",
+      "patron_movimiento": "olimpico",
+      "tipo": "olimpico",
+      "musculo_principal": "isquiotibiales",
+      "musculo_secundario": [
+        "gluteos",
+        "trapecio",
+        "deltoides"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "intermedio",
+      "es_bilateral": true,
+      "dificultad_tecnica": 4,
+      "contraindicado_en": [
+        "lumbar",
+        "hombro",
+        "muneca"
+      ]
+    },
+    {
+      "id": "oly004",
+      "nombre": "Power Clean",
+      "disciplina": "oly",
+      "patron_movimiento": "olimpico",
+      "tipo": "olimpico",
+      "musculo_principal": "isquiotibiales",
+      "musculo_secundario": [
+        "gluteos",
+        "trapecio",
+        "cuadriceps"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "intermedio",
+      "es_bilateral": true,
+      "dificultad_tecnica": 4,
+      "contraindicado_en": [
+        "lumbar",
+        "rodilla",
+        "muneca"
+      ]
+    },
+    {
+      "id": "oly005",
+      "nombre": "Hang Snatch",
+      "disciplina": "oly",
+      "patron_movimiento": "olimpico",
+      "tipo": "olimpico",
+      "musculo_principal": "isquiotibiales",
+      "musculo_secundario": [
+        "gluteos",
+        "trapecio",
+        "deltoides"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "intermedio",
+      "es_bilateral": true,
+      "dificultad_tecnica": 4,
+      "contraindicado_en": [
+        "lumbar",
+        "hombro",
+        "muneca"
+      ]
+    },
+    {
+      "id": "oly006",
+      "nombre": "Hang Clean",
+      "disciplina": "oly",
+      "patron_movimiento": "olimpico",
+      "tipo": "olimpico",
+      "musculo_principal": "isquiotibiales",
+      "musculo_secundario": [
+        "gluteos",
+        "trapecio",
+        "cuadriceps"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "intermedio",
+      "es_bilateral": true,
+      "dificultad_tecnica": 3,
+      "contraindicado_en": [
+        "lumbar",
+        "muneca"
+      ]
+    },
+    {
+      "id": "oly007",
+      "nombre": "Hang Power Snatch",
+      "disciplina": "oly",
+      "patron_movimiento": "olimpico",
+      "tipo": "olimpico",
+      "musculo_principal": "isquiotibiales",
+      "musculo_secundario": [
+        "gluteos",
+        "trapecio"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 3,
+      "contraindicado_en": [
+        "lumbar",
+        "hombro"
+      ]
+    },
+    {
+      "id": "oly008",
+      "nombre": "Hang Power Clean",
+      "disciplina": "oly",
+      "patron_movimiento": "olimpico",
+      "tipo": "olimpico",
+      "musculo_principal": "isquiotibiales",
+      "musculo_secundario": [
+        "gluteos",
+        "trapecio"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 3,
+      "contraindicado_en": [
+        "lumbar",
+        "muneca"
+      ]
+    },
+    {
+      "id": "oly009",
+      "nombre": "Snatch Pull",
+      "disciplina": "oly",
+      "patron_movimiento": "bisagra",
+      "tipo": "fuerza",
+      "musculo_principal": "isquiotibiales",
+      "musculo_secundario": [
+        "gluteos",
+        "trapecio",
+        "lumbar"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "lumbar"
+      ]
+    },
+    {
+      "id": "oly010",
+      "nombre": "Clean Pull",
+      "disciplina": "oly",
+      "patron_movimiento": "bisagra",
+      "tipo": "fuerza",
+      "musculo_principal": "isquiotibiales",
+      "musculo_secundario": [
+        "gluteos",
+        "trapecio",
+        "lumbar"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "lumbar"
+      ]
+    },
+    {
+      "id": "oly011",
+      "nombre": "Front Squat OLY",
+      "disciplina": "oly",
+      "patron_movimiento": "sentadilla",
+      "tipo": "fuerza",
+      "musculo_principal": "cuadriceps",
+      "musculo_secundario": [
+        "gluteos",
+        "core",
+        "isquiotibiales"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "rodilla",
+        "muneca"
+      ]
+    },
+    {
+      "id": "oly012",
+      "nombre": "Overhead Squat OLY",
+      "disciplina": "oly",
+      "patron_movimiento": "sentadilla",
+      "tipo": "fuerza",
+      "musculo_principal": "cuadriceps",
+      "musculo_secundario": [
+        "gluteos",
+        "deltoides",
+        "core",
+        "trapecio"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "intermedio",
+      "es_bilateral": true,
+      "dificultad_tecnica": 4,
+      "contraindicado_en": [
+        "rodilla",
+        "hombro",
+        "muneca"
+      ]
+    },
+    {
+      "id": "oly013",
+      "nombre": "Jerk desde Rack",
+      "disciplina": "oly",
+      "patron_movimiento": "empuje_vertical",
+      "tipo": "olimpico",
+      "musculo_principal": "deltoides",
+      "musculo_secundario": [
+        "triceps",
+        "cuadriceps",
+        "core"
+      ],
+      "equipamiento": [
+        "barra",
+        "rack"
+      ],
+      "nivel": "intermedio",
+      "es_bilateral": true,
+      "dificultad_tecnica": 4,
+      "contraindicado_en": [
+        "hombro",
+        "rodilla",
+        "muneca"
+      ]
+    },
+    {
+      "id": "oly014",
+      "nombre": "Split Jerk",
+      "disciplina": "oly",
+      "patron_movimiento": "empuje_vertical",
+      "tipo": "olimpico",
+      "musculo_principal": "deltoides",
+      "musculo_secundario": [
+        "cuadriceps",
+        "triceps",
+        "core"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "avanzado",
+      "es_bilateral": true,
+      "dificultad_tecnica": 5,
+      "contraindicado_en": [
+        "hombro",
+        "rodilla",
+        "cadera"
+      ]
+    },
+    {
+      "id": "oly015",
+      "nombre": "Push Jerk OLY",
+      "disciplina": "oly",
+      "patron_movimiento": "empuje_vertical",
+      "tipo": "olimpico",
+      "musculo_principal": "deltoides",
+      "musculo_secundario": [
+        "cuadriceps",
+        "triceps"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "intermedio",
+      "es_bilateral": true,
+      "dificultad_tecnica": 3,
+      "contraindicado_en": [
+        "hombro",
+        "rodilla"
+      ]
+    },
+    {
+      "id": "oly016",
+      "nombre": "Snatch Balance",
+      "disciplina": "oly",
+      "patron_movimiento": "sentadilla",
+      "tipo": "tecnica",
+      "musculo_principal": "cuadriceps",
+      "musculo_secundario": [
+        "deltoides",
+        "core",
+        "trapecio"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "intermedio",
+      "es_bilateral": true,
+      "dificultad_tecnica": 4,
+      "contraindicado_en": [
+        "rodilla",
+        "hombro",
+        "muneca"
+      ]
+    },
+    {
+      "id": "oly017",
+      "nombre": "Muscle Snatch",
+      "disciplina": "oly",
+      "patron_movimiento": "olimpico",
+      "tipo": "tecnica",
+      "musculo_principal": "trapecio",
+      "musculo_secundario": [
+        "deltoides",
+        "isquiotibiales"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "hombro"
+      ]
+    },
+    {
+      "id": "oly018",
+      "nombre": "Muscle Clean",
+      "disciplina": "oly",
+      "patron_movimiento": "olimpico",
+      "tipo": "tecnica",
+      "musculo_principal": "trapecio",
+      "musculo_secundario": [
+        "biceps",
+        "isquiotibiales"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": []
+    },
+    {
+      "id": "oly019",
+      "nombre": "Snatch Grip Deadlift",
+      "disciplina": "oly",
+      "patron_movimiento": "bisagra",
+      "tipo": "fuerza",
+      "musculo_principal": "isquiotibiales",
+      "musculo_secundario": [
+        "gluteos",
+        "lumbar",
+        "trapecio"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "lumbar"
+      ]
+    },
+    {
+      "id": "oly020",
+      "nombre": "Clean Grip Deadlift",
+      "disciplina": "oly",
+      "patron_movimiento": "bisagra",
+      "tipo": "fuerza",
+      "musculo_principal": "isquiotibiales",
+      "musculo_secundario": [
+        "gluteos",
+        "lumbar"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "lumbar"
+      ]
+    },
+    {
+      "id": "oly021",
+      "nombre": "Romanian Deadlift OLY",
+      "disciplina": "oly",
+      "patron_movimiento": "bisagra",
+      "tipo": "fuerza",
+      "musculo_principal": "isquiotibiales",
+      "musculo_secundario": [
+        "gluteos",
+        "lumbar"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "lumbar"
+      ]
+    },
+    {
+      "id": "oly022",
+      "nombre": "Good Morning OLY",
+      "disciplina": "oly",
+      "patron_movimiento": "bisagra",
+      "tipo": "fuerza",
+      "musculo_principal": "isquiotibiales",
+      "musculo_secundario": [
+        "lumbar",
+        "gluteos"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "lumbar"
+      ]
+    },
+    {
+      "id": "oly023",
+      "nombre": "Pendlay Row",
+      "disciplina": "oly",
+      "patron_movimiento": "jale_horizontal",
+      "tipo": "fuerza",
+      "musculo_principal": "dorsal",
+      "musculo_secundario": [
+        "trapecio",
+        "biceps",
+        "deltoides_posterior"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "lumbar"
+      ]
+    },
+    {
+      "id": "oly024",
+      "nombre": "Barbell Hip Thrust OLY",
+      "disciplina": "oly",
+      "patron_movimiento": "bisagra",
+      "tipo": "fuerza",
+      "musculo_principal": "gluteos",
+      "musculo_secundario": [
+        "isquiotibiales",
+        "core"
+      ],
+      "equipamiento": [
+        "barra",
+        "banco"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "cadera",
+        "lumbar"
+      ]
+    },
+    {
+      "id": "oly025",
+      "nombre": "Back Squat OLY",
+      "disciplina": "oly",
+      "patron_movimiento": "sentadilla",
+      "tipo": "fuerza",
+      "musculo_principal": "cuadriceps",
+      "musculo_secundario": [
+        "gluteos",
+        "isquiotibiales",
+        "core"
+      ],
+      "equipamiento": [
+        "barra",
+        "rack"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "rodilla",
+        "lumbar"
+      ]
+    },
+    {
+      "id": "oly026",
+      "nombre": "Strict Press OLY",
+      "disciplina": "oly",
+      "patron_movimiento": "empuje_vertical",
+      "tipo": "fuerza",
+      "musculo_principal": "deltoides",
+      "musculo_secundario": [
+        "triceps",
+        "core"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "hombro"
+      ]
+    },
+    {
+      "id": "oly027",
+      "nombre": "Snatch First Pull",
+      "disciplina": "oly",
+      "patron_movimiento": "olimpico",
+      "tipo": "tecnica",
+      "musculo_principal": "isquiotibiales",
+      "musculo_secundario": [
+        "lumbar",
+        "gluteos"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "lumbar"
+      ]
+    },
+    {
+      "id": "oly028",
+      "nombre": "Snatch Second Pull",
+      "disciplina": "oly",
+      "patron_movimiento": "olimpico",
+      "tipo": "tecnica",
+      "musculo_principal": "trapecio",
+      "musculo_secundario": [
+        "isquiotibiales",
+        "gluteos"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "intermedio",
+      "es_bilateral": true,
+      "dificultad_tecnica": 3,
+      "contraindicado_en": [
+        "lumbar",
+        "hombro"
+      ]
+    },
+    {
+      "id": "oly029",
+      "nombre": "Tall Snatch",
+      "disciplina": "oly",
+      "patron_movimiento": "olimpico",
+      "tipo": "tecnica",
+      "musculo_principal": "deltoides",
+      "musculo_secundario": [
+        "triceps",
+        "trapecio"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "intermedio",
+      "es_bilateral": true,
+      "dificultad_tecnica": 3,
+      "contraindicado_en": [
+        "hombro",
+        "muneca"
+      ]
+    },
+    {
+      "id": "oly030",
+      "nombre": "Tall Clean",
+      "disciplina": "oly",
+      "patron_movimiento": "olimpico",
+      "tipo": "tecnica",
+      "musculo_principal": "trapecio",
+      "musculo_secundario": [
+        "biceps",
+        "deltoides"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "intermedio",
+      "es_bilateral": true,
+      "dificultad_tecnica": 3,
+      "contraindicado_en": [
+        "muneca"
+      ]
+    },
+    {
+      "id": "oly031",
+      "nombre": "Jerk Balance",
+      "disciplina": "oly",
+      "patron_movimiento": "empuje_vertical",
+      "tipo": "tecnica",
+      "musculo_principal": "deltoides",
+      "musculo_secundario": [
+        "cuadriceps",
+        "core"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "intermedio",
+      "es_bilateral": true,
+      "dificultad_tecnica": 3,
+      "contraindicado_en": [
+        "hombro",
+        "rodilla"
+      ]
+    },
+    {
+      "id": "oly032",
+      "nombre": "Power Jerk OLY",
+      "disciplina": "oly",
+      "patron_movimiento": "empuje_vertical",
+      "tipo": "olimpico",
+      "musculo_principal": "deltoides",
+      "musculo_secundario": [
+        "cuadriceps",
+        "triceps"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "avanzado",
+      "es_bilateral": true,
+      "dificultad_tecnica": 4,
+      "contraindicado_en": [
+        "hombro",
+        "rodilla"
+      ]
+    },
+    {
+      "id": "oly033",
+      "nombre": "Paused Snatch Pull",
+      "disciplina": "oly",
+      "patron_movimiento": "bisagra",
+      "tipo": "tecnica",
+      "musculo_principal": "isquiotibiales",
+      "musculo_secundario": [
+        "lumbar",
+        "gluteos"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "lumbar"
+      ]
+    },
+    {
+      "id": "oly034",
+      "nombre": "Halting Deadlift OLY",
+      "disciplina": "oly",
+      "patron_movimiento": "bisagra",
+      "tipo": "fuerza",
+      "musculo_principal": "isquiotibiales",
+      "musculo_secundario": [
+        "lumbar",
+        "gluteos"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "lumbar"
+      ]
+    },
+    {
+      "id": "oly035",
+      "nombre": "Overhead Carry OLY",
+      "disciplina": "oly",
+      "patron_movimiento": "empuje_vertical",
+      "tipo": "fuerza",
+      "musculo_principal": "deltoides",
+      "musculo_secundario": [
+        "core",
+        "trapecio"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "intermedio",
+      "es_bilateral": true,
+      "dificultad_tecnica": 3,
+      "contraindicado_en": [
+        "hombro",
+        "muneca"
+      ]
+    },
+    {
+      "id": "oly036",
+      "nombre": "Clean desde Bloques",
+      "disciplina": "oly",
+      "patron_movimiento": "olimpico",
+      "tipo": "olimpico",
+      "musculo_principal": "isquiotibiales",
+      "musculo_secundario": [
+        "trapecio",
+        "gluteos"
+      ],
+      "equipamiento": [
+        "barra",
+        "bloques"
+      ],
+      "nivel": "intermedio",
+      "es_bilateral": true,
+      "dificultad_tecnica": 3,
+      "contraindicado_en": [
+        "lumbar",
+        "muneca"
+      ]
+    },
+    {
+      "id": "oly037",
+      "nombre": "Snatch desde Bloques",
+      "disciplina": "oly",
+      "patron_movimiento": "olimpico",
+      "tipo": "olimpico",
+      "musculo_principal": "isquiotibiales",
+      "musculo_secundario": [
+        "trapecio",
+        "deltoides"
+      ],
+      "equipamiento": [
+        "barra",
+        "bloques"
+      ],
+      "nivel": "intermedio",
+      "es_bilateral": true,
+      "dificultad_tecnica": 4,
+      "contraindicado_en": [
+        "lumbar",
+        "hombro",
+        "muneca"
+      ]
+    },
+    {
+      "id": "oly038",
+      "nombre": "Paused Front Squat",
+      "disciplina": "oly",
+      "patron_movimiento": "sentadilla",
+      "tipo": "fuerza",
+      "musculo_principal": "cuadriceps",
+      "musculo_secundario": [
+        "gluteos",
+        "core"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "rodilla"
+      ]
+    },
+    {
+      "id": "oly039",
+      "nombre": "Sotts Press",
+      "disciplina": "oly",
+      "patron_movimiento": "empuje_vertical",
+      "tipo": "tecnica",
+      "musculo_principal": "deltoides",
+      "musculo_secundario": [
+        "trapecio",
+        "core",
+        "cuadriceps"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "avanzado",
+      "es_bilateral": true,
+      "dificultad_tecnica": 5,
+      "contraindicado_en": [
+        "hombro",
+        "rodilla",
+        "muneca"
+      ]
+    },
+    {
+      "id": "oly040",
+      "nombre": "Drop Snatch",
+      "disciplina": "oly",
+      "patron_movimiento": "olimpico",
+      "tipo": "tecnica",
+      "musculo_principal": "cuadriceps",
+      "musculo_secundario": [
+        "deltoides",
+        "core",
+        "trapecio"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "avanzado",
+      "es_bilateral": true,
+      "dificultad_tecnica": 4,
+      "contraindicado_en": [
+        "rodilla",
+        "hombro",
+        "muneca"
+      ]
+    },
+    {
+      "id": "oly041",
+      "nombre": "Hang Squat Snatch",
+      "disciplina": "oly",
+      "patron_movimiento": "olimpico",
+      "tipo": "olimpico",
+      "musculo_principal": "isquiotibiales",
+      "musculo_secundario": [
+        "gluteos",
+        "trapecio",
+        "deltoides",
+        "cuadriceps"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "avanzado",
+      "es_bilateral": true,
+      "dificultad_tecnica": 5,
+      "contraindicado_en": [
+        "lumbar",
+        "hombro",
+        "rodilla",
+        "muneca"
+      ]
+    },
+    {
+      "id": "oly042",
+      "nombre": "Pause Snatch Drop",
+      "disciplina": "oly",
+      "patron_movimiento": "olimpico",
+      "tipo": "tecnica",
+      "musculo_principal": "deltoides",
+      "musculo_secundario": [
+        "trapecio",
+        "cuadriceps",
+        "core"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "intermedio",
+      "es_bilateral": true,
+      "dificultad_tecnica": 4,
+      "contraindicado_en": [
+        "hombro",
+        "rodilla",
+        "muneca"
+      ]
+    },
+    {
+      "id": "oly043",
+      "nombre": "Drop Power Clean",
+      "disciplina": "oly",
+      "patron_movimiento": "olimpico",
+      "tipo": "tecnica",
+      "musculo_principal": "isquiotibiales",
+      "musculo_secundario": [
+        "trapecio",
+        "cuadriceps",
+        "gluteos"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "intermedio",
+      "es_bilateral": true,
+      "dificultad_tecnica": 3,
+      "contraindicado_en": [
+        "lumbar",
+        "rodilla",
+        "muneca"
+      ]
+    },
+    {
+      "id": "oly044",
+      "nombre": "Pause Power Clean",
+      "disciplina": "oly",
+      "patron_movimiento": "olimpico",
+      "tipo": "tecnica",
+      "musculo_principal": "isquiotibiales",
+      "musculo_secundario": [
+        "trapecio",
+        "gluteos",
+        "cuadriceps"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "intermedio",
+      "es_bilateral": true,
+      "dificultad_tecnica": 4,
+      "contraindicado_en": [
+        "lumbar",
+        "muneca"
+      ]
+    },
+    {
+      "id": "oly045",
+      "nombre": "Low Hang Power Clean",
+      "disciplina": "oly",
+      "patron_movimiento": "olimpico",
+      "tipo": "olimpico",
+      "musculo_principal": "isquiotibiales",
+      "musculo_secundario": [
+        "trapecio",
+        "gluteos",
+        "cuadriceps"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "intermedio",
+      "es_bilateral": true,
+      "dificultad_tecnica": 4,
+      "contraindicado_en": [
+        "lumbar",
+        "rodilla",
+        "muneca"
+      ]
+    },
+    {
+      "id": "oly046",
+      "nombre": "Low Hang Squat Snatch",
+      "disciplina": "oly",
+      "patron_movimiento": "olimpico",
+      "tipo": "olimpico",
+      "musculo_principal": "isquiotibiales",
+      "musculo_secundario": [
+        "gluteos",
+        "trapecio",
+        "deltoides",
+        "cuadriceps"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "avanzado",
+      "es_bilateral": true,
+      "dificultad_tecnica": 5,
+      "contraindicado_en": [
+        "lumbar",
+        "hombro",
+        "rodilla",
+        "muneca"
+      ]
+    },
+    {
+      "id": "oly047",
+      "nombre": "Front Push Press OLY",
+      "disciplina": "oly",
+      "patron_movimiento": "empuje_vertical",
+      "tipo": "olimpico",
+      "musculo_principal": "deltoides",
+      "musculo_secundario": [
+        "cuadriceps",
+        "triceps",
+        "core"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "intermedio",
+      "es_bilateral": true,
+      "dificultad_tecnica": 3,
+      "contraindicado_en": [
+        "hombro",
+        "rodilla"
+      ]
+    },
+    {
+      "id": "oly048",
+      "nombre": "High Hang Power Clean",
+      "disciplina": "oly",
+      "patron_movimiento": "olimpico",
+      "tipo": "olimpico",
+      "musculo_principal": "isquiotibiales",
+      "musculo_secundario": [
+        "trapecio",
+        "gluteos"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "intermedio",
+      "es_bilateral": true,
+      "dificultad_tecnica": 3,
+      "contraindicado_en": [
+        "lumbar",
+        "muneca"
+      ]
+    },
+    {
+      "id": "oly049",
+      "nombre": "High Hang Squat Snatch",
+      "disciplina": "oly",
+      "patron_movimiento": "olimpico",
+      "tipo": "olimpico",
+      "musculo_principal": "isquiotibiales",
+      "musculo_secundario": [
+        "gluteos",
+        "trapecio",
+        "deltoides"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "avanzado",
+      "es_bilateral": true,
+      "dificultad_tecnica": 5,
+      "contraindicado_en": [
+        "lumbar",
+        "hombro",
+        "rodilla",
+        "muneca"
+      ]
+    },
+    {
+      "id": "oly050",
+      "nombre": "Tempo Clean Pull",
+      "disciplina": "oly",
+      "patron_movimiento": "bisagra",
+      "tipo": "tecnica",
+      "musculo_principal": "isquiotibiales",
+      "musculo_secundario": [
+        "gluteos",
+        "lumbar",
+        "trapecio"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "lumbar"
+      ]
+    },
+    {
+      "id": "oly051",
+      "nombre": "Spanish Squat Isométrico",
+      "disciplina": "oly",
+      "patron_movimiento": "sentadilla",
+      "tipo": "fuerza",
+      "musculo_principal": "cuadriceps",
+      "musculo_secundario": [
+        "gluteos",
+        "isquiotibiales",
+        "tobillo"
+      ],
+      "equipamiento": [
+        "banda_elastica"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [
+        "rodilla"
+      ]
+    },
+    {
+      "id": "oly052",
+      "nombre": "Copenhagen Plank",
+      "disciplina": "oly",
+      "patron_movimiento": "core",
+      "tipo": "fuerza",
+      "musculo_principal": "aductores",
+      "musculo_secundario": [
+        "oblicuos",
+        "core"
+      ],
+      "equipamiento": [
+        "banco"
+      ],
+      "nivel": "intermedio",
+      "es_bilateral": false,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "cadera",
+        "rodilla"
+      ]
+    },
+    {
+      "id": "oly053",
+      "nombre": "Movilidad de Tobillo OLY",
+      "disciplina": "oly",
+      "patron_movimiento": "movilidad",
+      "tipo": "movilidad",
+      "musculo_principal": "tobillo",
+      "musculo_secundario": [
+        "gemelos",
+        "soleo"
+      ],
+      "equipamiento": [],
+      "nivel": "principiante",
+      "es_bilateral": false,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [
+        "tobillo"
+      ]
+    },
+    {
+      "id": "oly054",
+      "nombre": "Sentadilla Profunda con Pesa Rusa",
+      "disciplina": "oly",
+      "patron_movimiento": "sentadilla",
+      "tipo": "movilidad",
+      "musculo_principal": "cuadriceps",
+      "musculo_secundario": [
+        "gluteos",
+        "tobillo",
+        "cadera"
+      ],
+      "equipamiento": [
+        "pesa_rusa"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [
+        "rodilla"
+      ]
+    },
+    {
+      "id": "oly055",
+      "nombre": "Rotación Torácica en Cuadrupedia",
+      "disciplina": "oly",
+      "patron_movimiento": "movilidad",
+      "tipo": "movilidad",
+      "musculo_principal": "columna_toracica",
+      "musculo_secundario": [
+        "oblicuos",
+        "dorsal"
+      ],
+      "equipamiento": [],
+      "nivel": "principiante",
+      "es_bilateral": false,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [
+        "lumbar"
+      ]
+    },
+    {
+      "id": "oly056",
+      "nombre": "Puente de Glúteos con Pausa",
+      "disciplina": "oly",
+      "patron_movimiento": "bisagra",
+      "tipo": "movilidad",
+      "musculo_principal": "gluteos",
+      "musculo_secundario": [
+        "isquiotibiales",
+        "lumbar"
+      ],
+      "equipamiento": [],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [
+        "cadera"
+      ]
+    },
+    {
+      "id": "oly057",
+      "nombre": "Movilidad Front Rack",
+      "disciplina": "oly",
+      "patron_movimiento": "movilidad",
+      "tipo": "movilidad",
+      "musculo_principal": "muneca",
+      "musculo_secundario": [
+        "deltoides_posterior",
+        "triceps",
+        "latissimus"
+      ],
+      "equipamiento": [],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [
+        "muneca"
+      ]
+    },
+    {
+      "id": "oly058",
+      "nombre": "Extensión Torácica en Banco",
+      "disciplina": "oly",
+      "patron_movimiento": "movilidad",
+      "tipo": "movilidad",
+      "musculo_principal": "columna_toracica",
+      "musculo_secundario": [
+        "deltoides",
+        "dorsal"
+      ],
+      "equipamiento": [
+        "banco"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": []
+    },
+    {
+      "id": "oly059",
+      "nombre": "Bicho Muerto (Dead Bug)",
+      "disciplina": "oly",
+      "patron_movimiento": "core",
+      "tipo": "movilidad",
+      "musculo_principal": "core",
+      "musculo_secundario": [
+        "lumbar",
+        "oblicuos"
+      ],
+      "equipamiento": [],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": []
+    },
+    {
+      "id": "oly060",
+      "nombre": "Jerk Footwork",
+      "disciplina": "oly",
+      "patron_movimiento": "movilidad",
+      "tipo": "tecnica",
+      "musculo_principal": "cuadriceps",
+      "musculo_secundario": [
+        "gluteos",
+        "tobillo"
+      ],
+      "equipamiento": [],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "rodilla",
+        "tobillo"
+      ]
+    },
+    {
+      "id": "oly061",
+      "nombre": "Movilidad de Cadera 90/90",
+      "disciplina": "oly",
+      "patron_movimiento": "movilidad",
+      "tipo": "movilidad",
+      "musculo_principal": "cadera",
+      "musculo_secundario": [
+        "piriforme",
+        "aductores",
+        "gluteos"
+      ],
+      "equipamiento": [],
+      "nivel": "principiante",
+      "es_bilateral": false,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [
+        "cadera"
+      ]
+    },
+    {
+      "id": "oly062",
+      "nombre": "Band Pull Apart",
+      "disciplina": "oly",
+      "patron_movimiento": "jale_horizontal",
+      "tipo": "movilidad",
+      "musculo_principal": "deltoides_posterior",
+      "musculo_secundario": [
+        "trapecio",
+        "romboides"
+      ],
+      "equipamiento": [
+        "banda_elastica"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [
+        "hombro"
+      ]
+    },
+    {
+      "id": "oly063",
+      "nombre": "Scap Push Up",
+      "disciplina": "oly",
+      "patron_movimiento": "empuje_horizontal",
+      "tipo": "movilidad",
+      "musculo_principal": "serrato",
+      "musculo_secundario": [
+        "romboides",
+        "trapecio"
+      ],
+      "equipamiento": [],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [
+        "hombro"
+      ]
+    },
+    {
+      "id": "oly064",
+      "nombre": "Jerk Dip + Drive",
+      "disciplina": "oly",
+      "patron_movimiento": "empuje_vertical",
+      "tipo": "tecnica",
+      "musculo_principal": "cuadriceps",
+      "musculo_secundario": [
+        "gluteos",
+        "triceps",
+        "core"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "rodilla"
+      ]
+    },
+    {
+      "id": "oly065",
+      "nombre": "Jerk Reverse Balance",
+      "disciplina": "oly",
+      "patron_movimiento": "empuje_vertical",
+      "tipo": "tecnica",
+      "musculo_principal": "cuadriceps",
+      "musculo_secundario": [
+        "gluteos",
+        "deltoides",
+        "core"
+      ],
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "intermedio",
+      "es_bilateral": true,
+      "dificultad_tecnica": 3,
+      "contraindicado_en": [
+        "rodilla",
+        "hombro"
+      ]
+    },
+    {
+      "id": "oly066",
+      "nombre": "Sentadilla Profunda Asistida",
+      "disciplina": "oly",
+      "patron_movimiento": "sentadilla",
+      "tipo": "movilidad",
+      "musculo_principal": "cuadriceps",
+      "musculo_secundario": [
+        "gluteos",
+        "tobillo",
+        "cadera"
+      ],
+      "equipamiento": [],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [
+        "rodilla"
+      ]
+    },
+    {
+      "id": "oly067",
+      "nombre": "Sentadilla Cossack Asistida",
+      "disciplina": "oly",
+      "patron_movimiento": "sentadilla",
+      "tipo": "movilidad",
+      "musculo_principal": "aductores",
+      "musculo_secundario": [
+        "cuadriceps",
+        "gluteos",
+        "tobillo"
+      ],
+      "equipamiento": [],
+      "nivel": "principiante",
+      "es_bilateral": false,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "rodilla",
+        "cadera"
+      ]
+    },
+    {
+      "id": "oly068",
+      "nombre": "Extensión Torácica en Pared",
+      "disciplina": "oly",
+      "patron_movimiento": "movilidad",
+      "tipo": "movilidad",
+      "musculo_principal": "columna_toracica",
+      "musculo_secundario": [
+        "deltoides",
+        "dorsal"
+      ],
+      "equipamiento": [],
+      "nivel": "principiante",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": []
+    }
+  ]
+}

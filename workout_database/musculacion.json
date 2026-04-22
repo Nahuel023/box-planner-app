@@ -1,0 +1,3040 @@
+{
+  "exercises": [
+    {
+      "id": "e001",
+      "nombre": "Prensa 45°",
+      "musculo_principal": "cuadriceps",
+      "musculo_secundario": [
+        "gluteos",
+        "isquiotibiales"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "maquina_prensa"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "empuje_piernas",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e002",
+      "nombre": "Sentadilla Hack en Máquina",
+      "musculo_principal": "cuadriceps",
+      "musculo_secundario": [
+        "gluteos",
+        "gemelos"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "maquina_hack"
+      ],
+      "nivel": "intermedio",
+      "patron_movimiento": "sentadilla",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e003",
+      "nombre": "Sentadilla Pendular",
+      "musculo_principal": "cuadriceps",
+      "musculo_secundario": [
+        "gluteos"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "maquina_pendular"
+      ],
+      "nivel": "intermedio",
+      "patron_movimiento": "sentadilla",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e004",
+      "nombre": "Sentadilla Goblet",
+      "musculo_principal": "cuadriceps",
+      "musculo_secundario": [
+        "gluteos",
+        "core"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "mancuerna",
+        "pesa_rusa"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "sentadilla",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e005",
+      "nombre": "Sentadilla Libre con Barra",
+      "musculo_principal": "cuadriceps",
+      "musculo_secundario": [
+        "gluteos",
+        "isquiotibiales",
+        "core"
+      ],
+      "tipo": "fuerza",
+      "equipamiento": [
+        "barra",
+        "rack"
+      ],
+      "nivel": "intermedio",
+      "patron_movimiento": "sentadilla",
+      "es_bilateral": true,
+      "dificultad_tecnica": 4,
+      "contraindicado_en": [
+        "lesion_rodilla",
+        "lesion_lumbar"
+      ],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e006",
+      "nombre": "Sentadilla Sumo",
+      "musculo_principal": "cuadriceps",
+      "musculo_secundario": [
+        "gluteos",
+        "aductores"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "barra",
+        "mancuerna"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "sentadilla",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e007",
+      "nombre": "Sentadilla Búlgara",
+      "musculo_principal": "cuadriceps",
+      "musculo_secundario": [
+        "gluteos",
+        "isquiotibiales"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "mancuernas",
+        "banco"
+      ],
+      "nivel": "intermedio",
+      "patron_movimiento": "sentadilla_unilateral",
+      "es_bilateral": false,
+      "dificultad_tecnica": 3,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e008",
+      "nombre": "Sentadilla en Smith",
+      "musculo_principal": "cuadriceps",
+      "musculo_secundario": [
+        "gluteos"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "maquina_smith"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "sentadilla",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e009",
+      "nombre": "Extensión de Cuádriceps en Máquina",
+      "musculo_principal": "cuadriceps",
+      "musculo_secundario": [],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "maquina_extension"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "extension_rodilla",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [
+        "lesion_rodilla"
+      ],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e010",
+      "nombre": "Estocadas / Zancadas",
+      "musculo_principal": "cuadriceps",
+      "musculo_secundario": [
+        "gluteos",
+        "isquiotibiales"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "mancuernas",
+        "barra",
+        "bodyweight"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "sentadilla_unilateral",
+      "es_bilateral": false,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e011",
+      "nombre": "Hip Thrust con Barra",
+      "musculo_principal": "gluteos",
+      "musculo_secundario": [
+        "isquiotibiales",
+        "core"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "barra",
+        "banco"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "empuje_cadera",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e012",
+      "nombre": "Elevación de Cadera en Máquina",
+      "musculo_principal": "gluteos",
+      "musculo_secundario": [
+        "isquiotibiales"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "maquina_cadera"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "empuje_cadera",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e013",
+      "nombre": "Curl Femoral Acostado (Isquios Camilla)",
+      "musculo_principal": "isquiotibiales",
+      "musculo_secundario": [
+        "gluteos"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "maquina_curl_femoral"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "flexion_rodilla",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e014",
+      "nombre": "Curl Femoral Sentado en Máquina",
+      "musculo_principal": "isquiotibiales",
+      "musculo_secundario": [],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "maquina_curl_sentado"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "flexion_rodilla",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e015",
+      "nombre": "Peso Muerto con Barra",
+      "musculo_principal": "isquiotibiales",
+      "musculo_secundario": [
+        "gluteos",
+        "lumbar",
+        "trapecio"
+      ],
+      "tipo": "fuerza",
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "intermedio",
+      "patron_movimiento": "bisagra",
+      "es_bilateral": true,
+      "dificultad_tecnica": 4,
+      "contraindicado_en": [
+        "hernia_lumbar"
+      ],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e016",
+      "nombre": "Peso Muerto Rumano",
+      "musculo_principal": "isquiotibiales",
+      "musculo_secundario": [
+        "gluteos",
+        "lumbar"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "barra",
+        "mancuernas"
+      ],
+      "nivel": "intermedio",
+      "patron_movimiento": "bisagra",
+      "es_bilateral": true,
+      "dificultad_tecnica": 3,
+      "contraindicado_en": [
+        "hernia_lumbar"
+      ],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e017",
+      "nombre": "Hiperextensiones",
+      "musculo_principal": "lumbar",
+      "musculo_secundario": [
+        "gluteos",
+        "isquiotibiales"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "banco_roman",
+        "maquina"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "bisagra",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [
+        "hernia_lumbar"
+      ],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e018",
+      "nombre": "Patada Glúteo en Polea (Kickbacks)",
+      "musculo_principal": "gluteos",
+      "musculo_secundario": [
+        "isquiotibiales"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "polea",
+        "tobillera"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "extension_cadera",
+      "es_bilateral": false,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e019",
+      "nombre": "Abducción en Máquina (Sillón)",
+      "musculo_principal": "gluteo_medio",
+      "musculo_secundario": [],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "maquina_abduccion"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "abduccion_cadera",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e020",
+      "nombre": "Aducción en Máquina (Sillón)",
+      "musculo_principal": "aductores",
+      "musculo_secundario": [],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "maquina_aduccion"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "aduccion_cadera",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e021",
+      "nombre": "Gemelos en Hack / Prensa",
+      "musculo_principal": "gemelos",
+      "musculo_secundario": [
+        "soleo"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "maquina_hack",
+        "maquina_prensa"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "flexion_plantar",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e022",
+      "nombre": "Gemelos Sentado en Máquina",
+      "musculo_principal": "soleo",
+      "musculo_secundario": [
+        "gemelos"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "maquina_gemelos_sentado"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "flexion_plantar",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e023",
+      "nombre": "Elevación de Talones de Pie",
+      "musculo_principal": "gemelos",
+      "musculo_secundario": [
+        "soleo"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "bodyweight",
+        "mancuernas",
+        "maquina"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "flexion_plantar",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e024",
+      "nombre": "Press Banca con Barra (Plano)",
+      "musculo_principal": "pectoral",
+      "musculo_secundario": [
+        "triceps",
+        "deltoides_anterior"
+      ],
+      "tipo": "fuerza",
+      "equipamiento": [
+        "barra",
+        "banco"
+      ],
+      "nivel": "intermedio",
+      "patron_movimiento": "empuje_horizontal",
+      "es_bilateral": true,
+      "dificultad_tecnica": 3,
+      "contraindicado_en": [
+        "lesion_hombro"
+      ],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e025",
+      "nombre": "Press Inclinado con Barra",
+      "musculo_principal": "pectoral_superior",
+      "musculo_secundario": [
+        "triceps",
+        "deltoides_anterior"
+      ],
+      "tipo": "fuerza",
+      "equipamiento": [
+        "barra",
+        "banco_inclinado"
+      ],
+      "nivel": "intermedio",
+      "patron_movimiento": "empuje_inclinado",
+      "es_bilateral": true,
+      "dificultad_tecnica": 3,
+      "contraindicado_en": [
+        "lesion_hombro"
+      ],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e026",
+      "nombre": "Press Inclinado con Mancuernas",
+      "musculo_principal": "pectoral_superior",
+      "musculo_secundario": [
+        "triceps",
+        "deltoides_anterior"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "mancuernas",
+        "banco_inclinado"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "empuje_inclinado",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e027",
+      "nombre": "Press Pectoral en Máquina",
+      "musculo_principal": "pectoral",
+      "musculo_secundario": [
+        "triceps",
+        "deltoides_anterior"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "maquina_pectoral"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "empuje_horizontal",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e028",
+      "nombre": "Press Pectoral Hammer",
+      "musculo_principal": "pectoral",
+      "musculo_secundario": [
+        "triceps"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "maquina_hammer"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "empuje_horizontal",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e029",
+      "nombre": "Aperturas con Mancuernas (Plano)",
+      "musculo_principal": "pectoral",
+      "musculo_secundario": [
+        "deltoides_anterior"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "mancuernas",
+        "banco"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "aduccion_horizontal",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e030",
+      "nombre": "Aperturas en Pec Deck / Máquina",
+      "musculo_principal": "pectoral",
+      "musculo_secundario": [],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "maquina_pec_deck"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "aduccion_horizontal",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e031",
+      "nombre": "Aperturas Inclinadas con Mancuernas",
+      "musculo_principal": "pectoral_superior",
+      "musculo_secundario": [
+        "deltoides_anterior"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "mancuernas",
+        "banco_inclinado"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "aduccion_horizontal",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e032",
+      "nombre": "Pullover en Máquina",
+      "musculo_principal": "dorsal",
+      "musculo_secundario": [
+        "pectoral",
+        "triceps"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "maquina_pullover"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "jalon",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e033",
+      "nombre": "Jalón al Pecho Agarre Abierto",
+      "musculo_principal": "dorsal",
+      "musculo_secundario": [
+        "biceps",
+        "romboides"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "polea_alta"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "jalon",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e034",
+      "nombre": "Jalón al Pecho Agarre Cerrado",
+      "musculo_principal": "dorsal",
+      "musculo_secundario": [
+        "biceps",
+        "romboides"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "polea_alta"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "jalon",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e035",
+      "nombre": "Remo en Polea Baja Agarre Cerrado",
+      "musculo_principal": "dorsal",
+      "musculo_secundario": [
+        "biceps",
+        "romboides",
+        "trapecio"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "polea_baja"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "remo",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e036",
+      "nombre": "Remo en Polea Baja Agarre Abierto",
+      "musculo_principal": "dorsal",
+      "musculo_secundario": [
+        "biceps",
+        "romboides"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "polea_baja"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "remo",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e037",
+      "nombre": "Remo 1 Brazo con Mancuerna",
+      "musculo_principal": "dorsal",
+      "musculo_secundario": [
+        "biceps",
+        "romboides"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "mancuerna",
+        "banco"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "remo",
+      "es_bilateral": false,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e038",
+      "nombre": "Remo con Barra",
+      "musculo_principal": "dorsal",
+      "musculo_secundario": [
+        "biceps",
+        "trapecio",
+        "romboides"
+      ],
+      "tipo": "fuerza",
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "intermedio",
+      "patron_movimiento": "remo",
+      "es_bilateral": true,
+      "dificultad_tecnica": 3,
+      "contraindicado_en": [
+        "hernia_lumbar"
+      ],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e039",
+      "nombre": "Remo al Mentón con Barra",
+      "musculo_principal": "deltoides_lateral",
+      "musculo_secundario": [
+        "trapecio",
+        "biceps"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "barra",
+        "polea"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "remo_vertical",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "lesion_hombro"
+      ],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e040",
+      "nombre": "Press Hombros en Máquina",
+      "musculo_principal": "deltoides",
+      "musculo_secundario": [
+        "triceps",
+        "trapecio"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "maquina_hombros"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "empuje_vertical",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e041",
+      "nombre": "Press Militar con Mancuernas",
+      "musculo_principal": "deltoides",
+      "musculo_secundario": [
+        "triceps",
+        "core"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "mancuernas",
+        "banco"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "empuje_vertical",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e042",
+      "nombre": "Vuelos Laterales en Máquina",
+      "musculo_principal": "deltoides_lateral",
+      "musculo_secundario": [],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "maquina_vuelos"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "abduccion_hombro",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e043",
+      "nombre": "Vuelos Laterales con Mancuernas / Polea",
+      "musculo_principal": "deltoides_lateral",
+      "musculo_secundario": [],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "mancuernas",
+        "polea"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "abduccion_hombro",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e044",
+      "nombre": "Vuelos Frontales",
+      "musculo_principal": "deltoides_anterior",
+      "musculo_secundario": [
+        "pectoral_superior"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "mancuernas",
+        "disco",
+        "polea"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "flexion_hombro",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e045",
+      "nombre": "Vuelos Posteriores en Máquina",
+      "musculo_principal": "deltoides_posterior",
+      "musculo_secundario": [
+        "romboides"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "maquina_vuelos"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "extension_horizontal_hombro",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e046",
+      "nombre": "Vuelos Posteriores con Mancuernas",
+      "musculo_principal": "deltoides_posterior",
+      "musculo_secundario": [
+        "romboides"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "mancuernas"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "extension_horizontal_hombro",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e047",
+      "nombre": "Curl Bíceps 21 con Barra",
+      "musculo_principal": "biceps",
+      "musculo_secundario": [
+        "braquial"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "flexion_codo",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e048",
+      "nombre": "Curl Martillo con Mancuernas",
+      "musculo_principal": "braquial",
+      "musculo_secundario": [
+        "biceps",
+        "braquiorradial"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "mancuernas"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "flexion_codo",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e049",
+      "nombre": "Curl Bíceps con Barra",
+      "musculo_principal": "biceps",
+      "musculo_secundario": [
+        "braquial"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "flexion_codo",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e050",
+      "nombre": "Curl Bíceps Scott con Barra",
+      "musculo_principal": "biceps",
+      "musculo_secundario": [],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "barra",
+        "banco_scott"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "flexion_codo",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e051",
+      "nombre": "Curl Bíceps con Mancuernas",
+      "musculo_principal": "biceps",
+      "musculo_secundario": [
+        "braquial"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "mancuernas"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "flexion_codo",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e052",
+      "nombre": "Extensión Tríceps en Polea",
+      "musculo_principal": "triceps",
+      "musculo_secundario": [],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "polea"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "extension_codo",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e053",
+      "nombre": "Fondos en Máquina (Tríceps)",
+      "musculo_principal": "triceps",
+      "musculo_secundario": [
+        "pectoral",
+        "deltoides"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "maquina_fondos"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "empuje_vertical",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e054",
+      "nombre": "Extensión Tríceps 1 Brazo",
+      "musculo_principal": "triceps",
+      "musculo_secundario": [],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "mancuerna",
+        "polea"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "extension_codo",
+      "es_bilateral": false,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e055",
+      "nombre": "Curl Francés / Extensión Barra EZ",
+      "musculo_principal": "triceps",
+      "musculo_secundario": [],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "barra_ez",
+        "banco"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "extension_codo",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "lesion_codo"
+      ],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e056",
+      "nombre": "Plancha Prona",
+      "musculo_principal": "core",
+      "musculo_secundario": [
+        "hombros",
+        "gluteos"
+      ],
+      "tipo": "movilidad",
+      "equipamiento": [
+        "bodyweight",
+        "disco"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "isometrico_core",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e057",
+      "nombre": "Plancha Lateral",
+      "musculo_principal": "oblicuos",
+      "musculo_secundario": [
+        "core",
+        "abductores"
+      ],
+      "tipo": "movilidad",
+      "equipamiento": [
+        "bodyweight"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "isometrico_core",
+      "es_bilateral": false,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e058",
+      "nombre": "Crunch con Disco / Peso",
+      "musculo_principal": "core",
+      "musculo_secundario": [],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "disco"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "flexion_tronco",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [
+        "hernia_discal_cervical"
+      ],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e059",
+      "nombre": "Rotaciones con Banda",
+      "musculo_principal": "oblicuos",
+      "musculo_secundario": [
+        "core"
+      ],
+      "tipo": "movilidad",
+      "equipamiento": [
+        "banda_elastica"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "rotacion_tronco",
+      "es_bilateral": false,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e060",
+      "nombre": "Elevación de Piernas",
+      "musculo_principal": "core",
+      "musculo_secundario": [
+        "flexores_cadera"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "bodyweight",
+        "banco"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "flexion_cadera",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [
+        "hernia_lumbar"
+      ],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e061",
+      "nombre": "Halo con Disco / Pesa Rusa",
+      "musculo_principal": "core",
+      "musculo_secundario": [
+        "hombros"
+      ],
+      "tipo": "movilidad",
+      "equipamiento": [
+        "disco",
+        "pesa_rusa"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "rotacion_hombro",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e062",
+      "nombre": "Vitalizaciones con Disco",
+      "musculo_principal": "core",
+      "musculo_secundario": [
+        "hombros"
+      ],
+      "tipo": "movilidad",
+      "equipamiento": [
+        "disco"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "rotacion_hombro",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e063",
+      "nombre": "Sentadilla Isométrica con Banda",
+      "musculo_principal": "cuadriceps",
+      "musculo_secundario": [
+        "gluteos",
+        "abductores"
+      ],
+      "tipo": "movilidad",
+      "equipamiento": [
+        "banda_elastica"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "isometrico_pierna",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e064",
+      "nombre": "Desplazamiento Lateral con Banda",
+      "musculo_principal": "gluteo_medio",
+      "musculo_secundario": [
+        "abductores"
+      ],
+      "tipo": "movilidad",
+      "equipamiento": [
+        "banda_elastica"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "abduccion_cadera",
+      "es_bilateral": false,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e065",
+      "nombre": "Step-ups / Subidas al Banco",
+      "musculo_principal": "cuadriceps",
+      "musculo_secundario": [
+        "gluteos",
+        "isquiotibiales"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "banco",
+        "mancuernas"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "sentadilla_unilateral",
+      "es_bilateral": false,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e066",
+      "nombre": "Buenos Días con Barra",
+      "musculo_principal": "lumbar",
+      "musculo_secundario": [
+        "isquiotibiales",
+        "gluteos"
+      ],
+      "tipo": "fuerza",
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "intermedio",
+      "patron_movimiento": "bisagra",
+      "es_bilateral": true,
+      "dificultad_tecnica": 3,
+      "contraindicado_en": [
+        "hernia_lumbar"
+      ],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e067",
+      "nombre": "Ranita en Máquina (Abducción Acostada)",
+      "musculo_principal": "gluteo_medio",
+      "musculo_secundario": [
+        "gluteos"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "maquina"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "abduccion_cadera",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e068",
+      "nombre": "Tijeras con Pesa Rusa",
+      "musculo_principal": "cuadriceps",
+      "musculo_secundario": [
+        "gluteos",
+        "isquiotibiales"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "pesa_rusa"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "sentadilla_unilateral",
+      "es_bilateral": false,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e069",
+      "nombre": "Remo en Máquina Isolateral 1 Brazo",
+      "musculo_principal": "dorsal",
+      "musculo_secundario": [
+        "biceps"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "maquina_isolateral"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "remo",
+      "es_bilateral": false,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e070",
+      "nombre": "Tirón Isolateral de Espalda Alta",
+      "musculo_principal": "dorsal",
+      "musculo_secundario": [
+        "biceps",
+        "romboides"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "maquina_isolateral"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "jalon",
+      "es_bilateral": false,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e071",
+      "nombre": "Press Isolateral de Pecho",
+      "musculo_principal": "pectoral",
+      "musculo_secundario": [
+        "triceps"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "maquina_isolateral"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "empuje_horizontal",
+      "es_bilateral": false,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e072",
+      "nombre": "Pullover con Mancuernas",
+      "musculo_principal": "dorsal",
+      "musculo_secundario": [
+        "pectoral",
+        "serratos"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "mancuerna",
+        "banco"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "jalon",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e073",
+      "nombre": "Encogimiento de Hombros (Shrugs)",
+      "musculo_principal": "trapecio",
+      "musculo_secundario": [],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "mancuernas",
+        "barra"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "elevacion_escapular",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e074",
+      "nombre": "Swing con Pesa Rusa",
+      "musculo_principal": "gluteos",
+      "musculo_secundario": [
+        "isquiotibiales",
+        "core"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "pesa_rusa"
+      ],
+      "nivel": "intermedio",
+      "patron_movimiento": "bisagra",
+      "es_bilateral": true,
+      "dificultad_tecnica": 3,
+      "contraindicado_en": [
+        "hernia_lumbar"
+      ],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e075",
+      "nombre": "Patadas Laterales en Máquina",
+      "musculo_principal": "gluteo_medio",
+      "musculo_secundario": [],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "maquina"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "abduccion_cadera",
+      "es_bilateral": false,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e076",
+      "nombre": "Patadas Internas en Máquina",
+      "musculo_principal": "aductores",
+      "musculo_secundario": [],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "maquina"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "aduccion_cadera",
+      "es_bilateral": false,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e077",
+      "nombre": "Extensión Glúteos en Máquina",
+      "musculo_principal": "gluteos",
+      "musculo_secundario": [
+        "isquiotibiales"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "maquina_gluteos"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "extension_cadera",
+      "es_bilateral": false,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e078",
+      "nombre": "Hiperextensión Inversa",
+      "musculo_principal": "gluteos",
+      "musculo_secundario": [
+        "lumbar",
+        "isquiotibiales"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "banco",
+        "pelota"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "extension_cadera",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e079",
+      "nombre": "Aperturas con Banda en Banco",
+      "musculo_principal": "pectoral",
+      "musculo_secundario": [
+        "deltoides_anterior"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "banda_elastica",
+        "banco"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "aduccion_horizontal",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e080",
+      "nombre": "Elevación de Talones 1 Pierna",
+      "musculo_principal": "gemelos",
+      "musculo_secundario": [],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "mancuerna",
+        "bodyweight"
+      ],
+      "nivel": "intermedio",
+      "patron_movimiento": "flexion_plantar",
+      "es_bilateral": false,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e081",
+      "nombre": "Press con Mancuernas Plano",
+      "musculo_principal": "pectoral",
+      "musculo_secundario": [
+        "triceps",
+        "deltoides_anterior"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "mancuernas",
+        "banco"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "empuje_horizontal",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e082",
+      "nombre": "Press Declinado con Barra",
+      "musculo_principal": "pectoral_inferior",
+      "musculo_secundario": [
+        "triceps",
+        "deltoides_anterior"
+      ],
+      "tipo": "fuerza",
+      "equipamiento": [
+        "barra",
+        "banco_declinado"
+      ],
+      "nivel": "intermedio",
+      "patron_movimiento": "empuje_declinado",
+      "es_bilateral": true,
+      "dificultad_tecnica": 3,
+      "contraindicado_en": [
+        "lesion_hombro"
+      ],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e083",
+      "nombre": "Press Declinado con Mancuernas",
+      "musculo_principal": "pectoral_inferior",
+      "musculo_secundario": [
+        "triceps"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "mancuernas",
+        "banco_declinado"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "empuje_declinado",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e084",
+      "nombre": "Fondos en Paralelas (Dips)",
+      "musculo_principal": "pectoral_inferior",
+      "musculo_secundario": [
+        "triceps",
+        "deltoides_anterior"
+      ],
+      "tipo": "fuerza",
+      "equipamiento": [
+        "paralelas",
+        "maquina_fondos"
+      ],
+      "nivel": "intermedio",
+      "patron_movimiento": "empuje_vertical",
+      "es_bilateral": true,
+      "dificultad_tecnica": 3,
+      "contraindicado_en": [
+        "lesion_hombro",
+        "lesion_codo"
+      ],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e085",
+      "nombre": "Cruce de Poleas (Crossover)",
+      "musculo_principal": "pectoral",
+      "musculo_secundario": [
+        "deltoides_anterior"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "poleas_cruzadas"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "aduccion_horizontal",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e086",
+      "nombre": "Dominadas (Pull-ups)",
+      "musculo_principal": "dorsal",
+      "musculo_secundario": [
+        "biceps",
+        "romboides",
+        "trapecio"
+      ],
+      "tipo": "fuerza",
+      "equipamiento": [
+        "barra_dominadas"
+      ],
+      "nivel": "avanzado",
+      "patron_movimiento": "jalon",
+      "es_bilateral": true,
+      "dificultad_tecnica": 4,
+      "contraindicado_en": [
+        "lesion_hombro"
+      ],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e087",
+      "nombre": "Dominadas Asistidas en Máquina",
+      "musculo_principal": "dorsal",
+      "musculo_secundario": [
+        "biceps",
+        "romboides"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "maquina_dominadas"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "jalon",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e088",
+      "nombre": "Face Pull con Cuerda",
+      "musculo_principal": "deltoides_posterior",
+      "musculo_secundario": [
+        "trapecio",
+        "romboides",
+        "manguito_rotador"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "polea_alta",
+        "cuerda"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "remo",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e089",
+      "nombre": "Remo en T (T-Bar Row)",
+      "musculo_principal": "dorsal",
+      "musculo_secundario": [
+        "biceps",
+        "romboides",
+        "trapecio"
+      ],
+      "tipo": "fuerza",
+      "equipamiento": [
+        "barra",
+        "soporte_t"
+      ],
+      "nivel": "intermedio",
+      "patron_movimiento": "remo",
+      "es_bilateral": true,
+      "dificultad_tecnica": 3,
+      "contraindicado_en": [
+        "hernia_lumbar"
+      ],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e090",
+      "nombre": "Press Militar con Barra (Overhead Press)",
+      "musculo_principal": "deltoides",
+      "musculo_secundario": [
+        "triceps",
+        "trapecio",
+        "core"
+      ],
+      "tipo": "fuerza",
+      "equipamiento": [
+        "barra",
+        "rack"
+      ],
+      "nivel": "intermedio",
+      "patron_movimiento": "empuje_vertical",
+      "es_bilateral": true,
+      "dificultad_tecnica": 4,
+      "contraindicado_en": [
+        "lesion_hombro",
+        "lesion_lumbar"
+      ],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e091",
+      "nombre": "Arnold Press",
+      "musculo_principal": "deltoides",
+      "musculo_secundario": [
+        "triceps",
+        "deltoides_anterior"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "mancuernas"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "empuje_vertical",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e092",
+      "nombre": "Curl Concentrado",
+      "musculo_principal": "biceps",
+      "musculo_secundario": [],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "mancuerna"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "flexion_codo",
+      "es_bilateral": false,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e093",
+      "nombre": "Curl Bíceps con Barra EZ",
+      "musculo_principal": "biceps",
+      "musculo_secundario": [
+        "braquial"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "barra_ez"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "flexion_codo",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e094",
+      "nombre": "Curl Predicador con Mancuerna",
+      "musculo_principal": "biceps",
+      "musculo_secundario": [],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "mancuerna",
+        "banco_scott"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "flexion_codo",
+      "es_bilateral": false,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e095",
+      "nombre": "Curl Bíceps en Banco Inclinado",
+      "musculo_principal": "biceps",
+      "musculo_secundario": [
+        "braquial"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "mancuernas",
+        "banco_inclinado"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "flexion_codo",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e096",
+      "nombre": "Curl Bíceps en Polea Baja",
+      "musculo_principal": "biceps",
+      "musculo_secundario": [],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "polea_baja"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "flexion_codo",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e097",
+      "nombre": "Fondos entre Bancos (Tríceps)",
+      "musculo_principal": "triceps",
+      "musculo_secundario": [
+        "pectoral_inferior",
+        "deltoides_anterior"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "banco"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "extension_codo",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [
+        "lesion_hombro"
+      ],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e098",
+      "nombre": "Patada Tríceps con Mancuerna (Kickback)",
+      "musculo_principal": "triceps",
+      "musculo_secundario": [],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "mancuerna",
+        "banco"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "extension_codo",
+      "es_bilateral": false,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e099",
+      "nombre": "Extensión Tríceps sobre Cabeza con Mancuerna",
+      "musculo_principal": "triceps",
+      "musculo_secundario": [],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "mancuerna"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "extension_codo",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "lesion_codo"
+      ],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e100",
+      "nombre": "Rueda Abdominal (Ab Wheel)",
+      "musculo_principal": "core",
+      "musculo_secundario": [
+        "hombros",
+        "dorsal"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "rueda_abdominal"
+      ],
+      "nivel": "intermedio",
+      "patron_movimiento": "extension_core",
+      "es_bilateral": true,
+      "dificultad_tecnica": 3,
+      "contraindicado_en": [
+        "hernia_lumbar"
+      ],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e101",
+      "nombre": "Russian Twist",
+      "musculo_principal": "oblicuos",
+      "musculo_secundario": [
+        "core"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "disco",
+        "pesa_rusa",
+        "bodyweight"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "rotacion_tronco",
+      "es_bilateral": false,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e102",
+      "nombre": "Crunch en Máquina",
+      "musculo_principal": "core",
+      "musculo_secundario": [],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "maquina_core"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "flexion_tronco",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e103",
+      "nombre": "Dead Bug",
+      "musculo_principal": "core",
+      "musculo_secundario": [
+        "flexores_cadera",
+        "hombros"
+      ],
+      "tipo": "movilidad",
+      "equipamiento": [
+        "bodyweight"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "estabilizacion_core",
+      "es_bilateral": false,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e104",
+      "nombre": "Bicycle Crunch",
+      "musculo_principal": "oblicuos",
+      "musculo_secundario": [
+        "core",
+        "flexores_cadera"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "bodyweight"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "rotacion_tronco",
+      "es_bilateral": false,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e105",
+      "nombre": "Hip Thrust 1 Pierna",
+      "musculo_principal": "gluteos",
+      "musculo_secundario": [
+        "isquiotibiales",
+        "core"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "barra",
+        "banco",
+        "mancuerna"
+      ],
+      "nivel": "intermedio",
+      "patron_movimiento": "empuje_cadera",
+      "es_bilateral": false,
+      "dificultad_tecnica": 3,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e106",
+      "nombre": "Sentadilla Frontal con Barra",
+      "musculo_principal": "cuadriceps",
+      "musculo_secundario": [
+        "gluteos",
+        "core",
+        "trapecio"
+      ],
+      "tipo": "fuerza",
+      "equipamiento": [
+        "barra",
+        "rack"
+      ],
+      "nivel": "avanzado",
+      "patron_movimiento": "sentadilla",
+      "es_bilateral": true,
+      "dificultad_tecnica": 5,
+      "contraindicado_en": [
+        "lesion_muñeca",
+        "lesion_rodilla"
+      ],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e107",
+      "nombre": "Peso Muerto con Barra Hexagonal (Trap Bar)",
+      "musculo_principal": "cuadriceps",
+      "musculo_secundario": [
+        "gluteos",
+        "isquiotibiales",
+        "lumbar",
+        "trapecio"
+      ],
+      "tipo": "fuerza",
+      "equipamiento": [
+        "barra_hexagonal"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "bisagra",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e108",
+      "nombre": "Abducción de Cadera en Polea de Pie",
+      "musculo_principal": "gluteo_medio",
+      "musculo_secundario": [
+        "gluteos"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "polea",
+        "tobillera"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "abduccion_cadera",
+      "es_bilateral": false,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e109",
+      "nombre": "Extensión de Cuádriceps 1 Pierna",
+      "musculo_principal": "cuadriceps",
+      "musculo_secundario": [],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "maquina_extension"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "extension_rodilla",
+      "es_bilateral": false,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [
+        "lesion_rodilla"
+      ],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e110",
+      "nombre": "Curl Femoral 1 Pierna",
+      "musculo_principal": "isquiotibiales",
+      "musculo_secundario": [
+        "gluteos"
+      ],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "maquina_curl_femoral"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "flexion_rodilla",
+      "es_bilateral": false,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e111",
+      "nombre": "Farmer's Walk",
+      "musculo_principal": "trapecio",
+      "musculo_secundario": [
+        "core",
+        "gluteos",
+        "antebrazo"
+      ],
+      "tipo": "fuerza",
+      "equipamiento": [
+        "mancuernas",
+        "barras_farmer"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "transporte",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e112",
+      "nombre": "Mountain Climbers",
+      "musculo_principal": "core",
+      "musculo_secundario": [
+        "flexores_cadera",
+        "hombros",
+        "gluteos"
+      ],
+      "tipo": "cardio",
+      "equipamiento": [
+        "bodyweight"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "estabilizacion_core",
+      "es_bilateral": false,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e113",
+      "nombre": "Peso Muerto Sumo con Barra",
+      "musculo_principal": "gluteos",
+      "musculo_secundario": [
+        "aductores",
+        "isquiotibiales",
+        "cuadriceps"
+      ],
+      "tipo": "fuerza",
+      "equipamiento": [
+        "barra"
+      ],
+      "nivel": "intermedio",
+      "patron_movimiento": "bisagra",
+      "es_bilateral": true,
+      "dificultad_tecnica": 3,
+      "contraindicado_en": [
+        "hernia_lumbar"
+      ],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e114",
+      "nombre": "Sentadilla con Salto (Jump Squat)",
+      "musculo_principal": "cuadriceps",
+      "musculo_secundario": [
+        "gluteos",
+        "gemelos"
+      ],
+      "tipo": "cardio",
+      "equipamiento": [
+        "bodyweight"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "sentadilla",
+      "es_bilateral": true,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [
+        "lesion_rodilla",
+        "lesion_tobillo"
+      ],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e115",
+      "nombre": "Tibial Raise",
+      "musculo_principal": "tibial_anterior",
+      "musculo_secundario": [],
+      "tipo": "hipertrofia",
+      "equipamiento": [
+        "bodyweight",
+        "mancuerna"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "flexion_dorsal",
+      "es_bilateral": true,
+      "dificultad_tecnica": 1,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    },
+    {
+      "id": "e116",
+      "nombre": "Pallof Press",
+      "musculo_principal": "core",
+      "musculo_secundario": [
+        "oblicuos",
+        "hombros"
+      ],
+      "tipo": "movilidad",
+      "equipamiento": [
+        "polea",
+        "banda_elastica"
+      ],
+      "nivel": "principiante",
+      "patron_movimiento": "estabilizacion_core",
+      "es_bilateral": false,
+      "dificultad_tecnica": 2,
+      "contraindicado_en": [],
+      "media": {
+        "thumbnail": null,
+        "gif": null,
+        "imagen": null,
+        "video_url": null,
+        "fuente": null
+      },
+      "disciplina": "musculacion"
+    }
+  ]
+}

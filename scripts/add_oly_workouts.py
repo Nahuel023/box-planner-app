@@ -1,10 +1,19 @@
 """
 Agrega ejercicios OLY (oly041-oly068), rutina r20 y 10 días de
-routine_exercises al workout_database.json existente.
-"""
-import json, pathlib, sys
+routine_exercises.
 
-DB_PATH = pathlib.Path(__file__).parent.parent / "workout_database.json"
+Escribe en:
+  workout_database/oly.json    ← ejercicios nuevos
+  workout_database/shared.json ← rutina r20 + routine_exercises
+
+Después de ejecutar, correr: python scripts/build_db.py
+"""
+import json, pathlib, subprocess, sys
+
+ROOT       = pathlib.Path(__file__).parent.parent
+OLY_PATH   = ROOT / "workout_database" / "oly.json"
+SHARED_PATH = ROOT / "workout_database" / "shared.json"
+BUILD_SCRIPT = pathlib.Path(__file__).parent / "build_db.py"
 
 # ── NUEVOS EJERCICIOS ────────────────────────────────────────────────────────
 
@@ -379,38 +388,51 @@ NEW_ROUTINE_EXERCISES = [
 # ── EJECUTAR ─────────────────────────────────────────────────────────────────
 
 def main():
-  print(f"Leyendo {DB_PATH}...")
-  with open(DB_PATH, encoding="utf-8") as f:
-    db = json.load(f)
+  # ── oly.json ──────────────────────────────────────────────────────────────
+  print(f"Leyendo {OLY_PATH}...")
+  with open(OLY_PATH, encoding="utf-8") as f:
+    oly_db = json.load(f)
 
-  # Verificar que los IDs nuevos no existen
-  existing_ids = {e["id"] for e in db["exercises"]}
+  existing_ids = {e["id"] for e in oly_db["exercises"]}
+  added_ex = 0
   for e in NEW_EXERCISES:
     if e["id"] in existing_ids:
       print(f"  SKIP (ya existe): {e['id']}")
     else:
-      db["exercises"].append(e)
+      oly_db["exercises"].append(e)
+      added_ex += 1
       print(f"  + ejercicio: {e['id']} — {e['nombre']}")
 
-  existing_routine_ids = {r["id"] for r in db["routines"]}
+  with open(OLY_PATH, "w", encoding="utf-8") as f:
+    json.dump(oly_db, f, ensure_ascii=False, indent=2)
+  print(f"  oly.json: {len(oly_db['exercises'])} ejercicios totales")
+
+  # ── shared.json ───────────────────────────────────────────────────────────
+  print(f"\nLeyendo {SHARED_PATH}...")
+  with open(SHARED_PATH, encoding="utf-8") as f:
+    shared = json.load(f)
+
+  existing_routine_ids = {r["id"] for r in shared.get("routines", [])}
   if NEW_ROUTINE["id"] in existing_routine_ids:
     print(f"  SKIP rutina (ya existe): {NEW_ROUTINE['id']}")
   else:
-    db["routines"].append(NEW_ROUTINE)
+    shared.setdefault("routines", []).append(NEW_ROUTINE)
     print(f"  + rutina: {NEW_ROUTINE['id']} — {NEW_ROUTINE['nombre']}")
 
-  added_rx = 0
-  for row in NEW_ROUTINE_EXERCISES:
-    db["routine_exercises"].append(row)
-    added_rx += 1
-  print(f"  + {added_rx} routine_exercises para r20")
+  existing_rx_count = len([r for r in shared.get("routine_exercises", [])
+                            if r["routine_id"] == NEW_ROUTINE["id"]])
+  if existing_rx_count == 0:
+    shared.setdefault("routine_exercises", []).extend(NEW_ROUTINE_EXERCISES)
+    print(f"  + {len(NEW_ROUTINE_EXERCISES)} routine_exercises para {NEW_ROUTINE['id']}")
+  else:
+    print(f"  SKIP routine_exercises (ya existen {existing_rx_count} para {NEW_ROUTINE['id']})")
 
-  with open(DB_PATH, "w", encoding="utf-8") as f:
-    json.dump(db, f, ensure_ascii=False, indent=2)
-  print(f"\nArchivo guardado: {DB_PATH}")
-  print(f"Total ejercicios: {len(db['exercises'])}")
-  print(f"Total rutinas: {len(db['routines'])}")
-  print(f"Total routine_exercises: {len(db['routine_exercises'])}")
+  with open(SHARED_PATH, "w", encoding="utf-8") as f:
+    json.dump(shared, f, ensure_ascii=False, indent=2)
+
+  # ── Rebuild workout_database.json ─────────────────────────────────────────
+  print(f"\nRegenerando workout_database.json...")
+  subprocess.run([sys.executable, str(BUILD_SCRIPT)], check=True)
 
 if __name__ == "__main__":
   main()
