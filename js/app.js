@@ -150,6 +150,7 @@ async function loadData() {
     await loadLesionesCache(pin, rol);
     state.rms     = getRMsDemo(pin);
     state.rutinas = getRutinasFinal(pin);
+    buildRMsFromRutinas();  // poblar state.rms con ejercicios de la rutina asignada
   } else if (isDemoMode()) {
     state.rms     = getRMsDemo(pin);
     state.rutinas = getRutinasFinal(pin);

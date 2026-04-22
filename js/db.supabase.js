@@ -317,6 +317,14 @@ if (isSupabaseMode()) {
     }
   };
 
+  /* ── getRutinaAsignada ── */
+  window.getRutinaAsignada = function(alumnoPin) {
+    const PIN = alumnoPin.toUpperCase();
+    const arr = _sbCache.asignaciones[PIN];
+    if (!arr || !arr.length) return null;
+    return arr[0].rutinaId;
+  };
+
   /* ── getHistorialRutinas ── */
   window.getHistorialRutinas = function(alumnoPin) {
     return (_sbCache.asignaciones[alumnoPin.toUpperCase()] || []).slice();

@@ -112,6 +112,13 @@ async function actualizarEjercicio(id, campos) {
   }
 }
 
+/* ── Buscar ejercicio por nombre exacto ──────────────────── */
+function getEjercicioByNombre(nombre) {
+  const q = (nombre || '').toLowerCase().trim();
+  if (!q) return null;
+  return Object.values(_ejerciciosCache).find(e => e.nombre.toLowerCase() === q) || null;
+}
+
 /* ── Desactivar ejercicio (soft delete) ──────────────────── */
 async function desactivarEjercicio(id) {
   await actualizarEjercicio(id, { activo: false });

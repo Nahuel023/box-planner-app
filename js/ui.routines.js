@@ -620,12 +620,17 @@ function genActualizarDisc() {
   if (!entrada) return;
 
   /* Leer disciplinas del alumno (array de ids) */
-  const localData  = JSON.parse(localStorage.getItem('bp_nuevos_usuarios') || '{}');
-  const localUser  = localData[pin.toUpperCase()];
-  const override   = JSON.parse(localStorage.getItem('bp_demo_overrides') || '{}')[pin.toUpperCase()];
-  const demoAlumno = (typeof ALUMNOS !== 'undefined') ? ALUMNOS.find(a => a.id.toUpperCase() === pin.toUpperCase()) : null;
-
-  const disciplinas = localUser?.disciplinas || override?.disciplinas || demoAlumno?.disciplinas || [];
+  let disciplinas = [];
+  if (typeof isSupabaseMode === 'function' && isSupabaseMode()) {
+    const sbUser = getUsuariosLocales().find(u => u.pin === pin.toUpperCase());
+    disciplinas = sbUser?.disciplinas || [];
+  } else {
+    const localData  = JSON.parse(localStorage.getItem('bp_nuevos_usuarios') || '{}');
+    const localUser  = localData[pin.toUpperCase()];
+    const override   = JSON.parse(localStorage.getItem('bp_demo_overrides') || '{}')[pin.toUpperCase()];
+    const demoAlumno = (typeof ALUMNOS !== 'undefined') ? ALUMNOS.find(a => a.id.toUpperCase() === pin.toUpperCase()) : null;
+    disciplinas = localUser?.disciplinas || override?.disciplinas || demoAlumno?.disciplinas || [];
+  }
   const sel = document.getElementById('genDisc');
   if (sel && disciplinas.length) sel.value = disciplinas[0];
 }

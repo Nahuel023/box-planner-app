@@ -209,3 +209,74 @@ function loadMetrics(alumnoId) {
   state.metricas = getMetricsByAlumno(alumnoId);
   updateRMHistorial();
 }
+
+/* ════════════════════════════════════════════════════════════
+   buildRMsFromRutinas
+   ────────────────────────────────────────────────────────────
+   Lee state.rutinas y añade a state.rms una entrada por cada
+   ejercicio de la rutina que aún no esté presente.
+
+   Llamar ANTES de loadMetrics para que updateRMHistorial()
+   rellene los valores históricos de esas entradas.
+
+   Orden: ejercicios de la rutina primero (en el orden del día
+   y bloque), ejercicios históricos sin rutina al final.
+   ════════════════════════════════════════════════════════════ */
+function buildRMsFromRutinas() {
+  if (!state.rutinas || !state.rutinas.length) return;
+
+  /* Pre-cargar IDs y nombres ya existentes para evitar duplicados */
+  const seenIds   = new Set(state.rms.map(r => (r._ejercicioId || '').toLowerCase()));
+  const seenNames = new Set(state.rms.map(r => r.ejercicio.toLowerCase()));
+
+  const nuevos = [];
+  const seenNuevos = new Set();  // evitar duplicados dentro del mismo pase
+
+  state.rutinas.forEach(dia => {
+    (dia.secs || []).forEach(sec => {
+      (sec.items || []).forEach(item => {
+        if (!item || !item.trim()) return;
+        /* Saltar líneas que son notas/anotaciones (sangría o guiones) */
+        if (/^[\s─\-—⏱]/.test(item)) return;
+
+        /* Quitar prefijo "3×8 " (también "3x8 " y "3 x 8 ") */
+        const nombre = item.trim()
+          .replace(/^\d+\s*[×xX×]\s*\d+[+]?\s+/, '')
+          .trim();
+
+        if (!nombre || nombre.length < 2) return;
+        const key = nombre.toLowerCase();
+
+        if (seenNames.has(key) || seenNuevos.has(key)) return;
+        seenNuevos.add(key);
+
+        /* Buscar en caché Supabase primero, luego en array demo */
+        let ejDef = (typeof getEjercicioByNombre === 'function')
+          ? getEjercicioByNombre(nombre)
+          : null;
+        if (!ejDef && typeof EJERCICIOS !== 'undefined') {
+          const demo = EJERCICIOS.find(e => e.nombre.toLowerCase() === key);
+          if (demo) ejDef = { id: demo.id, nombre: demo.nombre, musculo_principal: demo.categoria || '' };
+        }
+
+        const ejId = ejDef ? ejDef.id : nombre;
+        if (seenIds.has(ejId.toLowerCase())) return;
+
+        nuevos.push({
+          _ejercicioId: ejId,
+          ejercicio:    ejDef ? ejDef.nombre : nombre,
+          cat:          ejDef ? (ejDef.musculo_principal || '') : '',
+          meses:        Array(12).fill(null),
+          mejor:        null,
+          prog:         null,
+          _fromRutina:  true,
+        });
+      });
+    });
+  });
+
+  /* Anteponer: rutina primero, históricos después */
+  if (nuevos.length) {
+    state.rms = [...nuevos, ...state.rms];
+  }
+}

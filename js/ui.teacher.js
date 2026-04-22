@@ -259,24 +259,32 @@ function _renderPerfilSection(pin) {
   const entrada = state.panelAlumnos.find(p => p.alumno.pin === pin);
   if (!entrada) return '';
 
-  /* Obtener ids activos del alumno: probar bp_nuevos_usuarios primero, luego demo overrides */
-  const localData = JSON.parse(localStorage.getItem('bp_nuevos_usuarios') || '{}');
-  const localUser = localData[pin.toUpperCase()];
-  const override  = JSON.parse(localStorage.getItem('bp_demo_overrides') || '{}')[pin.toUpperCase()];
-  const demoAlumno = (typeof ALUMNOS !== 'undefined') ? ALUMNOS.find(a => a.id.toUpperCase() === pin.toUpperCase()) : null;
-
   let activeDisciplinas = [];
   let activeDias        = 3;
 
-  if (localUser) {
-    activeDisciplinas = localUser.disciplinas || [];
-    activeDias        = localUser.dias !== undefined ? localUser.dias : 3;
-  } else if (override) {
-    activeDisciplinas = override.disciplinas || [];
-    activeDias        = override.dias !== undefined ? override.dias : (demoAlumno ? demoAlumno.diasPorSemana : 3);
-  } else if (demoAlumno) {
-    activeDisciplinas = demoAlumno.disciplinas || [];
-    activeDias        = demoAlumno.diasPorSemana;
+  if (typeof isSupabaseMode === 'function' && isSupabaseMode()) {
+    /* En modo Supabase, getUsuariosLocales() devuelve filas crudas con disciplinas/dias */
+    const sbUser = getUsuariosLocales().find(u => u.pin === pin.toUpperCase());
+    if (sbUser) {
+      activeDisciplinas = sbUser.disciplinas || [];
+      activeDias        = sbUser.dias !== undefined ? sbUser.dias : 3;
+    }
+  } else {
+    const localData  = JSON.parse(localStorage.getItem('bp_nuevos_usuarios') || '{}');
+    const localUser  = localData[pin.toUpperCase()];
+    const override   = JSON.parse(localStorage.getItem('bp_demo_overrides') || '{}')[pin.toUpperCase()];
+    const demoAlumno = (typeof ALUMNOS !== 'undefined') ? ALUMNOS.find(a => a.id.toUpperCase() === pin.toUpperCase()) : null;
+
+    if (localUser) {
+      activeDisciplinas = localUser.disciplinas || [];
+      activeDias        = localUser.dias !== undefined ? localUser.dias : 3;
+    } else if (override) {
+      activeDisciplinas = override.disciplinas || [];
+      activeDias        = override.dias !== undefined ? override.dias : (demoAlumno ? demoAlumno.diasPorSemana : 3);
+    } else if (demoAlumno) {
+      activeDisciplinas = demoAlumno.disciplinas || [];
+      activeDias        = demoAlumno.diasPorSemana;
+    }
   }
 
   const checkboxes = (typeof DISCIPLINAS !== 'undefined' ? DISCIPLINAS : []).map(d => `
