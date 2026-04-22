@@ -1402,6 +1402,8 @@ textarea.rform-input { resize: vertical; line-height: 1.5; }
 .bp-toast--show {
   opacity: 1; transform: translateX(-50%) translateY(0);
 }
+.bp-toast[data-type="error"] { background: var(--red);  color: #fff; }
+.bp-toast[data-type="warn"]  { background: #f59e0b;     color: #000; }
 </style>
 </head>
 <body>
@@ -1707,6 +1709,7 @@ textarea.rform-input { resize: vertical; line-height: 1.5; }
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="js/error.handler.js"></script>
 <script src="js/db.demo.js"></script>
 <script src="js/db.routines.js"></script>
 <script src="js/data.js"></script>

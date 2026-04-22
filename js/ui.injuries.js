@@ -218,6 +218,12 @@ async function handleCrearLesion(pin) {
   const apto         = document.getElementById('clApto')?.checked !== false;
   const notas        = (document.getElementById('clNotas')?.value       || '').trim();
 
+  const v = validateFields([
+    { value: zona, label: 'Zona corporal', required: true },
+    { value: tipo, label: 'Tipo / Diagnóstico', required: true },
+  ]);
+  if (!v.ok) return;
+
   const restricciones = restStr
     ? restStr.split(',').map(s => s.trim()).filter(Boolean)
     : (ZONA_RESTRICCIONES[zona] || []);
@@ -230,7 +236,6 @@ async function handleCrearLesion(pin) {
     closeCrearLesionModal();
     showToast('✓ Lesión registrada');
 
-    /* Actualizar sección en modal de detalle si está abierto */
     const wrap = document.getElementById(`lesionesWrap_${pin}`);
     if (wrap) {
       const temp = document.createElement('div');
@@ -239,8 +244,7 @@ async function handleCrearLesion(pin) {
       if (nuevo) wrap.innerHTML = nuevo.innerHTML;
     }
   } catch (e) {
-    showToast('Error al guardar la lesión');
-    console.error('handleCrearLesion:', e);
+    handleError(e, 'handleCrearLesion');
   }
 }
 
@@ -365,7 +369,6 @@ async function handleEditarLesion(lesionId, pin) {
     await actualizarLesion(lesionId, campos);
     closeEditarLesionModal();
     showToast('✓ Lesión actualizada');
-    /* Refrescar sección en modal de detalle */
     const wrap = document.getElementById(`lesionesWrap_${pin}`);
     if (wrap) {
       const temp = document.createElement('div');
@@ -374,8 +377,7 @@ async function handleEditarLesion(lesionId, pin) {
       if (nuevo) wrap.innerHTML = nuevo.innerHTML;
     }
   } catch (e) {
-    showToast('Error al actualizar');
-    console.error('handleEditarLesion:', e);
+    handleError(e, 'handleEditarLesion');
   }
 }
 

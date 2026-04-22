@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "@supabase/supabase-js": "^2.104.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.44.0"
+  },
+  "scripts": {
+    "test":        "playwright test",
+    "test:ui":     "playwright test --ui",
+    "test:report": "playwright show-report",
+    "serve":       "npx serve . -p 8080"
+  }
+}
