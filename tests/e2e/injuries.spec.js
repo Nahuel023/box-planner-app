@@ -46,7 +46,7 @@ test.describe('Módulo de lesiones — docente', () => {
     await page.selectOption('#clGravedad', 'moderada');
     await page.click('button:has-text("Guardar lesión")');
     await expect(page.locator('#crearLesionModal')).not.toBeVisible({ timeout: 5000 });
-    await expect(page.locator('text=Esguince test')).toBeVisible();
+    await expect(page.locator('.lesion-card-meta').filter({ hasText: 'Esguince test' }).first()).toBeVisible();
   });
 
   test('abre modal editar lesión', async ({ page }) => {

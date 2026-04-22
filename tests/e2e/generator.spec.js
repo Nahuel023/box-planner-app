@@ -8,6 +8,8 @@ test.describe('Generador automático de rutinas', () => {
     await page.fill('#pinInput', PIN_DOCENTE);
     await page.click('.login-btn');
     await expect(page.locator('#docenteScreen')).toBeVisible({ timeout: 8000 });
+    /* Esperar que loadDocenteData() (y loadEjerciciosCache) terminen */
+    await expect(page.locator('.alumno-card, [onclick*="openAlumnoDetail"]').first()).toBeVisible({ timeout: 10_000 });
     await page.click('#navDocRutinas');
     await expect(page.locator('#sectionDocRutinas')).toBeVisible();
   });
