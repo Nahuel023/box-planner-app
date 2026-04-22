@@ -82,6 +82,11 @@ function _alumnoFromDb(u) {
    ══════════════════════════════════════════════════════════ */
 async function initSupabaseCache(pin, rol) {
   if (!isSupabaseMode()) return;
+  /* Limpiar antes de recargar para evitar duplicados en re-login */
+  Object.keys(_sbCache.usuarios).forEach(k => delete _sbCache.usuarios[k]);
+  Object.keys(_sbCache.rutinas).forEach(k => delete _sbCache.rutinas[k]);
+  Object.keys(_sbCache.asignaciones).forEach(k => delete _sbCache.asignaciones[k]);
+  Object.keys(_sbCache.metricas).forEach(k => delete _sbCache.metricas[k]);
   const sb  = _getSb();
   const PIN = pin.toUpperCase();
 
@@ -352,6 +357,45 @@ if (isSupabaseMode()) {
   window.getMetricsByAlumno = function(alumnoId) {
     const arr = _sbCache.metricas[alumnoId.toUpperCase()] || [];
     return arr.slice().sort((a, b) => a.fecha.localeCompare(b.fecha));
+  };
+
+  /* ── migrateLocalMetrics ─────────────────────────────────────
+     Sube a Supabase las métricas que quedaron en localStorage
+     (guardadas antes de conectar el backend real) y limpia la clave
+     local para que no se repitan en futuros logins.
+     ─────────────────────────────────────────────────────────── */
+  window.migrateLocalMetrics = async function(alumnoId) {
+    const AID = alumnoId.toUpperCase();
+    const key = 'bp_metrics_' + AID;
+    let local;
+    try { local = JSON.parse(localStorage.getItem(key) || 'null'); } catch { local = null; }
+    if (!local || !local.length) return;
+
+    const sb = _getSb();
+    const rows = local.map(m => ({
+      alumno_id:    AID,
+      ejercicio_id: m.ejercicioId,
+      valor:        Number(m.valor),
+      tipo:         m.tipo,
+      fecha:        m.fecha || new Date().toISOString().slice(0, 10),
+      notas:        m.notas  || '',
+      estado:       m.estado || '',
+    }));
+
+    const { error } = await sb.from('bp_metricas').insert(rows);
+    if (error) {
+      console.error('migrateLocalMetrics:', error);
+      return;
+    }
+
+    /* Éxito: recargar cache desde Supabase y borrar localStorage */
+    const { data: metricas } = await sb.from('bp_metricas')
+      .select('*').eq('alumno_id', AID).order('fecha', { ascending: true });
+    if (metricas) {
+      _sbCache.metricas[AID] = metricas.map(_metricaFromDb);
+    }
+    localStorage.removeItem(key);
+    console.log(`[migrate] ${rows.length} métricas migradas a Supabase para ${AID}`);
   };
 
 } /* end if (isSupabaseMode()) */

@@ -145,6 +145,7 @@ async function loadData() {
 
   if (isSupabaseMode()) {
     await initSupabaseCache(pin, rol);
+    await migrateLocalMetrics(pin);
     await loadEjerciciosCache();
     await loadLesionesCache(pin, rol);
     state.rms     = getRMsDemo(pin);
