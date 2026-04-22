@@ -305,6 +305,17 @@ function duplicarRutina(id) {
     _custom:      true,
     dias: (original.dias || []).map(d => {
       const diaLabel = d.label || d.diaSemana || 'Día';
+      /* Formato generador: tiene ejercicios[] en lugar de bloques[] */
+      if (d.ejercicios) {
+        return {
+          label: diaLabel || `Día ${d.dia} — ${d.titulo || ''}`,
+          bloques: [{
+            tipo:     _bloqueTypeFromBloque(d.bloque),
+            label:    d.titulo || '',
+            contenido:(d.ejercicios || []).map(e => `${e.series}×${e.reps} ${e.nombre}`).join('\n'),
+          }],
+        };
+      }
       /* Demo: tiene items[] por bloque → convertir a contenido */
       if (d.bloques && d.bloques[0]?.items !== undefined) {
         return {
@@ -698,12 +709,42 @@ function _genRenderPreview(rutina, pin) {
 
 function confirmarGuardarGenerada(pin, asignar = false) {
   if (!_rutinaGenerada) return;
-  saveCustomRutina(_rutinaGenerada);
-  if (asignar && pin) asignarRutina(pin, _rutinaGenerada.id);
+
+  /* Convertir formato generador { ejercicios[] } → formato editor { bloques[] }
+     para que openEditarRutinaModal pueda pre-poblar el formulario correctamente. */
+  const rutinaParaGuardar = {
+    ..._rutinaGenerada,
+    dias: (_rutinaGenerada.dias || []).map(d => ({
+      label: `Día ${d.dia} — ${d.titulo}`,
+      bloques: [{
+        tipo:     _bloqueTypeFromBloque(d.bloque),
+        label:    d.titulo || '',
+        contenido:(d.ejercicios || []).map(e => `${e.series}×${e.reps} ${e.nombre}`).join('\n'),
+      }],
+    })),
+  };
+
+  saveCustomRutina(rutinaParaGuardar);
+  if (asignar && pin) asignarRutina(pin, rutinaParaGuardar.id);
   closeRutinaModalDirect();
   renderDocenteRutinas();
   const msg = asignar
     ? `✓ Rutina generada y asignada a ${state.panelAlumnos.find(p => p.alumno.pin === pin)?.alumno.nombre || pin}`
-    : `✓ "${_rutinaGenerada.nombre}" guardada`;
+    : `✓ "${rutinaParaGuardar.nombre}" guardada`;
   showToast(msg);
+}
+
+/* Mapea el bloque del generador al tipo de bloque del editor */
+function _bloqueTypeFromBloque(bloque) {
+  const map = {
+    push: 'strength',  pull: 'strength',     legs: 'strength',
+    upper_push: 'strength', upper_pull: 'strength', lower: 'strength',
+    chest_tri: 'strength',  back_bi: 'strength',    shoulders: 'strength',
+    fullbody: 'strength',   strength: 'strength',
+    metcon: 'metcon',       conditioning: 'metcon',
+    skill: 'metcon',        recovery: 'core',        core: 'core',
+    snatch: 'wl',           clean_jerk: 'wl',        technique: 'wl',
+    accessory: 'core',
+  };
+  return map[bloque] || 'metcon';
 }
