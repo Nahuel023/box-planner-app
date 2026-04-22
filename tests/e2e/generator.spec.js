@@ -14,9 +14,9 @@ test.describe('Generador automático de rutinas', () => {
 
   test('botón Generar abre el modal', async ({ page }) => {
     await page.click('button:has-text("Generar")');
-    /* El generador reutiliza #rutinaModal */
     await expect(page.locator('#rutinaModal')).toHaveClass(/modal-open/, { timeout: 5000 });
-    await expect(page.getByRole('heading', { name: 'Generar rutina' })).toBeVisible();
+    /* rutinaModalTitulo es un <span>, no un heading */
+    await expect(page.locator('#rutinaModalTitulo')).toHaveText('Generar rutina');
   });
 
   test('modal tiene todos los campos requeridos', async ({ page }) => {
@@ -37,11 +37,11 @@ test.describe('Generador automático de rutinas', () => {
     await expect(page.locator('.gen-preview-day').first()).toBeVisible({ timeout: 10_000 });
   });
 
-  test('genera rutina musculación principiante 4 días', async ({ page }) => {
+  test('genera rutina CrossFit avanzado 4 días', async ({ page }) => {
     await page.click('button:has-text("Generar")');
     await expect(page.locator('#rutinaModal')).toHaveClass(/modal-open/);
-    await page.selectOption('#genDisc', 'musculacion');
-    await page.selectOption('#genNivel', 'principiante');
+    await page.selectOption('#genDisc', 'crossfit');
+    await page.selectOption('#genNivel', 'avanzado');
     await page.selectOption('#genFrec', '4');
     await page.click('button:has-text("Generar rutina")');
     await expect(page.locator('.gen-preview-day').first()).toBeVisible({ timeout: 10_000 });

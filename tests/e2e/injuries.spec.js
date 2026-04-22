@@ -50,7 +50,8 @@ test.describe('Módulo de lesiones — docente', () => {
   });
 
   test('abre modal editar lesión', async ({ page }) => {
-    const editBtn = page.locator('button:has-text("Editar")').first();
+    /* Selector específico para no confundir con botones Editar de rutinas */
+    const editBtn = page.locator('button[onclick*="openEditarLesionModal"]').first();
     if (!await editBtn.count()) test.skip();
     await editBtn.click();
     await expect(page.locator('#editarLesionModal')).toBeVisible();
