@@ -19,6 +19,13 @@
 const CONFIG = {
   SHEET_ID: "<<ID_DE_TU_GOOGLE_SHEET>>",
 
+  /* ── Supabase (reemplaza localStorage en producción) ─────
+     1. Copiá la URL y la anon key desde Supabase → Settings → API
+     2. Pegalas aquí y el modo Supabase se activa automáticamente
+     ──────────────────────────────────────────────────────── */
+  SUPABASE_URL:      "https://lxzdsrqehwchycwicvwr.supabase.co",
+  SUPABASE_ANON_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx4emRzcnFlaHdjaHljd2ljdndyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ4MDU2MTcsImV4cCI6MjA5MDM4MTYxN30.6mHmwezGchXTnUa2q9T6qbRgW18yGdt1TRdgR5Fg8lc",
+
   /* Nombres EXACTOS de las hojas en Google Sheets */
   HOJA_ALUMNOS: "👥 Alumnos",
   HOJA_RMS:     "📊 RMs Maestro",
@@ -64,7 +71,12 @@ const CONFIG = {
    Si el SHEET_ID no fue configurado → modo demo con datos locales.
    ─────────────────────────────────────────────────────────── */
 function isDemoMode() {
-  return CONFIG.SHEET_ID === "<<ID_DE_TU_GOOGLE_SHEET>>";
+  return CONFIG.SHEET_ID === "<<ID_DE_TU_GOOGLE_SHEET>>"
+      && CONFIG.SUPABASE_URL === "<<TU_SUPABASE_URL>>";
+}
+
+function isSupabaseMode() {
+  return CONFIG.SUPABASE_URL !== "<<TU_SUPABASE_URL>>";
 }
 
 /* ── Utilidades CSV ──────────────────────────────────────────*/

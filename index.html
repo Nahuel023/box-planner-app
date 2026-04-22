@@ -884,6 +884,158 @@ textarea.rform-input { resize: vertical; line-height: 1.5; }
   padding: .25rem .4rem; outline: none;
 }
 
+/* ── Lesiones (teacher) ───────────────────────────────── */
+.lesion-card {
+  background: var(--card); border-radius: 10px;
+  padding: .85rem 1rem; margin-bottom: .7rem;
+  border: 1px solid var(--border2);
+}
+.lesion-card--resuelta { opacity: .45; }
+.lesion-card-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: .3rem;
+}
+.lesion-zona { padding-left: .55rem; font-weight: 700; font-size: .88rem; }
+.lesion-badge {
+  font-size: .7rem; padding: .18rem .5rem;
+  border-radius: 99px; font-weight: 700;
+}
+.lesion-badge--activa { background: rgba(239,68,68,.12); color: var(--red); }
+.lesion-badge--ok     { background: rgba(34,197,94,.12);  color: var(--green); }
+.lesion-card-meta { font-size: .75rem; color: var(--muted); margin-top: .2rem; }
+.lesion-nota {
+  font-size: .78rem; color: var(--text); font-style: italic;
+  margin-top: .35rem; border-left: 2px solid var(--border2); padding-left: .5rem;
+}
+.lesion-hist-title {
+  font-size: .72rem; color: var(--muted); margin: 1rem 0 .4rem;
+  text-transform: uppercase; letter-spacing: .06em;
+}
+
+/* ── Lesiones (alumno) ────────────────────────────────── */
+.lesion-alumno-card {
+  background: var(--card); border-radius: 12px;
+  padding: 1rem; margin-bottom: .85rem;
+  border: 1px solid var(--border2);
+}
+.lesion-alumno-header {
+  display: flex; justify-content: space-between;
+  align-items: flex-start; margin-bottom: .5rem;
+}
+.lesion-apto {
+  font-size: .7rem; padding: .2rem .55rem;
+  border-radius: 99px; font-weight: 700;
+  background: rgba(34,197,94,.12); color: var(--green);
+  white-space: nowrap;
+}
+.lesion-apto--no { background: rgba(239,68,68,.12); color: var(--red); }
+.lesion-seguimiento-wrap {
+  margin-top: .75rem; border-top: 1px solid var(--border2); padding-top: .75rem;
+}
+.lesion-seguimiento-ok { font-size: .82rem; color: var(--green); font-weight: 600; padding: .4rem 0; }
+.lesion-ok-box {
+  background: var(--card); border-radius: 12px;
+  padding: 2.5rem 1rem; text-align: center;
+  border: 1px solid var(--border2); margin-top: 1rem;
+}
+
+/* ── Seguimiento sliders ──────────────────────────────── */
+.seg-form-title {
+  font-size: .75rem; color: var(--muted); font-weight: 700;
+  text-transform: uppercase; letter-spacing: .06em; margin-bottom: .65rem;
+}
+.seg-slider-row { display: flex; align-items: center; gap: .6rem; margin-bottom: .45rem; }
+.seg-slider-label { flex: 1.5; font-size: .78rem; color: var(--text); }
+.seg-slider { flex: 2; accent-color: var(--accent); cursor: pointer; height: 4px; }
+.seg-slider-val {
+  width: 1.6rem; text-align: right;
+  font-size: .82rem; font-weight: 700; color: var(--accent);
+}
+
+/* ── Sparkline evolución lesión ───────────────────────── */
+.spark-wrap {
+  margin-top: .85rem; padding-top: .75rem;
+  border-top: 1px solid var(--border2);
+}
+.spark-title {
+  font-size: .7rem; color: var(--muted); font-weight: 700;
+  text-transform: uppercase; letter-spacing: .06em; margin-bottom: .3rem;
+}
+.spark-legend {
+  display: flex; gap: .9rem; font-size: .72rem; margin-bottom: .4rem;
+}
+
+/* ── Generador de rutinas ─────────────────────────────── */
+.gen-preview-day {
+  background: rgba(255,255,255,.03); border-radius: 8px;
+  padding: .65rem .85rem; margin-bottom: .5rem;
+  border: 1px solid var(--border2);
+}
+.gen-preview-day-title { font-weight: 700; font-size: .87rem; margin-bottom: .35rem; color: var(--accent); }
+.gen-preview-ej { font-size: .78rem; color: var(--text); padding: .12rem 0; display: flex; gap: .5rem; }
+.gen-preview-ej-series { color: var(--muted); flex-shrink: 0; min-width: 3rem; }
+.gen-error-box {
+  background: rgba(239,68,68,.08); border: 1px solid rgba(239,68,68,.3);
+  border-radius: 8px; padding: .75rem 1rem;
+  font-size: .83rem; color: var(--red); margin: .75rem 0;
+}
+
+/* ── Buscador inline en builder de rutinas ────────────── */
+.rbusq-wrap { position: relative; margin-bottom: .45rem; }
+.rbusq-dropdown {
+  position: absolute; top: 100%; left: 0; right: 0; z-index: 300;
+  background: var(--bg3); border: 1px solid var(--border2);
+  border-top: none; border-radius: 0 0 8px 8px;
+  max-height: 200px; overflow-y: auto;
+  box-shadow: 0 8px 24px rgba(0,0,0,.4);
+}
+.rbusq-item {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: .45rem .7rem; cursor: pointer; font-size: .82rem;
+  border-bottom: 1px solid var(--border);
+}
+.rbusq-item:last-child { border-bottom: none; }
+.rbusq-item:hover { background: rgba(232,255,71,.07); }
+.rbusq-nombre { color: var(--text); }
+.rbusq-musculo { color: var(--muted); font-size: .7rem; margin-left: .4rem; flex-shrink: 0; }
+.rbusq-noresult { padding: .45rem .7rem; font-size: .8rem; color: var(--muted); }
+
+/* ── Autocomplete ejercicios ──────────────────────────── */
+.autocomplete-wrapper { position: relative; }
+.autocomplete-input {
+  width: 100%; padding: .55rem .75rem; background: var(--bg3);
+  border: 1px solid var(--border2); border-radius: var(--r);
+  color: var(--text); font-family: var(--font-body); font-size: .9rem;
+}
+.autocomplete-input:focus { outline: none; border-color: var(--accent); }
+.autocomplete-dropdown {
+  position: absolute; top: calc(100% + 4px); left: 0; right: 0; z-index: 200;
+  background: var(--bg2); border: 1px solid var(--border2);
+  border-radius: var(--r); overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0,0,0,.4);
+}
+.ac-item {
+  display: flex; align-items: center; gap: .5rem;
+  padding: .55rem .75rem; cursor: pointer; font-size: .85rem;
+  transition: background .1s;
+}
+.ac-item:hover { background: var(--bg3); }
+.ac-item--crear { color: var(--accent); border-top: 1px solid var(--border); }
+.ac-nombre { flex: 1; }
+.ac-nombre strong { color: var(--accent); }
+.ac-badge {
+  font-size: .65rem; padding: .15rem .4rem; border-radius: 4px;
+  color: #fff; font-weight: 600; text-transform: uppercase; white-space: nowrap;
+}
+.ac-musculo { font-size: .75rem; color: var(--muted); white-space: nowrap; }
+.autocomplete-add-btn {
+  margin-top: .4rem; width: 100%; padding: .45rem; background: transparent;
+  border: 1px dashed var(--accent); border-radius: var(--r);
+  color: var(--accent); font-size: .85rem; cursor: pointer;
+}
+.autocomplete-add-btn:hover { background: rgba(232,255,71,.05); }
+.form-error { color: var(--red); font-size: .82rem; margin-top: .25rem; }
+
 /* ── Sección perfil deportivo en modal de detalle ─────── */
 .detail-perfil-box {
   background: var(--bg3); border: 1px solid var(--border2);
@@ -1372,6 +1524,19 @@ textarea.rform-input { resize: vertical; line-height: 1.5; }
       </div>
     </div>
 
+    <!-- TAB: SALUD ─────────────────────────────────────── -->
+    <div class="tab-content" id="tabSalud">
+      <div class="section-hdr" style="margin-top:.5rem;">
+        <h2>Mi Salud</h2>
+        <span class="badge">lesiones activas</span>
+      </div>
+      <div id="saludWrap">
+        <div class="loading-state">
+          <span class="loading-dot"></span><span class="loading-dot"></span><span class="loading-dot"></span>
+        </div>
+      </div>
+    </div>
+
   </div><!-- /content -->
 
   <!-- MODAL: CARGA DE MÉTRICA ──────────────────────────── -->
@@ -1393,6 +1558,9 @@ textarea.rform-input { resize: vertical; line-height: 1.5; }
     </button>
     <button class="nav-item" onclick="switchTab('Cargar')" id="navCargar">
       <span class="nav-icon">➕</span>Cargar
+    </button>
+    <button class="nav-item" onclick="switchTab('Salud')" id="navSalud">
+      <span class="nav-icon">🩺</span>Salud
     </button>
   </nav>
 
@@ -1447,7 +1615,10 @@ textarea.rform-input { resize: vertical; line-height: 1.5; }
     <div id="sectionDocRutinas" style="display:none">
       <div class="section-hdr" style="margin-top:.5rem">
         <h2>Rutinas</h2>
-        <button class="btn-accent" onclick="openNuevaRutinaModal()">+ Nueva</button>
+        <div style="display:flex;gap:.5rem">
+          <button class="btn-mini" onclick="openGenerarRutinaModal()">⚡ Generar</button>
+          <button class="btn-accent" onclick="openNuevaRutinaModal()">+ Nueva</button>
+        </div>
       </div>
       <div id="docRutinasWrap">
         <div class="loading-state">
@@ -1535,10 +1706,17 @@ textarea.rform-input { resize: vertical; line-height: 1.5; }
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script src="js/db.demo.js"></script>
 <script src="js/db.routines.js"></script>
 <script src="js/data.js"></script>
 <script src="js/metrics.js"></script>
+<script src="js/db.supabase.js"></script>
+<script src="js/db.exercises.js"></script>
+<script src="js/db.injuries.js"></script>
+<script src="js/svc.generator.js"></script>
+<script src="js/ui.exercises.js"></script>
+<script src="js/ui.injuries.js"></script>
 <script src="js/ui.metrics.js"></script>
 <script src="js/ui.teacher.js"></script>
 <script src="js/ui.routines.js"></script>

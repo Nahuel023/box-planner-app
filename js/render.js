@@ -318,4 +318,5 @@ function renderAll() {
   renderRutinas();
   renderHistorial();
   renderCargar();  // definida en ui.metrics.js (cargado antes)
+  if (typeof renderSaludTab === 'function') renderSaludTab();
 }

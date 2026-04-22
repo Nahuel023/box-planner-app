@@ -34,7 +34,7 @@ function closeRegistroModal() {
   document.getElementById('regPinError').style.display = 'none';
 }
 
-function handleRegistro(event) {
+async function handleRegistro(event) {
   event.preventDefault();
   const pin             = (document.getElementById('regPin').value       || '').trim().toUpperCase();
   const nombre          = (document.getElementById('regNombre').value    || '').trim();
@@ -43,7 +43,8 @@ function handleRegistro(event) {
   const objetivo        = (document.getElementById('regObjetivo').value  || '').trim();
 
   const pinErr = document.getElementById('regPinError');
-  if (pinEnUso(pin)) {
+  /* await funciona para ambos modos: bool en localStorage, Promise en Supabase */
+  if (await Promise.resolve(pinEnUso(pin))) {
     pinErr.textContent   = 'Ese PIN ya está en uso. Elegí otro.';
     pinErr.style.display = 'block';
     document.getElementById('regPin').focus();
@@ -51,7 +52,7 @@ function handleRegistro(event) {
   }
   pinErr.style.display = 'none';
 
-  registrarAlumnoLocal({ pin, nombre, email, fechaNacimiento, objetivo });
+  await Promise.resolve(registrarAlumnoLocal({ pin, nombre, email, fechaNacimiento, objetivo }));
   closeRegistroModal();
   showToast('Registro exitoso. Cuenta pendiente de aprobación.');
 }
@@ -62,7 +63,7 @@ async function handleLogin() {
   if (!pin) return;
 
   /* Cuenta registrada pero aún no aprobada por el docente */
-  if (checkAlumnoPendiente(pin)) {
+  if (await Promise.resolve(checkAlumnoPendiente(pin))) {
     const err = document.getElementById('loginError');
     err.textContent   = 'Tu cuenta está pendiente de aprobación por el box.';
     err.style.display = 'block';
@@ -76,7 +77,9 @@ async function handleLogin() {
   try {
     let alumno = null;
 
-    if (isDemoMode()) {
+    if (isSupabaseMode()) {
+      alumno = getAlumnoDemo(pin) || await Promise.resolve(getAlumnoLocal(pin));
+    } else if (isDemoMode()) {
       alumno = getAlumnoDemo(pin) || getAlumnoLocal(pin);
     } else {
       const rows = await fetchSheet(CONFIG.HOJA_ALUMNOS);
@@ -138,10 +141,17 @@ function doLogout() {
    ─────────────────────────────────────────────────────────── */
 async function loadData() {
   const pin = state.alumno.pin.toUpperCase();
+  const rol = state.alumno.rol || 'alumno';
 
-  if (isDemoMode()) {
+  if (isSupabaseMode()) {
+    await initSupabaseCache(pin, rol);
+    await loadEjerciciosCache();
+    await loadLesionesCache(pin, rol);
     state.rms     = getRMsDemo(pin);
-    state.rutinas = getRutinasFinal(pin);  // respeta asignación custom del docente
+    state.rutinas = getRutinasFinal(pin);
+  } else if (isDemoMode()) {
+    state.rms     = getRMsDemo(pin);
+    state.rutinas = getRutinasFinal(pin);
   } else {
     try {
       /* RMs */
@@ -223,6 +233,7 @@ function showApp() {
     const pill = document.querySelector('.info-pill');
     if (pill) pill.innerHTML = '<span class="info-dot" style="background:#f59e0b"></span> Modo demo — conectá tu Google Sheet';
   }
+
 }
 
 /* ── Panel docente / admin ───────────────────────────────────*/
@@ -281,14 +292,32 @@ async function loadDocenteData() {
   const hoy = new Date().toISOString().slice(0, 10);
   const mes = new Date().getMonth();
 
-  if (isDemoMode()) {
+  if (isSupabaseMode()) {
+    await initSupabaseCache(state.alumno.pin, state.alumno.rol);
+    await loadEjerciciosCache();
+    await loadLesionesCache(state.alumno.pin, state.alumno.rol);
+
+    /* Demo users hardcodeados */
+    const demoEntries = getTodosAlumnosDemo().map(({ alumno, rms }) => {
+      const metricas = getMetricsByAlumno(alumno.pin);
+      return _buildPanelEntry(alumno, rms, metricas, mes, hoy);
+    });
+
+    /* Usuarios aprobados en Supabase */
+    const sbEntries = getTodosAlumnosSupabase().map(({ alumno }) => {
+      const metricas = getMetricsByAlumno(alumno.pin);
+      return _buildPanelEntry(alumno, [], metricas, mes, hoy);
+    });
+
+    state.panelAlumnos = [...demoEntries, ...sbEntries];
+
+  } else if (isDemoMode()) {
     const todos = getTodosAlumnosDemo();
     const demoEntries = todos.map(({ alumno, rms }) => {
       const metricas = getMetricsByAlumno(alumno.pin);
       return _buildPanelEntry(alumno, rms, metricas, mes, hoy);
     });
 
-    /* Incluir alumnos aprobados localmente (bp_nuevos_usuarios, estado=activo, rol=alumno) */
     const locales = getUsuariosLocales()
       .filter(u => u.estado === 'activo' && u.rol === 'alumno')
       .map(u => {
@@ -299,7 +328,6 @@ async function loadDocenteData() {
 
     state.panelAlumnos = [...demoEntries, ...locales];
   }
-  // TODO: modo Supabase → getTodosAlumnosSupabase() + getMetricsByAlumno()
 
   renderDocente();
   renderDocenteRutinas();
@@ -317,6 +345,11 @@ function switchTab(name) {
     marcarRutinaVista(state.alumno.pin);
     const dot = document.getElementById('navRutinaDot');
     if (dot) dot.remove();
+  }
+
+  /* Al entrar a Salud: re-renderizar por si hubo cambios */
+  if (name === 'Salud' && typeof renderSaludTab === 'function') {
+    renderSaludTab();
   }
 }
 

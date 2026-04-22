@@ -15,6 +15,7 @@
 
 let _rModalAsignarId = null;  // rutinaId activo en el modal asignar
 let _rDiaCount       = 0;     // contador de días en formulario nueva rutina
+let _rutinaGenerada  = null;  // rutina generada pendiente de guardar
 
 /* Tipos de bloque disponibles (deben coincidir con clases de render.js) */
 const BLOCK_TIPOS = [
@@ -52,10 +53,87 @@ function addBloqueRutina(btnOrBlock, data = {}) {
       placeholder="Título del bloque (ej: FUERZA Y TÉCNICA)"
       value="${data.label || ''}"
       style="margin-bottom:.4rem" autocomplete="off">
+    <div class="rbusq-wrap">
+      <input class="rform-input rbusq-input" placeholder="🔍 Buscar y agregar ejercicio..." autocomplete="off">
+      <div class="rbusq-dropdown"></div>
+    </div>
     <textarea class="rform-input rbloque-contenido" rows="3"
-      placeholder="Un ejercicio por línea:&#10;3x10 Sentadillas&#10;5x5 Press Banca"
+      placeholder="Un ejercicio por línea:&#10;3×10 Sentadillas&#10;5×5 Press Banca"
     >${data.contenido || ''}</textarea>`;
   bloquesWrap.appendChild(bDiv);
+
+  /* Conectar buscador al textarea */
+  const searchInp = bDiv.querySelector('.rbusq-input');
+  const textarea  = bDiv.querySelector('.rbloque-contenido');
+  if (searchInp) _attachBusqListener(searchInp, textarea);
+}
+
+/* ── Buscador inline de ejercicios para el builder ───────────
+   Busca en _ejerciciosCache (Supabase) con fallback a EJERCICIOS
+   (demo). Al seleccionar inserta "3×10 Nombre" en el textarea.
+   ─────────────────────────────────────────────────────────── */
+function _attachBusqListener(input, textarea) {
+  let _timer = null;
+  const dropdown = input.parentElement.querySelector('.rbusq-dropdown');
+  if (!dropdown) return;
+
+  input.addEventListener('input', () => {
+    clearTimeout(_timer);
+    _timer = setTimeout(() => {
+      const q    = input.value.trim();
+      const disc = document.getElementById('rDisc')?.value || '';
+
+      if (q.length < 2) {
+        dropdown.style.display = 'none';
+        dropdown.innerHTML = '';
+        return;
+      }
+
+      /* Buscar en cache Supabase */
+      let resultados = buscarEjercicios(q, disc ? [disc] : []);
+
+      /* Fallback a datos demo si el cache está vacío */
+      if (!resultados.length && typeof EJERCICIOS !== 'undefined') {
+        resultados = EJERCICIOS
+          .filter(e => e.nombre.toLowerCase().includes(q.toLowerCase()))
+          .slice(0, 12)
+          .map(e => ({ nombre: e.nombre, musculo_principal: e.categoria || '' }));
+      }
+
+      if (!resultados.length) {
+        dropdown.innerHTML = '<div class="rbusq-noresult">Sin resultados</div>';
+        dropdown.style.display = 'block';
+        return;
+      }
+
+      dropdown.innerHTML = resultados.map(e =>
+        `<div class="rbusq-item" data-nombre="${e.nombre}">
+           <span class="rbusq-nombre">${e.nombre}</span>
+           <span class="rbusq-musculo">${e.musculo_principal || ''}</span>
+         </div>`
+      ).join('');
+      dropdown.style.display = 'block';
+
+      /* Click → insertar en textarea como "3×10 Nombre" */
+      dropdown.querySelectorAll('.rbusq-item').forEach(item => {
+        item.addEventListener('mousedown', ev => {
+          ev.preventDefault();
+          const linea = `3×10 ${item.dataset.nombre}`;
+          textarea.value = textarea.value.trim()
+            ? textarea.value.trimEnd() + '\n' + linea
+            : linea;
+          input.value = '';
+          dropdown.innerHTML = '';
+          dropdown.style.display = 'none';
+          textarea.focus();
+        });
+      });
+    }, 150);
+  });
+
+  input.addEventListener('blur', () => {
+    setTimeout(() => { dropdown.innerHTML = ''; dropdown.style.display = 'none'; }, 200);
+  });
 }
 
 /* Construye el HTML base de un .rdia-block (sin bloques aún) */
@@ -437,5 +515,195 @@ function closeRutinaModal(e) {
 
 function closeRutinaModalDirect() {
   document.getElementById('rutinaModal')?.classList.remove('modal-open');
-  _rDiaCount = 0;
+  _rDiaCount      = 0;
+  _rutinaGenerada = null;
+}
+
+/* ════════════════════════════════════════════════════════════
+   GENERADOR DE RUTINAS  (usa svc.generator.js)
+   ════════════════════════════════════════════════════════════ */
+function openGenerarRutinaModal() {
+  console.log('[Generador] openGenerarRutinaModal llamado');
+  _rutinaGenerada = null;
+  const modal  = document.getElementById('rutinaModal');
+  const titulo = document.getElementById('rutinaModalTitulo');
+  const body   = document.getElementById('rutinaModalBody');
+  if (!modal) { console.error('[Generador] rutinaModal no encontrado en el DOM'); return; }
+
+  titulo.textContent = 'Generar rutina';
+
+  /* Opciones de alumnos */
+  const alumnosOpts = (state.panelAlumnos || []).map(p => {
+    const a = p.alumno;
+    return `<option value="${a.pin}">${a.nombre} (${a.disciplina || '—'})</option>`;
+  }).join('');
+
+  /* Opciones de disciplina */
+  const discOpts = (typeof DISCIPLINAS !== 'undefined' ? DISCIPLINAS : [])
+    .map(d => `<option value="${d.id}">${d.nombre}</option>`)
+    .join('');
+
+  body.innerHTML = `
+    <div class="rform-group">
+      <label class="rform-label">Alumno (opcional — para obtener restricciones)</label>
+      <select id="genAlumno" class="rform-input" onchange="genActualizarDisc()">
+        <option value="">— elegir alumno —</option>
+        ${alumnosOpts}
+      </select>
+    </div>
+    <div class="rform-row">
+      <div class="rform-group">
+        <label class="rform-label">Disciplina</label>
+        <select id="genDisc" class="rform-input">
+          <option value="">— elegir —</option>${discOpts}
+        </select>
+      </div>
+      <div class="rform-group">
+        <label class="rform-label">Frecuencia (días/sem)</label>
+        <select id="genFrec" class="rform-input">
+          <option value="3">3 días</option>
+          <option value="4" selected>4 días</option>
+          <option value="5">5 días</option>
+          <option value="6">6 días</option>
+        </select>
+      </div>
+    </div>
+    <div class="rform-row">
+      <div class="rform-group">
+        <label class="rform-label">Objetivo</label>
+        <select id="genObj" class="rform-input">
+          <option value="hipertrofia">Hipertrofia</option>
+          <option value="fuerza">Fuerza</option>
+          <option value="cardio">Cardio</option>
+          <option value="resistencia">Resistencia</option>
+        </select>
+      </div>
+      <div class="rform-group">
+        <label class="rform-label">Nivel</label>
+        <select id="genNivel" class="rform-input">
+          <option value="principiante">Principiante</option>
+          <option value="intermedio" selected>Intermedio</option>
+          <option value="avanzado">Avanzado</option>
+        </select>
+      </div>
+    </div>
+    <div id="genError" style="display:none"></div>
+    <button class="metric-save-btn" onclick="submitGenerarRutina()" style="margin-top:.75rem">
+      Generar rutina ⚡
+    </button>
+    <div id="genPreviewWrap" style="margin-top:1.25rem"></div>`;
+
+  try {
+    modal.classList.add('modal-open');
+    console.log('[Generador] modal abierto OK');
+  } catch (e) {
+    console.error('[Generador] error abriendo modal:', e);
+  }
+}
+
+/* Cuando se selecciona alumno, auto-completar disciplina */
+function genActualizarDisc() {
+  const pin = document.getElementById('genAlumno')?.value;
+  if (!pin) return;
+  const entrada = (state.panelAlumnos || []).find(p => p.alumno.pin === pin);
+  if (!entrada) return;
+
+  /* Leer disciplinas del alumno (array de ids) */
+  const localData  = JSON.parse(localStorage.getItem('bp_nuevos_usuarios') || '{}');
+  const localUser  = localData[pin.toUpperCase()];
+  const override   = JSON.parse(localStorage.getItem('bp_demo_overrides') || '{}')[pin.toUpperCase()];
+  const demoAlumno = (typeof ALUMNOS !== 'undefined') ? ALUMNOS.find(a => a.id.toUpperCase() === pin.toUpperCase()) : null;
+
+  const disciplinas = localUser?.disciplinas || override?.disciplinas || demoAlumno?.disciplinas || [];
+  const sel = document.getElementById('genDisc');
+  if (sel && disciplinas.length) sel.value = disciplinas[0];
+}
+
+function submitGenerarRutina() {
+  const errDiv = document.getElementById('genError');
+  errDiv.style.display = 'none';
+
+  const pin        = document.getElementById('genAlumno')?.value  || '';
+  const disciplina = document.getElementById('genDisc')?.value    || '';
+  const frecuencia = parseInt(document.getElementById('genFrec')?.value || '4');
+  const objetivo   = document.getElementById('genObj')?.value     || 'hipertrofia';
+  const nivel      = document.getElementById('genNivel')?.value   || 'intermedio';
+
+  if (!disciplina) {
+    _genShowError('Elegí una disciplina para generar la rutina.');
+    return;
+  }
+
+  /* Restricciones de lesiones del alumno (vacío si no hay alumno) */
+  const restricciones = pin ? getRestriccionesAlumno(pin) : [];
+
+  try {
+    const rutina = generarRutina({
+      disciplina, objetivo, nivel, frecuencia,
+      sexo: 'mixto', restricciones,
+      alumnoPin: pin || 'doc',
+    });
+    _rutinaGenerada = rutina;
+    _genRenderPreview(rutina, pin);
+  } catch (e) {
+    _genShowError(e.message);
+    console.error('generarRutina:', e);
+  }
+}
+
+function _genShowError(msg) {
+  const d = document.getElementById('genError');
+  if (!d) return;
+  d.className      = 'gen-error-box';
+  d.textContent    = msg;
+  d.style.display  = 'block';
+}
+
+function _genRenderPreview(rutina, pin) {
+  const wrap = document.getElementById('genPreviewWrap');
+  if (!wrap) return;
+
+  const diasHtml = rutina.dias.map(d => {
+    const ejItems = d.ejercicios.map(e =>
+      `<div class="gen-preview-ej">
+        <span class="gen-preview-ej-series">${e.series}×${e.reps}</span>
+        <span>${e.nombre}</span>
+       </div>`
+    ).join('');
+    return `
+      <div class="gen-preview-day">
+        <div class="gen-preview-day-title">Día ${d.dia} — ${d.titulo}</div>
+        ${ejItems}
+      </div>`;
+  }).join('');
+
+  const alumnoNombre = pin
+    ? (state.panelAlumnos.find(p => p.alumno.pin === pin)?.alumno.nombre || pin)
+    : '';
+
+  wrap.innerHTML = `
+    <div style="font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.6rem">
+      Vista previa — ${rutina.nombre}
+    </div>
+    ${diasHtml}
+    <div style="display:flex;gap:.6rem;margin-top:1rem;flex-wrap:wrap">
+      <button class="metric-save-btn" onclick="confirmarGuardarGenerada('${pin}')" style="flex:1">
+        Guardar rutina
+      </button>
+      ${pin ? `<button class="btn-mini" onclick="confirmarGuardarGenerada('${pin}', true)">
+        Guardar y asignar a ${alumnoNombre}
+      </button>` : ''}
+    </div>`;
+}
+
+function confirmarGuardarGenerada(pin, asignar = false) {
+  if (!_rutinaGenerada) return;
+  saveCustomRutina(_rutinaGenerada);
+  if (asignar && pin) asignarRutina(pin, _rutinaGenerada.id);
+  closeRutinaModalDirect();
+  renderDocenteRutinas();
+  const msg = asignar
+    ? `✓ Rutina generada y asignada a ${state.panelAlumnos.find(p => p.alumno.pin === pin)?.alumno.nombre || pin}`
+    : `✓ "${_rutinaGenerada.nombre}" guardada`;
+  showToast(msg);
 }

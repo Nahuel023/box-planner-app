@@ -204,6 +204,17 @@ function openAlumnoDetail(pin) {
 
   const tiempoDesde = _diasDesde(ultimaCarga);
 
+  /* Construir sección de lesiones fuera del template para que un error
+     no rompa todo el modal */
+  let lesionesSection = '';
+  try {
+    if (typeof _renderLesionesSection === 'function') {
+      lesionesSection = _renderLesionesSection(pin);
+    }
+  } catch (e) {
+    console.error('_renderLesionesSection error:', e);
+  }
+
   body.innerHTML = `
     <div class="detail-header">
       <div class="detail-nombre">${alumno.nombre}</div>
@@ -216,6 +227,8 @@ function openAlumnoDetail(pin) {
     ${_renderPerfilSection(pin)}
 
     ${_renderRutinaSection(pin)}
+
+    ${lesionesSection}
 
     <div class="section-hdr" style="margin:1.25rem 0 .75rem">
       <h2>RMs — ${MESES[mes]}</h2>
