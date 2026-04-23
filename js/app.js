@@ -207,9 +207,10 @@ async function loadData() {
 
   renderAll();
 
-  /* Punto rojo en tab Rutina si hay una asignación no vista */
-  const histRut = getHistorialRutinas(pin);
-  if (histRut.length && histRut[0].vista_por_alumno === false) {
+  /* Punto rojo en tab Rutina si hay alguna asignación activa no vista */
+  const histRut   = getHistorialRutinas(pin);
+  const hayNoVista = histRut.some(h => h.rutinaId && !h.vista_por_alumno);
+  if (hayNoVista) {
     const navBtn = document.getElementById('navRutina');
     if (navBtn && !document.getElementById('navRutinaDot')) {
       const dot = document.createElement('span');

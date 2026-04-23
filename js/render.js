@@ -178,9 +178,29 @@ function renderRutinas() {
     return;
   }
 
-  /* Formato { dia, secs[] } → demo + rutinas custom asignadas (Supabase) */
+  /* Formato { dia, secs[] } → demo + rutinas custom asignadas */
   if (state.rutinas[0].secs !== undefined) {
-    wrap.innerHTML = state.rutinas.map(dia => renderDayCard(dia)).join('');
+    /* Agrupar por _rutinaId para mostrar sección por rutina */
+    const grupos = [];
+    const orden  = [];
+    state.rutinas.forEach(dia => {
+      const rid = dia._rutinaId || '__default__';
+      if (!grupos[rid]) { grupos[rid] = { nombre: dia._rutinaNombre, dias: [] }; orden.push(rid); }
+      grupos[rid].dias.push(dia);
+    });
+
+    if (orden.length === 1) {
+      wrap.innerHTML = grupos[orden[0]].dias.map(dia => renderDayCard(dia)).join('');
+    } else {
+      wrap.innerHTML = orden.map(rid => {
+        const g = grupos[rid];
+        return `
+          <div class="rutina-grupo">
+            <div class="rutina-grupo-hdr">${g.nombre || 'Rutina'}</div>
+            ${g.dias.map(dia => renderDayCard(dia)).join('')}
+          </div>`;
+      }).join('');
+    }
     return;
   }
 

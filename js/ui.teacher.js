@@ -336,44 +336,38 @@ function guardarPerfilAlumno(pin) {
    anteriores, con botón para quitar la rutina vigente.
    ─────────────────────────────────────────────────────────── */
 function _renderRutinaSection(pin) {
-  const historial  = getHistorialRutinas(pin);
-  if (!historial.length) return '';
+  const activas    = (typeof getTodasRutinasAsignadas === 'function')
+    ? getTodasRutinasAsignadas(pin)
+    : (getRutinaAsignada(pin) ? [{ rutinaId: getRutinaAsignada(pin), fecha_asignacion: '' }] : []);
+
+  if (!activas.length) return '';
 
   const allRutinas = getAllRutinas();
-  const actual     = historial[0];
 
   const _nombre = (rutinaId) => {
-    if (rutinaId === null || rutinaId === undefined) return '<em style="color:var(--muted)">Sin rutina</em>';
+    if (!rutinaId) return '<em style="color:var(--muted)">Sin rutina</em>';
     return allRutinas[rutinaId]
       ? allRutinas[rutinaId].nombre
       : `<em style="color:var(--muted)">${rutinaId}</em>`;
   };
 
-  const histRows = historial.slice(1).map(h => `
-    <div class="detail-hist-row">
-      <span>${_nombre(h.rutinaId)}</span>
-      <span class="detail-hist-fecha">${h.fecha_asignacion || ''}</span>
+  const activasHtml = activas.map(a => `
+    <div class="detail-rutina-actual">
+      <div style="flex:1;min-width:0">
+        <div style="font-size:.9rem;font-weight:500">${_nombre(a.rutinaId)}</div>
+        <div class="detail-hist-fecha">${a.fecha_asignacion || ''}</div>
+      </div>
+      <button class="btn-mini btn-mini--danger"
+        onclick="quitarRutinaAlumno('${pin}', '${a.rutinaId}')">Quitar</button>
     </div>`).join('');
 
   return `
     <div class="section-hdr" style="margin:1.25rem 0 .75rem">
-      <h2>Rutina asignada</h2>
+      <h2>Rutinas asignadas (${activas.length})</h2>
     </div>
     <div class="detail-rutina-box">
-      <div class="detail-rutina-actual">
-        <span>${_nombre(actual.rutinaId)}</span>
-        <span class="detail-hist-fecha">${actual.fecha_asignacion || ''}</span>
-      </div>
-      ${actual.rutinaId !== null
-        ? `<button class="btn-mini btn-mini--danger" style="margin-top:.55rem"
-             onclick="quitarRutinaAlumno('${pin}')">Quitar rutina actual</button>`
-        : ''}
-    </div>
-    ${historial.length > 1 ? `
-      <div class="detail-hist-wrap">
-        <div class="detail-hist-title">Historial</div>
-        ${histRows}
-      </div>` : ''}`;
+      ${activasHtml}
+    </div>`;
 }
 
 /* ════════════════════════════════════════════════════════════
@@ -481,10 +475,14 @@ function handleToggleDualRol(pin) {
 }
 
 /* ── quitarRutinaAlumno ──────────────────────────────────────*/
-function quitarRutinaAlumno(pin) {
-  asignarRutina(pin, null);
+function quitarRutinaAlumno(pin, rutinaId) {
+  if (rutinaId && typeof quitarRutina === 'function') {
+    quitarRutina(pin, rutinaId);
+  } else {
+    asignarRutina(pin, null);  // fallback modo demo/legacy
+  }
   showToast('Rutina quitada');
-  openAlumnoDetail(pin);  // re-renderiza el cuerpo del modal
+  openAlumnoDetail(pin);
 }
 
 /* ── _renderUltimasCargas ────────────────────────────────────

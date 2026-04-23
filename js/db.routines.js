@@ -102,32 +102,62 @@ function asignarRutina(alumnoPin, rutinaId) {
   localStorage.setItem(ASIGNACIONES_KEY, JSON.stringify(data));
 }
 
-/** Retorna el rutinaId vigente ([0]) o null */
-function getCurrentAsignacion(alumnoPin) {
+/** Retorna TODAS las asignaciones activas como [{ rutinaId, fecha_asignacion, ... }] */
+function getTodasRutinasAsignadas(alumnoPin) {
   const historial = _readAsignaciones()[alumnoPin.toUpperCase()] || [];
-  if (!historial.length) return null;
-  return historial[0].rutinaId;
+  const activas   = [];
+  const seenIds   = new Set();
+  for (const h of historial) {
+    if (h.rutinaId === null || h.rutinaId === undefined) break; // null = señal histórica de "quitar todo"
+    if (h._quitada) continue;
+    if (!seenIds.has(h.rutinaId)) {
+      activas.push(h);
+      seenIds.add(h.rutinaId);
+    }
+  }
+  return activas;
 }
 
-/** Alias para compatibilidad (getRutinasFinal, ui.routines.js) */
+/** Retorna el rutinaId más reciente activo, o null — backward compat */
+function getCurrentAsignacion(alumnoPin) {
+  const activas = getTodasRutinasAsignadas(alumnoPin);
+  return activas.length ? activas[0].rutinaId : null;
+}
+
+/** Alias para compatibilidad */
 function getRutinaAsignada(alumnoPin) {
   return getCurrentAsignacion(alumnoPin);
 }
 
-/** Retorna true si esta rutina YA fue asignada alguna vez */
-function checkRutinaAsignada(alumnoPin, rutinaId) {
-  const historial = _readAsignaciones()[alumnoPin.toUpperCase()] || [];
-  return historial.some(h => h.rutinaId === rutinaId);
+/** Quita una rutina específica de las asignaciones activas */
+function quitarRutina(alumnoPin, rutinaId) {
+  const data = _readAsignaciones();
+  const pin  = alumnoPin.toUpperCase();
+  if (!data[pin]) return;
+  data[pin] = data[pin].map(h =>
+    h.rutinaId === rutinaId ? Object.assign({}, h, { _quitada: true }) : h
+  );
+  localStorage.setItem(ASIGNACIONES_KEY, JSON.stringify(data));
 }
 
-/** Marca la asignación vigente ([0]) como vista por el alumno */
+/** Retorna true si esta rutina está actualmente asignada */
+function checkRutinaAsignada(alumnoPin, rutinaId) {
+  return getTodasRutinasAsignadas(alumnoPin).some(h => h.rutinaId === rutinaId);
+}
+
+/** Marca todas las asignaciones activas como vistas por el alumno */
 function marcarRutinaVista(alumnoPin) {
   const data = _readAsignaciones();
   const pin  = alumnoPin.toUpperCase();
-  if (!data[pin] || !data[pin].length) return;
-  if (data[pin][0].vista_por_alumno) return;  // ya marcada, evitar write innecesario
-  data[pin][0].vista_por_alumno = true;
-  localStorage.setItem(ASIGNACIONES_KEY, JSON.stringify(data));
+  if (!data[pin]) return;
+  let changed = false;
+  data[pin].forEach(h => {
+    if (!h._quitada && h.rutinaId !== null && !h.vista_por_alumno) {
+      h.vista_por_alumno = true;
+      changed = true;
+    }
+  });
+  if (changed) localStorage.setItem(ASIGNACIONES_KEY, JSON.stringify(data));
 }
 
 /** Retorna el historial completo [{ rutinaId, fecha_asignacion, vista_por_alumno }] */
@@ -160,24 +190,13 @@ function _formatRutinaDemo(rutina) {
   }));
 }
 
-/* ── getRutinasFinal ─────────────────────────────────────────
-   Prioridad:
-     1. Asignación manual por docente (localStorage)
-     2. Rutina default del alumno en db.demo.js / Supabase
-   Devuelve el formato [{ dia, secs[] }] para renderDayCard.
+/* ── _diasDeRutina ───────────────────────────────────────────
+   Convierte una rutina (custom o demo) al array [{ dia, secs[] }].
    ─────────────────────────────────────────────────────────── */
-function getRutinasFinal(pin) {
-  const customId = getRutinaAsignada(pin);
-  if (!customId) return getRutinasDemo(pin);
-
-  const allRutinas = getAllRutinas();
-  const rutina     = allRutinas[customId];
-  if (!rutina) return getRutinasDemo(pin);   // asignación huérfana
-
-  /* Rutina custom (creada por docente) */
+function _diasDeRutina(rutina) {
+  if (!rutina) return [];
   if (rutina._custom) {
     return (rutina.dias || []).map(d => {
-      /* Compatibilidad: formato antiguo tenía contenido plano en lugar de bloques[] */
       const secs = d.bloques
         ? d.bloques.map(b => ({
             tipo:  b.tipo  || 'metcon',
@@ -186,12 +205,38 @@ function getRutinasFinal(pin) {
             cap:   null,
           }))
         : d.contenido
-          ? [{ tipo: 'structure', label: d.label || 'Contenido', items: d.contenido.split('\n').filter(l => l.trim()), cap: null }]
+          ? [{ tipo: 'structure', label: d.label || 'Contenido',
+               items: d.contenido.split('\n').filter(l => l.trim()), cap: null }]
           : [];
       return { dia: d.label || 'DÍA', secs };
     }).filter(d => d.secs.length);
   }
-
-  /* Rutina demo asignada manualmente por docente */
   return _formatRutinaDemo(rutina);
+}
+
+/* ── getRutinasFinal ─────────────────────────────────────────
+   Devuelve TODAS las rutinas activas asignadas al alumno,
+   cada día etiquetado con _rutinaId y _rutinaNombre para que
+   renderRutinas pueda agruparlas en secciones separadas.
+   Fallback: rutina demo del alumno si no hay asignaciones.
+   ─────────────────────────────────────────────────────────── */
+function getRutinasFinal(pin) {
+  const activas    = getTodasRutinasAsignadas(pin);
+  if (!activas.length) return getRutinasDemo(pin);
+
+  const allRutinas = getAllRutinas();
+  const dias       = [];
+
+  activas.forEach(asig => {
+    const rutina = allRutinas[asig.rutinaId];
+    if (!rutina) return;  // asignación huérfana
+    _diasDeRutina(rutina).forEach(d => {
+      dias.push(Object.assign({}, d, {
+        _rutinaId:     asig.rutinaId,
+        _rutinaNombre: rutina.nombre || 'Rutina',
+      }));
+    });
+  });
+
+  return dias.length ? dias : getRutinasDemo(pin);
 }

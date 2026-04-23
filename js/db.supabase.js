@@ -107,6 +107,7 @@ async function initSupabaseCache(pin, rol) {
   const { data: asigns, error: errA } = await asignQ;
   if (!errA && asigns) {
     asigns.forEach(a => {
+      if (!a.rutina_id) return;  // ignorar filas de "quitar todo" del modelo anterior
       const p = a.pin.toUpperCase();
       if (!_sbCache.asignaciones[p]) _sbCache.asignaciones[p] = [];
       _sbCache.asignaciones[p].push({
@@ -329,12 +330,44 @@ if (isSupabaseMode()) {
     }
   };
 
+  /* ── getTodasRutinasAsignadas ── */
+  window.getTodasRutinasAsignadas = function(alumnoPin) {
+    const PIN  = alumnoPin.toUpperCase();
+    const arr  = (_sbCache.asignaciones[PIN] || []).filter(a => a.rutinaId);
+    const seen = new Set();
+    return arr.filter(a => {
+      if (seen.has(a.rutinaId)) return false;
+      seen.add(a.rutinaId);
+      return true;
+    });
+  };
+
   /* ── getRutinaAsignada ── */
   window.getRutinaAsignada = function(alumnoPin) {
+    const activas = window.getTodasRutinasAsignadas(alumnoPin);
+    return activas.length ? activas[0].rutinaId : null;
+  };
+
+  /* ── quitarRutina ── */
+  window.quitarRutina = function(alumnoPin, rutinaId) {
+    const PIN = alumnoPin.toUpperCase();
+    if (!_sbCache.asignaciones[PIN]) return;
+    _sbCache.asignaciones[PIN] = _sbCache.asignaciones[PIN].filter(a => a.rutinaId !== rutinaId);
+    _getSb().from('bp_asignaciones').delete().eq('pin', PIN).eq('rutina_id', rutinaId)
+      .then(({ error }) => { if (error) console.error('Supabase quitarRutina:', error); });
+  };
+
+  /* ── marcarRutinaVista — marca TODAS las activas como vistas ── */
+  window.marcarRutinaVista = function(alumnoPin) {
     const PIN = alumnoPin.toUpperCase();
     const arr = _sbCache.asignaciones[PIN];
-    if (!arr || !arr.length) return null;
-    return arr[0].rutinaId;
+    if (!arr || !arr.length) return;
+    arr.forEach(entry => {
+      if (entry.vista_por_alumno || !entry._dbId) return;
+      entry.vista_por_alumno = true;
+      _getSb().from('bp_asignaciones').update({ vista_por_alumno: true }).eq('id', entry._dbId)
+        .then(({ error }) => { if (error) console.error('Supabase marcarRutinaVista:', error); });
+    });
   };
 
   /* ── getHistorialRutinas ── */
