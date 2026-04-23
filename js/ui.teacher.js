@@ -560,9 +560,8 @@ function _renderUltimasCargas(metricas) {
   const ultimas = metricas.slice().reverse().slice(0, 8);
 
   const filas = ultimas.map(m => {
-    const ej = (typeof EJERCICIOS !== 'undefined')
-      ? EJERCICIOS.find(e => e.id === m.ejercicioId)
-      : null;
+    const ejCache  = (typeof getEjercicioById === 'function') ? getEjercicioById(m.ejercicioId) : null;
+    const ej       = ejCache || ((typeof EJERCICIOS !== 'undefined') ? EJERCICIOS.find(e => e.id === m.ejercicioId) : null);
     const ejNombre = ej ? ej.nombre : m.ejercicioId;
     const d   = new Date(m.fecha + 'T12:00:00');
     const dia = d.toLocaleDateString('es-AR', { day:'numeric', month:'short' });

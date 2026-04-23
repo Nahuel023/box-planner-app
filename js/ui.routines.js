@@ -443,29 +443,68 @@ function openAsignarModal(rutinaId) {
   const rutina     = allRutinas[rutinaId];
   titulo.textContent = 'Asignar rutina';
 
-  const alumnos = state.panelAlumnos.map(p => p.alumno);
-  const opts = alumnos.map(a => {
-    const asigId   = getRutinaAsignada(a.pin);
-    const asigNombre = asigId && allRutinas[asigId] ? ` (actual: ${allRutinas[asigId].nombre})` : '';
-    return `<option value="${a.pin}">${a.nombre}${asigNombre}</option>`;
-  }).join('');
-
   body.innerHTML = `
-    <p style="font-size:.83rem;color:var(--muted);margin-bottom:1.1rem">
+    <p style="font-size:.83rem;color:var(--muted);margin-bottom:1rem">
       Rutina: <strong style="color:var(--text)">${rutina?.nombre || rutinaId}</strong>
     </p>
     <div class="rform-group">
-      <label class="rform-label">Asignar a</label>
-      <select id="rAlumnoSel" class="rform-input">
-        <option value="">— elegir alumno —</option>
-        ${opts}
-      </select>
+      <label class="rform-label">Buscar alumno</label>
+      <input id="rAlumnoBusqueda" class="rform-input" placeholder="Nombre, PIN o disciplina…"
+             oninput="_renderAsignarAlumnos(this.value)" autocomplete="off" spellcheck="false">
     </div>
-    <button class="metric-save-btn" onclick="submitAsignarRutina()" style="margin-top:1rem">
-      Confirmar asignación
-    </button>`;
+    <div id="rAlumnoLista" class="rasignar-lista"></div>
+    <input type="hidden" id="rAlumnoSel" value="">
+    <div id="rAsignarConfirm" style="display:none;margin-top:.75rem">
+      <div id="rAsignarSelNombre" class="rasignar-sel-nombre"></div>
+      <button class="metric-save-btn" onclick="submitAsignarRutina()" style="margin-top:.75rem">
+        Confirmar asignación
+      </button>
+    </div>`;
 
+  _renderAsignarAlumnos('');
   modal.classList.add('modal-open');
+}
+
+function _renderAsignarAlumnos(query) {
+  const lista = document.getElementById('rAlumnoLista');
+  if (!lista) return;
+
+  const q       = (query || '').toLowerCase().trim();
+  const alumnos = state.panelAlumnos.map(p => p.alumno);
+  const filtrados = q
+    ? alumnos.filter(a =>
+        a.nombre.toLowerCase().includes(q) ||
+        a.pin.toLowerCase().includes(q) ||
+        (a.disciplina || '').toLowerCase().includes(q)
+      )
+    : alumnos;
+
+  if (!filtrados.length) {
+    lista.innerHTML = '<div style="font-size:.8rem;color:var(--muted);padding:.5rem 0">Sin resultados</div>';
+    return;
+  }
+
+  lista.innerHTML = filtrados.slice(0, 12).map(a => {
+    const disc = a.disciplina || '—';
+    return `
+      <div class="rasignar-row" onclick="_seleccionarAlumnoAsignar('${a.pin}','${a.nombre.replace(/'/g,"\\'")}')">
+        <div>
+          <div style="font-size:.88rem;font-weight:500">${a.nombre}</div>
+          <div style="font-size:.72rem;color:var(--muted);font-family:var(--font-mono)">${a.pin} · ${disc}</div>
+        </div>
+        <span style="color:var(--muted);font-size:1rem">›</span>
+      </div>`;
+  }).join('');
+}
+
+function _seleccionarAlumnoAsignar(pin, nombre) {
+  document.getElementById('rAlumnoSel').value      = pin;
+  document.getElementById('rAlumnoBusqueda').value = nombre;
+  document.getElementById('rAlumnoLista').innerHTML = '';
+  const conf = document.getElementById('rAsignarConfirm');
+  const lbl  = document.getElementById('rAsignarSelNombre');
+  if (conf) conf.style.display = '';
+  if (lbl)  lbl.innerHTML = `Asignar a <strong>${nombre}</strong>`;
 }
 
 function submitAsignarRutina(forzar = false) {
