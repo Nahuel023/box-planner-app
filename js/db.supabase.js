@@ -63,16 +63,17 @@ function _alumnoFromDb(u) {
     .map(id => { const d = DISCIPLINAS.find(d => d.id === id); return d ? d.nombre : id; })
     .join(' / ') || '—';
   return {
-    pin:        u.pin,
-    nombre:     u.nombre,
-    edad:       u.fecha_nacimiento || '—',
-    rol:        u.rol || 'alumno',
-    roles:      Array.isArray(u.roles) && u.roles.length ? u.roles : [u.rol || 'alumno'],
-    disciplina: disciplinaNombre,
-    objetivo:   u.objetivo || '—',
-    dias:       u.dias !== undefined ? u.dias : 3,
-    rutina:     '',
-    estado:     'Activo',
+    pin:         u.pin,
+    nombre:      u.nombre,
+    edad:        u.fecha_nacimiento || '—',
+    rol:         u.rol || 'alumno',
+    roles:       Array.isArray(u.roles) && u.roles.length ? u.roles : [u.rol || 'alumno'],
+    disciplinas: u.disciplinas || [],        // array de IDs para filtrado
+    disciplina:  disciplinaNombre,           // string formateado para display
+    objetivo:    u.objetivo || '—',
+    dias:        u.dias !== undefined ? u.dias : 3,
+    rutina:      '',
+    estado:      'Activo',
   };
 }
 

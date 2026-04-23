@@ -13,7 +13,9 @@
    ════════════════════════════════════════════════════════════ */
 
 /* ── Estado local del panel ──────────────────────────────────*/
-let _filtroDoc = 'todos';  // 'todos' | 'atencion'
+let _filtroDoc   = 'todos';   // backward compat (usado en toggleFiltroDoc legacy)
+let _docBusqueda = '';        // texto de búsqueda libre
+let _docFiltros  = new Set(); // chips activos: 'atencion' | 'sinCarga' | disciplina ID
 
 /* ── Utilidad de tiempo relativo ─────────────────────────────*/
 function _diasDesde(fechaISO) {
@@ -60,87 +62,144 @@ function renderDocenteStats() {
 
 /* ════════════════════════════════════════════════════════════
    renderDocenteAlumnos
-   Lista con filtro y badge de alerta por card.
+   Lista comprimida + buscador + chips de filtros dinámicos.
    ════════════════════════════════════════════════════════════ */
 function renderDocenteAlumnos() {
-  const wrap   = document.getElementById('docAlumnosWrap');
-  const badge  = document.getElementById('docAlumnosBadge');
-  const btnFil = document.getElementById('btnFiltroAtencion');
+  const wrap  = document.getElementById('docAlumnosWrap');
+  const badge = document.getElementById('docAlumnosBadge');
   if (!wrap) return;
 
-  const todos   = state.panelAlumnos;
-  const alertas = todos.filter(p => p.necesitaAtencion);
+  const todos = state.panelAlumnos;
+  if (badge) badge.textContent = todos.length;
 
-  if (badge)  badge.textContent = todos.length;
-  if (btnFil) {
-    const activo = _filtroDoc === 'atencion';
-    btnFil.classList.toggle('btn-filtro--active', activo);
-    btnFil.textContent = `⚠ Atención (${alertas.length})`;
-  }
+  _renderFiltroChips(todos);
 
-  const lista = _filtroDoc === 'atencion' ? alertas : todos;
+  const lista = _aplicarFiltros(todos);
 
   if (!lista.length) {
-    wrap.innerHTML = _filtroDoc === 'atencion'
-      ? '<div class="doc-ok-box">✓ Todos los alumnos al día</div>'
+    wrap.innerHTML = (_docBusqueda || _docFiltros.size)
+      ? '<div class="doc-ok-box">Sin resultados para esta búsqueda.</div>'
       : '<div class="error-box">No hay alumnos cargados.</div>';
     return;
   }
 
-  const mes = new Date().getMonth();
-
   wrap.innerHTML = lista.map(entrada => {
-    const { alumno, rms, cargaHoy, ultimaCarga, diasSinCarga, estancado, necesitaAtencion } = entrada;
+    const { alumno, cargaHoy, ultimaCarga, diasSinCarga, estancado, necesitaAtencion } = entrada;
 
-    /* Chips de RMs del mes actual */
-    const rmChips = rms.slice(0, 3).map(rm => {
-      const val = rm.meses[mes] || rm.mejor;
-      if (!val) return '';
-      const name = rm.ejercicio.split(' ').slice(0, 2).join(' ');
-      return `<span class="doc-rm-chip">${name}: <strong>${val}kg</strong></span>`;
-    }).filter(Boolean).join('');
-
-    /* Indicador de actividad */
-    const tiempoDesde = _diasDesde(ultimaCarga);
+    const tiempoDesde   = _diasDesde(ultimaCarga);
     const actividadHtml = cargaHoy
-      ? '<span class="doc-actividad doc-actividad--hoy">✓ cargó hoy</span>'
+      ? '<span class="doc-row-actividad doc-actividad--hoy">hoy</span>'
       : tiempoDesde
-        ? `<span class="doc-actividad">${tiempoDesde}</span>`
-        : '<span class="doc-actividad doc-actividad--nunca">sin registros</span>';
+        ? `<span class="doc-row-actividad">${tiempoDesde}</span>`
+        : '<span class="doc-row-actividad doc-actividad--nunca">nunca</span>';
 
-    /* Badge de alerta */
-    let alertaBadge = '';
+    let alertaHtml = '';
     if (necesitaAtencion) {
       const motivos = [];
-      if (!ultimaCarga)         motivos.push('sin registros');
-      else if (diasSinCarga >= 7) motivos.push(`${diasSinCarga}d sin carga`);
-      if (estancado)            motivos.push('estancado');
-      alertaBadge = `<div class="doc-alerta-badge">⚠ ${motivos.join(' · ')}</div>`;
+      if (!ultimaCarga)            motivos.push('sin registros');
+      else if (diasSinCarga >= 7)  motivos.push(`${diasSinCarga}d`);
+      if (estancado)               motivos.push('estancado');
+      alertaHtml = `<span class="doc-row-alerta">⚠ ${motivos.join(' · ')}</span>`;
     }
 
+    const discTags = (alumno.disciplinas || []).map(id => {
+      const d = (typeof DISCIPLINAS !== 'undefined') ? DISCIPLINAS.find(x => x.id === id) : null;
+      return `<span class="doc-row-disc-tag">${d ? d.nombre : id}</span>`;
+    }).join('');
+
     return `
-      <div class="doc-alumno-card${necesitaAtencion ? ' doc-alumno-card--alerta' : ''}"
+      <div class="doc-alumno-row${necesitaAtencion ? ' doc-alumno-row--alerta' : ''}"
            onclick="openAlumnoDetail('${alumno.pin}')">
-        <div class="doc-alumno-header">
-          <div>
-            <div class="doc-alumno-nombre">${alumno.nombre}</div>
-            <div class="doc-alumno-meta">${alumno.disciplina} · ${alumno.dias} días/sem</div>
+        <div class="doc-row-left">
+          <div class="doc-row-nombre">${alumno.nombre}</div>
+          <div class="doc-row-meta">
+            ${discTags || `<span class="doc-row-disc-tag doc-row-disc-tag--muted">${alumno.disciplina || '—'}</span>`}
+            <span class="doc-row-dias">${alumno.dias}d/sem</span>
           </div>
-          ${actividadHtml}
         </div>
-        ${alertaBadge}
-        ${rmChips
-          ? `<div class="doc-alumno-rms">${rmChips}</div>`
-          : '<div class="doc-alumno-rms doc-alumno-rms--empty">Sin RMs registrados</div>'
-        }
+        <div class="doc-row-right">
+          ${alertaHtml}
+          ${actividadHtml}
+          <span class="doc-row-arrow">›</span>
+        </div>
       </div>`;
   }).join('');
 }
 
-/* ── Alternar filtro ─────────────────────────────────────────*/
-function toggleFiltroDoc() {
-  _filtroDoc = _filtroDoc === 'todos' ? 'atencion' : 'todos';
+/* ── Renderizar chips de filtros ─────────────────────────────*/
+function _renderFiltroChips(todos) {
+  const wrap = document.getElementById('docFiltrosWrap');
+  if (!wrap) return;
+
+  const alertas   = todos.filter(p => p.necesitaAtencion).length;
+  const sinCarga  = todos.filter(p => !p.cargaHoy && p.diasSinCarga >= 7).length;
+
+  /* Disciplinas únicas entre todos los alumnos */
+  const discMap = {};
+  todos.forEach(p => {
+    (p.alumno.disciplinas || []).forEach(id => {
+      if (!discMap[id]) {
+        const d = (typeof DISCIPLINAS !== 'undefined') ? DISCIPLINAS.find(x => x.id === id) : null;
+        discMap[id] = d ? d.nombre : id;
+      }
+    });
+  });
+
+  const chips = [
+    { id: 'atencion', label: `⚠ Atención`, count: alertas },
+    { id: 'sinCarga', label: `Sin carga`,  count: sinCarga },
+    ...Object.entries(discMap).map(([id, nombre]) => ({ id, label: nombre, count: null })),
+  ];
+
+  wrap.innerHTML = chips.map(c => {
+    const activo = _docFiltros.has(c.id);
+    const cnt    = c.count !== null ? ` <span class="chip-count">${c.count}</span>` : '';
+    return `<button class="doc-chip${activo ? ' doc-chip--active' : ''}"
+               onclick="toggleDocChip('${c.id}')">${c.label}${cnt}</button>`;
+  }).join('');
+}
+
+/* ── Aplicar búsqueda + filtros ──────────────────────────────*/
+function _aplicarFiltros(lista) {
+  let res = lista;
+
+  if (_docBusqueda) {
+    const q = _docBusqueda.toLowerCase();
+    res = res.filter(p =>
+      p.alumno.nombre.toLowerCase().includes(q) ||
+      p.alumno.pin.toLowerCase().includes(q)
+    );
+  }
+
+  if (_docFiltros.has('atencion')) res = res.filter(p => p.necesitaAtencion);
+  if (_docFiltros.has('sinCarga')) res = res.filter(p => !p.cargaHoy && p.diasSinCarga >= 7);
+
+  /* Chips de disciplina activos */
+  const discActivos = [..._docFiltros].filter(f => f !== 'atencion' && f !== 'sinCarga');
+  if (discActivos.length) {
+    res = res.filter(p =>
+      discActivos.some(d => (p.alumno.disciplinas || []).includes(d))
+    );
+  }
+
+  return res;
+}
+
+/* ── Handlers de búsqueda / chips ────────────────────────────*/
+function buscarDocAlumnos(val) {
+  _docBusqueda = (val || '').trim();
   renderDocenteAlumnos();
+}
+
+function toggleDocChip(id) {
+  if (_docFiltros.has(id)) _docFiltros.delete(id);
+  else _docFiltros.add(id);
+  renderDocenteAlumnos();
+}
+
+/* ── Alternar filtro (backward compat) ───────────────────────*/
+function toggleFiltroDoc() {
+  toggleDocChip('atencion');
 }
 
 /* ════════════════════════════════════════════════════════════
