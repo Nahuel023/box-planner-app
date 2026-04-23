@@ -66,7 +66,7 @@ function renderRMTable() {
   const rows = rms.map(rm => {
     const curr = rm.meses[mesActual];
     const prev = rm.meses.slice(0, mesActual).reverse().find(v => v !== null);
-    const diff = (curr !== null && prev !== null) ? curr - prev : null;
+    const diff = (curr != null && prev != null) ? curr - prev : null;
     const cls  = diff === null ? '' : diff > 0 ? 'prog-up' : diff < 0 ? 'prog-down' : 'prog-flat';
     const txt  = diff === null ? '—' : diff > 0 ? `+${diff.toFixed(1)}` : diff.toFixed(1);
     return `

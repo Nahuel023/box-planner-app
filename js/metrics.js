@@ -155,11 +155,13 @@ function updateRMHistorial() {
 
   /* Paso 2: mergear en state.rms */
   Object.entries(porEjercicio).forEach(([ejId, mesesMap]) => {
-    /* Buscar definición del ejercicio en el catálogo */
-    const ejDef    = (typeof EJERCICIOS !== 'undefined')
+    /* Buscar definición del ejercicio en el catálogo (Supabase cache primero) */
+    const ejCache  = (typeof getEjercicioById === 'function') ? getEjercicioById(ejId) : null;
+    const ejDef    = ejCache || ((typeof EJERCICIOS !== 'undefined')
       ? EJERCICIOS.find(e => e.id === ejId)
-      : null;
+      : null);
     const ejNombre = ejDef ? ejDef.nombre : ejId;
+    const ejCat    = ejDef ? (ejDef.musculo_principal || ejDef.categoria || '') : '';
 
     /* Buscar o crear entrada en state.rms */
     let rmEntry = state.rms.find(r =>
@@ -170,7 +172,7 @@ function updateRMHistorial() {
       rmEntry = {
         _ejercicioId: ejId,
         ejercicio:    ejNombre,
-        cat:          ejDef ? ejDef.categoria : '',
+        cat:          ejCat,
         meses:        Array(12).fill(null),
         mejor:        null,
         prog:         null,
