@@ -268,9 +268,10 @@ function renderLogMetricas() {
     const dStr = d.toLocaleDateString('es-AR', { day:'numeric', month:'short' });
 
     const rows = items.map(m => {
-      const ej  = (typeof EJERCICIOS !== 'undefined')
+      const ejCache = (typeof getEjercicioById === 'function') ? getEjercicioById(m.ejercicioId) : null;
+      const ej  = ejCache || ((typeof EJERCICIOS !== 'undefined')
         ? EJERCICIOS.find(e => e.id === m.ejercicioId)
-        : null;
+        : null);
       const ejNombre = ej ? ej.nombre : m.ejercicioId;
       const cfg = (typeof TIPO_CONFIG !== 'undefined')
         ? (TIPO_CONFIG[m.tipo] || TIPO_CONFIG.peso_kg)
