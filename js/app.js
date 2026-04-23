@@ -108,12 +108,18 @@ async function handleLogin() {
     state.alumno = alumno;
     sessionStorage.setItem('bp_pin', pin);
 
-    if (alumno.rol === 'docente' || alumno.rol === 'admin') {
+    const rolesActivos = alumno.roles || [alumno.rol];
+    const esDocente    = alumno.rol === 'docente' || alumno.rol === 'admin';
+
+    if (esDocente) {
       showDocente();
       await loadDocenteData();
+      /* Mostrar switcher si también tiene rol alumno */
+      _updateRoleSwitchers(rolesActivos, 'docente');
     } else {
       showApp();
       await loadData();
+      _updateRoleSwitchers(rolesActivos, 'alumno');
     }
 
   } catch (e) {
@@ -373,6 +379,46 @@ function switchTab(name) {
     await handleLogin();
   }
 })();
+
+/* ── Roles múltiples ─────────────────────────────────────────
+   Muestra/oculta los botones de cambio de vista según los roles
+   del usuario logueado. Solo aplica a usuarios con doble rol.
+   ─────────────────────────────────────────────────────────── */
+function _updateRoleSwitchers(roles, rolActivo) {
+  const btnApp = document.getElementById('rolSwitcherApp');
+  const btnDoc = document.getElementById('rolSwitcherDoc');
+  if (btnApp) btnApp.style.display =
+    (rolActivo === 'alumno' && roles.some(r => r === 'docente' || r === 'admin')) ? '' : 'none';
+  if (btnDoc) btnDoc.style.display =
+    (rolActivo !== 'alumno' && roles.includes('alumno')) ? '' : 'none';
+}
+
+async function switchRoleToAlumno() {
+  document.getElementById('appScreen').style.display     = 'block';
+  document.getElementById('docenteScreen').style.display = 'none';
+  const a = state.alumno;
+  document.getElementById('topName').textContent = (a.nombre || '').split(' ')[0] || a.nombre;
+  const parts   = a.nombre.split(' ');
+  const display = parts.length >= 2
+    ? `${parts[0]} <span>${parts.slice(1).join(' ')}</span>`
+    : a.nombre;
+  document.getElementById('heroName').innerHTML = display;
+  const tags = [a.disciplina, `${a.dias} días/sem`, a.objetivo].filter(Boolean);
+  document.getElementById('heroMeta').innerHTML = tags.map(t => `<span class="tag">${t}</span>`).join('');
+  await loadData();
+  _updateRoleSwitchers(a.roles || [a.rol], 'alumno');
+}
+
+async function switchRoleToDocente() {
+  document.getElementById('appScreen').style.display     = 'none';
+  document.getElementById('docenteScreen').style.display = 'block';
+  const a = state.alumno;
+  document.getElementById('docTopName').textContent = a.nombre;
+  const navAdmin = document.getElementById('navAdmin');
+  if (navAdmin) navAdmin.style.display = a.rol === 'admin' ? '' : 'none';
+  await loadDocenteData();
+  _updateRoleSwitchers(a.roles || [a.rol], 'docente');
+}
 
 document.getElementById('pinInput').addEventListener('keydown', e => {
   if (e.key === 'Enter') handleLogin();

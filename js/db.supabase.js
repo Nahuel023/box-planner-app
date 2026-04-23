@@ -67,6 +67,7 @@ function _alumnoFromDb(u) {
     nombre:     u.nombre,
     edad:       u.fecha_nacimiento || '—',
     rol:        u.rol || 'alumno',
+    roles:      Array.isArray(u.roles) && u.roles.length ? u.roles : [u.rol || 'alumno'],
     disciplina: disciplinaNombre,
     objetivo:   u.objetivo || '—',
     dias:       u.dias !== undefined ? u.dias : 3,
@@ -228,6 +229,17 @@ if (isSupabaseMode()) {
     _sbCache.usuarios[upper].rol = nuevoRol;
     _getSb().from('bp_usuarios').update({ rol: nuevoRol }).eq('pin', upper)
       .then(({ error }) => { if (error) console.error('Supabase cambiarRolLocal:', error); });
+  };
+
+  /* ── actualizarRolesLocal — actualiza el array roles[] de un usuario ── */
+  window.actualizarRolesLocal = function(pin, rolesArr) {
+    const upper = pin.toUpperCase();
+    if (!_sbCache.usuarios[upper]) return;
+    _sbCache.usuarios[upper].roles = rolesArr;
+    /* Sincronizar rol principal al primer elemento del array */
+    _sbCache.usuarios[upper].rol   = rolesArr[0];
+    _getSb().from('bp_usuarios').update({ roles: rolesArr, rol: rolesArr[0] }).eq('pin', upper)
+      .then(({ error }) => { if (error) console.error('Supabase actualizarRolesLocal:', error); });
   };
 
   /* ── actualizarPerfilAlumnoLocal ── */

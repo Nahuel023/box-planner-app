@@ -411,15 +411,25 @@ function renderAdminTab() {
 
   /* ── Activos locales ── */
   const activosHtml = activos.length
-    ? activos.map(u => `
+    ? activos.map(u => {
+        const rolesArr    = Array.isArray(u.roles) ? u.roles : [u.rol || 'alumno'];
+        const esDobleRol  = rolesArr.length > 1 || (rolesArr[0] !== 'alumno' && rolesArr.includes('alumno'));
+        const dualChecked = rolesArr.includes('alumno') && rolesArr.some(r => r === 'docente' || r === 'admin');
+        return `
         <div class="admin-user-row">
           <div class="admin-user-info">
             <div class="admin-user-nombre">${u.nombre}</div>
             <div class="admin-user-meta">${u.pin} · ${u.email || '—'}</div>
           </div>
           ${_rolSelect(u.pin, u.rol || 'alumno', `rolact_${u.pin}`)}
-          <button class="btn-mini" onclick="handleActualizarRol('${u.pin}')">Actualizar rol</button>
-        </div>`).join('')
+          <label class="admin-dual-label" title="Puede ver su propio perfil de alumno">
+            <input type="checkbox" id="dualrol_${u.pin}" ${dualChecked ? 'checked' : ''}
+              onchange="handleToggleDualRol('${u.pin}')">
+            también alumno
+          </label>
+          <button class="btn-mini" onclick="handleActualizarRol('${u.pin}')">Actualizar</button>
+        </div>`;
+      }).join('')
     : '<div style="font-size:.82rem;color:var(--muted);padding:.5rem 0">Sin usuarios locales activos.</div>';
 
   wrap.innerHTML = `
@@ -444,10 +454,30 @@ function handleRechazar(pin) {
 }
 
 function handleActualizarRol(pin) {
-  const rol = (document.getElementById('rolact_' + pin)?.value) || 'alumno';
-  cambiarRolLocal(pin, rol);
-  showToast(`Rol actualizado a ${rol}`);
+  const rol      = (document.getElementById('rolact_' + pin)?.value) || 'alumno';
+  const dualChk  = document.getElementById('dualrol_' + pin);
+  const dualRol  = dualChk?.checked && rol !== 'alumno';
+  const rolesArr = dualRol ? [rol, 'alumno'] : [rol];
+  if (typeof actualizarRolesLocal === 'function') {
+    actualizarRolesLocal(pin, rolesArr);
+  } else {
+    cambiarRolLocal(pin, rol);
+  }
+  showToast(`Rol actualizado a ${rol}${dualRol ? ' + alumno' : ''}`);
   renderAdminTab();
+}
+
+function handleToggleDualRol(pin) {
+  const rolSelect = document.getElementById('rolact_' + pin);
+  const dualChk   = document.getElementById('dualrol_' + pin);
+  if (!rolSelect || !dualChk) return;
+  const rol      = rolSelect.value || 'alumno';
+  const dualRol  = dualChk.checked && rol !== 'alumno';
+  const rolesArr = dualRol ? [rol, 'alumno'] : [rol];
+  if (typeof actualizarRolesLocal === 'function') {
+    actualizarRolesLocal(pin, rolesArr);
+    showToast(`${dualRol ? 'Acceso alumno activado' : 'Acceso alumno quitado'}`);
+  }
 }
 
 /* ── quitarRutinaAlumno ──────────────────────────────────────*/
