@@ -235,7 +235,7 @@ function showApp() {
     : a.nombre;
   document.getElementById('heroName').innerHTML = display;
 
-  const tags = [a.disciplina, `${a.dias} días/sem`, a.objetivo].filter(Boolean);
+  const tags = [a.disciplina, `${a.dias} días/sem`, a.objetivo].filter(t => t && t !== '—');
   document.getElementById('heroMeta').innerHTML = tags.map(t => `<span class="tag">${t}</span>`).join('');
 
   if (isDemoMode()) {
@@ -404,10 +404,41 @@ async function switchRoleToAlumno() {
     ? `${parts[0]} <span>${parts.slice(1).join(' ')}</span>`
     : a.nombre;
   document.getElementById('heroName').innerHTML = display;
-  const tags = [a.disciplina, `${a.dias} días/sem`, a.objetivo].filter(Boolean);
+  const tags = [a.disciplina, `${a.dias} días/sem`, a.objetivo].filter(t => t && t !== '—');
   document.getElementById('heroMeta').innerHTML = tags.map(t => `<span class="tag">${t}</span>`).join('');
   await loadData();
   _updateRoleSwitchers(a.roles || [a.rol], 'alumno');
+}
+
+/* ── A.2 — Perfil editable por el propio alumno ──────────────*/
+function _refreshHeroMeta() {
+  const a    = state.alumno;
+  const tags = [a.disciplina, `${a.dias} días/sem`, a.objetivo].filter(t => t && t !== '—');
+  document.getElementById('heroMeta').innerHTML = tags.map(t => `<span class="tag">${t}</span>`).join('');
+}
+
+function guardarPerfilPropio() {
+  const pin         = state.alumno.pin;
+  const checkboxes  = document.querySelectorAll('input[name="miPerfil_disc"]:checked');
+  const disciplinas = Array.from(checkboxes).map(cb => cb.value);
+  const dias        = parseInt(document.getElementById('miPerfilDias')?.value) || 3;
+  const objetivo    = (document.getElementById('miPerfilObjetivo')?.value || '').trim();
+
+  actualizarPerfilAlumnoLocal(pin, disciplinas, dias, objetivo || undefined);
+
+  /* Actualizar state.alumno en memoria */
+  state.alumno.disciplinas = disciplinas;
+  state.alumno.dias        = dias;
+  if (objetivo) state.alumno.objetivo = objetivo;
+  state.alumno.disciplina  = disciplinas
+    .map(id => { const d = (typeof DISCIPLINAS !== 'undefined') ? DISCIPLINAS.find(d => d.id === id) : null; return d ? d.nombre : id; })
+    .join(' / ') || '—';
+
+  _refreshHeroMeta();
+  showToast('✓ Perfil actualizado');
+
+  /* Re-render del form para reflejar valores guardados */
+  if (typeof renderSaludTab === 'function') renderSaludTab();
 }
 
 async function switchRoleToDocente() {

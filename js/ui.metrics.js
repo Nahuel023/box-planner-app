@@ -244,6 +244,12 @@ function submitMetric() {
   const hoy   = new Date().toISOString().slice(0, 10);
   const notas = notasInput ? notasInput.value.trim() : '';
 
+  /* Capturar mejor marca previa para detectar PR después */
+  const rmPrev = state.rms.find(r =>
+    r._ejercicioId === _modal.ejercicioId || r.ejercicio === _modal.ejercicioId
+  );
+  const mejorPrev = rmPrev ? (rmPrev.mejor || 0) : 0;
+
   /* Guardar en localStorage (o Supabase en el futuro) */
   const metrica = saveMetric(
     state.alumno.pin,
@@ -268,9 +274,14 @@ function submitMetric() {
   renderSparks();
   renderCargar();
 
-  /* Feedback visual */
-  const cfg = TIPO_CONFIG[_modal.tipo] || TIPO_CONFIG.peso_kg;
-  showToast(`✓ ${metrica.valor}${cfg.unidad} registrado`);
+  /* B.7 — Feedback visual: PR o registro normal */
+  const cfg   = TIPO_CONFIG[_modal.tipo] || TIPO_CONFIG.peso_kg;
+  const esPR  = valor > mejorPrev && mejorPrev > 0;
+  if (esPR) {
+    showToast(`Nuevo récord personal: ${valor}${cfg.unidad}`, 'pr');
+  } else {
+    showToast(`✓ ${metrica.valor}${cfg.unidad} registrado`);
+  }
 }
 
 /* ════════════════════════════════════════════════════════════

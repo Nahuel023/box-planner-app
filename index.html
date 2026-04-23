@@ -363,6 +363,15 @@ a { color: inherit; text-decoration: none; }
 }
 .rm-row-item:last-child { border-bottom: none; }
 .rm-row-item:hover { background: var(--bg3); }
+.rm-row-pr { background: rgba(235,198,25,.06); }
+.rm-pr-badge {
+  display: inline-block; margin-left: .35rem;
+  padding: .05rem .38rem; border-radius: 4px;
+  background: var(--accent); color: var(--gym-dark);
+  font-size: .6rem; font-weight: 800;
+  text-transform: uppercase; letter-spacing: .05em;
+  vertical-align: middle; line-height: 1.5;
+}
 .rm-exercise { font-size: .9rem; font-weight: 500; }
 .rm-cat {
   font-size: .7rem;
@@ -1075,6 +1084,46 @@ textarea.rform-input { resize: vertical; line-height: 1.5; }
   margin-top: .75rem; border-top: 1px solid var(--border2); padding-top: .75rem;
 }
 .lesion-seguimiento-ok { font-size: .82rem; color: var(--green); font-weight: 600; padding: .4rem 0; }
+/* ── Mi Perfil (alumno self-edit) ─────────────────────── */
+.miPerfil-box {
+  background: var(--card); border-radius: 14px;
+  padding: 1.1rem 1rem 1.2rem; border: 1px solid var(--border2);
+  margin-bottom: 1.1rem;
+}
+.miPerfil-title {
+  font-size: .85rem; font-weight: 800; text-transform: uppercase;
+  letter-spacing: .07em; color: var(--accent); margin-bottom: .9rem;
+}
+.miPerfil-field-lbl {
+  font-size: .72rem; color: var(--muted); font-weight: 700;
+  text-transform: uppercase; letter-spacing: .05em; margin-bottom: .4rem;
+}
+.miPerfil-discs {
+  display: flex; flex-wrap: wrap; gap: .35rem .75rem; margin-bottom: .85rem;
+}
+.miPerfil-disc-check {
+  display: flex; align-items: center; gap: .35rem;
+  font-size: .85rem; color: var(--text); cursor: pointer;
+}
+.miPerfil-disc-check input { accent-color: var(--accent); }
+.miPerfil-row { display: flex; gap: .75rem; margin-bottom: .9rem; }
+.miPerfil-col { flex: 1; display: flex; flex-direction: column; gap: .3rem; }
+.miPerfil-input-num {
+  width: 100%; padding: .45rem .6rem; background: var(--bg2);
+  border: 1px solid var(--border2); border-radius: 8px;
+  color: var(--text); font-size: .9rem; -moz-appearance: textfield;
+}
+.miPerfil-input-txt {
+  width: 100%; padding: .45rem .6rem; background: var(--bg2);
+  border: 1px solid var(--border2); border-radius: 8px;
+  color: var(--text); font-size: .85rem; box-sizing: border-box;
+}
+.miPerfil-input-txt::placeholder { color: var(--muted); }
+.miPerfil-save-btn {
+  width: 100%; padding: .6rem; font-size: .88rem;
+  font-weight: 700; border-radius: 10px;
+}
+
 .lesion-ok-box {
   background: var(--card); border-radius: 12px;
   padding: 2.5rem 1rem; text-align: center;
@@ -1580,6 +1629,17 @@ textarea.rform-input { resize: vertical; line-height: 1.5; }
 }
 .bp-toast[data-type="error"] { background: var(--red);  color: #fff; }
 .bp-toast[data-type="warn"]  { background: #f59e0b;     color: #000; }
+.bp-toast[data-type="pr"] {
+  background: var(--accent); color: var(--gym-dark);
+  font-weight: 800; font-size: .9rem; letter-spacing: .03em;
+  box-shadow: 0 0 18px 4px rgba(235,198,25,.45);
+  animation: prPulse .35s ease;
+}
+@keyframes prPulse {
+  0%   { transform: translateX(-50%) scale(.85); }
+  60%  { transform: translateX(-50%) scale(1.08); }
+  100% { transform: translateX(-50%) scale(1); }
+}
 </style>
 </head>
 <body>

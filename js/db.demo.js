@@ -238,25 +238,28 @@ function getAlumnoDemo(pin) {
   const a = ALUMNOS.find(a => a.id.toUpperCase() === pin.toUpperCase());
   if (!a) return null;
 
-  /* Aplicar overrides guardados por el docente (disciplinas / dias) */
+  /* Aplicar overrides guardados por el docente o el alumno (disciplinas / dias / objetivo) */
   const ov          = _getDemoOverride(a.id);
   const disciplinas = (ov && ov.disciplinas) ? ov.disciplinas : (a.disciplinas || []);
   const dias        = (ov && ov.dias !== undefined) ? ov.dias : a.diasPorSemana;
+  const objetivo    = (ov && ov.objetivo)    ? ov.objetivo    : a.objetivo;
 
   const disciplinaNombre = disciplinas
     .map(id => { const d = DISCIPLINAS.find(d => d.id === id); return d ? d.nombre : id; })
     .join(' / ');
 
   return {
-    pin:        a.id,
-    nombre:     a.nombre,
-    edad:       a.edad,
-    rol:        a.rol,
-    disciplina: disciplinaNombre,
-    objetivo:   a.objetivo,
+    pin:         a.id,
+    nombre:      a.nombre,
+    edad:        a.edad,
+    rol:         a.rol,
+    roles:       a.roles || [a.rol || 'alumno'],
+    disciplinas,
+    disciplina:  disciplinaNombre,
+    objetivo,
     dias,
-    rutina:     a.rutinaId ? (RUTINAS[a.rutinaId]?.nombre || a.rutinaId) : '',
-    estado:     a.estado === "activo" ? "Activo" : "Inactivo",
+    rutina:      a.rutinaId ? (RUTINAS[a.rutinaId]?.nombre || a.rutinaId) : '',
+    estado:      a.estado === "activo" ? "Activo" : "Inactivo",
   };
 }
 
@@ -429,7 +432,7 @@ function cambiarRolLocal(pin, nuevoRol) {
  * @param {string[]} disciplinas  array de disciplina ids
  * @param {number}   dias
  */
-function actualizarPerfilAlumnoLocal(pin, disciplinas, dias) {
+function actualizarPerfilAlumnoLocal(pin, disciplinas, dias, objetivo) {
   const upper = pin.toUpperCase();
 
   /* Usuario en bp_nuevos_usuarios */
@@ -437,6 +440,7 @@ function actualizarPerfilAlumnoLocal(pin, disciplinas, dias) {
   if (data[upper]) {
     data[upper].disciplinas = disciplinas;
     data[upper].dias        = dias;
+    if (objetivo !== undefined) data[upper].objetivo = objetivo;
     localStorage.setItem(NUEVOS_USUARIOS_KEY, JSON.stringify(data));
     return;
   }
@@ -447,6 +451,7 @@ function actualizarPerfilAlumnoLocal(pin, disciplinas, dias) {
   if (!overrides[upper]) overrides[upper] = {};
   overrides[upper].disciplinas = disciplinas;
   overrides[upper].dias        = dias;
+  if (objetivo !== undefined) overrides[upper].objetivo = objetivo;
   localStorage.setItem(DEMO_OVERRIDES_KEY, JSON.stringify(overrides));
 }
 

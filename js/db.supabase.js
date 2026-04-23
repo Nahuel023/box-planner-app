@@ -245,13 +245,16 @@ if (isSupabaseMode()) {
   };
 
   /* ── actualizarPerfilAlumnoLocal ── */
-  window.actualizarPerfilAlumnoLocal = function(pin, disciplinas, dias) {
+  window.actualizarPerfilAlumnoLocal = function(pin, disciplinas, dias, objetivo) {
     const upper = pin.toUpperCase();
     if (_sbCache.usuarios[upper]) {
       /* Usuario Supabase */
       _sbCache.usuarios[upper].disciplinas = disciplinas;
       _sbCache.usuarios[upper].dias        = dias;
-      _getSb().from('bp_usuarios').update({ disciplinas, dias }).eq('pin', upper)
+      if (objetivo !== undefined) _sbCache.usuarios[upper].objetivo = objetivo;
+      const payload = { disciplinas, dias };
+      if (objetivo !== undefined) payload.objetivo = objetivo;
+      _getSb().from('bp_usuarios').update(payload).eq('pin', upper)
         .then(({ error }) => { if (error) console.error('Supabase actualizarPerfilAlumnoLocal:', error); });
     } else {
       /* Usuario demo hardcodeado → persiste override en localStorage */
@@ -260,6 +263,7 @@ if (isSupabaseMode()) {
       if (!overrides[upper]) overrides[upper] = {};
       overrides[upper].disciplinas = disciplinas;
       overrides[upper].dias        = dias;
+      if (objetivo !== undefined) overrides[upper].objetivo = objetivo;
       localStorage.setItem(DEMO_OVERRIDES_KEY, JSON.stringify(overrides));
     }
   };

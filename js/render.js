@@ -69,10 +69,11 @@ function renderRMTable() {
     const diff = (curr != null && prev != null) ? curr - prev : null;
     const cls  = diff === null ? '' : diff > 0 ? 'prog-up' : diff < 0 ? 'prog-down' : 'prog-flat';
     const txt  = diff === null ? '—' : diff > 0 ? `+${diff.toFixed(1)}` : diff.toFixed(1);
+    const esPR = curr !== null && rm.mejor !== null && curr >= rm.mejor;
     return `
-      <div class="rm-row-item">
+      <div class="rm-row-item${esPR ? ' rm-row-pr' : ''}">
         <div>
-          <div class="rm-exercise">${rm.ejercicio}</div>
+          <div class="rm-exercise">${rm.ejercicio}${esPR ? '<span class="rm-pr-badge">PR</span>' : ''}</div>
           <div class="rm-cat">${rm.cat}</div>
         </div>
         <div class="rm-kg">${curr !== null ? curr + 'kg' : '—'}</div>
