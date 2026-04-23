@@ -10,19 +10,20 @@
 /* ── Reset & Base ─────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --bg:       #0a0a0f;
-  --bg2:      #111118;
-  --bg3:      #1a1a24;
-  --border:   rgba(255,255,255,0.07);
-  --border2:  rgba(255,255,255,0.12);
-  --text:     #f0f0f0;
-  --muted:    #888;
-  --accent:   #e8ff47;       /* lima eléctrico */
-  --accent2:  #ff6b35;       /* naranja CrossFit */
-  --green:    #22c55e;
-  --red:      #ef4444;
-  --purple:   #a78bfa;
-  --blue:     #38bdf8;
+  --bg:        #0a0e12;
+  --bg2:       #0f1923;
+  --bg3:       #162230;
+  --border:    rgba(255,255,255,0.07);
+  --border2:   rgba(255,255,255,0.13);
+  --text:      #f0f0f0;
+  --muted:     #7a8a96;
+  --accent:    #EBC619;      /* Liberty gold */
+  --accent2:   #5BBFB5;     /* Liberty teal */
+  --gym-dark:  #0A3347;     /* Liberty deep teal */
+  --green:     #22c55e;
+  --red:       #ef4444;
+  --purple:    #a78bfa;
+  --blue:      #38bdf8;
   --font-disp: 'Bebas Neue', sans-serif;
   --font-body: 'DM Sans', sans-serif;
   --font-mono: 'DM Mono', monospace;
@@ -57,24 +58,26 @@ a { color: inherit; text-decoration: none; }
 .login-bg {
   position: fixed; inset: 0; z-index: 0;
   background:
-    radial-gradient(ellipse 80% 60% at 20% 0%, rgba(232,255,71,0.06) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 40% at 80% 100%, rgba(255,107,53,0.05) 0%, transparent 60%),
-    var(--bg);
+    radial-gradient(ellipse 90% 50% at 50% -10%, rgba(91,191,181,0.18) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 40% at 10% 100%, rgba(235,198,25,0.07) 0%, transparent 55%),
+    var(--gym-dark);
 }
 .login-grid {
   position: fixed; inset: 0; z-index: 0;
   background-image:
-    linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
-  background-size: 40px 40px;
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
 }
 .login-card {
   position: relative; z-index: 1;
   width: 100%; max-width: 380px;
-  background: var(--bg2);
-  border: 1px solid var(--border2);
+  background: rgba(10,20,30,0.75);
+  border: 1px solid rgba(91,191,181,0.2);
   border-radius: var(--r-lg);
   padding: 2.5rem 2rem;
+  backdrop-filter: blur(16px);
   animation: fadeUp 0.5s ease both;
 }
 @keyframes fadeUp {
@@ -82,23 +85,35 @@ a { color: inherit; text-decoration: none; }
   to   { opacity:1; transform: translateY(0); }
 }
 .login-logo {
-  display: flex; align-items: center; gap: 10px;
+  display: flex; align-items: center; gap: 12px;
   margin-bottom: 2rem;
 }
 .login-logo-mark {
-  width: 40px; height: 40px;
+  width: 44px; height: 44px;
   background: var(--accent);
-  border-radius: 8px;
+  border-radius: 10px;
   display: flex; align-items: center; justify-content: center;
-  font-size: 20px;
+  font-family: var(--font-disp);
+  font-size: 26px;
+  color: var(--gym-dark);
+  font-weight: 900;
+  letter-spacing: -1px;
+  flex-shrink: 0;
 }
 .login-logo-text {
   font-family: var(--font-disp);
-  font-size: 22px;
-  letter-spacing: 1px;
+  font-size: 20px;
+  letter-spacing: 1.5px;
   color: var(--text);
+  line-height: 1.15;
 }
-.login-logo-text span { color: var(--accent); }
+.login-logo-sub {
+  font-family: var(--font-body);
+  font-size: .65rem;
+  letter-spacing: .25em;
+  color: var(--accent2);
+  text-transform: uppercase;
+}
 .login-title {
   font-size: 1.5rem;
   font-weight: 600;
@@ -140,17 +155,19 @@ a { color: inherit; text-decoration: none; }
   width: 100%;
   padding: .9rem;
   background: var(--accent);
-  color: #000;
+  color: var(--gym-dark);
   border: none;
   border-radius: var(--r);
   font-family: var(--font-disp);
   font-size: 1.1rem;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
+  font-weight: 900;
   cursor: pointer;
-  transition: opacity .2s, transform .1s;
+  transition: background .15s, transform .1s, box-shadow .15s;
+  box-shadow: 0 4px 16px rgba(235,198,25,0.25);
 }
-.login-btn:hover { opacity: .9; }
-.login-btn:active { transform: scale(.98); }
+.login-btn:hover  { background: #f5d428; box-shadow: 0 6px 20px rgba(235,198,25,0.35); }
+.login-btn:active { transform: scale(.98); box-shadow: none; }
 .login-error {
   display: none;
   margin-top: .75rem;
@@ -1281,9 +1298,10 @@ textarea.rform-input { resize: vertical; line-height: 1.5; }
    ══════════════════════════════════════════════════════════ */
 .modal-overlay {
   position: fixed; inset: 0; z-index: 200;
-  background: rgba(0,0,0,.7);
-  backdrop-filter: blur(4px);
-  display: flex; align-items: flex-end; justify-content: center;
+  background: rgba(0,0,0,.65);
+  backdrop-filter: blur(6px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 1.25rem;
   opacity: 0; pointer-events: none;
   transition: opacity .22s ease;
 }
@@ -1291,17 +1309,17 @@ textarea.rform-input { resize: vertical; line-height: 1.5; }
   opacity: 1; pointer-events: all;
 }
 .modal-card {
-  width: 100%; max-width: 480px;
+  width: 100%; max-width: 420px;
   background: var(--bg2);
-  border: 1px solid var(--border2);
-  border-bottom: none;
-  border-radius: var(--r-lg) var(--r-lg) 0 0;
-  padding: 1.5rem 1.25rem 2rem;
-  transform: translateY(30px);
+  border: 1px solid rgba(91,191,181,0.18);
+  border-radius: var(--r-lg);
+  padding: 1.75rem 1.5rem;
+  transform: scale(.96) translateY(10px);
   transition: transform .25s cubic-bezier(.22,1,.36,1);
+  box-shadow: 0 24px 60px rgba(0,0,0,.5);
 }
 .modal-overlay.modal-open .modal-card {
-  transform: translateY(0);
+  transform: scale(1) translateY(0);
 }
 
 /* Header dentro del modal (título + cerrar) */
@@ -1316,15 +1334,8 @@ textarea.rform-input { resize: vertical; line-height: 1.5; }
 }
 .modal-close:hover { color: var(--text); }
 
-/* Handle visual */
-.modal-card::before {
-  content: '';
-  display: block;
-  width: 36px; height: 4px;
-  background: var(--border2);
-  border-radius: 2px;
-  margin: 0 auto 1.25rem;
-}
+/* Handle visual — oculto en modal centrado */
+.modal-card::before { display: none; }
 
 .mmodal-header   { margin-bottom: 1.5rem; }
 .mmodal-title    { font-family: var(--font-disp); font-size: 1.5rem; letter-spacing: .5px; }
@@ -1367,16 +1378,18 @@ textarea.rform-input { resize: vertical; line-height: 1.5; }
 }
 
 .mmodal-submit {
-  width: 100%; margin-top: .5rem;
-  padding: 1rem;
-  background: var(--accent); color: #000;
+  width: 100%; margin-top: .75rem;
+  padding: .9rem 1rem;
+  background: var(--accent); color: var(--gym-dark);
   border: none; border-radius: var(--r);
-  font-family: var(--font-disp); font-size: 1.1rem; letter-spacing: 1px;
+  font-family: var(--font-disp); font-size: 1.15rem; letter-spacing: 1.5px;
+  font-weight: 900;
   cursor: pointer;
-  transition: opacity .2s, transform .1s;
+  transition: background .15s, transform .1s, box-shadow .15s;
+  box-shadow: 0 4px 16px rgba(235,198,25,0.25);
 }
-.mmodal-submit:hover  { opacity: .9; }
-.mmodal-submit:active { transform: scale(.98); }
+.mmodal-submit:hover  { background: #f5d428; box-shadow: 0 6px 20px rgba(235,198,25,0.35); }
+.mmodal-submit:active { transform: scale(.98); box-shadow: none; }
 
 @keyframes shake {
   0%,100%{transform:translateX(0)}
@@ -1414,11 +1427,14 @@ textarea.rform-input { resize: vertical; line-height: 1.5; }
   <div class="login-grid"></div>
   <div class="login-card">
     <div class="login-logo">
-      <div class="login-logo-mark">⚡</div>
-      <div class="login-logo-text">BOX<span>PLANNER</span></div>
+      <div class="login-logo-mark">L</div>
+      <div>
+        <div class="login-logo-text">LIBERTY GYM</div>
+        <div class="login-logo-sub">Community</div>
+      </div>
     </div>
-    <div class="login-title">Mi progreso</div>
-    <div class="login-sub">Ingresá el código que te dio tu docente para ver tus RMs y rutina.</div>
+    <div class="login-title">Tu progreso</div>
+    <div class="login-sub">Ingresá el código que te dio tu profe para ver tus marcas y rutina.</div>
     <div class="field-label">Tu código PIN</div>
     <input
       class="pin-input"
@@ -1442,7 +1458,7 @@ textarea.rform-input { resize: vertical; line-height: 1.5; }
 <div id="appScreen">
 
   <div class="topbar">
-    <div class="topbar-brand">⚡ BOXPLANNER</div>
+    <div class="topbar-brand">LIBERTY GYM</div>
     <div class="topbar-athlete">Hola, <strong id="topName">—</strong></div>
     <button class="logout-btn" onclick="doLogout()">Salir</button>
   </div>
@@ -1572,7 +1588,7 @@ textarea.rform-input { resize: vertical; line-height: 1.5; }
 <div id="docenteScreen">
 
   <div class="topbar">
-    <div class="topbar-brand">⚡ BOXPLANNER</div>
+    <div class="topbar-brand">LIBERTY GYM</div>
     <div class="topbar-athlete">Hola, <strong id="docTopName">—</strong></div>
     <button class="logout-btn" onclick="doLogout()">Salir</button>
   </div>
