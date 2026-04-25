@@ -643,6 +643,7 @@ function handleActualizarRol(pin) {
   } else {
     cambiarRolLocal(pin, rol);
   }
+  _syncSelfRoles(pin, rolesArr);
   showToast(`Rol actualizado a ${rol}${dualRol ? ' + alumno' : ''}`);
   renderAdminTab();
 }
@@ -656,7 +657,18 @@ function handleToggleDualRol(pin) {
   const rolesArr = dualRol ? [rol, 'alumno'] : [rol];
   if (typeof actualizarRolesLocal === 'function') {
     actualizarRolesLocal(pin, rolesArr);
+    _syncSelfRoles(pin, rolesArr);
     showToast(`${dualRol ? 'Acceso alumno activado' : 'Acceso alumno quitado'}`);
+  }
+}
+
+/* Si el PIN modificado es el propio usuario logueado, actualiza state en caliente */
+function _syncSelfRoles(pin, rolesArr) {
+  if (!state.alumno || state.alumno.pin.toUpperCase() !== pin.toUpperCase()) return;
+  state.alumno.roles = rolesArr;
+  state.alumno.rol   = rolesArr[0];
+  if (typeof _updateRoleSwitchers === 'function') {
+    _updateRoleSwitchers(rolesArr, rolesArr[0] === 'alumno' ? 'alumno' : 'docente');
   }
 }
 
@@ -698,6 +710,7 @@ function _renderUltimasCargas(metricas) {
       <div class="log-row">
         <div class="log-row-main">
           <span class="log-ejercicio">${ejNombre}</span>
+          <span class="log-fecha-badge">${dia}</span>
           <span class="log-valor">${m.valor}${m.tipo === 'tiempo_seg' ? 's' : m.tipo === 'repeticiones' ? 'r' : 'kg'}</span>
         </div>
         ${m.notas || dot ? `
@@ -705,7 +718,6 @@ function _renderUltimasCargas(metricas) {
             ${m.notas ? `<span class="log-nota">"${m.notas}"</span>` : ''}
             ${dot ? `<span class="log-estado-dot" style="background:${dot}"></span>` : ''}
           </div>` : ''}
-        <span class="log-fecha-badge">${dia}</span>
       </div>`;
   }).join('');
 
