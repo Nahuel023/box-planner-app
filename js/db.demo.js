@@ -248,12 +248,20 @@ function getAlumnoDemo(pin) {
     .map(id => { const d = DISCIPLINAS.find(d => d.id === id); return d ? d.nombre : id; })
     .join(' / ');
 
+  /* Leer roles desde localStorage (seteado por actualizarRolesLocal) */
+  let roles = a.roles || null;
+  try {
+    const lsVal = localStorage.getItem('bp_roles_' + a.id.toUpperCase());
+    if (lsVal) roles = JSON.parse(lsVal);
+  } catch(e) { /* ignore */ }
+  if (!roles) roles = [a.rol || 'alumno'];
+
   return {
     pin:         a.id,
     nombre:      a.nombre,
     edad:        a.edad,
-    rol:         a.rol,
-    roles:       a.roles || [a.rol || 'alumno'],
+    rol:         roles[0],
+    roles,
     disciplinas,
     disciplina:  disciplinaNombre,
     objetivo,
@@ -374,18 +382,29 @@ function checkAlumnoPendiente(pin) {
  */
 function getAlumnoLocal(pin) {
   const data  = JSON.parse(localStorage.getItem(NUEVOS_USUARIOS_KEY) || '{}');
-  const u     = data[pin.toUpperCase()];
+  const upper = pin.toUpperCase();
+  const u     = data[upper];
   if (!u || u.estado !== 'activo') return null;
 
   const disciplinaNombre = (u.disciplinas || [])
     .map(id => { const d = DISCIPLINAS.find(d => d.id === id); return d ? d.nombre : id; })
     .join(' / ') || '—';
 
+  /* Leer roles desde localStorage (seteado por actualizarRolesLocal) */
+  let roles = Array.isArray(u.roles) && u.roles.length ? u.roles : null;
+  try {
+    const lsVal = localStorage.getItem('bp_roles_' + upper);
+    if (lsVal) roles = JSON.parse(lsVal);
+  } catch(e) { /* ignore */ }
+  if (!roles) roles = [u.rol || 'alumno'];
+
   return {
     pin:        u.pin,
     nombre:     u.nombre,
     edad:       u.fechaNacimiento || '—',
-    rol:        u.rol || 'alumno',
+    rol:        roles[0],
+    roles,
+    disciplinas: u.disciplinas || [],
     disciplina: disciplinaNombre,
     objetivo:   u.objetivo || '—',
     dias:       u.dias !== undefined ? u.dias : 0,
@@ -465,4 +484,17 @@ function _getDemoOverride(pin) {
 function getUsuariosLocales() {
   const data = JSON.parse(localStorage.getItem(NUEVOS_USUARIOS_KEY) || '{}');
   return Object.values(data);
+}
+
+/** Persiste roles en localStorage (demo mode — no hay Supabase) */
+function actualizarRolesLocal(pin, rolesArr) {
+  const upper = pin.toUpperCase();
+  localStorage.setItem('bp_roles_' + upper, JSON.stringify(rolesArr));
+  /* También actualizar en bp_nuevos_usuarios si el usuario está ahí */
+  const data = JSON.parse(localStorage.getItem(NUEVOS_USUARIOS_KEY) || '{}');
+  if (data[upper]) {
+    data[upper].roles = rolesArr;
+    data[upper].rol   = rolesArr[0];
+    localStorage.setItem(NUEVOS_USUARIOS_KEY, JSON.stringify(data));
+  }
 }

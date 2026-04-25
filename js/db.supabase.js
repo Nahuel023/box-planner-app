@@ -62,14 +62,26 @@ function _alumnoFromDb(u) {
   const disciplinaNombre = (u.disciplinas || [])
     .map(id => { const d = DISCIPLINAS.find(d => d.id === id); return d ? d.nombre : id; })
     .join(' / ') || '—';
+
+  /* roles[]: columna text[] en Supabase. Si no existe o es NULL,
+     fallback a localStorage (guardado por actualizarRolesLocal) */
+  let roles = Array.isArray(u.roles) && u.roles.length ? u.roles : null;
+  if (!roles) {
+    try {
+      const lsVal = localStorage.getItem('bp_roles_' + u.pin.toUpperCase());
+      if (lsVal) roles = JSON.parse(lsVal);
+    } catch(e) { /* ignore */ }
+  }
+  if (!roles) roles = [u.rol || 'alumno'];
+
   return {
     pin:         u.pin,
     nombre:      u.nombre,
     edad:        u.fecha_nacimiento || '—',
     rol:         u.rol || 'alumno',
-    roles:       Array.isArray(u.roles) && u.roles.length ? u.roles : [u.rol || 'alumno'],
-    disciplinas: u.disciplinas || [],        // array de IDs para filtrado
-    disciplina:  disciplinaNombre,           // string formateado para display
+    roles,
+    disciplinas: u.disciplinas || [],
+    disciplina:  disciplinaNombre,
     objetivo:    u.objetivo || '—',
     dias:        u.dias !== undefined ? u.dias : 3,
     rutina:      '',
@@ -236,12 +248,24 @@ if (isSupabaseMode()) {
   /* ── actualizarRolesLocal — actualiza el array roles[] de un usuario ── */
   window.actualizarRolesLocal = function(pin, rolesArr) {
     const upper = pin.toUpperCase();
-    if (!_sbCache.usuarios[upper]) return;
-    _sbCache.usuarios[upper].roles = rolesArr;
-    /* Sincronizar rol principal al primer elemento del array */
-    _sbCache.usuarios[upper].rol   = rolesArr[0];
-    _getSb().from('bp_usuarios').update({ roles: rolesArr, rol: rolesArr[0] }).eq('pin', upper)
-      .then(({ error }) => { if (error) console.error('Supabase actualizarRolesLocal:', error); });
+    if (_sbCache.usuarios[upper]) {
+      _sbCache.usuarios[upper].roles = rolesArr;
+      _sbCache.usuarios[upper].rol   = rolesArr[0];
+    }
+    /* Siempre guardar en localStorage como backup (persiste sin migración) */
+    localStorage.setItem('bp_roles_' + upper, JSON.stringify(rolesArr));
+
+    /* Intentar persistir en Supabase:
+       1. Actualizar rol (columna segura que siempre existe)
+       2. Intentar actualizar roles[] por separado — falla silenciosamente
+          si la columna todavía no fue creada con ALTER TABLE */
+    const sb = _getSb();
+    sb.from('bp_usuarios').update({ rol: rolesArr[0] }).eq('pin', upper)
+      .then(({ error }) => { if (error) console.error('Supabase rol update:', error); });
+    sb.from('bp_usuarios').update({ roles: rolesArr }).eq('pin', upper)
+      .then(({ error }) => {
+        if (error) console.warn('roles[] column missing? Run: ALTER TABLE bp_usuarios ADD COLUMN IF NOT EXISTS roles text[];');
+      });
   };
 
   /* ── actualizarPerfilAlumnoLocal ── */
