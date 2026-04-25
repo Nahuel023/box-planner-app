@@ -281,30 +281,139 @@ function openAlumnoDetail(pin) {
       ${alumno.objetivo ? `<div class="detail-objetivo">${alumno.objetivo}</div>` : ''}
     </div>
 
-    ${alertaSection}
-
-    ${_renderPerfilSection(pin)}
-
-    ${_renderRutinaSection(pin)}
-
-    ${lesionesSection}
-
-    <div class="section-hdr" style="margin:1.25rem 0 .75rem">
-      <h2>RMs — ${MESES[mes]}</h2>
+    <div class="detail-tabs">
+      <button class="detail-tab detail-tab--active" id="detailTabResumen"
+              onclick="switchAlumnoTab('resumen')">Resumen</button>
+      <button class="detail-tab" id="detailTabEvolucion"
+              onclick="switchAlumnoTab('evolucion')">Evolución</button>
     </div>
 
-    ${rmTable}
+    <div id="detailPanelResumen">
+      ${alertaSection}
+      ${_renderPerfilSection(pin)}
+      ${_renderRutinaSection(pin)}
+      ${lesionesSection}
+      <div class="section-hdr" style="margin:1.25rem 0 .75rem">
+        <h2>RMs — ${MESES[mes]}</h2>
+      </div>
+      ${rmTable}
+      ${_renderUltimasCargas(metricas)}
+      <div class="detail-footer">
+        ${tiempoDesde
+          ? `<span class="detail-footer-label">Última carga:</span> ${tiempoDesde}`
+          : '<span class="detail-footer-label">Sin registros de métricas todavía.</span>'
+        }
+      </div>
+    </div>
 
-    ${_renderUltimasCargas(metricas)}
-
-    <div class="detail-footer">
-      ${tiempoDesde
-        ? `<span class="detail-footer-label">Última carga:</span> ${tiempoDesde}`
-        : '<span class="detail-footer-label">Sin registros de métricas todavía.</span>'
-      }
+    <div id="detailPanelEvolucion" style="display:none">
+      ${_renderEvolucionSection(rms, metricas)}
     </div>`;
 
   overlay.classList.add('modal-open');
+}
+
+function switchAlumnoTab(tab) {
+  document.getElementById('detailPanelResumen').style.display  = tab === 'resumen'   ? '' : 'none';
+  document.getElementById('detailPanelEvolucion').style.display = tab === 'evolucion' ? '' : 'none';
+  document.getElementById('detailTabResumen').classList.toggle('detail-tab--active',  tab === 'resumen');
+  document.getElementById('detailTabEvolucion').classList.toggle('detail-tab--active', tab === 'evolucion');
+}
+
+/* ── _renderEvolucionSection ─────────────────────────────────
+   C.11 — Vista de evolución: actividad mensual + sparklines.
+   ─────────────────────────────────────────────────────────── */
+const _MESES_CORTO = ['E','F','M','A','M','J','J','A','S','O','N','D'];
+
+function _renderEvolucionSection(rms, metricas) {
+  /* ── Actividad mensual (cantidad de cargas por mes) ────── */
+  const actMensual = new Array(12).fill(0);
+  (metricas || []).forEach(m => {
+    const mes = new Date(m.fecha + 'T12:00:00').getMonth();
+    actMensual[mes]++;
+  });
+
+  const maxAct  = Math.max(...actMensual, 1);
+  const mesHoy  = new Date().getMonth();
+  const barras  = actMensual.map((n, i) => {
+    const h   = Math.round((n / maxAct) * 52);
+    const act = i === mesHoy ? 'evo-bar--current' : '';
+    return `
+      <div class="evo-bar-col">
+        <div class="evo-bar-val">${n || ''}</div>
+        <div class="evo-bar ${act}" style="height:${Math.max(h, n > 0 ? 4 : 0)}px"></div>
+        <div class="evo-bar-lbl">${_MESES_CORTO[i]}</div>
+      </div>`;
+  }).join('');
+
+  const actividadHtml = `
+    <div class="evo-section">
+      <div class="evo-section-title">Actividad mensual</div>
+      <div class="evo-bars">${barras}</div>
+      <div class="evo-total">Total: ${(metricas || []).length} registros</div>
+    </div>`;
+
+  /* ── Sparklines por ejercicio ──────────────────────────── */
+  const sparks = (rms || [])
+    .map(rm => {
+      const data = rm.meses.map((v, i) => ({ v, i })).filter(x => x.v !== null);
+      if (data.length < 2) return null;
+
+      const vals   = data.map(x => x.v);
+      const min    = Math.min(...vals);
+      const max    = Math.max(...vals);
+      const range  = max - min || 1;
+      const W = 260, H = 52, padX = 12, padY = 6;
+
+      const pts = data.map(({ v }, idx) => [
+        padX + (idx / (data.length - 1)) * (W - 2 * padX),
+        padY + (1 - (v - min) / range) * (H - 2 * padY),
+      ]);
+
+      const line  = pts.map(p => `${p[0].toFixed(1)},${p[1].toFixed(1)}`).join(' ');
+      const lastV = vals[vals.length - 1];
+      const firstV = vals[0];
+      const pct   = ((lastV - firstV) / firstV * 100).toFixed(1);
+      const color = parseFloat(pct) >= 0 ? 'var(--green)' : 'var(--red)';
+      const lp    = pts[pts.length - 1];
+      const labMes = _MESES_CORTO[data[data.length - 1].i];
+
+      return `
+        <div class="evo-spark-card">
+          <div class="evo-spark-hdr">
+            <span class="evo-spark-name">${rm.ejercicio}</span>
+            <span class="evo-spark-badge" style="color:${color}">
+              ${parseFloat(pct) >= 0 ? '+' : ''}${pct}%
+            </span>
+          </div>
+          <svg viewBox="0 0 ${W} ${H}" class="evo-spark-svg">
+            <polyline points="${line}"
+              fill="none" stroke="${color}" stroke-width="1.8"
+              stroke-linejoin="round" stroke-linecap="round"/>
+            ${pts.map((p, i) => `
+              <circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="2.5"
+                fill="${color}" opacity="${i === pts.length - 1 ? 1 : .45}"/>`).join('')}
+            <text x="${lp[0].toFixed(1)}" y="${(lp[1] - 6).toFixed(1)}"
+              fill="${color}" font-size="9" text-anchor="middle"
+              font-family="monospace">${lastV}kg</text>
+          </svg>
+          <div class="evo-spark-range">
+            <span>${_MESES_CORTO[data[0].i]}: ${firstV}kg</span>
+            <span>${labMes}: ${lastV}kg · mejor: ${rm.mejor}kg</span>
+          </div>
+        </div>`;
+    })
+    .filter(Boolean)
+    .join('');
+
+  const sparksHtml = sparks
+    ? `<div class="evo-section" style="margin-top:1.1rem">
+        <div class="evo-section-title">Progreso por ejercicio</div>
+        <div class="evo-sparks">${sparks}</div>
+       </div>`
+    : `<div class="evo-empty">Sin suficientes datos para mostrar progreso.</div>`;
+
+  return actividadHtml + sparksHtml;
 }
 
 /* ── _renderPerfilSection ───────────────────────────────────

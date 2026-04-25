@@ -918,6 +918,76 @@ a { color: inherit; text-decoration: none; }
 }
 .detail-footer-label { color: var(--muted); }
 
+/* ── Detail modal tab switcher (C.11) ──────────────────── */
+.detail-tabs {
+  display: flex; gap: .4rem;
+  margin: .85rem 0 1rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0;
+}
+.detail-tab {
+  background: none; border: none; border-bottom: 2px solid transparent;
+  color: var(--muted); font-size: .82rem; font-weight: 600;
+  padding: .4rem .6rem .55rem; cursor: pointer;
+  font-family: var(--font-body); transition: color .15s, border-color .15s;
+  margin-bottom: -1px;
+}
+.detail-tab--active { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* ── Evolución section ──────────────────────────────────── */
+.evo-section { margin-bottom: .5rem; }
+.evo-section-title {
+  font-size: .72rem; color: var(--muted); font-weight: 700;
+  text-transform: uppercase; letter-spacing: .06em;
+  margin-bottom: .65rem;
+}
+.evo-bars {
+  display: flex; align-items: flex-end; gap: 3px;
+  height: 72px; padding-bottom: .25rem;
+}
+.evo-bar-col {
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; gap: 2px;
+}
+.evo-bar-val {
+  font-size: .55rem; color: var(--muted); font-family: var(--font-mono);
+  min-height: .7rem; line-height: 1;
+}
+.evo-bar {
+  width: 100%; background: var(--border2); border-radius: 3px 3px 0 0;
+  min-height: 0; transition: background .15s;
+}
+.evo-bar--current { background: var(--accent); }
+.evo-bar-lbl {
+  font-size: .6rem; color: var(--muted);
+  font-family: var(--font-mono); margin-top: 2px;
+}
+.evo-total {
+  font-size: .72rem; color: var(--muted); text-align: right;
+  margin-top: .45rem;
+}
+.evo-sparks { display: flex; flex-direction: column; gap: .75rem; }
+.evo-spark-card {
+  background: var(--bg2); border-radius: 10px;
+  padding: .7rem .85rem; border: 1px solid var(--border);
+}
+.evo-spark-hdr {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: .45rem;
+}
+.evo-spark-name { font-size: .82rem; font-weight: 600; }
+.evo-spark-badge { font-size: .75rem; font-weight: 700; font-family: var(--font-mono); }
+.evo-spark-svg { width: 100%; height: 52px; display: block; }
+.evo-spark-range {
+  display: flex; justify-content: space-between;
+  font-size: .65rem; color: var(--muted); font-family: var(--font-mono);
+  margin-top: .35rem;
+}
+.evo-empty {
+  font-size: .85rem; color: var(--muted); text-align: center;
+  padding: 2rem 0;
+}
+
 /* Stat val alerta */
 .doc-stat-val--alerta { color: var(--accent2) !important; }
 
