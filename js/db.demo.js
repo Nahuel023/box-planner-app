@@ -323,7 +323,8 @@ function getRutinasDemo(pin) {
   };
 
   return rutina.dias.map(d => ({
-    dia:  d.label || DIAS_LABEL[d.diaSemana] || d.diaSemana.toUpperCase(),
+    dia:          d.label || DIAS_LABEL[d.diaSemana] || d.diaSemana.toUpperCase(),
+    _disciplinaId: rutina.disciplinaId || '',
     secs: d.bloques.map(b => ({
       tipo:  b.tipo,
       label: b.label,

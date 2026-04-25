@@ -236,6 +236,7 @@ function getRutinasFinal(pin) {
         _rutinaId:     asig.rutinaId,
         _rutinaNombre: rutina.nombre || 'Rutina',
         _fechaInicio:  asig.fecha_asignacion || null,
+        _disciplinaId: rutina.disciplinaId || '',
       }));
     });
   });

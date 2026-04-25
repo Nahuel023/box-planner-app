@@ -231,10 +231,12 @@ function buildRMsFromRutinas() {
   const seenIds   = new Set(state.rms.map(r => (r._ejercicioId || '').toLowerCase()));
   const seenNames = new Set(state.rms.map(r => r.ejercicio.toLowerCase()));
 
-  const nuevos = [];
-  const seenNuevos = new Set();  // evitar duplicados dentro del mismo pase
+  const nuevos    = [];
+  const seenNuevos = new Set();
+  const discByEj   = {};  // { [ejNameLower]: disciplinaId } para actualizar existentes
 
   state.rutinas.forEach(dia => {
+    const disc = dia._disciplinaId || '';
     (dia.secs || []).forEach(sec => {
       (sec.items || []).forEach(item => {
         if (!item || !item.trim()) return;
@@ -247,35 +249,50 @@ function buildRMsFromRutinas() {
           .trim();
 
         if (!nombre || nombre.length < 2) return;
-        const key = nombre.toLowerCase();
-
-        if (seenNames.has(key) || seenNuevos.has(key)) return;
-        seenNuevos.add(key);
 
         /* Buscar en caché Supabase primero, luego en array demo */
         let ejDef = (typeof getEjercicioByNombre === 'function')
           ? getEjercicioByNombre(nombre)
           : null;
         if (!ejDef && typeof EJERCICIOS !== 'undefined') {
-          const demo = EJERCICIOS.find(e => e.nombre.toLowerCase() === key);
+          const rawKey = nombre.toLowerCase();
+          const demo   = EJERCICIOS.find(e => e.nombre.toLowerCase() === rawKey);
           if (demo) ejDef = { id: demo.id, nombre: demo.nombre, musculo_principal: demo.categoria || '' };
         }
 
-        const ejId = ejDef ? ejDef.id : nombre;
+        const ejId  = ejDef ? ejDef.id   : nombre;
+        const ejNom = ejDef ? ejDef.nombre : nombre;
+        const key   = ejNom.toLowerCase();
+
+        /* Registrar disciplina para poder actualizar entradas ya existentes */
+        if (disc && !discByEj[key]) discByEj[key] = disc;
+
+        if (seenNames.has(key) || seenNuevos.has(key)) return;
+        seenNuevos.add(key);
         if (seenIds.has(ejId.toLowerCase())) return;
 
         nuevos.push({
-          _ejercicioId: ejId,
-          ejercicio:    ejDef ? ejDef.nombre : nombre,
-          cat:          ejDef ? (ejDef.musculo_principal || '') : '',
-          meses:        Array(12).fill(null),
-          mejor:        null,
-          prog:         null,
-          _fromRutina:  true,
+          _ejercicioId:  ejId,
+          ejercicio:     ejNom,
+          cat:           ejDef ? (ejDef.musculo_principal || '') : '',
+          meses:         Array(12).fill(null),
+          mejor:         null,
+          prog:          null,
+          _fromRutina:   true,
+          _disciplinaId: disc,
         });
       });
     });
   });
+
+  /* Propagar disciplina a entradas históricas que también están en la rutina */
+  if (Object.keys(discByEj).length) {
+    state.rms.forEach(rm => {
+      if (!rm._disciplinaId && discByEj[rm.ejercicio.toLowerCase()]) {
+        rm._disciplinaId = discByEj[rm.ejercicio.toLowerCase()];
+      }
+    });
+  }
 
   /* Anteponer: rutina primero, históricos después */
   if (nuevos.length) {

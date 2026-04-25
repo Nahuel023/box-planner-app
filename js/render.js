@@ -7,6 +7,14 @@
      - Nunca modificar `state` directamente
    ════════════════════════════════════════════════════════════ */
 
+/* ── Filtro de disciplina para tabla RMs ─────────────────────*/
+let _rmFiltroDisc = null;
+
+function setRMFiltro(disc) {
+  _rmFiltroDisc = disc === 'null' ? null : disc;
+  renderRMTable();
+}
+
 /* ── Meses ───────────────────────────────────────────────────*/
 const MESES_CORTO  = ['E','F','M','A','M','J','J','A','S','O','N','D'];
 const MESES_LARGO  = ['Enero','Feb','Marzo','Abril','Mayo','Junio','Julio','Agosto','Sep','Oct','Nov','Dic'];
@@ -69,7 +77,32 @@ function renderRMTable() {
 
   const mesActual = new Date().getMonth();
 
-  const rows = rms.map((rm, idx) => {
+  /* ── Filtro por disciplina ── */
+  const discSet = new Set(rms.map(r => r._disciplinaId).filter(Boolean));
+  const showFilter = discSet.size > 1;
+
+  let filterHtml = '';
+  if (showFilter) {
+    const chips = [
+      `<button class="rm-disc-chip${_rmFiltroDisc === null ? ' rm-disc-chip--active' : ''}"
+               onclick="setRMFiltro('null')">Todos</button>`,
+      ...[...discSet].map(id => {
+        const d = typeof DISCIPLINAS !== 'undefined' ? DISCIPLINAS.find(d => d.id === id) : null;
+        return `<button class="rm-disc-chip${_rmFiltroDisc === id ? ' rm-disc-chip--active' : ''}"
+                        onclick="setRMFiltro('${id}')">${d ? d.nombre : id}</button>`;
+      }),
+    ].join('');
+    filterHtml = `<div class="rm-disc-filter">${chips}</div>`;
+  }
+
+  /* Si el filtro activo ya no existe (e.g. cambió la rutina), resetear */
+  if (_rmFiltroDisc && !discSet.has(_rmFiltroDisc)) _rmFiltroDisc = null;
+
+  const filtered = (_rmFiltroDisc && showFilter)
+    ? rms.filter(rm => !rm._disciplinaId || rm._disciplinaId === _rmFiltroDisc)
+    : rms;
+
+  const rows = filtered.map((rm, idx) => {
     const curr = rm.meses[mesActual];
     const prev = rm.meses.slice(0, mesActual).reverse().find(v => v !== null);
     const diff = (curr != null && prev != null) ? curr - prev : null;
@@ -97,6 +130,7 @@ function renderRMTable() {
   }).join('');
 
   wrap.innerHTML = `
+    ${filterHtml}
     <div class="rm-table">
       <div class="rm-table-header">
         <span>Ejercicio</span><span>Este mes</span><span>Mejor</span><span>Δ</span>
