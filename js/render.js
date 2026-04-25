@@ -69,22 +69,30 @@ function renderRMTable() {
 
   const mesActual = new Date().getMonth();
 
-  const rows = rms.map(rm => {
+  const rows = rms.map((rm, idx) => {
     const curr = rm.meses[mesActual];
     const prev = rm.meses.slice(0, mesActual).reverse().find(v => v !== null);
     const diff = (curr != null && prev != null) ? curr - prev : null;
     const cls  = diff === null ? '' : diff > 0 ? 'prog-up' : diff < 0 ? 'prog-down' : 'prog-flat';
     const txt  = diff === null ? '—' : diff > 0 ? `+${diff.toFixed(1)}` : diff.toFixed(1);
     const esPR = curr !== null && rm.mejor !== null && curr >= rm.mejor;
+    const base = rm.mejor ?? curr;
+    const pid  = `rmCalc_${idx}`;
     return `
-      <div class="rm-row-item${esPR ? ' rm-row-pr' : ''}">
-        <div>
-          <div class="rm-exercise">${rm.ejercicio}${esPR ? '<span class="rm-pr-badge">PR</span>' : ''}</div>
-          <div class="rm-cat">${rm.cat}</div>
+      <div class="rm-row-wrap">
+        <div class="rm-row-item${esPR ? ' rm-row-pr' : ''}">
+          <div>
+            <div class="rm-exercise">
+              ${rm.ejercicio}${esPR ? '<span class="rm-pr-badge">PR</span>' : ''}
+              ${base !== null ? `<button class="rm-pct-btn" onclick="toggleRMCalc('${pid}',${base},this)">%</button>` : ''}
+            </div>
+            <div class="rm-cat">${rm.cat}</div>
+          </div>
+          <div class="rm-kg">${curr !== null ? curr + 'kg' : '—'}</div>
+          <div class="rm-best">${rm.mejor !== null ? rm.mejor + 'kg' : '—'}</div>
+          <div><span class="stat-prog ${cls}" style="font-size:.7rem;padding:.12rem .4rem;">${txt}</span></div>
         </div>
-        <div class="rm-kg">${curr !== null ? curr + 'kg' : '—'}</div>
-        <div class="rm-best">${rm.mejor !== null ? rm.mejor + 'kg' : '—'}</div>
-        <div><span class="stat-prog ${cls}" style="font-size:.7rem;padding:.12rem .4rem;">${txt}</span></div>
+        <div class="rm-pct-panel" id="${pid}" style="display:none"></div>
       </div>`;
   }).join('');
 
@@ -95,6 +103,32 @@ function renderRMTable() {
       </div>
       ${rows}
     </div>`;
+}
+
+function toggleRMCalc(panelId, base, btn) {
+  const panel = document.getElementById(panelId);
+  if (!panel) return;
+  const rowItem = panel.previousElementSibling;
+  const open    = panel.style.display !== 'none';
+  if (open) {
+    panel.style.display = 'none';
+    rowItem?.classList.remove('rm-row-item--panel');
+    btn?.classList.remove('rm-pct-btn--active');
+    return;
+  }
+  const pcts = [50, 60, 65, 70, 75, 80, 85, 90, 95, 100];
+  panel.innerHTML = `<div class="rm-pct-grid">${
+    pcts.map(p => {
+      const kg = Math.round(base * p / 100 / 2.5) * 2.5;
+      return `<div class="rm-pct-cell">
+        <span class="rm-pct-pct">${p}%</span>
+        <span class="rm-pct-kg">${kg}kg</span>
+      </div>`;
+    }).join('')
+  }</div>`;
+  panel.style.display = '';
+  rowItem?.classList.add('rm-row-item--panel');
+  btn?.classList.add('rm-pct-btn--active');
 }
 
 /* ── renderSparks ────────────────────────────────────────────
