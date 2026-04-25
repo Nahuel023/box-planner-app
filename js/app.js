@@ -132,6 +132,7 @@ async function handleLogin() {
 
 /* ── Logout ──────────────────────────────────────────────────*/
 function doLogout() {
+  _stopRutinaPolling();
   sessionStorage.removeItem('bp_pin');
   state = { alumno: null, rms: [], rutinas: [], historial: [], metricas: [], panelAlumnos: [] };
   document.getElementById('appScreen').style.display     = 'none';
@@ -139,6 +140,86 @@ function doLogout() {
   document.getElementById('loginScreen').style.display   = 'flex';
   document.getElementById('pinInput').value = '';
   document.querySelector('.login-btn').textContent = 'INGRESAR →';
+}
+
+/* ── A.3 — Refresh automático de rutinas ─────────────────────
+   Detecta cambios en las asignaciones activas del alumno sin
+   requerir re-login. Usa polling cada 2 min + Page Visibility
+   API para reaccionar inmediatamente cuando el usuario vuelve
+   a la app desde otra pantalla.
+   ─────────────────────────────────────────────────────────── */
+let _rutinaCheckInterval = null;
+let _lastRutinaIds       = null;
+
+function _getActiveRutinaIds() {
+  if (!state.alumno) return '';
+  const activas = getTodasRutinasAsignadas(state.alumno.pin);
+  return activas.map(a => a.rutinaId).sort().join(',');
+}
+
+async function _checkRutinaUpdate() {
+  if (!state.alumno || document.hidden) return;
+
+  /* En Supabase, refrescar la cache antes de comparar */
+  if (isSupabaseMode() && typeof refreshAsignacionesCache === 'function') {
+    await refreshAsignacionesCache(state.alumno.pin);
+  }
+
+  const current = _getActiveRutinaIds();
+
+  /* Primera llamada: solo establecer baseline */
+  if (_lastRutinaIds === null) {
+    _lastRutinaIds = current;
+    return;
+  }
+
+  if (current === _lastRutinaIds) return;
+
+  const prevCount = _lastRutinaIds.split(',').filter(Boolean).length;
+  const newCount  = current.split(',').filter(Boolean).length;
+  _lastRutinaIds  = current;
+
+  /* Actualizar state.rutinas y re-renderizar */
+  const pin     = state.alumno.pin;
+  state.rutinas = getRutinasFinal(pin);
+  if (typeof buildRMsFromRutinas === 'function') buildRMsFromRutinas();
+  renderAll();
+
+  /* Punto rojo en tab Rutina */
+  _setRutinaNotifDot(true);
+
+  showToast(newCount > prevCount ? 'Nueva rutina asignada' : 'Rutina actualizada');
+}
+
+function _setRutinaNotifDot(on) {
+  const navBtn = document.getElementById('navRutina');
+  if (!navBtn) return;
+  const existing = document.getElementById('navRutinaDot');
+  if (on && !existing) {
+    const dot = document.createElement('span');
+    dot.id = 'navRutinaDot'; dot.className = 'nav-rutina-dot';
+    navBtn.appendChild(dot);
+  } else if (!on && existing) {
+    existing.remove();
+  }
+}
+
+function _startRutinaPolling() {
+  _lastRutinaIds = null;
+  _checkRutinaUpdate(); /* baseline */
+  _rutinaCheckInterval = setInterval(_checkRutinaUpdate, 2 * 60 * 1000);
+  document.addEventListener('visibilitychange', _onVisibilityChange);
+}
+
+function _stopRutinaPolling() {
+  clearInterval(_rutinaCheckInterval);
+  _rutinaCheckInterval = null;
+  _lastRutinaIds       = null;
+  document.removeEventListener('visibilitychange', _onVisibilityChange);
+}
+
+function _onVisibilityChange() {
+  if (document.visibilityState === 'visible') _checkRutinaUpdate();
 }
 
 /* ── Cargar datos ────────────────────────────────────────────
@@ -208,17 +289,12 @@ async function loadData() {
   renderAll();
 
   /* Punto rojo en tab Rutina si hay alguna asignación activa no vista */
-  const histRut   = getHistorialRutinas(pin);
+  const histRut    = getHistorialRutinas(pin);
   const hayNoVista = histRut.some(h => h.rutinaId && !h.vista_por_alumno);
-  if (hayNoVista) {
-    const navBtn = document.getElementById('navRutina');
-    if (navBtn && !document.getElementById('navRutinaDot')) {
-      const dot = document.createElement('span');
-      dot.id        = 'navRutinaDot';
-      dot.className = 'nav-rutina-dot';
-      navBtn.appendChild(dot);
-    }
-  }
+  _setRutinaNotifDot(hayNoVista);
+
+  /* Arrancar polling de rutinas (A.3) */
+  _startRutinaPolling();
 }
 
 /* ── Mostrar app ─────────────────────────────────────────────*/
@@ -411,6 +487,7 @@ async function switchRoleToAlumno() {
 }
 
 async function switchRoleToDocente() {
+  _stopRutinaPolling();
   document.getElementById('appScreen').style.display     = 'none';
   document.getElementById('docenteScreen').style.display = 'block';
   const a = state.alumno;

@@ -380,6 +380,30 @@ if (isSupabaseMode()) {
     return (_sbCache.asignaciones[alumnoPin.toUpperCase()] || []).slice();
   };
 
+  /* ── refreshAsignacionesCache — consulta ligera solo para A.3 ── */
+  window.refreshAsignacionesCache = async function(pin) {
+    const PIN = pin.toUpperCase();
+    const { data, error } = await _getSb()
+      .from('bp_asignaciones')
+      .select('*')
+      .eq('pin', PIN)
+      .order('created_at', { ascending: false });
+    if (error || !data) return false;
+    _sbCache.asignaciones[PIN] = [];
+    data.forEach(a => {
+      if (!a.rutina_id) return;
+      _sbCache.asignaciones[PIN].push({
+        rutinaId:         a.rutina_id,
+        fecha_asignacion: typeof a.fecha_asignacion === 'string'
+          ? a.fecha_asignacion.slice(0, 10)
+          : new Date(a.created_at).toISOString().slice(0, 10),
+        vista_por_alumno: a.vista_por_alumno,
+        _dbId:            a.id,
+      });
+    });
+    return true;
+  };
+
   /* ── saveMetric ── */
   window.saveMetric = function(alumnoId, ejercicioId, valor, tipo,
                                fecha, notas, estado) {
