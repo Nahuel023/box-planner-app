@@ -12,6 +12,12 @@ const MESES_CORTO  = ['E','F','M','A','M','J','J','A','S','O','N','D'];
 const MESES_LARGO  = ['Enero','Feb','Marzo','Abril','Mayo','Junio','Julio','Agosto','Sep','Oct','Nov','Dic'];
 const MESES_BADGE  = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
 
+function _formatFecha(iso) {
+  if (!iso) return '';
+  const d = new Date(iso + 'T00:00:00');
+  return `${d.getDate()} ${MESES_BADGE[d.getMonth()]}`;
+}
+
 /* ── Clases CSS por tipo de bloque ───────────────────────────*/
 const SEC_CLASS = {
   structure: 'sec-structure', strength: 'sec-strength', wl:   'sec-wl',
@@ -186,18 +192,35 @@ function renderRutinas() {
     const orden  = [];
     state.rutinas.forEach(dia => {
       const rid = dia._rutinaId || '__default__';
-      if (!grupos[rid]) { grupos[rid] = { nombre: dia._rutinaNombre, dias: [] }; orden.push(rid); }
+      if (!grupos[rid]) {
+        grupos[rid] = { nombre: dia._rutinaNombre, fechaInicio: dia._fechaInicio || null, dias: [] };
+        orden.push(rid);
+      }
       grupos[rid].dias.push(dia);
     });
 
+    const _diaNum = fecha => {
+      if (!fecha) return null;
+      const diff = new Date() - new Date(fecha + 'T00:00:00');
+      const n    = Math.floor(diff / 86400000) + 1;
+      return n >= 1 ? n : null;
+    };
+
     if (orden.length === 1) {
-      wrap.innerHTML = grupos[orden[0]].dias.map(dia => renderDayCard(dia)).join('');
+      const g      = grupos[orden[0]];
+      const diaNum = _diaNum(g.fechaInicio);
+      const badge  = diaNum
+        ? `<div class="rutina-inicio-badge">Día ${diaNum} · desde ${_formatFecha(g.fechaInicio)}</div>`
+        : '';
+      wrap.innerHTML = badge + g.dias.map(dia => renderDayCard(dia)).join('');
     } else {
       wrap.innerHTML = orden.map(rid => {
-        const g = grupos[rid];
+        const g      = grupos[rid];
+        const diaNum = _diaNum(g.fechaInicio);
+        const sub    = diaNum ? ` <span class="rutina-grupo-dia">Día ${diaNum}</span>` : '';
         return `
           <div class="rutina-grupo">
-            <div class="rutina-grupo-hdr">${g.nombre || 'Rutina'}</div>
+            <div class="rutina-grupo-hdr">${g.nombre || 'Rutina'}${sub}</div>
             ${g.dias.map(dia => renderDayCard(dia)).join('')}
           </div>`;
       }).join('');

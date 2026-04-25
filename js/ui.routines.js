@@ -504,7 +504,13 @@ function _seleccionarAlumnoAsignar(pin, nombre) {
   const conf = document.getElementById('rAsignarConfirm');
   const lbl  = document.getElementById('rAsignarSelNombre');
   if (conf) conf.style.display = '';
-  if (lbl)  lbl.innerHTML = `Asignar a <strong>${nombre}</strong>`;
+  if (lbl)  lbl.innerHTML = `
+    Asignar a <strong>${nombre}</strong>
+    <div class="rasignar-fecha-row">
+      <label class="rasignar-fecha-lbl" for="rFechaInicio">Fecha de inicio</label>
+      <input type="date" id="rFechaInicio" class="rasignar-fecha-input"
+             value="${new Date().toISOString().slice(0,10)}">
+    </div>`;
 }
 
 function submitAsignarRutina(forzar = false) {
@@ -539,7 +545,8 @@ function submitAsignarRutina(forzar = false) {
 
   const allRutinas   = getAllRutinas();
   const rutina       = allRutinas[_rModalAsignarId];
-  asignarRutina(pin, _rModalAsignarId);
+  const fechaInicio  = document.getElementById('rFechaInicio')?.value || '';
+  asignarRutina(pin, _rModalAsignarId, fechaInicio || undefined);
   closeRutinaModalDirect();
 
   const alumnoNombre = (state.panelAlumnos.find(p => p.alumno.pin === pin)?.alumno.nombre) || pin;

@@ -90,12 +90,13 @@ function _readAsignaciones() {
 }
 
 /** Guarda una asignación (inserta al inicio → [0] siempre es la más reciente) */
-function asignarRutina(alumnoPin, rutinaId) {
+function asignarRutina(alumnoPin, rutinaId, fechaInicio) {
   const data    = _readAsignaciones();
   const pin     = alumnoPin.toUpperCase();
+  const hoy     = new Date().toISOString().slice(0, 10);
   const entrada = {
     rutinaId,
-    fecha_asignacion: new Date().toISOString().slice(0, 10),
+    fecha_asignacion: fechaInicio || hoy,
     vista_por_alumno: false,
   };
   data[pin] = [entrada, ...(data[pin] || [])];
@@ -234,6 +235,7 @@ function getRutinasFinal(pin) {
       dias.push(Object.assign({}, d, {
         _rutinaId:     asig.rutinaId,
         _rutinaNombre: rutina.nombre || 'Rutina',
+        _fechaInicio:  asig.fecha_asignacion || null,
       }));
     });
   });

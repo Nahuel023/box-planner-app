@@ -301,23 +301,23 @@ if (isSupabaseMode()) {
   };
 
   /* ── asignarRutina ── */
-  window.asignarRutina = function(alumnoPin, rutinaId) {
+  window.asignarRutina = function(alumnoPin, rutinaId, fechaInicio) {
     const PIN   = alumnoPin.toUpperCase();
+    const hoy   = new Date().toISOString().slice(0, 10);
     const entry = {
       rutinaId:         rutinaId,
-      fecha_asignacion: new Date().toISOString().slice(0, 10),
+      fecha_asignacion: fechaInicio || hoy,
       vista_por_alumno: false,
     };
     if (!_sbCache.asignaciones[PIN]) _sbCache.asignaciones[PIN] = [];
-    _sbCache.asignaciones[PIN].unshift(entry);  // [0] = más reciente
+    _sbCache.asignaciones[PIN].unshift(entry);
     _getSb().from('bp_asignaciones').insert({
       pin:              PIN,
       rutina_id:        rutinaId,
       fecha_asignacion: entry.fecha_asignacion,
       vista_por_alumno: false,
-    }).then(({ data, error }) => {
+    }).select().then(({ data, error }) => {
       if (error) { console.error('Supabase asignarRutina:', error); return; }
-      /* Guardar el id de DB para poder actualizar vista_por_alumno después */
       if (data && data[0]) _sbCache.asignaciones[PIN][0]._dbId = data[0].id;
     });
   };
