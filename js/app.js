@@ -227,7 +227,6 @@ function showApp() {
   document.getElementById('appScreen').style.display  = 'block';
 
   const a = state.alumno;
-  document.getElementById('topName').textContent = (a.nombre || '').split(' ')[0] || a.nombre;
 
   const parts   = a.nombre.split(' ');
   const display = parts.length >= 2
@@ -243,6 +242,7 @@ function showApp() {
     if (pill) pill.innerHTML = '<span class="info-dot" style="background:#f59e0b"></span> Modo demo — conectá tu Google Sheet';
   }
 
+  if (typeof updateTopbarAvatar === 'function') updateTopbarAvatar();
 }
 
 /* ── Panel docente / admin ───────────────────────────────────*/
@@ -398,7 +398,6 @@ async function switchRoleToAlumno() {
   document.getElementById('appScreen').style.display     = 'block';
   document.getElementById('docenteScreen').style.display = 'none';
   const a = state.alumno;
-  document.getElementById('topName').textContent = (a.nombre || '').split(' ')[0] || a.nombre;
   const parts   = a.nombre.split(' ');
   const display = parts.length >= 2
     ? `${parts[0]} <span>${parts.slice(1).join(' ')}</span>`
@@ -406,39 +405,9 @@ async function switchRoleToAlumno() {
   document.getElementById('heroName').innerHTML = display;
   const tags = [a.disciplina, `${a.dias} días/sem`, a.objetivo].filter(t => t && t !== '—');
   document.getElementById('heroMeta').innerHTML = tags.map(t => `<span class="tag">${t}</span>`).join('');
+  if (typeof updateTopbarAvatar === 'function') updateTopbarAvatar();
   await loadData();
   _updateRoleSwitchers(a.roles || [a.rol], 'alumno');
-}
-
-/* ── A.2 — Perfil editable por el propio alumno ──────────────*/
-function _refreshHeroMeta() {
-  const a    = state.alumno;
-  const tags = [a.disciplina, `${a.dias} días/sem`, a.objetivo].filter(t => t && t !== '—');
-  document.getElementById('heroMeta').innerHTML = tags.map(t => `<span class="tag">${t}</span>`).join('');
-}
-
-function guardarPerfilPropio() {
-  const pin         = state.alumno.pin;
-  const checkboxes  = document.querySelectorAll('input[name="miPerfil_disc"]:checked');
-  const disciplinas = Array.from(checkboxes).map(cb => cb.value);
-  const dias        = parseInt(document.getElementById('miPerfilDias')?.value) || 3;
-  const objetivo    = (document.getElementById('miPerfilObjetivo')?.value || '').trim();
-
-  actualizarPerfilAlumnoLocal(pin, disciplinas, dias, objetivo || undefined);
-
-  /* Actualizar state.alumno en memoria */
-  state.alumno.disciplinas = disciplinas;
-  state.alumno.dias        = dias;
-  if (objetivo) state.alumno.objetivo = objetivo;
-  state.alumno.disciplina  = disciplinas
-    .map(id => { const d = (typeof DISCIPLINAS !== 'undefined') ? DISCIPLINAS.find(d => d.id === id) : null; return d ? d.nombre : id; })
-    .join(' / ') || '—';
-
-  _refreshHeroMeta();
-  showToast('✓ Perfil actualizado');
-
-  /* Re-render del form para reflejar valores guardados */
-  if (typeof renderSaludTab === 'function') renderSaludTab();
 }
 
 async function switchRoleToDocente() {

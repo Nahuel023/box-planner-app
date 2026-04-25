@@ -384,37 +384,6 @@ async function handleEditarLesion(lesionId, pin) {
 /* ════════════════════════════════════════════════════════════
    STUDENT — Tab Salud
    ════════════════════════════════════════════════════════════ */
-function _renderMiPerfilForm() {
-  const a    = state.alumno;
-  const disc = (typeof DISCIPLINAS !== 'undefined' ? DISCIPLINAS : []).map(d => `
-    <label class="miPerfil-disc-check">
-      <input type="checkbox" name="miPerfil_disc" value="${d.id}"
-        ${(a.disciplinas || []).includes(d.id) ? 'checked' : ''}>
-      ${d.nombre}
-    </label>`).join('');
-
-  return `
-    <div class="miPerfil-box">
-      <div class="miPerfil-title">Mi perfil</div>
-      <div class="miPerfil-field-lbl">Disciplinas</div>
-      <div class="miPerfil-discs">${disc}</div>
-      <div class="miPerfil-row">
-        <div class="miPerfil-col">
-          <label class="miPerfil-field-lbl" for="miPerfilDias">Días por semana</label>
-          <input type="number" id="miPerfilDias" class="miPerfil-input-num"
-            min="1" max="7" value="${a.dias || 3}">
-        </div>
-        <div class="miPerfil-col">
-          <label class="miPerfil-field-lbl" for="miPerfilObjetivo">Objetivo</label>
-          <input type="text" id="miPerfilObjetivo" class="miPerfil-input-txt"
-            placeholder="Ej: perder peso, competir…"
-            value="${a.objetivo && a.objetivo !== '—' ? a.objetivo : ''}">
-        </div>
-      </div>
-      <button class="btn miPerfil-save-btn" onclick="guardarPerfilPropio()">Guardar perfil</button>
-    </div>`;
-}
-
 function renderSaludTab() {
   const wrap = document.getElementById('saludWrap');
   if (!wrap || !state.alumno) return;
@@ -423,10 +392,8 @@ function renderSaludTab() {
   const lesiones = getLesionesByPin(pin);
   const activas  = lesiones.filter(l => l.estado !== 'resuelta');
 
-  const perfilHtml = _renderMiPerfilForm();
-
   if (!activas.length) {
-    wrap.innerHTML = perfilHtml + `
+    wrap.innerHTML = `
       <div class="lesion-ok-box">
         <div style="font-size:2.2rem;margin-bottom:.6rem">✓</div>
         <div style="font-size:.96rem;font-weight:700">Sin lesiones activas</div>
@@ -437,7 +404,7 @@ function renderSaludTab() {
     return;
   }
 
-  wrap.innerHTML = perfilHtml + activas.map(l => _renderLesionAlumnoCard(l, pin)).join('');
+  wrap.innerHTML = activas.map(l => _renderLesionAlumnoCard(l, pin)).join('');
 }
 
 function _renderLesionAlumnoCard(l, pin) {
