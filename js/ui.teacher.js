@@ -519,15 +519,33 @@ function _renderRutinaSection(pin) {
       : `<em style="color:var(--muted)">${rutinaId}</em>`;
   };
 
-  const activasHtml = activas.map(a => `
+  const _diaDesde = fecha => {
+    if (!fecha) return null;
+    const diff = new Date() - new Date(fecha + 'T00:00:00');
+    const n    = Math.floor(diff / 86400000) + 1;
+    return n >= 1 ? n : null;
+  };
+  const _fmtFecha = fecha => {
+    if (!fecha) return '';
+    const d = new Date(fecha + 'T00:00:00');
+    return `${d.getDate()}/${d.getMonth()+1}/${d.getFullYear()}`;
+  };
+
+  const activasHtml = activas.map(a => {
+    const dia   = _diaDesde(a.fecha_asignacion);
+    const desde = _fmtFecha(a.fecha_asignacion);
+    return `
     <div class="detail-rutina-actual">
       <div style="flex:1;min-width:0">
         <div style="font-size:.9rem;font-weight:500">${_nombre(a.rutinaId)}</div>
-        <div class="detail-hist-fecha">${a.fecha_asignacion || ''}</div>
+        <div class="detail-hist-fecha">
+          Inicio: ${desde}${dia ? ` · <strong>Día ${dia}</strong>` : ''}
+        </div>
       </div>
       <button class="btn-mini btn-mini--danger"
         onclick="quitarRutinaAlumno('${pin}', '${a.rutinaId}')">Quitar</button>
-    </div>`).join('');
+    </div>`;
+  }).join('');
 
   return `
     <div class="section-hdr" style="margin:1.25rem 0 .75rem">
@@ -706,4 +724,111 @@ function closeAlumnoDetail(e) {
 
 function closeAlumnoDetailDirect() {
   document.getElementById('alumnoDetailModal').classList.remove('modal-open');
+}
+
+/* ════════════════════════════════════════════════════════════
+   F.20 — Admin stats sub-tab
+   ════════════════════════════════════════════════════════════ */
+function switchAdminSub(sub) {
+  const tabWrap   = document.getElementById('adminTabWrap');
+  const statsWrap = document.getElementById('adminStatsWrap');
+  const btnU      = document.getElementById('adminSubUsuarios');
+  const btnS      = document.getElementById('adminSubStats');
+  if (!tabWrap || !statsWrap) return;
+
+  if (sub === 'stats') {
+    tabWrap.style.display   = 'none';
+    statsWrap.style.display = '';
+    btnU?.classList.remove('admin-subnav-btn--active');
+    btnS?.classList.add('admin-subnav-btn--active');
+    renderStatsTab();
+  } else {
+    tabWrap.style.display   = '';
+    statsWrap.style.display = 'none';
+    btnU?.classList.add('admin-subnav-btn--active');
+    btnS?.classList.remove('admin-subnav-btn--active');
+  }
+}
+
+function renderStatsTab() {
+  const wrap = document.getElementById('adminStatsWrap');
+  if (!wrap) return;
+
+  const hoy     = new Date().toISOString().slice(0, 10);
+  const lunes   = _getAdminLunes().toISOString().slice(0, 10);
+  const hace30  = new Date(Date.now() - 30 * 86400000).toISOString().slice(0, 10);
+
+  const usuarios = getUsuariosLocales().filter(u => u.estado === 'activo');
+
+  let totalHoy = 0, totalSemana = 0;
+
+  const rows = usuarios.map(u => {
+    const mets    = (typeof getMetricsByAlumno === 'function') ? getMetricsByAlumno(u.pin) : [];
+    const total   = mets.length;
+    const ultObj  = mets.length ? mets.reduce((a, b) => a.fecha > b.fecha ? a : b) : null;
+    const ultFecha = ultObj ? ultObj.fecha : null;
+
+    totalHoy    += mets.filter(m => m.fecha === hoy).length;
+    totalSemana += mets.filter(m => m.fecha >= lunes).length;
+
+    let badge, badgeCls;
+    if (!ultFecha) {
+      badge = 'Sin cargas'; badgeCls = 'admin-act-badge--stale';
+    } else if (ultFecha >= hace30) {
+      badge = _diasDesde(ultFecha); badgeCls = 'admin-act-badge--ok';
+    } else {
+      badge = '+30 días'; badgeCls = 'admin-act-badge--stale';
+    }
+
+    return { u, total, ultFecha, badge, badgeCls };
+  });
+
+  const stale30 = rows.filter(r => r.badgeCls === 'admin-act-badge--stale').length;
+  rows.sort((a, b) => (b.ultFecha || '') > (a.ultFecha || '') ? 1 : -1);
+
+  const cardsHtml = [
+    { val: usuarios.length, lbl: 'Alumnos activos',    icon: '👥', cls: '' },
+    { val: totalHoy,        lbl: 'Cargas hoy',         icon: '📥', cls: '' },
+    { val: totalSemana,     lbl: 'Cargas esta semana', icon: '📊', cls: '' },
+    { val: stale30,         lbl: 'Sin actividad 30d',  icon: '⚠️', cls: stale30 > 0 ? 'doc-stat-val--alerta' : '' },
+  ].map(c => `
+    <div class="doc-stat-box">
+      <div class="doc-stat-icon">${c.icon}</div>
+      <div class="doc-stat-val ${c.cls}">${c.val}</div>
+      <div class="doc-stat-lbl">${c.lbl}</div>
+    </div>`).join('');
+
+  const tableRows = rows.map(({ u, total, badge, badgeCls }) => `
+    <tr>
+      <td>
+        <div style="font-size:.82rem;font-weight:500">${u.nombre}</div>
+        <div class="admin-act-pin">${u.pin}</div>
+      </td>
+      <td style="text-align:center;font-weight:600">${total}</td>
+      <td><span class="admin-act-badge ${badgeCls}">${badge}</span></td>
+    </tr>`).join('');
+
+  wrap.innerHTML = `
+    <div class="admin-stat-grid">${cardsHtml}</div>
+    <div class="admin-section-hdr">Actividad por alumno</div>
+    <div style="overflow-x:auto">
+      <table class="admin-act-table">
+        <thead>
+          <tr>
+            <th>Alumno</th>
+            <th style="text-align:center">Total cargas</th>
+            <th>Última actividad</th>
+          </tr>
+        </thead>
+        <tbody>${tableRows || '<tr><td colspan="3" style="color:var(--muted);text-align:center;padding:1rem">Sin datos</td></tr>'}</tbody>
+      </table>
+    </div>`;
+}
+
+function _getAdminLunes() {
+  const d   = new Date();
+  const day = d.getDay();
+  d.setDate(d.getDate() + (day === 0 ? -6 : 1 - day));
+  d.setHours(0, 0, 0, 0);
+  return d;
 }

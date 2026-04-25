@@ -1199,6 +1199,47 @@ textarea.rform-input { resize: vertical; line-height: 1.5; }
   width: 13px; height: 13px; cursor: pointer;
 }
 
+/* ── Admin subnav ─────────────────────────────────────── */
+.admin-subnav {
+  display: flex; gap: .4rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 1rem; padding-bottom: .1rem;
+}
+.admin-subnav-btn {
+  background: none; border: none;
+  font-family: var(--font-body); font-size: .8rem;
+  color: var(--muted); cursor: pointer;
+  padding: .45rem .8rem;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: color .15s, border-color .15s;
+}
+.admin-subnav-btn:hover { color: var(--text); }
+.admin-subnav-btn--active { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* ── Admin stats tab ──────────────────────────────────── */
+.admin-stat-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: .6rem; margin-bottom: 1.25rem;
+}
+.admin-act-table { width: 100%; border-collapse: collapse; }
+.admin-act-table th {
+  font-size: .68rem; text-transform: uppercase; letter-spacing: .05em;
+  color: var(--muted); padding: .4rem .5rem; text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.admin-act-table td {
+  font-size: .78rem; padding: .5rem .5rem;
+  border-bottom: 1px solid var(--border); vertical-align: middle;
+}
+.admin-act-pin { font-family: var(--font-mono); color: var(--muted); font-size: .7rem; }
+.admin-act-badge {
+  display: inline-block; font-size: .65rem; padding: .15rem .4rem;
+  border-radius: 20px; font-weight: 600; white-space: nowrap;
+}
+.admin-act-badge--ok    { background: rgba(52,211,153,.15); color: var(--green); }
+.admin-act-badge--stale { background: rgba(239,68,68,.15);  color: var(--red); }
+
 /* ── Lesiones (teacher) ───────────────────────────────── */
 .lesion-card {
   background: var(--card); border-radius: 10px;
@@ -2044,7 +2085,14 @@ textarea.rform-input { resize: vertical; line-height: 1.5; }
 
     <!-- Sección Admin (solo rol admin) -->
     <div id="sectionDocAdmin" style="display:none">
+      <div class="admin-subnav">
+        <button class="admin-subnav-btn admin-subnav-btn--active"
+                id="adminSubUsuarios" onclick="switchAdminSub('usuarios')">Usuarios</button>
+        <button class="admin-subnav-btn"
+                id="adminSubStats" onclick="switchAdminSub('stats')">Stats</button>
+      </div>
       <div id="adminTabWrap"></div>
+      <div id="adminStatsWrap" style="display:none"></div>
     </div>
 
   </div>
