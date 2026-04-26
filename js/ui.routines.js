@@ -112,22 +112,41 @@ function _attachBusqListener(input, textarea) {
       }
 
       if (!resultados.length) {
-        dropdown.innerHTML = '<div class="rbusq-noresult">Sin resultados</div>';
+        dropdown.innerHTML = `
+          <div class="rbusq-noresult">Sin resultados</div>
+          <div class="rbusq-item rbusq-item--crear">+ Crear "${q.replace(/"/g,'&quot;')}" como nuevo ejercicio</div>`;
         dropdown.style.display = 'block';
+        dropdown.querySelector('.rbusq-item--crear')?.addEventListener('mousedown', ev => {
+          ev.preventDefault();
+          dropdown.innerHTML = ''; dropdown.style.display = 'none';
+          openCrearEjercicioModal(null, disc ? [disc] : [], q);
+        });
         return;
       }
 
-      dropdown.innerHTML = resultados.map(e =>
-        `<div class="rbusq-item" data-nombre="${e.nombre}">
-           <span class="rbusq-nombre">${e.nombre}</span>
-           <span class="rbusq-musculo">${e.musculo_principal || ''}</span>
-         </div>`
-      ).join('');
+      dropdown.innerHTML = resultados.map(e => {
+        const thumb   = e.media_url ? `<img src="${e.media_url}" class="rbusq-thumb" alt="" loading="lazy">` : '';
+        const editBtn = e.id ? `<button class="rbusq-edit-btn" data-id="${e.id}" title="Editar / agregar imagen">✎</button>` : '';
+        return `<div class="rbusq-item" data-nombre="${e.nombre}" data-id="${e.id || ''}">
+          ${thumb}
+          <span class="rbusq-nombre">${e.nombre}</span>
+          <span class="rbusq-musculo">${e.musculo_principal || ''}</span>
+          ${editBtn}
+        </div>`;
+      }).join('');
       dropdown.style.display = 'block';
 
       /* Click → insertar en textarea como "3×10 Nombre" */
       dropdown.querySelectorAll('.rbusq-item').forEach(item => {
+        /* Botón editar */
+        item.querySelector('.rbusq-edit-btn')?.addEventListener('mousedown', ev => {
+          ev.preventDefault(); ev.stopPropagation();
+          const id = ev.currentTarget.dataset.id;
+          dropdown.innerHTML = ''; dropdown.style.display = 'none';
+          if (id && typeof openEditarEjercicioModal === 'function') openEditarEjercicioModal(id);
+        });
         item.addEventListener('mousedown', ev => {
+          if (ev.target.classList.contains('rbusq-edit-btn')) return;
           ev.preventDefault();
           const linea = `3×10 ${item.dataset.nombre}`;
           textarea.value = textarea.value.trim()

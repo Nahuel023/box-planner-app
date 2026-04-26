@@ -230,9 +230,15 @@ function renderDayCard(dia) {
         ${(dia.secs || []).map(sec => `
           <div class="sec-block">
             <div class="sec-label ${SEC_CLASS[sec.tipo] || 'sec-structure'}">${sec.label}</div>
-            ${(sec.items || []).map(it =>
-              `<div class="sec-item ${it.startsWith('  ') || it.startsWith('─') ? 'indent' : ''}">${it.replace(/^  /, '')}</div>`
-            ).join('')}
+            ${(sec.items || []).map(it => {
+              const indent = it.startsWith('  ') || it.startsWith('─');
+              const txt    = it.replace(/^  /, '');
+              /* Buscar ejercicio por nombre para habilitar tap → imagen */
+              const ejNom  = !indent ? txt.replace(/^\d+[×xX]\d+\s+/, '').replace(/^[-─]\s*/, '').trim() : '';
+              const ej     = ejNom && typeof getEjercicioByNombre === 'function' ? getEjercicioByNombre(ejNom) : null;
+              const click  = ej ? ` onclick="openEjercicioDetail('${ej.id}')"` : '';
+              return `<div class="sec-item${indent ? ' indent' : ''}${ej ? ' sec-item--clickable' : ''}"${click}>${txt}</div>`;
+            }).join('')}
             ${sec.cap ? `<div class="sec-cap">⏱ Cap: ${sec.cap}</div>` : ''}
           </div>`
         ).join('')}

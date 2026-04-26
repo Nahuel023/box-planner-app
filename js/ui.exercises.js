@@ -274,3 +274,113 @@ function closeCrearEjercicioModal() {
   const modal = document.getElementById('modalCrearEjercicio');
   if (modal) modal.classList.remove('modal-open');
 }
+
+/* ── Ver detalle de ejercicio (tap desde rutina alumno) ──────*/
+function openEjercicioDetail(id) {
+  const ej = typeof getEjercicioById === 'function' ? getEjercicioById(id) : null;
+  if (!ej) return;
+
+  let modal = document.getElementById('ejercicioDetailModal');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id        = 'ejercicioDetailModal';
+    modal.className = 'modal-overlay';
+    modal.onclick   = e => { if (e.target === modal) modal.classList.remove('modal-open'); };
+    document.body.appendChild(modal);
+  }
+
+  const discConf = (typeof DISCIPLINAS_CONFIG !== 'undefined' && DISCIPLINAS_CONFIG[ej.disciplina]) || {};
+  const badge    = discConf.label
+    ? `<span class="ac-badge" style="background:${discConf.color};margin:.4rem auto .2rem;display:inline-block">${discConf.label}</span>`
+    : '';
+
+  modal.innerHTML = `
+    <div class="modal-box" style="max-width:340px;text-align:center;padding-top:1.25rem">
+      <button class="modal-close-x" style="position:absolute;top:.75rem;right:.75rem"
+        onclick="document.getElementById('ejercicioDetailModal').classList.remove('modal-open')">✕</button>
+      ${ej.media_url
+        ? `<img src="${ej.media_url}" style="width:100%;border-radius:8px;margin-bottom:.9rem;max-height:220px;object-fit:contain">`
+        : '<div style="font-size:2.5rem;margin-bottom:.5rem">🏋️</div>'}
+      <div style="font-size:1.05rem;font-weight:600">${ej.nombre}</div>
+      ${badge}
+      ${ej.musculo_principal ? `<div style="font-size:.8rem;color:var(--muted);margin-top:.3rem">${ej.musculo_principal}</div>` : ''}
+    </div>`;
+  modal.classList.add('modal-open');
+}
+
+/* ── Editar ejercicio existente (desde el builder) ───────────*/
+function openEditarEjercicioModal(id) {
+  const ej = typeof getEjercicioById === 'function' ? getEjercicioById(id) : null;
+  if (!ej) { showToast('Ejercicio no encontrado', 'warn'); return; }
+
+  let modal = document.getElementById('modalEditarEjercicio');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id        = 'modalEditarEjercicio';
+    modal.className = 'modal-overlay';
+    document.body.appendChild(modal);
+  }
+
+  modal.innerHTML = `
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="modal-title">${ej.nombre}</h3>
+        <button class="modal-close"
+          onclick="document.getElementById('modalEditarEjercicio').classList.remove('modal-open')">×</button>
+      </div>
+      ${ej.media_url
+        ? `<img src="${ej.media_url}" style="width:100%;border-radius:8px;margin-bottom:.75rem;max-height:160px;object-fit:contain">`
+        : '<div style="text-align:center;color:var(--muted);font-size:.82rem;margin-bottom:.75rem">Sin imagen todavía</div>'}
+      <div class="rform-group">
+        <label class="rform-label">${ej.media_url ? 'Cambiar imagen / GIF' : 'Agregar imagen / GIF'}</label>
+        <div class="reg-alta-drop" id="editMediaDrop"
+             onclick="document.getElementById('editMediaInput').click()" style="cursor:pointer">
+          <span id="editMediaLabel">📷 Seleccionar archivo</span>
+        </div>
+        <input type="file" id="editMediaInput" accept="image/*" style="display:none"
+               onchange="handleEditMediaChange(this)">
+        <img id="editMediaPreview" style="display:none;max-width:100%;margin-top:.5rem;border-radius:6px;max-height:120px;object-fit:contain">
+      </div>
+      <p id="editEjError" class="form-error" style="display:none;"></p>
+      <div class="rform-actions">
+        <button type="button" class="btn-secondary"
+          onclick="document.getElementById('modalEditarEjercicio').classList.remove('modal-open')">Cancelar</button>
+        <button type="button" class="btn-primary" id="editEjSubmitBtn"
+          onclick="guardarEditarEjercicio('${id}')">Guardar</button>
+      </div>
+    </div>`;
+  modal.classList.add('modal-open');
+}
+
+function handleEditMediaChange(input) {
+  const file = input.files[0];
+  if (!file) return;
+  document.getElementById('editMediaLabel').textContent = `✓ ${file.name}`;
+  document.getElementById('editMediaDrop').classList.add('reg-alta-drop--selected');
+  const preview = document.getElementById('editMediaPreview');
+  if (preview) { preview.src = URL.createObjectURL(file); preview.style.display = 'block'; }
+}
+
+async function guardarEditarEjercicio(id) {
+  const btn   = document.getElementById('editEjSubmitBtn');
+  const errEl = document.getElementById('editEjError');
+  const file  = document.getElementById('editMediaInput')?.files[0];
+  if (!file) {
+    document.getElementById('modalEditarEjercicio')?.classList.remove('modal-open');
+    return;
+  }
+  if (btn) { btn.disabled = true; btn.textContent = 'Guardando…'; }
+  errEl.style.display = 'none';
+  try {
+    if (typeof actualizarEjercicioMedia === 'function') {
+      await actualizarEjercicioMedia(id, file);
+    }
+    document.getElementById('modalEditarEjercicio')?.classList.remove('modal-open');
+    showToast('✓ Imagen actualizada');
+  } catch(e) {
+    console.error('guardarEditarEjercicio:', e);
+    errEl.textContent   = 'Error al subir imagen. Intentá de nuevo.';
+    errEl.style.display = 'block';
+    if (btn) { btn.disabled = false; btn.textContent = 'Guardar'; }
+  }
+}
