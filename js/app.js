@@ -22,10 +22,46 @@ let state = {
   panelAlumnos: [],    // solo docente: [{ alumno, rms, cargaHoy, ultimaCarga, diasSinCarga, estancado, necesitaAtencion }]
 };
 
+/* ── Helper: array disciplinas → string para mostrar ─────────*/
+function _discStr(disciplinas) {
+  return (disciplinas || [])
+    .map(id => {
+      const d = (typeof DISCIPLINAS !== 'undefined') ? DISCIPLINAS.find(d => d.id === id) : null;
+      return d ? d.nombre : id;
+    })
+    .join(' / ') || '—';
+}
+
+/* ── Helper: feedback visual en botones async ────────────────
+   Uso: _btnLoading(btn, 'Guardando…', asyncFn())
+   Deshabilita el botón, cambia el texto, restaura al terminar.
+   ─────────────────────────────────────────────────────────── */
+function _btnLoading(btn, loadingText, promise) {
+  if (!btn) return promise;
+  const orig = btn.textContent;
+  btn.disabled    = true;
+  btn.textContent = loadingText;
+  return Promise.resolve(promise).finally(() => {
+    btn.disabled    = false;
+    btn.textContent = orig;
+  });
+}
+
 /* ── Login ───────────────────────────────────────────────────*/
 /* ── Modal de registro ───────────────────────────────────────*/
 function openRegistroModal() {
+  /* Mostrar campo alta médica solo si hay backend real */
+  const altaWrap = document.getElementById('regAltaWrap');
+  if (altaWrap) altaWrap.style.display = isSupabaseMode() ? '' : 'none';
   document.getElementById('registroModal').classList.add('modal-open');
+}
+
+function handleRegAltaChange(input) {
+  const label = document.getElementById('regAltaDropLabel');
+  const drop  = document.getElementById('regAltaDrop');
+  if (!input.files[0]) return;
+  if (label) label.textContent = `✓ ${input.files[0].name}`;
+  if (drop)  drop.classList.add('reg-alta-drop--selected');
 }
 
 function closeRegistroModal() {
@@ -36,6 +72,8 @@ function closeRegistroModal() {
 
 async function handleRegistro(event) {
   event.preventDefault();
+  const submitBtn = event.target.querySelector('[type="submit"]');
+  if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Registrando…'; }
   const pin             = (document.getElementById('regPin').value       || '').trim().toUpperCase();
   const nombre          = (document.getElementById('regNombre').value    || '').trim();
   const email           = (document.getElementById('regEmail').value     || '').trim();
@@ -48,11 +86,29 @@ async function handleRegistro(event) {
     pinErr.textContent   = 'Ese PIN ya está en uso. Elegí otro.';
     pinErr.style.display = 'block';
     document.getElementById('regPin').focus();
+    if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Registrarse'; }
     return;
   }
   pinErr.style.display = 'none';
 
   await Promise.resolve(registrarAlumnoLocal({ pin, nombre, email, fechaNacimiento, objetivo }));
+
+  /* Upload alta médica si se adjuntó archivo */
+  const altaFile = document.getElementById('regAltaInput')?.files[0];
+  if (altaFile && typeof uploadDocMedico === 'function') {
+    try {
+      const url   = await uploadDocMedico(pin, altaFile);
+      const today = new Date().toISOString().slice(0, 10);
+      if (typeof actualizarAptoMedico === 'function') {
+        await actualizarAptoMedico(pin, true, today);
+      }
+    } catch (e) {
+      console.error('Alta médica en registro:', e);
+      /* No bloquear el registro por fallo en el upload */
+    }
+  }
+
+  if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Registrarse'; }
   closeRegistroModal();
   showToast('Registro exitoso. Cuenta pendiente de aprobación.');
 }
@@ -133,6 +189,7 @@ async function handleLogin() {
 /* ── Logout ──────────────────────────────────────────────────*/
 function doLogout() {
   _stopRutinaPolling();
+  if (typeof resetDocState === 'function') resetDocState();
   sessionStorage.removeItem('bp_pin');
   state = { alumno: null, rms: [], rutinas: [], historial: [], metricas: [], panelAlumnos: [] };
   document.getElementById('appScreen').style.display     = 'none';
@@ -319,6 +376,23 @@ function showApp() {
   }
 
   if (typeof updateTopbarAvatar === 'function') updateTopbarAvatar();
+
+  /* Banner alta médica: mostrar si falta y no fue descartado en esta sesión */
+  _updateAltaBanner();
+}
+
+function _updateAltaBanner() {
+  const banner = document.getElementById('altaMedicaBanner');
+  if (!banner) return;
+  const falta = isSupabaseMode() && state.alumno && !state.alumno.aptoMedico;
+  const dismissed = sessionStorage.getItem('bp_alta_banner_dismissed') === '1';
+  banner.style.display = (falta && !dismissed) ? 'flex' : 'none';
+}
+
+function _dismissAltaBanner() {
+  sessionStorage.setItem('bp_alta_banner_dismissed', '1');
+  const banner = document.getElementById('altaMedicaBanner');
+  if (banner) banner.style.display = 'none';
 }
 
 /* ── Panel docente / admin ───────────────────────────────────*/
@@ -338,6 +412,12 @@ function showDocente() {
   /* Ocultar pill demo si hay backend real */
   const demoPill = document.querySelector('.doc-demo-pill');
   if (demoPill) demoPill.style.display = isSupabaseMode() ? 'none' : '';
+
+  /* Botón Vincular: visible solo para docentes (no admin) en modo Supabase */
+  const vincularBtn = document.getElementById('vincularBtnWrap');
+  if (vincularBtn) {
+    vincularBtn.style.display = (a.rol === 'docente' && isSupabaseMode()) ? '' : 'none';
+  }
 
   switchDocTab('Alumnos');
 }
@@ -421,6 +501,7 @@ async function loadDocenteData() {
 
   renderDocente();
   renderDocenteRutinas();
+  if (typeof _updateAdminBadge === 'function') _updateAdminBadge();
 }
 
 /* ── Navegación por tabs ─────────────────────────────────────*/

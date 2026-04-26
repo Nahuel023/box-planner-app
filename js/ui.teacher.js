@@ -69,14 +69,26 @@ function renderDocenteAlumnos() {
   const badge = document.getElementById('docAlumnosBadge');
   if (!wrap) return;
 
-  /* B.3 — Docente solo ve alumnos de SUS disciplinas (admin ve todos) */
+  /* C — Docente ve solo alumnos que lo tienen asignado (admin ve todos) */
   let todos = state.panelAlumnos;
+  let _usandoFallbackDisc = false;
+
   if (state.alumno?.rol !== 'admin') {
-    const discDoc = state.alumno?.disciplinas || [];
-    if (discDoc.length) {
-      todos = todos.filter(p =>
-        (p.alumno.disciplinas || []).some(d => discDoc.includes(d))
-      );
+    const asignados = (typeof getAlumnosDeDocente === 'function')
+      ? getAlumnosDeDocente(state.alumno.pin).map(r => r.alumnoPin)
+      : [];
+
+    if (asignados.length) {
+      todos = todos.filter(p => asignados.includes(p.alumno.pin.toUpperCase()));
+    } else {
+      /* Fallback B.3: sin asignaciones explícitas → mostrar por disciplina */
+      _usandoFallbackDisc = true;
+      const discDoc = state.alumno?.disciplinas || [];
+      if (discDoc.length) {
+        todos = todos.filter(p =>
+          (p.alumno.disciplinas || []).some(d => discDoc.includes(d))
+        );
+      }
     }
   }
   if (badge) badge.textContent = todos.length;
@@ -86,13 +98,21 @@ function renderDocenteAlumnos() {
   const lista = _aplicarFiltros(todos);
 
   if (!lista.length) {
-    wrap.innerHTML = (_docBusqueda || _docFiltros.size)
+    const msgVacio = (_docBusqueda || _docFiltros.size)
       ? '<div class="doc-ok-box">Sin resultados para esta búsqueda.</div>'
-      : '<div class="error-box">No hay alumnos cargados.</div>';
+      : (state.alumno?.rol !== 'admin'
+          ? '<div class="error-box">Todavía no tenés alumnos vinculados.<br><small style="color:var(--muted)">Usá el botón "Vincular alumno" para agregar.</small></div>'
+          : '<div class="error-box">No hay alumnos cargados.</div>');
+    wrap.innerHTML = msgVacio;
     return;
   }
 
-  wrap.innerHTML = lista.map(entrada => {
+  /* Banner si se está usando fallback por disciplina */
+  const fallbackBanner = (_usandoFallbackDisc && state.alumno?.rol !== 'admin')
+    ? '<div class="doc-fallback-banner">Mostrando alumnos por disciplina compartida — vinculá alumnos explícitamente con el botón de arriba.</div>'
+    : '';
+
+  wrap.innerHTML = fallbackBanner + lista.map(entrada => {
     const { alumno, cargaHoy, ultimaCarga, diasSinCarga, estancado, necesitaAtencion } = entrada;
 
     const tiempoDesde   = _diasDesde(ultimaCarga);
@@ -111,6 +131,10 @@ function renderDocenteAlumnos() {
       alertaHtml = `<span class="doc-row-alerta">⚠ ${motivos.join(' · ')}</span>`;
     }
 
+    const altaBadge = (!alumno.aptoMedico && isSupabaseMode())
+      ? '<span class="doc-row-alta-badge">Sin alta</span>'
+      : '';
+
     const discTags = (alumno.disciplinas || []).map(id => {
       const d = (typeof DISCIPLINAS !== 'undefined') ? DISCIPLINAS.find(x => x.id === id) : null;
       return `<span class="doc-row-disc-tag">${d ? d.nombre : id}</span>`;
@@ -124,6 +148,7 @@ function renderDocenteAlumnos() {
           <div class="doc-row-meta">
             ${discTags || `<span class="doc-row-disc-tag doc-row-disc-tag--muted">${alumno.disciplina || '—'}</span>`}
             <span class="doc-row-dias">${alumno.dias}d/sem</span>
+            ${altaBadge}
           </div>
         </div>
         <div class="doc-row-right">
@@ -272,7 +297,7 @@ function openAlumnoDetail(pin) {
 
   const tiempoDesde = _diasDesde(ultimaCarga);
 
-  /* Construir sección de lesiones fuera del template para que un error
+  /* Construir secciones secundarias fuera del template para que un error
      no rompa todo el modal */
   let lesionesSection = '';
   try {
@@ -282,6 +307,8 @@ function openAlumnoDetail(pin) {
   } catch (e) {
     console.error('_renderLesionesSection error:', e);
   }
+
+  const altaMedicaSection = _renderAltaMedicaSection(pin);
 
   body.innerHTML = `
     <div class="detail-header">
@@ -299,6 +326,7 @@ function openAlumnoDetail(pin) {
 
     <div id="detailPanelResumen">
       ${alertaSection}
+      ${altaMedicaSection}
       ${_renderPerfilSection(pin)}
       ${_renderRutinaSection(pin)}
       ${lesionesSection}
@@ -487,25 +515,24 @@ function _renderPerfilSection(pin) {
 }
 
 function guardarPerfilAlumno(pin) {
+  const btn         = document.querySelector(`button[onclick="guardarPerfilAlumno('${pin}')"]`);
   const checkboxes  = document.querySelectorAll('input[name="perfil_disc"]:checked');
   const disciplinas = Array.from(checkboxes).map(cb => cb.value);
   const dias        = parseInt(document.getElementById(`perfilDias_${pin}`)?.value) || 3;
 
-  actualizarPerfilAlumnoLocal(pin, disciplinas, dias);
+  const work = Promise.resolve(actualizarPerfilAlumnoLocal(pin, disciplinas, dias)).then(() => {
+    const entrada = state.panelAlumnos.find(p => p.alumno.pin === pin);
+    if (entrada) {
+      entrada.alumno.disciplinas = disciplinas;
+      entrada.alumno.disciplina  = _discStr(disciplinas);
+      entrada.alumno.dias        = dias;
+    }
+    showToast('✓ Perfil actualizado');
+    openAlumnoDetail(pin);
+    renderDocenteAlumnos();
+  });
 
-  /* Actualizar state.panelAlumnos para que el re-render sea coherente */
-  const entrada = state.panelAlumnos.find(p => p.alumno.pin === pin);
-  if (entrada) {
-    const disciplinaNombre = disciplinas
-      .map(id => { const d = (typeof DISCIPLINAS !== 'undefined') ? DISCIPLINAS.find(d => d.id === id) : null; return d ? d.nombre : id; })
-      .join(' / ') || '—';
-    entrada.alumno.disciplina = disciplinaNombre;
-    entrada.alumno.dias       = dias;
-  }
-
-  showToast('✓ Perfil actualizado');
-  openAlumnoDetail(pin);
-  renderDocenteAlumnos();
+  if (typeof _btnLoading === 'function') _btnLoading(btn, 'Guardando…', work);
 }
 
 /* ── _renderRutinaSection ────────────────────────────────────
@@ -569,6 +596,14 @@ function _renderRutinaSection(pin) {
    renderAdminTab  (solo rol admin)
    Muestra pendientes de aprobación y usuarios locales activos.
    ════════════════════════════════════════════════════════════ */
+function _updateAdminBadge() {
+  const badge = document.getElementById('adminPendienteBadge');
+  if (!badge) return;
+  const n = getUsuariosLocales().filter(u => u.estado === 'pendiente').length;
+  badge.textContent   = n;
+  badge.style.display = n > 0 ? '' : 'none';
+}
+
 function renderAdminTab() {
   const wrap = document.getElementById('adminTabWrap');
   if (!wrap) return;
@@ -576,6 +611,7 @@ function renderAdminTab() {
   const todos     = getUsuariosLocales();
   const pendientes = todos.filter(u => u.estado === 'pendiente');
   const activos    = todos.filter(u => u.estado === 'activo');
+  _updateAdminBadge();
 
   const _rolSelect = (pin, rolActual, inputId) => `
     <select id="${inputId}" class="admin-rol-select">
@@ -852,4 +888,159 @@ function _getAdminLunes() {
   d.setDate(d.getDate() + (day === 0 ? -6 : 1 - day));
   d.setHours(0, 0, 0, 0);
   return d;
+}
+
+/* ════════════════════════════════════════════════════════════
+   GROUP D — Alta médica (panel docente)
+   ════════════════════════════════════════════════════════════ */
+function _renderAltaMedicaSection(pin) {
+  if (!isSupabaseMode()) return '';
+
+  const entrada = state.panelAlumnos.find(p => p.alumno.pin === pin);
+  if (!entrada) return '';
+
+  const a          = entrada.alumno;
+  const aptoMedico = a.aptoMedico || false;
+  const fechaAlta  = a.fechaAltaMedica || null;
+  const docUrl     = a.docMedicoUrl    || null;
+
+  const rol = state.alumno?.rol;
+  const puedeMarcar = rol === 'docente' || rol === 'admin';
+
+  if (aptoMedico) {
+    return `
+      <div class="alta-medica-box alta-medica-box--ok">
+        <span class="alta-medica-icon">✓</span>
+        <span>Apto/a médico${fechaAlta ? ` · desde ${fechaAlta}` : ''}</span>
+        ${docUrl ? `<a href="${docUrl}" target="_blank" class="alta-medica-link">Ver doc</a>` : ''}
+      </div>`;
+  }
+
+  return `
+    <div class="alta-medica-box alta-medica-box--nok">
+      <span class="alta-medica-icon">⚠</span>
+      <span>Sin alta médica registrada</span>
+      ${puedeMarcar
+        ? `<button class="btn-mini" onclick="marcarAptoMedico('${pin}')">Marcar apto</button>`
+        : ''}
+    </div>`;
+}
+
+function marcarAptoMedico(pin) {
+  const hoy = new Date().toISOString().slice(0, 10);
+  if (typeof actualizarAptoMedico === 'function') {
+    actualizarAptoMedico(pin, true, hoy);
+  }
+  const entrada = state.panelAlumnos.find(p => p.alumno.pin === pin);
+  if (entrada) {
+    entrada.alumno.aptoMedico      = true;
+    entrada.alumno.fechaAltaMedica = hoy;
+  }
+  showToast('✓ Alta médica registrada');
+  openAlumnoDetail(pin);
+  renderDocenteAlumnos();
+}
+
+/* ════════════════════════════════════════════════════════════
+   GROUP C — Vincular alumno (docente)
+   ════════════════════════════════════════════════════════════ */
+let _vincularBusqueda = '';
+
+function openVincularModal() {
+  const overlay = document.getElementById('vincularModal');
+  if (!overlay) return;
+  _vincularBusqueda = '';
+  const inp = document.getElementById('vincularSearchInput');
+  const res = document.getElementById('vincularResultados');
+  if (inp) inp.value = '';
+  if (res) res.innerHTML = '';
+  overlay.classList.add('modal-open');
+  requestAnimationFrame(() => inp?.focus());
+}
+
+function closeVincularModal(e) {
+  if (e && e.target !== document.getElementById('vincularModal')) return;
+  document.getElementById('vincularModal').classList.remove('modal-open');
+}
+
+function closeVincularModalDirect() {
+  document.getElementById('vincularModal')?.classList.remove('modal-open');
+}
+
+function buscarParaVincular(val) {
+  _vincularBusqueda = (val || '').trim().toLowerCase();
+  const res = document.getElementById('vincularResultados');
+  if (!res) return;
+
+  if (!_vincularBusqueda) { res.innerHTML = ''; return; }
+
+  const docentePin = state.alumno?.pin;
+  const yaAsignados = (typeof getAlumnosDeDocente === 'function')
+    ? getAlumnosDeDocente(docentePin).map(r => r.alumnoPin)
+    : [];
+
+  const encontrados = state.panelAlumnos.filter(p => {
+    const a = p.alumno;
+    return (a.nombre.toLowerCase().includes(_vincularBusqueda) ||
+            a.pin.toLowerCase().includes(_vincularBusqueda));
+  });
+
+  if (!encontrados.length) {
+    res.innerHTML = '<div class="vincular-noresult">Sin resultados</div>';
+    return;
+  }
+
+  res.innerHTML = encontrados.map(p => {
+    const a           = p.alumno;
+    const yaVinculado = yaAsignados.includes(a.pin.toUpperCase());
+    const discTags    = (a.disciplinas || []).map(id => {
+      const d = DISCIPLINAS.find(x => x.id === id);
+      return `<span class="doc-row-disc-tag">${d ? d.nombre : id}</span>`;
+    }).join('');
+    return `
+      <div class="vincular-row">
+        <div class="vincular-info">
+          <div class="vincular-nombre">${a.nombre} <span class="vincular-pin">${a.pin}</span></div>
+          <div class="vincular-discs">${discTags || '<span style="color:var(--muted);font-size:.72rem">Sin disciplina</span>'}</div>
+        </div>
+        ${yaVinculado
+          ? `<button class="btn-mini btn-mini--danger" onclick="desvincularAlumnoModal('${a.pin}')">Quitar</button>`
+          : `<button class="btn-mini" onclick="vincularAlumno('${a.pin}')">Vincular</button>`
+        }
+      </div>`;
+  }).join('');
+}
+
+function vincularAlumno(alumnoPin) {
+  const btn        = event?.target;
+  const docentePin = state.alumno?.pin;
+  if (!docentePin) return;
+  const work = Promise.resolve(asignarDocenteAlumno(docentePin, alumnoPin, '', 'docente'))
+    .then(() => {
+      showToast('Alumno vinculado');
+      buscarParaVincular(_vincularBusqueda);
+      renderDocenteAlumnos();
+    });
+  if (typeof _btnLoading === 'function') _btnLoading(btn, '…', work);
+}
+
+function desvincularAlumnoModal(alumnoPin) {
+  const btn        = event?.target;
+  const docentePin = state.alumno?.pin;
+  if (!docentePin) return;
+  const work = Promise.resolve(quitarDocenteAlumno(docentePin, alumnoPin))
+    .then(() => {
+      showToast('Vínculo eliminado');
+      buscarParaVincular(_vincularBusqueda);
+      renderDocenteAlumnos();
+    });
+  if (typeof _btnLoading === 'function') _btnLoading(btn, '…', work);
+}
+
+/** Resetear estado del panel docente — llamar en logout */
+function resetDocState() {
+  _filtroDoc   = 'todos';
+  _docBusqueda = '';
+  _docFiltros.clear();
+  _vincularBusqueda = '';
 }

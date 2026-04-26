@@ -185,6 +185,20 @@ a { color: inherit; text-decoration: none; }
   font-size: .78rem;
   color: var(--muted);
 }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: .6rem 1rem; border-radius: 8px; font-weight: 700;
+  font-size: .85rem; font-family: var(--font-body);
+  cursor: pointer; border: none; background: var(--accent);
+  color: var(--gym-dark); transition: opacity .15s;
+}
+.btn:hover { opacity: .85; }
+.btn--outline {
+  background: transparent;
+  border: 1px solid var(--border2);
+  color: var(--text);
+}
+.btn--outline:hover { border-color: var(--accent); color: var(--accent); opacity: 1; }
 .btn-link {
   background: none; border: none;
   color: var(--accent); font-size: .78rem;
@@ -318,6 +332,101 @@ a { color: inherit; text-decoration: none; }
   width: 100%; padding: .65rem; font-weight: 700;
   border-radius: 10px; margin-top: .15rem;
 }
+
+/* ── Banner falta alta médica ──────────────────────────────── */
+.alta-banner {
+  display: flex; align-items: center; gap: .6rem;
+  background: rgba(248,113,113,.08);
+  border-bottom: 1px solid rgba(248,113,113,.2);
+  padding: .6rem 1rem;
+  cursor: pointer;
+  transition: background .15s;
+}
+.alta-banner:hover { background: rgba(248,113,113,.14); }
+.alta-banner-icon { font-size: 1rem; flex-shrink: 0; }
+.alta-banner-text { flex: 1; font-size: .8rem; color: #f87171; font-weight: 600; }
+.alta-banner-dismiss {
+  background: none; border: none; color: #f87171; font-size: .85rem;
+  cursor: pointer; padding: .1rem .3rem; opacity: .7; flex-shrink: 0;
+}
+.alta-banner-dismiss:hover { opacity: 1; }
+
+/* ── Campo alta médica en registro ─────────────────────────── */
+.rform-optional {
+  font-size: .68rem; color: var(--muted); font-weight: 400;
+  margin-left: .4rem; text-transform: none; letter-spacing: 0;
+}
+.rform-hint { font-size: .72rem; color: var(--muted); margin-top: .3rem; }
+.reg-alta-drop {
+  border: 1.5px dashed var(--border2); border-radius: 8px;
+  padding: .65rem .8rem; font-size: .8rem; color: var(--muted);
+  cursor: pointer; text-align: center; transition: border-color .15s, color .15s;
+}
+.reg-alta-drop:hover { border-color: var(--accent); color: var(--accent); }
+.reg-alta-drop--selected { border-color: rgba(74,222,128,.4); color: #4ade80; }
+
+/* ── Mis entrenadores (perfil alumno) ──────────────────────── */
+.perfil-docentes-list { display: flex; flex-direction: column; gap: .45rem; margin-top: .25rem; }
+.perfil-docente-row {
+  display: flex; align-items: center; gap: .5rem;
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 8px; padding: .45rem .6rem;
+}
+.perfil-docente-nombre { flex: 1; font-size: .88rem; font-weight: 600; }
+
+/* ── Alta médica (perfil) ──────────────────────────────────── */
+.perfil-alta-ok  { font-size: .85rem; color: #4ade80; font-weight: 600; }
+.perfil-alta-nok { font-size: .85rem; color: #f87171; font-weight: 600; }
+.perfil-alta-link {
+  display: block; margin-top: .35rem; font-size: .78rem;
+  color: var(--accent); text-decoration: underline;
+}
+
+/* ── Alta médica (panel docente detalle) ───────────────────── */
+.alta-medica-box {
+  border-radius: 10px; padding: .75rem 1rem;
+  display: flex; align-items: center; gap: .75rem;
+  border: 1px solid;
+  margin-bottom: .5rem;
+}
+.alta-medica-box--ok  { background: rgba(74,222,128,.06); border-color: rgba(74,222,128,.25); }
+.alta-medica-box--nok { background: rgba(248,113,113,.06); border-color: rgba(248,113,113,.25); }
+.alta-medica-icon { font-size: 1.4rem; flex-shrink: 0; }
+.alta-medica-box--ok  .alta-medica-text { color: #4ade80; font-size: .88rem; font-weight: 600; }
+.alta-medica-box--nok .alta-medica-text { color: #f87171; font-size: .88rem; font-weight: 600; }
+.alta-medica-link {
+  display: block; margin-top: .2rem; font-size: .75rem;
+  color: var(--accent); text-decoration: underline;
+}
+
+/* ── Badge sin alta en lista docente ──────────────────────── */
+.doc-row-alta-badge {
+  font-size: .65rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .04em; padding: .18rem .42rem; border-radius: 20px;
+  background: rgba(248,113,113,.12); color: #f87171;
+  border: 1px solid rgba(248,113,113,.25); flex-shrink: 0;
+}
+
+/* ── Banner fallback disciplina ────────────────────────────── */
+.doc-fallback-banner {
+  background: rgba(245,158,11,.07); border: 1px solid rgba(245,158,11,.2);
+  border-radius: 8px; padding: .5rem .85rem;
+  font-size: .78rem; color: #f59e0b;
+  margin-bottom: .75rem;
+}
+
+/* ── Modal vincular alumno ─────────────────────────────────── */
+.vincular-open-btn { width: 100%; justify-content: center; }
+.vincular-row {
+  display: flex; align-items: center; gap: .5rem;
+  padding: .5rem .25rem; border-bottom: 1px solid var(--border);
+}
+.vincular-row:last-child { border-bottom: none; }
+.vincular-info { flex: 1; min-width: 0; }
+.vincular-nombre { font-size: .88rem; font-weight: 600; }
+.vincular-pin    { font-size: .72rem; color: var(--muted); font-family: var(--font-mono); }
+.vincular-discs  { font-size: .72rem; color: var(--muted); margin-top: .08rem; }
+.vincular-noresult { font-size: .82rem; color: var(--muted); text-align: center; padding: 1rem 0; }
 
 .role-switch-btn {
   background: rgba(235,198,25,.12); border: 1px solid rgba(235,198,25,.3);
@@ -1765,6 +1874,7 @@ textarea.rform-input { resize: vertical; line-height: 1.5; }
 }
 .modal-card {
   width: 100%; max-width: 420px;
+  max-height: 88vh; overflow-y: auto;
   background: var(--bg2);
   border: 1px solid rgba(91,191,181,0.18);
   border-radius: var(--r-lg);
@@ -1772,6 +1882,15 @@ textarea.rform-input { resize: vertical; line-height: 1.5; }
   transform: scale(.96) translateY(10px);
   transition: transform .25s cubic-bezier(.22,1,.36,1);
   box-shadow: 0 24px 60px rgba(0,0,0,.5);
+}
+/* Badge en tabs */
+.tab-badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: #f87171; color: #fff;
+  font-size: .6rem; font-weight: 800; line-height: 1;
+  min-width: 16px; height: 16px; border-radius: 20px;
+  padding: 0 4px; margin-left: .35rem;
+  vertical-align: middle;
 }
 .modal-overlay.modal-open .modal-card {
   transform: scale(1) translateY(0);
@@ -1934,6 +2053,15 @@ textarea.rform-input { resize: vertical; line-height: 1.5; }
     </div>
   </div>
 
+  <!-- Banner: sin alta médica -->
+  <div id="altaMedicaBanner" style="display:none"
+       class="alta-banner"
+       onclick="openPerfilModal()">
+    <span class="alta-banner-icon">⚠</span>
+    <span class="alta-banner-text">Falta tu certificado médico. Tocá para subir desde tu perfil.</span>
+    <button class="alta-banner-dismiss" onclick="event.stopPropagation();_dismissAltaBanner()" title="Cerrar">✕</button>
+  </div>
+
   <div class="content">
 
     <!-- TAB: PROGRESO ─────────────────────────────────── -->
@@ -2089,12 +2217,19 @@ textarea.rform-input { resize: vertical; line-height: 1.5; }
     <div class="doc-tab-bar">
       <button class="doc-tab doc-tab--active" id="navDocAlumnos" onclick="switchDocTab('Alumnos')">Alumnos</button>
       <button class="doc-tab" id="navDocRutinas" onclick="switchDocTab('Rutinas')">Rutinas</button>
-      <button class="doc-tab" id="navAdmin" onclick="switchDocTab('Admin')">Admin</button>
+      <button class="doc-tab" id="navAdmin" onclick="switchDocTab('Admin')">Admin<span id="adminPendienteBadge" class="tab-badge" style="display:none"></span></button>
     </div>
 
     <!-- Sección Alumnos -->
     <div id="sectionDocAlumnos">
       <div class="doc-stat-grid" id="docStatGrid"></div>
+
+      <!-- Botón vincular (solo para docentes no-admin) -->
+      <div id="vincularBtnWrap" style="display:none;margin-bottom:.75rem">
+        <button class="btn btn--outline vincular-open-btn" onclick="openVincularModal()">
+          + Vincular alumno
+        </button>
+      </div>
 
       <!-- Buscador -->
       <div class="doc-search-wrap">
@@ -2167,6 +2302,26 @@ textarea.rform-input { resize: vertical; line-height: 1.5; }
     </div>
   </div>
 
+  <!-- Modal vincular alumno -->
+  <div class="modal-overlay" id="vincularModal" onclick="closeVincularModal(event)">
+    <div class="modal-card">
+      <div class="modal-header">
+        <span style="font-weight:600;font-size:1rem">Vincular alumno</span>
+        <button class="modal-close" onclick="closeVincularModalDirect()">✕</button>
+      </div>
+      <div style="padding:.75rem 0">
+        <input class="doc-search-input" id="vincularSearchInput"
+               placeholder="Buscar por nombre o PIN…"
+               oninput="buscarParaVincular(this.value)"
+               autocomplete="off" spellcheck="false"
+               style="width:100%;margin-bottom:.75rem">
+        <div id="vincularResultados">
+          <div class="vincular-noresult">Escribí un nombre o PIN para buscar</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div><!-- /docenteScreen -->
 
 <!-- ══ MODAL: REGISTRO ══════════════════════════════════════ -->
@@ -2210,6 +2365,21 @@ textarea.rform-input { resize: vertical; line-height: 1.5; }
           oninput="this.value=this.value.toUpperCase().replace(/[^A-Z0-9]/g,'')">
         <div id="regPinError" style="display:none;color:var(--red);font-size:.75rem;margin-top:.35rem"></div>
       </div>
+      <!-- Alta médica (opcional) -->
+      <div class="rform-group" id="regAltaWrap" style="display:none">
+        <label class="rform-label">
+          Certificado médico
+          <span class="rform-optional">opcional</span>
+        </label>
+        <div class="reg-alta-drop" id="regAltaDrop"
+             onclick="document.getElementById('regAltaInput').click()">
+          <span id="regAltaDropLabel">📎 Seleccionar archivo (imagen o PDF)</span>
+        </div>
+        <input type="file" id="regAltaInput" accept="image/*,.pdf" style="display:none"
+               onchange="handleRegAltaChange(this)">
+        <div class="rform-hint">Podés subir el alta ahora o más tarde desde tu perfil.</div>
+      </div>
+
       <div style="display:flex;gap:.75rem;margin-top:1.25rem">
         <button type="button" class="btn-mini"
           style="flex:1;padding:.65rem;font-size:.8rem"

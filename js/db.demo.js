@@ -257,17 +257,20 @@ function getAlumnoDemo(pin) {
   if (!roles) roles = [a.rol || 'alumno'];
 
   return {
-    pin:         a.id,
-    nombre:      a.nombre,
-    edad:        a.edad,
-    rol:         roles[0],
+    pin:             a.id,
+    nombre:          a.nombre,
+    edad:            a.edad,
+    rol:             roles[0],
     roles,
     disciplinas,
-    disciplina:  disciplinaNombre,
+    disciplina:      disciplinaNombre,
     objetivo,
     dias,
-    rutina:      a.rutinaId ? (RUTINAS[a.rutinaId]?.nombre || a.rutinaId) : '',
-    estado:      a.estado === "activo" ? "Activo" : "Inactivo",
+    rutina:          a.rutinaId ? (RUTINAS[a.rutinaId]?.nombre || a.rutinaId) : '',
+    estado:          a.estado === "activo" ? "Activo" : "Inactivo",
+    aptoMedico:      true,   // demo: siempre apto
+    fechaAltaMedica: null,
+    docMedicoUrl:    null,
   };
 }
 
@@ -400,17 +403,20 @@ function getAlumnoLocal(pin) {
   if (!roles) roles = [u.rol || 'alumno'];
 
   return {
-    pin:        u.pin,
-    nombre:     u.nombre,
-    edad:       u.fechaNacimiento || '—',
-    rol:        roles[0],
+    pin:             u.pin,
+    nombre:          u.nombre,
+    edad:            u.fechaNacimiento || '—',
+    rol:             roles[0],
     roles,
-    disciplinas: u.disciplinas || [],
-    disciplina: disciplinaNombre,
-    objetivo:   u.objetivo || '—',
-    dias:       u.dias !== undefined ? u.dias : 0,
-    rutina:     '',
-    estado:     'Activo',
+    disciplinas:     u.disciplinas || [],
+    disciplina:      disciplinaNombre,
+    objetivo:        u.objetivo || '—',
+    dias:            u.dias !== undefined ? u.dias : 0,
+    rutina:          '',
+    estado:          'Activo',
+    aptoMedico:      true,   // localStorage: sin validación médica
+    fechaAltaMedica: null,
+    docMedicoUrl:    null,
   };
 }
 
@@ -485,6 +491,51 @@ function _getDemoOverride(pin) {
 function getUsuariosLocales() {
   const data = JSON.parse(localStorage.getItem(NUEVOS_USUARIOS_KEY) || '{}');
   return Object.values(data);
+}
+
+/* ── Relación docente↔alumno (localStorage / demo) ───────────
+   Schema: [{ docentePin, alumnoPin, disciplinaId, asignadoPor }]
+   ─────────────────────────────────────────────────────────── */
+const _DA_KEY = 'bp_docente_alumno';
+
+function _readDA() {
+  try { return JSON.parse(localStorage.getItem(_DA_KEY) || '[]'); } catch { return []; }
+}
+function _saveDA(rows) { localStorage.setItem(_DA_KEY, JSON.stringify(rows)); }
+
+/** Devuelve [{ alumnoPin, disciplinaId }] para un docente */
+function getAlumnosDeDocente(docentePin) {
+  const dp = (docentePin || '').toUpperCase();
+  return _readDA()
+    .filter(r => r.docentePin === dp)
+    .map(r => ({ alumnoPin: r.alumnoPin, disciplinaId: r.disciplinaId || '' }));
+}
+
+/** Devuelve [{ docentePin, disciplinaId }] para un alumno */
+function getDocentesDeAlumno(alumnoPin) {
+  const ap = (alumnoPin || '').toUpperCase();
+  return _readDA()
+    .filter(r => r.alumnoPin === ap)
+    .map(r => ({ docentePin: r.docentePin, disciplinaId: r.disciplinaId || '' }));
+}
+
+/**
+ * Vincula docente↔alumno. Idempotente por par (docentePin, alumnoPin).
+ */
+function asignarDocenteAlumno(docentePin, alumnoPin, disciplinaId, asignadoPor) {
+  const dp   = (docentePin || '').toUpperCase();
+  const ap   = (alumnoPin  || '').toUpperCase();
+  const rows = _readDA();
+  if (rows.some(r => r.docentePin === dp && r.alumnoPin === ap)) return;
+  rows.push({ docentePin: dp, alumnoPin: ap, disciplinaId: disciplinaId || '', asignadoPor: asignadoPor || 'docente' });
+  _saveDA(rows);
+}
+
+/** Elimina la vinculación entre un docente y un alumno */
+function quitarDocenteAlumno(docentePin, alumnoPin) {
+  const dp = (docentePin || '').toUpperCase();
+  const ap = (alumnoPin  || '').toUpperCase();
+  _saveDA(_readDA().filter(r => !(r.docentePin === dp && r.alumnoPin === ap)));
 }
 
 /** Persiste roles en localStorage (demo mode — no hay Supabase) */

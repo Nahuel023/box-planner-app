@@ -26,10 +26,12 @@ function _getSb() {
    Estructura plana para acceso O(1) desde funciones sync.
    ─────────────────────────────────────────────────────────── */
 const _sbCache = {
-  usuarios:     {},   // { [PIN]: rowDeBaseDatos }
-  rutinas:      {},   // { [id]: rutinaCustom }   ← mismo formato que getCustomRutinas()
-  asignaciones: {},   // { [PIN]: [{ rutinaId, fecha_asignacion, vista_por_alumno, _dbId }] }
-  metricas:     {},   // { [alumnoId]: [metrica] }
+  usuarios:       {},   // { [PIN]: rowDeBaseDatos }
+  rutinas:        {},   // { [id]: rutinaCustom }   ← mismo formato que getCustomRutinas()
+  asignaciones:   {},   // { [PIN]: [{ rutinaId, fecha_asignacion, vista_por_alumno, _dbId }] }
+  metricas:       {},   // { [alumnoId]: [metrica] }
+  docenteAlumnos: {},   // { [docentePin]: [{ alumnoPin, disciplinaId }] }
+  alumnoDocentes: {},   // { [alumnoPin]: [{ docentePin, disciplinaId }] }
 };
 
 /* ── Converters (DB → formato interno de la app) ────────────*/
@@ -75,17 +77,21 @@ function _alumnoFromDb(u) {
   if (!roles) roles = [u.rol || 'alumno'];
 
   return {
-    pin:         u.pin,
-    nombre:      u.nombre,
-    edad:        u.fecha_nacimiento || '—',
-    rol:         u.rol || 'alumno',
+    pin:             u.pin,
+    nombre:          u.nombre,
+    edad:            u.fecha_nacimiento || '—',
+    rol:             u.rol || 'alumno',
     roles,
-    disciplinas: u.disciplinas || [],
-    disciplina:  disciplinaNombre,
-    objetivo:    u.objetivo || '—',
-    dias:        u.dias !== undefined ? u.dias : 3,
-    rutina:      '',
-    estado:      'Activo',
+    disciplinas:     u.disciplinas || [],
+    disciplina:      disciplinaNombre,
+    objetivo:        u.objetivo || '—',
+    dias:            u.dias !== undefined ? u.dias : 3,
+    rutina:          '',
+    estado:          'Activo',
+    aptoMedico:      u.apto_medico  !== undefined ? u.apto_medico : false,
+    fechaAltaMedica: u.fecha_alta_medica || null,
+    docMedicoUrl:    u.doc_medico_url    || null,
+    avatarUrl:       u.avatar_url        || null,
   };
 }
 
@@ -101,6 +107,8 @@ async function initSupabaseCache(pin, rol) {
   Object.keys(_sbCache.rutinas).forEach(k => delete _sbCache.rutinas[k]);
   Object.keys(_sbCache.asignaciones).forEach(k => delete _sbCache.asignaciones[k]);
   Object.keys(_sbCache.metricas).forEach(k => delete _sbCache.metricas[k]);
+  Object.keys(_sbCache.docenteAlumnos).forEach(k => delete _sbCache.docenteAlumnos[k]);
+  Object.keys(_sbCache.alumnoDocentes).forEach(k => delete _sbCache.alumnoDocentes[k]);
   const sb  = _getSb();
   const PIN = pin.toUpperCase();
 
@@ -143,6 +151,23 @@ async function initSupabaseCache(pin, rol) {
       const aid = m.alumno_id.toUpperCase();
       if (!_sbCache.metricas[aid]) _sbCache.metricas[aid] = [];
       _sbCache.metricas[aid].push(_metricaFromDb(m));
+    });
+  }
+
+  /* ── Relaciones docente↔alumno ── */
+  let daQ = sb.from('bp_docente_alumno').select('*');
+  if (rol === 'alumno')  daQ = daQ.eq('alumno_pin', PIN);
+  else if (rol === 'docente') daQ = daQ.eq('docente_pin', PIN);
+  /* admin carga todas */
+  const { data: daRows, error: errDA } = await daQ;
+  if (!errDA && daRows) {
+    daRows.forEach(r => {
+      const dp = r.docente_pin.toUpperCase();
+      const ap = r.alumno_pin.toUpperCase();
+      if (!_sbCache.docenteAlumnos[dp]) _sbCache.docenteAlumnos[dp] = [];
+      if (!_sbCache.alumnoDocentes[ap]) _sbCache.alumnoDocentes[ap] = [];
+      _sbCache.docenteAlumnos[dp].push({ alumnoPin: ap, disciplinaId: r.disciplina_id || '' });
+      _sbCache.alumnoDocentes[ap].push({ docentePin: dp, disciplinaId: r.disciplina_id || '' });
     });
   }
 }
@@ -346,19 +371,6 @@ if (isSupabaseMode()) {
     });
   };
 
-  /* ── marcarRutinaVista ── */
-  window.marcarRutinaVista = function(alumnoPin) {
-    const PIN = alumnoPin.toUpperCase();
-    const arr = _sbCache.asignaciones[PIN];
-    if (!arr || !arr.length || arr[0].vista_por_alumno) return;
-    arr[0].vista_por_alumno = true;
-    const dbId = arr[0]._dbId;
-    if (dbId) {
-      _getSb().from('bp_asignaciones').update({ vista_por_alumno: true }).eq('id', dbId)
-        .then(({ error }) => { if (error) console.error('Supabase marcarRutinaVista:', error); });
-    }
-  };
-
   /* ── getTodasRutinasAsignadas ── */
   window.getTodasRutinasAsignadas = function(alumnoPin) {
     const PIN  = alumnoPin.toUpperCase();
@@ -502,6 +514,104 @@ if (isSupabaseMode()) {
     }
     localStorage.removeItem(key);
     console.log(`[migrate] ${rows.length} métricas migradas a Supabase para ${AID}`);
+  };
+
+  /* ════════════════════════════════════════════════════════
+     GROUP C — Relaciones docente↔alumno
+     ════════════════════════════════════════════════════════ */
+
+  window.getAlumnosDeDocente = function(docentePin) {
+    const dp = (docentePin || '').toUpperCase();
+    return (_sbCache.docenteAlumnos[dp] || []).slice();
+  };
+
+  window.getDocentesDeAlumno = function(alumnoPin) {
+    const ap = (alumnoPin || '').toUpperCase();
+    return (_sbCache.alumnoDocentes[ap] || []).slice();
+  };
+
+  window.asignarDocenteAlumno = function(docentePin, alumnoPin, disciplinaId, asignadoPor) {
+    const dp = (docentePin || '').toUpperCase();
+    const ap = (alumnoPin  || '').toUpperCase();
+    if (!_sbCache.docenteAlumnos[dp]) _sbCache.docenteAlumnos[dp] = [];
+    if (!_sbCache.alumnoDocentes[ap]) _sbCache.alumnoDocentes[ap] = [];
+    if (_sbCache.docenteAlumnos[dp].some(r => r.alumnoPin === ap)) return; // idempotente
+    _sbCache.docenteAlumnos[dp].push({ alumnoPin: ap, disciplinaId: disciplinaId || '' });
+    _sbCache.alumnoDocentes[ap].push({ docentePin: dp, disciplinaId: disciplinaId || '' });
+    _getSb().from('bp_docente_alumno').insert({
+      docente_pin:   dp,
+      alumno_pin:    ap,
+      disciplina_id: disciplinaId || null,
+      asignado_por:  asignadoPor || 'docente',
+    }).then(({ error }) => { if (error) console.error('Supabase asignarDocenteAlumno:', error); });
+  };
+
+  window.quitarDocenteAlumno = function(docentePin, alumnoPin) {
+    const dp = (docentePin || '').toUpperCase();
+    const ap = (alumnoPin  || '').toUpperCase();
+    if (_sbCache.docenteAlumnos[dp]) {
+      _sbCache.docenteAlumnos[dp] = _sbCache.docenteAlumnos[dp].filter(r => r.alumnoPin !== ap);
+    }
+    if (_sbCache.alumnoDocentes[ap]) {
+      _sbCache.alumnoDocentes[ap] = _sbCache.alumnoDocentes[ap].filter(r => r.docentePin !== dp);
+    }
+    _getSb().from('bp_docente_alumno').delete()
+      .eq('docente_pin', dp).eq('alumno_pin', ap)
+      .then(({ error }) => { if (error) console.error('Supabase quitarDocenteAlumno:', error); });
+  };
+
+  /* ════════════════════════════════════════════════════════
+     GROUP D — Alta médica
+     ════════════════════════════════════════════════════════ */
+
+  window.actualizarAptoMedico = function(pin, aptoMedico, fecha) {
+    const upper = pin.toUpperCase();
+    if (_sbCache.usuarios[upper]) {
+      _sbCache.usuarios[upper].apto_medico       = aptoMedico;
+      _sbCache.usuarios[upper].fecha_alta_medica = fecha || null;
+    }
+    _getSb().from('bp_usuarios')
+      .update({ apto_medico: aptoMedico, fecha_alta_medica: fecha || null })
+      .eq('pin', upper)
+      .then(({ error }) => { if (error) console.error('Supabase actualizarAptoMedico:', error); });
+  };
+
+  window.uploadDocMedico = async function(pin, file) {
+    const upper = pin.toUpperCase();
+    const ext   = (file.name.split('.').pop() || 'pdf').toLowerCase();
+    const path  = `${upper}/alta_medica_${Date.now()}.${ext}`;
+    const sb    = _getSb();
+
+    const { error: upErr } = await sb.storage
+      .from('medical-docs')
+      .upload(path, file, { upsert: true });
+    if (upErr) { console.error('uploadDocMedico:', upErr); throw upErr; }
+
+    const { data: urlData } = sb.storage.from('medical-docs').getPublicUrl(path);
+    const url = urlData?.publicUrl || '';
+
+    if (_sbCache.usuarios[upper]) _sbCache.usuarios[upper].doc_medico_url = url;
+    await sb.from('bp_usuarios').update({ doc_medico_url: url }).eq('pin', upper);
+    return url;
+  };
+
+  window.uploadAvatar = async function(pin, file) {
+    const upper = pin.toUpperCase();
+    const ext   = (file.name.split('.').pop() || 'jpg').toLowerCase();
+    const path  = `${upper}/avatar.${ext}`;
+    const sb    = _getSb();
+
+    const { error: upErr } = await sb.storage
+      .from('avatars')
+      .upload(path, file, { upsert: true });
+    if (upErr) { console.error('uploadAvatar:', upErr); throw upErr; }
+
+    const { data: urlData } = sb.storage.from('avatars').getPublicUrl(path);
+    const url = urlData?.publicUrl || '';
+
+    if (_sbCache.usuarios[upper]) _sbCache.usuarios[upper].avatar_url = url;
+    await sb.from('bp_usuarios').update({ avatar_url: url }).eq('pin', upper);
+    return url;
   };
 
 } /* end if (isSupabaseMode()) */
