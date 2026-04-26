@@ -133,6 +133,8 @@ function handleEjMediaChange(input) {
 
 /* ── Modal alta de ejercicio ─────────────────────────────── */
 function openCrearEjercicioModal(returnContainerId, disciplinasAlumno, nombrePrefill = '') {
+  const _discs = disciplinasAlumno || [];
+
   /* Crear modal si no existe */
   let modal = document.getElementById('modalCrearEjercicio');
   if (!modal) {
@@ -143,7 +145,7 @@ function openCrearEjercicioModal(returnContainerId, disciplinasAlumno, nombrePre
   }
 
   const discOptions = Object.entries(DISCIPLINAS_CONFIG).map(([val, conf]) => {
-    const sel = disciplinasAlumno.includes(val) ? 'selected' : '';
+    const sel = _discs.includes(val) ? 'selected' : '';
     return `<option value="${val}" ${sel}>${conf.label}</option>`;
   }).join('');
 
