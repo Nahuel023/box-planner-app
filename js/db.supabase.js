@@ -595,6 +595,60 @@ if (isSupabaseMode()) {
     return url;
   };
 
+  /* ── Fotos de progreso ── */
+  window.getFotosProgreso = async function(pin) {
+    const upper = pin.toUpperCase();
+    const { data, error } = await _getSb()
+      .from('bp_fotos_progreso')
+      .select('*')
+      .eq('pin', upper)
+      .order('fecha', { ascending: false });
+    if (error) { console.error('getFotosProgreso:', error); return []; }
+    return (data || []).map(r => ({
+      id:    r.id,
+      pin:   r.pin,
+      url:   r.url,
+      fecha: r.fecha,
+      notas: r.notas || '',
+    }));
+  };
+
+  window.uploadFotoProgreso = async function(pin, file, fecha, notas) {
+    const upper = pin.toUpperCase();
+    const ext   = (file.name.split('.').pop() || 'jpg').toLowerCase();
+    const path  = `${upper}/${fecha || new Date().toISOString().slice(0,10)}_${Date.now()}.${ext}`;
+    const sb    = _getSb();
+
+    const { error: upErr } = await sb.storage
+      .from('progress-photos')
+      .upload(path, file, { upsert: false });
+    if (upErr) { console.error('uploadFotoProgreso storage:', upErr); throw upErr; }
+
+    const { data: urlData } = sb.storage.from('progress-photos').getPublicUrl(path);
+    const url = urlData?.publicUrl || '';
+
+    const { data: row, error: dbErr } = await sb.from('bp_fotos_progreso').insert({
+      pin:   upper,
+      url,
+      fecha: fecha || new Date().toISOString().slice(0, 10),
+      notas: notas || '',
+    }).select().single();
+    if (dbErr) { console.error('uploadFotoProgreso db:', dbErr); throw dbErr; }
+    return { id: row.id, pin: row.pin, url: row.url, fecha: row.fecha, notas: row.notas || '' };
+  };
+
+  window.deleteFotoProgreso = async function(id, pin, url) {
+    const sb = _getSb();
+    await sb.from('bp_fotos_progreso').delete().eq('id', id);
+    /* Borrar del storage si la URL es del bucket */
+    if (url && url.includes('progress-photos')) {
+      const parts = url.split('/progress-photos/');
+      if (parts[1]) {
+        await sb.storage.from('progress-photos').remove([decodeURIComponent(parts[1])]);
+      }
+    }
+  };
+
   window.uploadAvatar = async function(pin, file) {
     const upper = pin.toUpperCase();
     const ext   = (file.name.split('.').pop() || 'jpg').toLowerCase();

@@ -333,6 +333,54 @@ a { color: inherit; text-decoration: none; }
   border-radius: 10px; margin-top: .15rem;
 }
 
+/* ── Fotos de progreso ─────────────────────────────────────── */
+.fotos-empty {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 3rem 1rem; gap: .5rem;
+}
+.fotos-empty-icon { font-size: 2.5rem; }
+.fotos-empty-text { font-size: .95rem; font-weight: 700; }
+.fotos-empty-sub  { font-size: .8rem; color: var(--muted); text-align: center; }
+
+.fotos-grupo { margin-bottom: 1.5rem; }
+.fotos-grupo-label {
+  font-size: .7rem; font-weight: 800; text-transform: uppercase;
+  letter-spacing: .08em; color: var(--muted);
+  margin-bottom: .6rem;
+}
+.fotos-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: .6rem;
+}
+.fotos-item {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 10px; overflow: hidden; cursor: pointer;
+  transition: transform .15s;
+}
+.fotos-item:hover { transform: scale(1.02); }
+.fotos-img {
+  width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block;
+}
+.fotos-item-footer {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: .35rem .5rem;
+}
+.fotos-fecha { font-size: .72rem; color: var(--muted); }
+.fotos-delete-btn {
+  background: none; border: none; color: var(--muted);
+  font-size: .75rem; cursor: pointer; padding: .1rem .25rem;
+  border-radius: 4px;
+}
+.fotos-delete-btn:hover { color: var(--red); background: rgba(248,113,113,.1); }
+.fotos-notas {
+  font-size: .7rem; color: var(--muted);
+  padding: 0 .5rem .35rem; line-height: 1.3;
+}
+.subir-foto-preview {
+  width: 100%; max-height: 200px; object-fit: cover;
+  border-radius: 8px; margin-top: .5rem;
+}
+.ver-foto-notas { color: var(--muted); font-style: italic; }
+
 /* ── Banner falta alta médica ──────────────────────────────── */
 .alta-banner {
   display: flex; align-items: center; gap: .6rem;
@@ -2154,7 +2202,68 @@ textarea.rform-input { resize: vertical; line-height: 1.5; }
       </div>
     </div>
 
+    <!-- TAB: FOTOS ─────────────────────────────────────── -->
+    <div class="tab-content" id="tabFotos">
+      <div class="section-hdr" style="margin-top:.5rem">
+        <h2>Fotos de progreso</h2>
+        <button class="btn-accent" onclick="openSubirFotoModal()">+ Subir</button>
+      </div>
+      <div id="fotosProgresoWrap">
+        <div class="loading-state">
+          <span class="loading-dot"></span><span class="loading-dot"></span><span class="loading-dot"></span>
+        </div>
+      </div>
+    </div>
+
   </div><!-- /content -->
+
+  <!-- MODAL: SUBIR FOTO ───────────────────────────────────── -->
+  <div class="modal-overlay" id="subirFotoModal" onclick="closeSubirFotoModal(event)">
+    <div class="modal-card">
+      <div class="modal-header">
+        <span style="font-weight:600;font-size:1rem">Subir foto de progreso</span>
+        <button class="modal-close" onclick="closeSubirFotoModalDirect()">✕</button>
+      </div>
+      <form id="subirFotoForm" onsubmit="handleSubirFoto(event)" style="padding-top:.75rem">
+        <div class="rform-group">
+          <label class="rform-label">Fecha</label>
+          <input class="rform-input" id="subirFotoFecha" type="date" required>
+        </div>
+        <div class="rform-group">
+          <label class="rform-label">Foto</label>
+          <div class="reg-alta-drop" id="subirFotoDrop"
+               onclick="document.getElementById('subirFotoInput').click()">
+            <span id="subirFotoDropLabel">📷 Seleccionar foto</span>
+          </div>
+          <input type="file" id="subirFotoInput" accept="image/*" style="display:none"
+                 onchange="handleSubirFotoChange(this)">
+          <img id="subirFotoPreview" src="" alt="" class="subir-foto-preview" style="display:none">
+        </div>
+        <div class="rform-group">
+          <label class="rform-label">Notas <span class="rform-optional">opcional</span></label>
+          <input class="rform-input" id="subirFotoNotas" type="text"
+                 placeholder="Ej: Semana 4 del programa, +2kg…">
+        </div>
+        <div style="display:flex;gap:.75rem;margin-top:1.25rem">
+          <button type="button" class="btn-mini" style="flex:1;padding:.65rem;font-size:.8rem"
+                  onclick="closeSubirFotoModalDirect()">Cancelar</button>
+          <button type="submit" class="btn-accent" style="flex:2;padding:.65rem;font-size:.85rem">Subir foto</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: VER FOTO AMPLIADA ────────────────────────────── -->
+  <div class="modal-overlay" id="verFotoModal" onclick="closeVerFotoModal(event)"
+       style="background:rgba(0,0,0,.92)">
+    <div style="position:relative;max-width:95vw;max-height:90vh;display:flex;flex-direction:column;align-items:center;gap:.75rem">
+      <button class="modal-close-x" onclick="closeVerFotoModalDirect()"
+              style="position:absolute;top:-2rem;right:0">✕</button>
+      <img id="verFotoImg" src="" alt=""
+           style="max-width:95vw;max-height:80vh;border-radius:8px;object-fit:contain">
+      <div id="verFotoMeta" style="display:flex;gap:.75rem;align-items:center;font-size:.82rem;color:#ccc"></div>
+    </div>
+  </div>
 
   <!-- MODAL: CARGA DE MÉTRICA ──────────────────────────── -->
   <div class="modal-overlay" id="metricModal" onclick="closeMetricModal(event)">
@@ -2178,6 +2287,9 @@ textarea.rform-input { resize: vertical; line-height: 1.5; }
     </button>
     <button class="nav-item" onclick="switchTab('Salud')" id="navSalud">
       <span class="nav-icon">🩺</span>Salud
+    </button>
+    <button class="nav-item" onclick="switchTab('Fotos')" id="navFotos">
+      <span class="nav-icon">📷</span>Fotos
     </button>
   </nav>
 
@@ -2394,6 +2506,7 @@ textarea.rform-input { resize: vertical; line-height: 1.5; }
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script src="js/error.handler.js"></script>
 <script src="js/db.demo.js"></script>
+<script src="js/db.local.js"></script>
 <script src="js/db.routines.js"></script>
 <script src="js/data.js"></script>
 <script src="js/metrics.js"></script>
@@ -2408,6 +2521,7 @@ textarea.rform-input { resize: vertical; line-height: 1.5; }
 <script src="js/ui.routines.js"></script>
 <script src="js/render.js"></script>
 <script src="js/ui.profile.js"></script>
+<script src="js/ui.progress.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>
