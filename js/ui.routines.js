@@ -1,3 +1,14 @@
+/* ── Opciones de disciplina filtradas por las del docente ────*/
+function _discOptsDocente(selectedId) {
+  const docDiscs = state.alumno?.disciplinas || [];
+  const lista    = (docDiscs.length
+    ? DISCIPLINAS.filter(d => docDiscs.includes(d.id))
+    : DISCIPLINAS);
+  return lista.map(d =>
+    `<option value="${d.id}" ${d.id === selectedId ? 'selected' : ''}>${d.nombre}</option>`
+  ).join('');
+}
+
 /* ════════════════════════════════════════════════════════════
    BOX PLANNER — UI GESTIÓN DE RUTINAS (DOCENTE)
    ────────────────────────────────────────────────────────────
@@ -225,9 +236,7 @@ function openNuevaRutinaModal() {
 
   titulo.textContent = 'Nueva rutina';
 
-  const discOpts = DISCIPLINAS.map(d =>
-    `<option value="${d.id}">${d.nombre}</option>`
-  ).join('');
+  const discOpts = _discOptsDocente('');
 
   body.innerHTML = `
     <div class="rform-group">
@@ -362,9 +371,7 @@ function openEditarRutinaModal(id) {
 
   titulo.textContent = 'Editar rutina';
 
-  const discOpts = DISCIPLINAS.map(d =>
-    `<option value="${d.id}" ${d.id === rutina.disciplinaId ? 'selected' : ''}>${d.nombre}</option>`
-  ).join('');
+  const discOpts = _discOptsDocente(rutina.disciplinaId);
 
   const niveles = ['principiante', 'intermedio', 'avanzado'];
   const nivelOpts = niveles.map(n =>
@@ -595,10 +602,8 @@ function openGenerarRutinaModal() {
     return `<option value="${a.pin}">${a.nombre} (${a.disciplina || '—'})</option>`;
   }).join('');
 
-  /* Opciones de disciplina */
-  const discOpts = (typeof DISCIPLINAS !== 'undefined' ? DISCIPLINAS : [])
-    .map(d => `<option value="${d.id}">${d.nombre}</option>`)
-    .join('');
+  /* Opciones de disciplina filtradas por las del docente */
+  const discOpts = _discOptsDocente('');
 
   body.innerHTML = `
     <div class="rform-group">

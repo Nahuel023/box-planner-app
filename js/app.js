@@ -329,6 +329,7 @@ function showDocente() {
 
   const a = state.alumno;
   document.getElementById('docTopName').textContent = a.nombre;
+  if (typeof updateTopbarAvatar === 'function') updateTopbarAvatar();
 
   /* Ocultar tab Admin si no es admin */
   const navAdmin = document.getElementById('navAdmin');

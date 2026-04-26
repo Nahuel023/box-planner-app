@@ -69,7 +69,16 @@ function renderDocenteAlumnos() {
   const badge = document.getElementById('docAlumnosBadge');
   if (!wrap) return;
 
-  const todos = state.panelAlumnos;
+  /* B.3 — Docente solo ve alumnos de SUS disciplinas (admin ve todos) */
+  let todos = state.panelAlumnos;
+  if (state.alumno?.rol !== 'admin') {
+    const discDoc = state.alumno?.disciplinas || [];
+    if (discDoc.length) {
+      todos = todos.filter(p =>
+        (p.alumno.disciplinas || []).some(d => discDoc.includes(d))
+      );
+    }
+  }
   if (badge) badge.textContent = todos.length;
 
   _renderFiltroChips(todos);

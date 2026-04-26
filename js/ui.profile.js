@@ -28,15 +28,16 @@ function _getInitials(nombre) {
 
 /* ── Actualiza el avatar del topbar ─────────────────────────*/
 function updateTopbarAvatar() {
-  const btn = document.getElementById('perfilAvatarBtn');
-  if (!btn || !state.alumno) return;
+  if (!state.alumno) return;
   const foto     = _getFoto(state.alumno.pin);
   const initials = _getInitials(state.alumno.nombre);
-  if (foto) {
-    btn.innerHTML = `<img src="${foto}" alt="" class="topbar-avatar-img">`;
-  } else {
-    btn.innerHTML = `<span class="topbar-avatar-initials">${initials}</span>`;
-  }
+  const inner    = foto
+    ? `<img src="${foto}" alt="" class="topbar-avatar-img">`
+    : `<span class="topbar-avatar-initials">${initials}</span>`;
+  const btn1 = document.getElementById('perfilAvatarBtn');
+  const btn2 = document.getElementById('docPerfilAvatarBtn');
+  if (btn1) btn1.innerHTML = inner;
+  if (btn2) btn2.innerHTML = inner;
 }
 
 /* ── Abrir modal ─────────────────────────────────────────────*/
@@ -67,6 +68,8 @@ function _renderPerfilBody() {
     ? `<img src="${foto}" alt="" class="perfil-avatar-img">`
     : `<span class="perfil-avatar-initials">${initials}</span>`;
 
+  const esDocente      = a.rol === 'docente' || a.rol === 'admin';
+  const discLabel      = esDocente ? 'Disciplinas que dictás' : 'Disciplinas';
   const discCheckboxes = (typeof DISCIPLINAS !== 'undefined' ? DISCIPLINAS : []).map(d => `
     <label class="perfil-disc-label">
       <input type="checkbox" name="miPerfil_disc" value="${d.id}"
@@ -102,7 +105,7 @@ function _renderPerfilBody() {
     <div class="perfil-fields">
 
       <div class="perfil-field-group">
-        <div class="perfil-flbl">Disciplinas</div>
+        <div class="perfil-flbl">${discLabel}</div>
         <div class="perfil-discs-grid">${discCheckboxes}</div>
       </div>
 
