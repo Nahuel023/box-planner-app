@@ -570,7 +570,7 @@ if (isSupabaseMode()) {
       _sbCache.usuarios[upper].apto_medico       = aptoMedico;
       _sbCache.usuarios[upper].fecha_alta_medica = fecha || null;
     }
-    _getSb().from('bp_usuarios')
+    return _getSb().from('bp_usuarios')
       .update({ apto_medico: aptoMedico, fecha_alta_medica: fecha || null })
       .eq('pin', upper)
       .then(({ error }) => { if (error) console.error('Supabase actualizarAptoMedico:', error); });
