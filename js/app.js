@@ -110,7 +110,7 @@ async function handleRegistro(event) {
 
   if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Registrarse'; }
   closeRegistroModal();
-  showToast('Registro exitoso. Cuenta pendiente de aprobación.');
+  showToast('¡Listo! Ahora pedile al administrador del box que apruebe tu cuenta para poder ingresar con tu PIN.', 'info', 6000);
 }
 
 /* ── Login ───────────────────────────────────────────────────*/
@@ -121,7 +121,7 @@ async function handleLogin() {
   /* Cuenta registrada pero aún no aprobada por el docente */
   if (await Promise.resolve(checkAlumnoPendiente(pin))) {
     const err = document.getElementById('loginError');
-    err.textContent   = 'Tu cuenta está pendiente de aprobación por el box.';
+    err.textContent   = 'Tu cuenta aún no fue aprobada. Avisale al administrador del box.';
     err.style.display = 'block';
     return;
   }

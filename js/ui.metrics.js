@@ -289,7 +289,7 @@ function submitMetric() {
    ────────────────────────────────────────────────────────────
    Muestra un mensaje de confirmación temporal.
    ════════════════════════════════════════════════════════════ */
-function showToast(msg, type = 'ok') {
+function showToast(msg, type = 'ok', duration) {
   let toast = document.getElementById('bpToast');
   if (!toast) {
     toast = document.createElement('div');
@@ -301,7 +301,7 @@ function showToast(msg, type = 'ok') {
   toast.dataset.type = type;
   toast.classList.add('bp-toast--show');
   clearTimeout(toast._timer);
-  const dur = type === 'error' ? 4000 : type === 'warn' ? 3000 : 2200;
+  const dur = duration || (type === 'error' ? 4000 : type === 'warn' ? 3000 : 2200);
   toast._timer = setTimeout(() => toast.classList.remove('bp-toast--show'), dur);
 }
 
