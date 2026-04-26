@@ -82,7 +82,11 @@ function _renderDropdown(drop, resultados, query, onSelect, input, addBtn, conta
       new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi'),
       '<strong>$1</strong>'
     );
+    const thumb = e.media_url
+      ? `<img src="${e.media_url}" class="ac-thumb" alt="" loading="lazy">`
+      : '';
     return `<div class="ac-item" data-id="${e.id}">
+      ${thumb}
       <span class="ac-nombre">${highlight}</span>
       ${badge}
       <span class="ac-musculo">${e.musculo_principal || ''}</span>
@@ -112,6 +116,19 @@ function _renderDropdown(drop, resultados, query, onSelect, input, addBtn, conta
       }
     });
   });
+}
+
+/* ── Preview de imagen en el modal de ejercicio ────────────*/
+function handleEjMediaChange(input) {
+  const file = input.files[0];
+  if (!file) return;
+  document.getElementById('ejMediaLabel').textContent = `✓ ${file.name}`;
+  document.getElementById('ejMediaDrop').classList.add('reg-alta-drop--selected');
+  const preview = document.getElementById('ejMediaPreview');
+  if (preview) {
+    preview.src           = URL.createObjectURL(file);
+    preview.style.display = 'block';
+  }
 }
 
 /* ── Modal alta de ejercicio ─────────────────────────────── */
@@ -177,6 +194,16 @@ function openCrearEjercicioModal(returnContainerId, disciplinasAlumno, nombrePre
             <option value="avanzado">Avanzado</option>
           </select>
         </div>
+        <div class="rform-group">
+          <label class="rform-label">Imagen / GIF (opcional)</label>
+          <div class="reg-alta-drop" id="ejMediaDrop"
+               onclick="document.getElementById('ejMediaInput').click()" style="cursor:pointer">
+            <span id="ejMediaLabel">📷 Agregar imagen o GIF</span>
+          </div>
+          <input type="file" id="ejMediaInput" accept="image/*" style="display:none"
+                 onchange="handleEjMediaChange(this)">
+          <img id="ejMediaPreview" style="display:none;max-width:100%;margin-top:.5rem;border-radius:6px;max-height:140px;object-fit:contain">
+        </div>
         <p id="ejError" class="form-error" style="display:none;"></p>
         <div class="rform-actions">
           <button type="button" class="btn-secondary" onclick="closeCrearEjercicioModal()">Cancelar</button>
@@ -209,6 +236,16 @@ function openCrearEjercicioModal(returnContainerId, disciplinasAlumno, nombrePre
         equipamiento:      equipo,
         nivel:             document.getElementById('ejNivel').value,
       });
+
+      /* Subir imagen si se eligió una */
+      const mediaFile = document.getElementById('ejMediaInput')?.files[0];
+      if (mediaFile && typeof actualizarEjercicioMedia === 'function') {
+        try {
+          await actualizarEjercicioMedia(nuevo.id, mediaFile);
+        } catch(e) {
+          console.warn('No se pudo subir la imagen del ejercicio:', e);
+        }
+      }
 
       closeCrearEjercicioModal();
       showToast(`Ejercicio "${nuevo.nombre}" creado`);

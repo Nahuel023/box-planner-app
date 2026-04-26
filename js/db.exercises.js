@@ -65,7 +65,7 @@ function getEjerciciosDisciplinas() {
 /* ── Crear nuevo ejercicio ───────────────────────────────── */
 async function crearEjercicio({ nombre, disciplina, patron_movimiento, tipo,
                                  musculo_principal, musculo_secundario,
-                                 equipamiento, nivel }) {
+                                 equipamiento, nivel, media_url }) {
   /* Generar ID único */
   const ts  = Date.now().toString(36);
   const id  = `ex_${ts}`;
@@ -83,6 +83,7 @@ async function crearEjercicio({ nombre, disciplina, patron_movimiento, tipo,
     dificultad_tecnica: 1,
     contraindicado_en:  [],
     activo:             true,
+    media_url:          media_url || null,
     created_by:         (typeof state !== 'undefined' && state.alumno) ? state.alumno.pin : 'docente',
   };
 
@@ -123,4 +124,19 @@ function getEjercicioByNombre(nombre) {
 async function desactivarEjercicio(id) {
   await actualizarEjercicio(id, { activo: false });
   delete _ejerciciosCache[id];
+}
+
+/* ── Subir imagen/gif al ejercicio ──────────────────────── */
+async function actualizarEjercicioMedia(id, file) {
+  if (!isSupabaseMode()) return null;
+  const ext  = (file.name.split('.').pop() || 'jpg').toLowerCase();
+  const path = `${id}.${ext}`;
+  const { error: upErr } = await _getSb().storage
+    .from('exercise-media')
+    .upload(path, file, { upsert: true });
+  if (upErr) { console.error('actualizarEjercicioMedia:', upErr); throw upErr; }
+  const { data: urlData } = _getSb().storage.from('exercise-media').getPublicUrl(path);
+  const url = urlData?.publicUrl || '';
+  await actualizarEjercicio(id, { media_url: url });
+  return url;
 }

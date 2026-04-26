@@ -146,6 +146,14 @@ function _renderPerfilBody() {
       </div>`;
   }
 
+  const eliminarCuentaSection = `
+    <div class="perfil-divider"></div>
+    <div class="perfil-field-group">
+      <button class="btn btn--danger" onclick="handleEliminarCuenta()">
+        Eliminar mi cuenta
+      </button>
+    </div>`;
+
   return `
     <div class="perfil-mhdr">
       <span class="perfil-mhdr-title">Mi Perfil</span>
@@ -199,7 +207,8 @@ function _renderPerfilBody() {
     </div>
 
     ${misDocentesSection}
-    ${altaMedicaSection}`;
+    ${altaMedicaSection}
+    ${eliminarCuentaSection}`;
 }
 
 /* ── Upload de foto ──────────────────────────────────────────*/
@@ -298,6 +307,25 @@ function handleAltaMedicaUpload(input) {
       console.error('handleAltaMedicaUpload:', err);
       showToast('Error al subir certificado', 'error');
     });
+}
+
+/* ── Eliminar cuenta propia ──────────────────────────────────*/
+async function handleEliminarCuenta() {
+  if (!confirm('¿Eliminar tu cuenta permanentemente?\nPerderás todos tus datos y no podrás recuperarlos.')) return;
+  const pin = state.alumno?.pin;
+  if (!pin) return;
+  try {
+    if (typeof eliminarUsuario === 'function') {
+      await eliminarUsuario(pin);
+    } else {
+      eliminarUsuarioLocal(pin);
+    }
+    cerrarPerfilModalDirect();
+    if (typeof doLogout === 'function') doLogout();
+  } catch(e) {
+    console.error('handleEliminarCuenta:', e);
+    showToast('Error al eliminar cuenta', 'error');
+  }
 }
 
 /* ── Guardar campos del perfil ───────────────────────────────*/

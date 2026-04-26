@@ -240,7 +240,21 @@ function toggleFiltroDoc() {
    openAlumnoDetail
    Slide-up con tabla de RMs + sección de alertas si aplica.
    ════════════════════════════════════════════════════════════ */
-function openAlumnoDetail(pin) {
+async function openAlumnoDetail(pin) {
+  /* Refrescar datos del alumno para ver doc médico y alta actualizada */
+  if (typeof isSupabaseMode === 'function' && isSupabaseMode() &&
+      typeof refreshAlumnoData === 'function') {
+    const updated = await refreshAlumnoData(pin);
+    if (updated) {
+      const ent = state.panelAlumnos.find(p => p.alumno.pin === pin);
+      if (ent) {
+        ent.alumno.aptoMedico      = updated.apto_medico      || false;
+        ent.alumno.fechaAltaMedica = updated.fecha_alta_medica || null;
+        ent.alumno.docMedicoUrl    = updated.doc_medico_url    || null;
+      }
+    }
+  }
+
   const overlay = document.getElementById('alumnoDetailModal');
   const body    = document.getElementById('alumnoDetailBody');
   if (!overlay || !body) return;
@@ -604,9 +618,14 @@ function _updateAdminBadge() {
   badge.style.display = n > 0 ? '' : 'none';
 }
 
-function renderAdminTab() {
+async function renderAdminTab() {
   const wrap = document.getElementById('adminTabWrap');
   if (!wrap) return;
+
+  /* Refrescar usuarios pendientes desde Supabase */
+  if (typeof refreshPendingUsers === 'function') {
+    await refreshPendingUsers();
+  }
 
   const todos     = getUsuariosLocales();
   const pendientes = todos.filter(u => u.estado === 'pendiente');
@@ -653,6 +672,7 @@ function renderAdminTab() {
             también alumno
           </label>
           <button class="btn-mini" onclick="handleActualizarRol('${u.pin}')">Actualizar</button>
+          <button class="btn-mini btn-mini--danger" onclick="handleEliminarUsuario('${u.pin}')">Eliminar</button>
         </div>`;
       }).join('')
     : '<div style="font-size:.82rem;color:var(--muted);padding:.5rem 0">Sin usuarios locales activos.</div>';
@@ -1035,6 +1055,31 @@ function desvincularAlumnoModal(alumnoPin) {
       renderDocenteAlumnos();
     });
   if (typeof _btnLoading === 'function') _btnLoading(btn, '…', work);
+}
+
+/* ── Eliminar usuario (admin) ────────────────────────────────*/
+async function handleEliminarUsuario(pin) {
+  const u      = getUsuariosLocales().find(u => u.pin === pin);
+  const nombre = u?.nombre || pin;
+  if (!confirm(`¿Eliminar permanentemente a "${nombre}"?\nEsta acción no se puede deshacer.`)) return;
+  try {
+    if (typeof eliminarUsuario === 'function') {
+      await eliminarUsuario(pin);
+    } else {
+      eliminarUsuarioLocal(pin);
+    }
+    if (state.panelAlumnos) {
+      state.panelAlumnos = state.panelAlumnos.filter(
+        p => p.alumno.pin.toUpperCase() !== pin.toUpperCase()
+      );
+    }
+    showToast(`${nombre} eliminado`);
+    renderAdminTab();
+    renderDocenteAlumnos();
+  } catch(e) {
+    console.error('handleEliminarUsuario:', e);
+    showToast('Error al eliminar usuario', 'error');
+  }
 }
 
 /** Resetear estado del panel docente — llamar en logout */

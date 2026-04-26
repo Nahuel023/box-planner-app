@@ -192,3 +192,15 @@ function deleteFotoProgresoLocal(pin, id) {
   const fotos = getFotosProgreso(pin).filter(f => f.id !== id);
   localStorage.setItem(_FOTOS_LS_KEY(pin), JSON.stringify(fotos));
 }
+
+/* ── Eliminar usuario local con cascade ──────────────────────*/
+function eliminarUsuarioLocal(pin) {
+  const upper = pin.toUpperCase();
+  const data  = JSON.parse(localStorage.getItem(NUEVOS_USUARIOS_KEY) || '{}');
+  delete data[upper];
+  localStorage.setItem(NUEVOS_USUARIOS_KEY, JSON.stringify(data));
+  localStorage.removeItem('bp_metrics_' + upper);
+  localStorage.removeItem(`bp_fotos_progreso_${upper}`);
+  localStorage.removeItem('bp_roles_' + upper);
+  _saveDA(_readDA().filter(r => r.alumnoPin !== upper && r.docentePin !== upper));
+}

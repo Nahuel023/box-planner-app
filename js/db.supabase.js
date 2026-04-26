@@ -649,6 +649,53 @@ if (isSupabaseMode()) {
     }
   };
 
+  /* ── Refresh parcial de cache ── */
+  window.refreshPendingUsers = async function() {
+    const { data } = await _getSb().from('bp_usuarios').select('*').eq('estado', 'pendiente');
+    if (data) data.forEach(u => { _sbCache.usuarios[u.pin] = u; });
+  };
+
+  window.refreshAlumnoData = async function(pin) {
+    const upper = pin.toUpperCase();
+    const { data } = await _getSb().from('bp_usuarios').select('*').eq('pin', upper).maybeSingle();
+    if (data) _sbCache.usuarios[upper] = data;
+    return data || null;
+  };
+
+  /* ── Eliminar usuario con cascade ── */
+  window.eliminarUsuario = async function(pin) {
+    const upper = pin.toUpperCase();
+    const sb    = _getSb();
+    const u     = _sbCache.usuarios[upper];
+
+    /* Si es docente/admin, huerfanar sus rutinas */
+    if (u && (u.rol === 'docente' || u.rol === 'admin')) {
+      await sb.from('bp_rutinas').update({ creado_por: 'GENERAL' }).eq('creado_por', upper);
+    }
+
+    /* Cascade delete */
+    await sb.from('bp_metricas').delete().eq('alumno_id', upper);
+    await sb.from('bp_asignaciones').delete().eq('pin', upper);
+    await sb.from('bp_docente_alumno').delete().eq('alumno_pin', upper);
+    await sb.from('bp_docente_alumno').delete().eq('docente_pin', upper);
+    await sb.from('bp_fotos_progreso').delete().eq('pin', upper);
+    const { error } = await sb.from('bp_usuarios').delete().eq('pin', upper);
+    if (error) { console.error('eliminarUsuario:', error); throw error; }
+
+    /* Limpiar cache */
+    delete _sbCache.usuarios[upper];
+    delete _sbCache.metricas[upper];
+    delete _sbCache.asignaciones[upper];
+    Object.keys(_sbCache.docenteAlumnos).forEach(dp => {
+      _sbCache.docenteAlumnos[dp] = (_sbCache.docenteAlumnos[dp] || []).filter(r => r.alumnoPin !== upper);
+    });
+    delete _sbCache.docenteAlumnos[upper];
+    Object.keys(_sbCache.alumnoDocentes).forEach(ap => {
+      _sbCache.alumnoDocentes[ap] = (_sbCache.alumnoDocentes[ap] || []).filter(r => r.docentePin !== upper);
+    });
+    delete _sbCache.alumnoDocentes[upper];
+  };
+
   window.uploadAvatar = async function(pin, file) {
     const upper = pin.toUpperCase();
     const ext   = (file.name.split('.').pop() || 'jpg').toLowerCase();

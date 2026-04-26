@@ -199,6 +199,13 @@ a { color: inherit; text-decoration: none; }
   color: var(--text);
 }
 .btn--outline:hover { border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn--danger {
+  background: var(--red);
+  color: #fff;
+  width: 100%;
+  margin-top: .25rem;
+}
+.btn--danger:hover { opacity: .85; }
 .btn-link {
   background: none; border: none;
   color: var(--accent); font-size: .78rem;
@@ -1592,6 +1599,7 @@ textarea.rform-input { resize: vertical; line-height: 1.5; }
   color: #fff; font-weight: 600; text-transform: uppercase; white-space: nowrap;
 }
 .ac-musculo { font-size: .75rem; color: var(--muted); white-space: nowrap; }
+.ac-thumb { width: 36px; height: 36px; object-fit: cover; border-radius: 4px; flex-shrink: 0; }
 .autocomplete-add-btn {
   margin-top: .4rem; width: 100%; padding: .45rem; background: transparent;
   border: 1px dashed var(--accent); border-radius: var(--r);
