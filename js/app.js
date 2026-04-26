@@ -522,6 +522,11 @@ function switchTab(name) {
   if (name === 'Salud' && typeof renderSaludTab === 'function') {
     renderSaludTab();
   }
+
+  /* Al entrar a Fotos: cargar si todavía no se cargó */
+  if (name === 'Fotos' && typeof loadFotosProgreso === 'function') {
+    loadFotosProgreso();
+  }
 }
 
 /* ── Inicialización ──────────────────────────────────────────
